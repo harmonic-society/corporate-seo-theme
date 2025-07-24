@@ -6997,6 +6997,152 @@ select:focus {
     fill: #ffffff;
 }
 
+/* ヒーローセクションの高さバリエーション */
+.hero-height-small {
+    min-height: 50vh;
+}
+
+.hero-height-default {
+    min-height: 70vh;
+}
+
+.hero-height-large {
+    min-height: 90vh;
+}
+
+.hero-height-full {
+    min-height: 100vh;
+}
+
+/* ヒーローセクションのスタイルバリエーション */
+.hero-video .hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-video .hero-video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.hero-particles .hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.hero-geometric .hero-geometric-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0.1;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+}
+
+/* オーバーレイスタイル */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 3;
+}
+
+/* グラデーションオーバーレイ */
+.hero-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0.9;
+}
+
+/* テキスト配置スタイル */
+.hero-content[style*="text-align: left"] .hero-main {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.hero-content[style*="text-align: left"] .hero-badge {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.hero-content[style*="text-align: left"] .hero-features {
+    justify-content: flex-start;
+}
+
+.hero-content[style*="text-align: left"] .hero-actions {
+    justify-content: flex-start;
+}
+
+.hero-content[style*="text-align: right"] .hero-main {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.hero-content[style*="text-align: right"] .hero-badge {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.hero-content[style*="text-align: right"] .hero-features {
+    justify-content: flex-end;
+}
+
+.hero-content[style*="text-align: right"] .hero-actions {
+    justify-content: flex-end;
+}
+
+/* ヒーロー特徴アイテムの改善 */
+.hero-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.hero-feature .feature-icon {
+    font-size: 1.5rem;
+}
+
+.hero-feature h3 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.hero-feature p {
+    font-size: 0.875rem;
+    margin: 0;
+    opacity: 0.8;
+}
+
 /* ビジョンセクション */
 .vision-section {
     padding: 6rem 0 8rem; /* 上パディングを減らして調整 */

@@ -35,18 +35,28 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
         'type'    => 'checkbox',
     ) );
     
-    // 背景画像
-    $wp_customize->add_setting( 'hero_background_image', array(
+    // セカンダリボタン
+    $wp_customize->add_setting( 'hero_button2_text', array(
         'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    
+    $wp_customize->add_control( 'hero_button2_text', array(
+        'label'   => __( 'セカンダリボタンテキスト', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_hero',
+        'type'    => 'text',
+    ) );
+    
+    $wp_customize->add_setting( 'hero_button2_url', array(
+        'default'           => '#',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_background_image', array(
-        'label'   => __( 'ヒーロー背景画像', 'corporate-seo-pro' ),
+    $wp_customize->add_control( 'hero_button2_url', array(
+        'label'   => __( 'セカンダリボタンURL', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_hero',
-        'settings' => 'hero_background_image',
-        'description' => __( '推奨サイズ: 1920x1080px', 'corporate-seo-pro' ),
-    ) ) );
+        'type'    => 'url',
+    ) );
     
     // タイトル
     $wp_customize->add_setting( 'hero_title', array(
@@ -116,14 +126,14 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
     
     // 背景画像
     $wp_customize->add_setting( 'hero_background_image', array(
-        'default'           => '',
+        'default'           => 'https://harmonic-society.co.jp/wp-content/uploads/2024/10/GettyImages-981641584-scaled.jpg',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_background_image', array(
         'label'       => __( 'ヒーロー背景画像', 'corporate-seo-pro' ),
         'section'     => 'corporate_seo_hero',
-        'description' => __( 'ヒーロースタイルが「背景画像」の場合に使用されます。推奨サイズ: 1280×750ピクセル', 'corporate-seo-pro' ),
+        'description' => __( 'ヒーロースタイルが「背景画像」の場合に使用されます。推奨サイズ: 1920×1080px', 'corporate-seo-pro' ),
     ) ) );
     
     // 背景動画
@@ -180,6 +190,113 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
         'label'   => __( 'パーティクルの色', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_hero',
     ) ) );
+    
+    // ヒーロー特徴セクション
+    for ( $i = 1; $i <= 3; $i++ ) {
+        // 特徴タイトル
+        $wp_customize->add_setting( 'hero_feature_' . $i . '_title', array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        
+        $wp_customize->add_control( 'hero_feature_' . $i . '_title', array(
+            'label'   => sprintf( __( 'ヒーロー特徴%dタイトル', 'corporate-seo-pro' ), $i ),
+            'section' => 'corporate_seo_hero',
+            'type'    => 'text',
+        ) );
+        
+        // 特徴説明
+        $wp_customize->add_setting( 'hero_feature_' . $i . '_desc', array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        
+        $wp_customize->add_control( 'hero_feature_' . $i . '_desc', array(
+            'label'   => sprintf( __( 'ヒーロー特徴%d説明', 'corporate-seo-pro' ), $i ),
+            'section' => 'corporate_seo_hero',
+            'type'    => 'text',
+        ) );
+        
+        // 特徴アイコン
+        $wp_customize->add_setting( 'hero_feature_' . $i . '_icon', array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        
+        $wp_customize->add_control( 'hero_feature_' . $i . '_icon', array(
+            'label'   => sprintf( __( 'ヒーロー特徴%dアイコン', 'corporate-seo-pro' ), $i ),
+            'section' => 'corporate_seo_hero',
+            'type'    => 'text',
+            'description' => __( 'Font Awesomeのクラス名（例: fas fa-rocket）', 'corporate-seo-pro' ),
+        ) );
+    }
+    
+    // グラデーション設定
+    $wp_customize->add_setting( 'hero_gradient_start', array(
+        'default'           => '#10b981',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hero_gradient_start', array(
+        'label'   => __( 'グラデーション開始色', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_hero',
+    ) ) );
+    
+    $wp_customize->add_setting( 'hero_gradient_end', array(
+        'default'           => '#059669',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hero_gradient_end', array(
+        'label'   => __( 'グラデーション終了色', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_hero',
+    ) ) );
+    
+    // テキスト色
+    $wp_customize->add_setting( 'hero_text_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hero_text_color', array(
+        'label'   => __( 'ヒーローテキスト色', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_hero',
+    ) ) );
+    
+    // ヒーローの高さ
+    $wp_customize->add_setting( 'hero_height', array(
+        'default'           => 'default',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    
+    $wp_customize->add_control( 'hero_height', array(
+        'label'   => __( 'ヒーローセクションの高さ', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_hero',
+        'type'    => 'select',
+        'choices' => array(
+            'small'    => __( '小（50vh）', 'corporate-seo-pro' ),
+            'default'  => __( '標準（70vh）', 'corporate-seo-pro' ),
+            'large'    => __( '大（90vh）', 'corporate-seo-pro' ),
+            'full'     => __( 'フルスクリーン（100vh）', 'corporate-seo-pro' ),
+        ),
+    ) );
+    
+    // テキスト配置
+    $wp_customize->add_setting( 'hero_text_align', array(
+        'default'           => 'center',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    
+    $wp_customize->add_control( 'hero_text_align', array(
+        'label'   => __( 'テキスト配置', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_hero',
+        'type'    => 'select',
+        'choices' => array(
+            'left'   => __( '左寄せ', 'corporate-seo-pro' ),
+            'center' => __( '中央', 'corporate-seo-pro' ),
+            'right'  => __( '右寄せ', 'corporate-seo-pro' ),
+        ),
+    ) );
     
     /**
      * 会社情報

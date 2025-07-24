@@ -12,18 +12,54 @@ get_header(); ?>
     <!-- Hero Section - Harmonic Society Style -->
     <?php if ( get_theme_mod( 'show_hero_section', true ) ) : ?>
     <?php 
+    // Hero section variables
+    $hero_style = get_theme_mod( 'hero_style', 'gradient' );
     $hero_bg_image = get_theme_mod( 'hero_background_image', 'https://harmonic-society.co.jp/wp-content/uploads/2024/10/GettyImages-981641584-scaled.jpg' );
+    $hero_bg_video = get_theme_mod( 'hero_background_video', '' );
+    $hero_overlay = get_theme_mod( 'hero_overlay_opacity', '0.5' );
+    $hero_animation = get_theme_mod( 'hero_animation', true );
+    $hero_height = get_theme_mod( 'hero_height', 'default' );
+    $hero_text_align = get_theme_mod( 'hero_text_align', 'center' );
+    $hero_text_color = get_theme_mod( 'hero_text_color', '#ffffff' );
+    $gradient_start = get_theme_mod( 'hero_gradient_start', '#10b981' );
+    $gradient_end = get_theme_mod( 'hero_gradient_end', '#059669' );
+    
+    $hero_classes = 'hero-section harmonic-hero';
+    $hero_classes .= ' hero-' . $hero_style;
+    $hero_classes .= ' hero-height-' . $hero_height;
+    $hero_classes .= $hero_animation ? ' animations-enabled' : '';
     ?>
-    <section class="hero-section harmonic-hero">
-        <!-- 背景画像を別divで処理 -->
-        <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
-        <div class="hero-bg-pattern">
-            <div class="hero-gradient-primary"></div>
-            <div class="hero-gradient-secondary"></div>
-            <div class="geometric-pattern"></div>
-        </div>
+    <section class="<?php echo esc_attr( $hero_classes ); ?>" style="color: <?php echo esc_attr( $hero_text_color ); ?>">
+        <!-- 背景処理 -->
+        <?php if ( $hero_style === 'image' || $hero_style === 'gradient' ) : ?>
+            <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
+        <?php endif; ?>
         
-        <div class="hero-content">
+        <?php if ( $hero_style === 'video' && $hero_bg_video ) : ?>
+            <div class="hero-video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="<?php echo esc_url( $hero_bg_video ); ?>" type="video/mp4">
+                </video>
+            </div>
+        <?php endif; ?>
+        
+        <?php if ( $hero_style === 'gradient' || $hero_style === 'particles' || $hero_style === 'geometric' ) : ?>
+            <div class="hero-gradient-overlay" style="background: linear-gradient(135deg, <?php echo esc_attr( $gradient_start ); ?> 0%, <?php echo esc_attr( $gradient_end ); ?> 100%)"></div>
+        <?php endif; ?>
+        
+        <?php if ( $hero_overlay !== '0' && ( $hero_style === 'image' || $hero_style === 'video' ) ) : ?>
+            <div class="hero-overlay" style="opacity: <?php echo esc_attr( $hero_overlay ); ?>"></div>
+        <?php endif; ?>
+        
+        <?php if ( $hero_style === 'particles' ) : ?>
+            <div class="hero-particles" data-color="<?php echo esc_attr( get_theme_mod( 'hero_particles_color', '#ffffff' ) ); ?>"></div>
+        <?php endif; ?>
+        
+        <?php if ( $hero_style === 'geometric' ) : ?>
+            <div class="hero-geometric-pattern"></div>
+        <?php endif; ?>
+        
+        <div class="hero-content" style="text-align: <?php echo esc_attr( $hero_text_align ); ?>">
             <div class="container">
                 <div class="hero-main">
                     <div class="hero-badge">
@@ -50,32 +86,65 @@ get_header(); ?>
                     </p>
                     
                     <div class="hero-features">
-                        <div class="feature-item">
-                            <i class="fas fa-rocket"></i>
-                            <span>成長戦略</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-sync-alt"></i>
-                            <span>持続可能性</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-users"></i>
-                            <span>共創価値</span>
-                        </div>
+                        <?php for ( $i = 1; $i <= 3; $i++ ) : ?>
+                            <?php 
+                            $feature_title = get_theme_mod( 'hero_feature_' . $i . '_title' );
+                            $feature_desc = get_theme_mod( 'hero_feature_' . $i . '_desc' );
+                            $feature_icon = get_theme_mod( 'hero_feature_' . $i . '_icon' );
+                            
+                            // デフォルト値
+                            if ( $i == 1 && !$feature_title ) {
+                                $feature_title = '成長戦略';
+                                $feature_icon = 'fas fa-rocket';
+                            } elseif ( $i == 2 && !$feature_title ) {
+                                $feature_title = '持続可能性';
+                                $feature_icon = 'fas fa-sync-alt';
+                            } elseif ( $i == 3 && !$feature_title ) {
+                                $feature_title = '共創価値';
+                                $feature_icon = 'fas fa-users';
+                            }
+                            
+                            if ( $feature_title ) :
+                            ?>
+                            <div class="hero-feature feature-item">
+                                <div class="feature-icon">
+                                    <?php if ( $feature_icon ) : ?>
+                                        <i class="<?php echo esc_attr( $feature_icon ); ?>"></i>
+                                    <?php endif; ?>
+                                </div>
+                                <h3><?php echo esc_html( $feature_title ); ?></h3>
+                                <?php if ( $feature_desc ) : ?>
+                                    <p><?php echo esc_html( $feature_desc ); ?></p>
+                                <?php endif; ?>
+                            </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
                     </div>
                     
                     <div class="hero-actions">
-                        <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'contact' ) ) ); ?>" class="btn-harmonic btn-primary">
+                        <?php 
+                        $button1_text = get_theme_mod( 'hero_button_text', '無料相談を申し込む' );
+                        $button1_url = get_theme_mod( 'hero_button_url', get_permalink( get_page_by_path( 'contact' ) ) );
+                        $button2_text = get_theme_mod( 'hero_button2_text', 'サービスを見る' );
+                        $button2_url = get_theme_mod( 'hero_button2_url', '#services' );
+                        ?>
+                        
+                        <?php if ( $button1_text ) : ?>
+                        <a href="<?php echo esc_url( $button1_url ); ?>" class="btn-harmonic btn-primary">
                             <span class="btn-inner">
-                                <span class="btn-text">無料相談を申し込む</span>
+                                <span class="btn-text"><?php echo esc_html( $button1_text ); ?></span>
                                 <span class="btn-arrow">→</span>
                             </span>
                         </a>
-                        <a href="#services" class="btn-harmonic btn-secondary">
+                        <?php endif; ?>
+                        
+                        <?php if ( $button2_text ) : ?>
+                        <a href="<?php echo esc_url( $button2_url ); ?>" class="btn-harmonic btn-secondary">
                             <span class="btn-inner">
-                                <span class="btn-text">サービスを見る</span>
+                                <span class="btn-text"><?php echo esc_html( $button2_text ); ?></span>
                             </span>
                         </a>
+                        <?php endif; ?>
                     </div>
                     
                     <div class="hero-trust">
