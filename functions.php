@@ -145,6 +145,7 @@ function corporate_seo_pro_scripts() {
 
     // カスタムスクリプト
     wp_enqueue_script( 'corporate-seo-pro-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), wp_get_theme()->get( 'Version' ), true );
+    wp_enqueue_script( 'corporate-seo-pro-mobile-menu', get_template_directory_uri() . '/assets/js/mobile-menu.js', array(), wp_get_theme()->get( 'Version' ), true );
     wp_enqueue_script( 'corporate-seo-pro-nav-cta', get_template_directory_uri() . '/assets/js/nav-cta.js', array(), wp_get_theme()->get( 'Version' ), true );
     
     // ヒーローアニメーションスクリプト

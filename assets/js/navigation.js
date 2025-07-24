@@ -1,7 +1,7 @@
 /**
  * ナビゲーション機能
  */
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
     // DOM要素の取得
@@ -11,9 +11,16 @@
     const menuItems = document.querySelectorAll('.mobile-menu a');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
 
+    console.log('Navigation.js loaded - DOMContentLoaded');
+    console.log('mobileMenuToggle:', mobileMenuToggle);
+    console.log('mobileMenu:', mobileMenu);
+    console.log('mobileMenuOverlay:', mobileMenuOverlay);
+
     // モバイルメニューの切り替え
     if (mobileMenuToggle && mobileMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Menu toggle clicked');
             const isOpen = mobileMenu.classList.contains('active');
             
             if (isOpen) {
@@ -197,4 +204,4 @@
         });
     }
 
-})();
+});
