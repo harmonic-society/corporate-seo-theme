@@ -1,0 +1,210 @@
+/**
+ * Mobile Animation Fixes
+ * 
+ * モバイルで要素が確実に表示されるようにする修正
+ */
+
+/* ==========================================================================
+   モバイルでの強制表示（アニメーションが失敗しても表示される）
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* アニメーションで隠れている要素を強制表示 */
+    .hero-title,
+    .title-line-1,
+    .title-line-2,
+    .hero-description,
+    .hero-features,
+    .hero-trust,
+    .hero-content,
+    .hero-text-section,
+    .hero-cta-group,
+    .fade-in,
+    .fadeInUp,
+    .blog-article,
+    .value-item,
+    .article-content,
+    .section-title,
+    .page-title {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        animation: none !important;
+    }
+    
+    /* ヒーローセクションの要素を確実に表示 */
+    .hero-modern *,
+    .hero-section * {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* aboutページの3つの調和を表示 */
+    .hero-values,
+    .values-title,
+    .values-grid,
+    .value-circle,
+    .value-item {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+    
+    /* ナビゲーション関連の表示 */
+    .sub-menu.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* カードとグリッドの表示 */
+    .blog-grid-modern,
+    .content-grid,
+    .service-card,
+    .work-card {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* ボタンの表示 */
+    .btn,
+    .button,
+    .hero-btn-primary,
+    .hero-btn-secondary,
+    .nav-cta-button {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+    
+    /* パーティクルとデコレーションを非表示（パフォーマンス向上） */
+    .particle,
+    .connection-lines,
+    .hero-decoration,
+    .floating-element,
+    .geometric-shape {
+        display: none !important;
+    }
+    
+    /* パララックス効果を無効化 */
+    .parallax-element,
+    .hero-bg-image,
+    .hero-gradient-bg {
+        transform: none !important;
+    }
+    
+    /* アニメーション時間を0に */
+    * {
+        animation-delay: 0s !important;
+        transition-delay: 0s !important;
+    }
+}
+
+/* ==========================================================================
+   アニメーション削減設定の対応
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   z-indexの修正（要素が隠れないように）
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .hero-content {
+        z-index: 10 !important;
+        position: relative !important;
+    }
+    
+    .hero-text-section,
+    .hero-cta-group {
+        z-index: 11 !important;
+        position: relative !important;
+    }
+    
+    /* モバイルメニューのz-index */
+    .mobile-menu {
+        z-index: 9999 !important;
+    }
+    
+    .mobile-menu-overlay {
+        z-index: 9998 !important;
+    }
+}
+
+/* ==========================================================================
+   高さとオーバーフローの修正
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* コンテナの高さを自動に */
+    .hero-modern,
+    .hero-section,
+    .about-hero {
+        min-height: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    /* コンテンツの表示を確保 */
+    .container {
+        overflow: visible !important;
+    }
+    
+    /* グリッドレイアウトの修正 */
+    .hero-content-inner {
+        display: block !important;
+    }
+    
+    .values-grid {
+        display: block !important;
+    }
+    
+    .value-item {
+        margin-bottom: 2rem;
+    }
+}
+
+/* ==========================================================================
+   フォントサイズと読みやすさの改善
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* タイトルのサイズ調整 */
+    .hero-title-modern,
+    .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* 説明文の読みやすさ */
+    .hero-description {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* ボタンのタップしやすさ */
+    .hero-btn-primary,
+    .hero-btn-secondary,
+    .btn {
+        min-height: 48px !important;
+        padding: 12px 24px !important;
+    }
+}
+
+/* ==========================================================================
+   デバッグ用（開発時のみ使用）
+   ========================================================================== */
+
+/* 
+@media (max-width: 768px) {
+    * {
+        border: 1px solid red !important;
+    }
+}
+*/
