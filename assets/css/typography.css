@@ -1,0 +1,328 @@
+/**
+ * Typography Styles
+ * 
+ * Consistent typography across the site
+ */
+
+/* ==========================================================================
+   Base Typography
+   ========================================================================== */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Headings
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1a1a1a;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1.125rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    h4 {
+        font-size: 1.25rem;
+    }
+    
+    h5 {
+        font-size: 1.125rem;
+    }
+    
+    h6 {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Paragraphs
+   ========================================================================== */
+
+p {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.lead {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.small {
+    font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+a {
+    color: #10b981;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #059669;
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+ul ul, ul ol,
+ol ul, ol ol {
+    margin-bottom: 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Styled lists */
+.list-unstyled {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-inline {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.list-inline li {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Blockquotes
+   ========================================================================== */
+
+blockquote {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    padding-left: 2rem;
+    background-color: #f8f9fa;
+    border-left: 4px solid #10b981;
+    font-style: italic;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+blockquote cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    font-style: normal;
+    color: #666;
+}
+
+/* ==========================================================================
+   Code
+   ========================================================================== */
+
+code {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875em;
+    padding: 0.2em 0.4em;
+    background-color: #f3f4f6;
+    border-radius: 4px;
+    color: #e11d48;
+}
+
+pre {
+    display: block;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #1e293b;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+pre code {
+    padding: 0;
+    background-color: transparent;
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* ==========================================================================
+   Text Utilities
+   ========================================================================== */
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+/* Font weights */
+.fw-light {
+    font-weight: 300;
+}
+
+.fw-normal {
+    font-weight: 400;
+}
+
+.fw-medium {
+    font-weight: 500;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+/* Text colors */
+.text-primary {
+    color: #10b981;
+}
+
+.text-secondary {
+    color: #6b7280;
+}
+
+.text-success {
+    color: #059669;
+}
+
+.text-danger {
+    color: #dc2626;
+}
+
+.text-warning {
+    color: #f59e0b;
+}
+
+.text-info {
+    color: #3b82f6;
+}
+
+.text-muted {
+    color: #6b7280;
+}

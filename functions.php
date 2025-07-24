@@ -142,20 +142,23 @@ add_action( 'after_setup_theme', 'corporate_seo_pro_content_width', 0 );
 function corporate_seo_pro_scripts() {
     // メインスタイルシート
     wp_enqueue_style( 'corporate-seo-pro-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
-
-    // カスタムスクリプト
-    wp_enqueue_script( 'corporate-seo-pro-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), wp_get_theme()->get( 'Version' ), true );
-    wp_enqueue_script( 'corporate-seo-pro-mobile-menu', get_template_directory_uri() . '/assets/js/mobile-menu.js', array(), wp_get_theme()->get( 'Version' ), true );
-    wp_enqueue_script( 'corporate-seo-pro-nav-cta', get_template_directory_uri() . '/assets/js/nav-cta.js', array(), wp_get_theme()->get( 'Version' ), true );
     
-    // ヒーローアニメーションスクリプト
-    if ( is_front_page() ) {
-        wp_enqueue_script( 'corporate-seo-pro-hero', get_template_directory_uri() . '/assets/js/hero-animations.js', array(), wp_get_theme()->get( 'Version' ), true );
-        wp_enqueue_script( 'corporate-seo-pro-cta', get_template_directory_uri() . '/assets/js/cta-animations.js', array(), wp_get_theme()->get( 'Version' ), true );
-    }
+    // モジュール化されたCSSファイル
+    wp_enqueue_style( 'corporate-seo-pro-typography', get_template_directory_uri() . '/assets/css/typography.css', array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'corporate-seo-pro-navigation', get_template_directory_uri() . '/assets/css/navigation.css', array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'corporate-seo-pro-buttons', get_template_directory_uri() . '/assets/css/buttons.css', array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'corporate-seo-pro-hero', get_template_directory_uri() . '/assets/css/hero-section.css', array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'corporate-seo-pro-forms', get_template_directory_uri() . '/assets/css/forms.css', array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'corporate-seo-pro-blog-archive', get_template_directory_uri() . '/assets/css/blog-archive.css', array(), wp_get_theme()->get( 'Version' ) );
+    
+    // クリーンアップCSS（競合を解決）
+    wp_enqueue_style( 'corporate-seo-pro-cleanup', get_template_directory_uri() . '/assets/css/cleanup.css', array('corporate-seo-pro-style'), wp_get_theme()->get( 'Version' ) );
+    
+    // 統合されたメインスクリプト
+    wp_enqueue_script( 'corporate-seo-pro-theme', get_template_directory_uri() . '/assets/js/theme.js', array(), wp_get_theme()->get( 'Version' ), true );
     
     // レスポンシブナビゲーション用
-    wp_localize_script( 'corporate-seo-pro-navigation', 'corporateSEOPro', array(
+    wp_localize_script( 'corporate-seo-pro-theme', 'corporateSEOPro', array(
         'menuOpen'  => esc_html__( 'メニューを開く', 'corporate-seo-pro' ),
         'menuClose' => esc_html__( 'メニューを閉じる', 'corporate-seo-pro' ),
     ) );
@@ -187,11 +190,10 @@ function corporate_seo_pro_scripts() {
         wp_enqueue_script( 'corporate-seo-pro-blog-archive', get_template_directory_uri() . '/assets/js/blog-archive.js', array(), wp_get_theme()->get( 'Version' ), true );
     }
     
-    // モバイルUX最適化CSS/JSの読み込み
+    // モバイルUX最適化CSSの読み込み
     if ( wp_is_mobile() || isset($_GET['mobile_preview']) ) {
         wp_enqueue_style( 'corporate-seo-pro-mobile-ux', get_template_directory_uri() . '/assets/css/mobile-ux.css', array('corporate-seo-pro-style'), wp_get_theme()->get( 'Version' ) );
         wp_enqueue_style( 'corporate-seo-pro-mobile-animations', get_template_directory_uri() . '/assets/css/mobile-animations.css', array('corporate-seo-pro-style'), wp_get_theme()->get( 'Version' ) );
-        wp_enqueue_script( 'corporate-seo-pro-mobile-ux', get_template_directory_uri() . '/assets/js/mobile-ux.js', array(), wp_get_theme()->get( 'Version' ), true );
     }
     
     // Aboutページのアニメーションスクリプト

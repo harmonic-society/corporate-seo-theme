@@ -1,0 +1,103 @@
+/**
+ * Cleanup CSS
+ * 
+ * Override and fix conflicting styles from main stylesheet
+ */
+
+/* ==========================================================================
+   Remove Conflicting Navigation Styles
+   ========================================================================== */
+
+/* Remove forced menu text visibility with !important */
+.site-header #primary-menu li a .menu-text,
+.site-header .main-navigation .menu-text,
+#primary-menu > li > a > .menu-text,
+body .site-header .menu-text {
+    display: initial !important;
+    visibility: initial !important;
+    opacity: initial !important;
+    color: initial !important;
+}
+
+/* Remove duplicate nav-cta-button styles */
+.main-navigation .nav-cta-button {
+    /* Use styles from buttons.css */
+}
+
+/* ==========================================================================
+   Fix Hero Section Conflicts
+   ========================================================================== */
+
+/* Remove conflicting hero background styles */
+.hero-bg-pattern,
+.hero-gradient-primary,
+.hero-gradient-secondary,
+.geometric-pattern {
+    /* These are now handled by hero style variations */
+    display: none;
+}
+
+/* Only show these elements when needed */
+.hero-gradient .hero-bg-pattern,
+.hero-gradient .hero-gradient-primary,
+.hero-gradient .hero-gradient-secondary,
+.hero-gradient .geometric-pattern {
+    display: block;
+}
+
+/* Remove old overlay styles */
+.hero-section::before {
+    display: none !important;
+}
+
+/* ==========================================================================
+   Fix Mobile Menu Conflicts
+   ========================================================================== */
+
+/* Ensure only one mobile menu implementation */
+.mobile-navigation {
+    display: none !important;
+}
+
+/* ==========================================================================
+   Typography Normalization
+   ========================================================================== */
+
+body {
+    color: #333333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   Container Width Consistency
+   ========================================================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+}
+
+/* ==========================================================================
+   Remove Inline Styles Override
+   ========================================================================== */
+
+/* Force remove inline styles that shouldn't be there */
+[style*="visibility: hidden !important"] {
+    visibility: visible !important;
+}
+
+[style*="display: none !important"]:not(.mobile-menu):not(.mobile-menu-overlay) {
+    display: initial !important;
+}

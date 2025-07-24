@@ -95,8 +95,8 @@ a:hover {
     padding: 0 20px;
 }
 
-/* ヘッダー - Moved to navigation.css */
-/* .site-header {
+/* ヘッダー */
+.site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -107,7 +107,7 @@ a:hover {
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(0, 134, 123, 0.1);
     overflow: visible;
-} */
+}
 
 /* スクロール時のヘッダー */
 .site-header.scrolled {
@@ -421,7 +421,6 @@ span.menu-text {
     text-decoration: none !important;
 }
 
-/* Moved to buttons.css
 .nav-cta-button {
     display: inline-flex;
     align-items: center;
@@ -444,7 +443,7 @@ span.menu-text {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-} */
+}
 
 /* 光沢エフェクト */
 .nav-cta-button::before {
@@ -552,10 +551,10 @@ span.menu-text {
     transform: translateX(5px) rotate(45deg);
 }
 
-/* グローエフェクト - Moved to buttons.css
+/* グローエフェクト */
 .nav-cta-button {
     filter: drop-shadow(0 0 10px rgba(0, 201, 167, 0.3));
-} */
+}
 
 .nav-cta-button:hover {
     filter: drop-shadow(0 0 20px rgba(0, 201, 167, 0.5));
@@ -578,17 +577,17 @@ span.menu-text {
     }
 }
 
-/* 3D効果のための設定 - Moved to buttons.css
+/* 3D効果のための設定 */
 .nav-cta-button {
     transform-style: preserve-3d;
     backface-visibility: hidden;
-} */
+}
 
-/* 特別なホバーエフェクト - Moved to buttons.css
+/* 特別なホバーエフェクト */
 .nav-cta-button {
     background-size: 200% 100%;
     background-position: 0% 0%;
-} */
+}
 
 .nav-cta-button:hover {
     background-position: 100% 0%;
@@ -842,8 +841,8 @@ span.menu-text {
     padding: 4rem 0;
 }
 
-/* ヒーローセクション - Harmonic Society Style - Moved to hero-section.css */
-/* .hero-section {
+/* ヒーローセクション - Harmonic Society Style */
+.hero-section {
     position: relative;
     min-height: 750px;
     height: calc(100vh - var(--header-height));
