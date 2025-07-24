@@ -27,7 +27,7 @@ get_header(); ?>
                     
                     <h1 class="hero-title">
                         <span class="title-line-1">ビジネスと社会の</span>
-                        <span class="title-line-2">調和を創造する</span>
+                        <span class="title-line-2" data-text="調和を創造する">調和を創造する</span>
                     </h1>
                     
                     <p class="hero-lead">
