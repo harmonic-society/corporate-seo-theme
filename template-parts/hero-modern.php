@@ -51,37 +51,19 @@
             </div>
             
             <!-- ビジュアルセクション -->
+            <?php 
+            $hero_image = get_theme_mod( 'hero_modern_image', '' );
+            if ( $hero_image ) : 
+            ?>
             <div class="hero-visual-section">
                 <div class="hero-visual-container">
-                    <div class="hero-card">
-                        <!-- AIアシスタントプレビュー -->
-                        <div class="ai-preview">
-                            <div class="ai-chat-bubble">
-                                🤖 AIがあなたのビジネスの成長を加速させます
-                            </div>
-                            <div class="ai-chat-bubble" style="animation-delay: 0.5s;">
-                                💡 データ分析から戦略立案まで、包括的にサポート
-                            </div>
-                        </div>
-                        
-                        <!-- 統計データ -->
-                        <div class="hero-stats">
-                            <div class="stat-item">
-                                <div class="stat-number">85%</div>
-                                <div class="stat-label">業務効率化</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">3.2x</div>
-                                <div class="stat-label">ROI向上</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">24/7</div>
-                                <div class="stat-label">AIサポート</div>
-                            </div>
-                        </div>
+                    <div class="hero-image-wrapper">
+                        <img src="<?php echo esc_url( $hero_image ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="hero-featured-image">
+                        <div class="hero-image-overlay"></div>
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     

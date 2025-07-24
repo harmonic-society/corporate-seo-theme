@@ -248,7 +248,7 @@
 }
 
 /* ==========================================================================
-   ビジュアルセクション - インタラクティブ要素
+   ビジュアルセクション - 画像表示
    ========================================================================== */
 
 .hero-visual-section {
@@ -258,78 +258,48 @@
 
 .hero-visual-container {
     position: relative;
-    padding: 40px;
+    height: 100%;
 }
 
-/* インタラクティブカード */
-.hero-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* 画像ラッパー */
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
-    padding: 40px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
     transform: perspective(1000px) rotateY(-5deg);
     transition: all 0.5s ease;
 }
 
-.hero-card:hover {
-    transform: perspective(1000px) rotateY(0deg);
-    background: rgba(255, 255, 255, 0.08);
+.hero-image-wrapper:hover {
+    transform: perspective(1000px) rotateY(0deg) scale(1.02);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
 }
 
-/* AIアシスタントプレビュー */
-.ai-preview {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
+/* ヒーロー画像 */
+.hero-featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-.ai-chat-bubble {
-    background: linear-gradient(135deg, #16a085 0%, #10b981 100%);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 20px 20px 20px 5px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    line-height: 1.6;
-    animation: slideIn 0.5s ease-out;
+/* 画像オーバーレイ */
+.hero-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(22, 160, 133, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* 統計データ表示 */
-.hero-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #16a085;
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.hero-image-wrapper:hover .hero-image-overlay {
+    opacity: 0.5;
 }
 
 /* ==========================================================================

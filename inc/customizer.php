@@ -58,6 +58,20 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
         'type'    => 'url',
     ) );
     
+    // モダンヒーロー画像
+    $wp_customize->add_setting( 'hero_modern_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_modern_image', array(
+        'label'       => __( 'モダンヒーロー画像', 'corporate-seo-pro' ),
+        'description' => __( 'ヒーローセクションの右側に表示される画像をアップロード（推奨: 800x600px以上）', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_hero',
+        'settings'    => 'hero_modern_image',
+        'priority'    => 25,
+    ) ) );
+    
     // タイトル
     $wp_customize->add_setting( 'hero_title', array(
         'default'           => get_bloginfo( 'name' ),
