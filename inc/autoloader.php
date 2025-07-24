@@ -30,6 +30,7 @@ function corporate_seo_pro_load_includes() {
         '/inc/seo-functions.php',      // SEO functionality
         '/inc/performance.php',        // Performance optimization
         '/inc/structured-data.php',    // Structured data
+        '/inc/acf-fields.php',         // ACF field registration
     );
     
     // Load each file

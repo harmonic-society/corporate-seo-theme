@@ -1,132 +1,112 @@
 /**
- * サービス詳細ページ用JavaScript
+ * Single Service Page JavaScript
+ * 
+ * @package Corporate_SEO_Pro
  */
+
 (function() {
     'use strict';
 
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        // スムーススクロール
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+    function init() {
+        setupSmoothScrolling();
+        setupFeatureAnimations();
+        setupPricingInteractions();
+    }
+
+    /**
+     * Setup smooth scrolling for internal links
+     */
+    function setupSmoothScrolling() {
         const smoothScrollLinks = document.querySelectorAll('.smooth-scroll');
+        
         smoothScrollLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                const href = this.getAttribute('href');
                 
-                if (targetElement) {
-                    const headerHeight = document.querySelector('.site-header').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
                     
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
+    }
 
-        // FAQアコーディオン
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            
-            question.addEventListener('click', function() {
-                // 他のアイテムを閉じる
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                
-                // 現在のアイテムをトグル
-                item.classList.toggle('active');
-            });
-        });
-
-        // スクロールアニメーション
+    /**
+     * Setup feature card animations
+     */
+    function setupFeatureAnimations() {
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        if (featureCards.length === 0) return;
+        
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+                    setTimeout(() => {
+                        entry.target.classList.add('fade-in-up');
+                    }, index * 100);
+                    
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
-
-        // アニメーション要素を監視
-        const animateElements = document.querySelectorAll(
-            '.feature-card, .process-step, .pricing-card, .faq-item'
-        );
         
-        animateElements.forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
+        featureCards.forEach(card => {
+            observer.observe(card);
         });
+    }
 
-        // ヒーローパララックス効果
-        const heroSection = document.querySelector('.service-hero');
-        if (heroSection) {
-            const bgGradient1 = heroSection.querySelector('.bg-gradient-1');
-            const bgGradient2 = heroSection.querySelector('.bg-gradient-2');
-            
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const rate = scrolled * -0.5;
-                
-                if (bgGradient1) {
-                    bgGradient1.style.transform = `translateY(${rate * 0.3}px)`;
-                }
-                if (bgGradient2) {
-                    bgGradient2.style.transform = `translateY(${rate * 0.2}px)`;
-                }
-            });
-        }
-
-        // プロセスタイムラインのアニメーション
-        const processSteps = document.querySelectorAll('.process-step');
-        if (processSteps.length > 0) {
-            const timelineObserver = new IntersectionObserver(function(entries) {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, index * 100);
-                    }
-                });
-            }, {
-                threshold: 0.3
-            });
-
-            processSteps.forEach(step => {
-                timelineObserver.observe(step);
-            });
-        }
-
-        // 価格カードのホバーエフェクト
+    /**
+     * Setup pricing card interactions
+     */
+    function setupPricingInteractions() {
         const pricingCards = document.querySelectorAll('.pricing-card');
+        
         pricingCards.forEach(card => {
+            // Add hover effect
             card.addEventListener('mouseenter', function() {
-                pricingCards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        otherCard.style.opacity = '0.8';
-                        otherCard.style.transform = 'scale(0.95)';
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+            
+            // Make entire card clickable if it has a CTA
+            const cta = card.querySelector('.plan-cta');
+            if (cta) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function(e) {
+                    if (e.target !== cta && !cta.contains(e.target)) {
+                        cta.click();
                     }
                 });
-            });
-
-            card.addEventListener('mouseleave', function() {
-                pricingCards.forEach(otherCard => {
-                    otherCard.style.opacity = '1';
-                    otherCard.style.transform = 'scale(1)';
-                });
-            });
+            }
         });
+    }
 
-    });
 })();

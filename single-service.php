@@ -94,7 +94,13 @@ get_header(); ?>
         </section>
 
         <!-- サービスの特徴セクション -->
-        <?php if ( function_exists('get_field') && have_rows('service_features') ) : ?>
+        <?php 
+        $has_features = false;
+        if ( function_exists('get_field') && function_exists('have_rows') ) {
+            $has_features = have_rows('service_features');
+        }
+        
+        if ( $has_features ) : ?>
         <section id="service-features" class="service-features">
             <div class="container">
                 <h2 class="section-title text-center">
@@ -106,21 +112,44 @@ get_header(); ?>
                     <?php while ( have_rows('service_features') ) : the_row(); ?>
                         <div class="feature-card">
                             <div class="feature-icon">
-                                <?php if ( get_sub_field('feature_icon') ) : ?>
-                                    <i class="<?php the_sub_field('feature_icon'); ?>"></i>
+                                <?php 
+                                $icon = get_sub_field('icon');
+                                if ( $icon ) : ?>
+                                    <i class="<?php echo esc_attr( $icon ); ?>"></i>
+                                <?php else : ?>
+                                    <i class="fas fa-check-circle"></i>
                                 <?php endif; ?>
                             </div>
-                            <h3 class="feature-title"><?php the_sub_field('feature_title'); ?></h3>
-                            <p class="feature-description"><?php the_sub_field('feature_description'); ?></p>
+                            <h3 class="feature-title">
+                                <?php 
+                                $title = get_sub_field('title');
+                                echo $title ? esc_html( $title ) : 'Feature';
+                                ?>
+                            </h3>
+                            <p class="feature-description">
+                                <?php 
+                                $desc = get_sub_field('description');
+                                echo $desc ? esc_html( $desc ) : '';
+                                ?>
+                            </p>
                         </div>
                     <?php endwhile; ?>
                 </div>
             </div>
         </section>
-        <?php endif; ?>
+        <?php else : 
+            // ACFが設定されていない場合はフォールバックを表示
+            get_template_part( 'template-parts/service-features', 'fallback' );
+        endif; ?>
 
         <!-- 料金プランセクション -->
-        <?php if ( function_exists('get_field') && have_rows('service_plans') ) : ?>
+        <?php 
+        $has_plans = false;
+        if ( function_exists('get_field') && function_exists('have_rows') ) {
+            $has_plans = have_rows('service_plans');
+        }
+        
+        if ( $has_plans ) : ?>
         <section class="service-pricing">
             <div class="container">
                 <h2 class="section-title text-center">
@@ -130,28 +159,56 @@ get_header(); ?>
                 
                 <div class="pricing-grid">
                     <?php while ( have_rows('service_plans') ) : the_row(); ?>
-                        <div class="pricing-card <?php echo get_sub_field('plan_recommended') ? 'recommended' : ''; ?>">
-                            <?php if ( get_sub_field('plan_recommended') ) : ?>
+                        <div class="pricing-card <?php echo get_sub_field('recommended') ? 'recommended' : ''; ?>">
+                            <?php if ( get_sub_field('recommended') ) : ?>
                                 <div class="recommended-badge">おすすめ</div>
                             <?php endif; ?>
                             
-                            <h3 class="plan-name"><?php the_sub_field('plan_name'); ?></h3>
+                            <h3 class="plan-name">
+                                <?php 
+                                $name = get_sub_field('name');
+                                echo $name ? esc_html( $name ) : 'プラン';
+                                ?>
+                            </h3>
                             <div class="plan-price">
+                                <?php 
+                                $price = get_sub_field('price');
+                                // Extract number from price string (e.g., "¥100,000〜" -> "100,000")
+                                $price_number = preg_replace('/[^0-9,]/', '', $price);
+                                $price_unit = '';
+                                if ( strpos($price, '〜') !== false ) {
+                                    $price_unit = '〜';
+                                } elseif ( strpos($price, '/月') !== false ) {
+                                    $price_unit = '/月';
+                                }
+                                ?>
                                 <span class="price-currency">¥</span>
-                                <span class="price-amount"><?php the_sub_field('plan_price'); ?></span>
-                                <span class="price-unit"><?php the_sub_field('plan_unit'); ?></span>
+                                <span class="price-amount">
+                                    <?php echo $price_number ? esc_html( $price_number ) : '0'; ?>
+                                </span>
+                                <span class="price-unit">
+                                    <?php echo esc_html( $price_unit ); ?>
+                                </span>
                             </div>
                             
-                            <?php if ( have_rows('plan_features') ) : ?>
+                            <?php 
+                            $features = get_sub_field('features');
+                            if ( $features ) : 
+                                // Convert line breaks to array
+                                $features_array = array_filter(array_map('trim', explode("\n", strip_tags($features))));
+                                if ( !empty($features_array) ) :
+                            ?>
                                 <ul class="plan-features">
-                                    <?php while ( have_rows('plan_features') ) : the_row(); ?>
+                                    <?php foreach ( $features_array as $feature ) : ?>
                                         <li>
                                             <i class="fas fa-check"></i>
-                                            <?php the_sub_field('feature'); ?>
+                                            <?php echo esc_html( $feature ); ?>
                                         </li>
-                                    <?php endwhile; ?>
+                                    <?php endforeach; ?>
                                 </ul>
-                            <?php endif; ?>
+                            <?php 
+                                endif;
+                            endif; ?>
                             
                             <a href="#service-inquiry" class="plan-cta smooth-scroll">
                                 このプランで相談する
@@ -161,7 +218,10 @@ get_header(); ?>
                 </div>
             </div>
         </section>
-        <?php endif; ?>
+        <?php else : 
+            // ACFが設定されていない場合はデフォルトの料金セクションを表示
+            get_template_part( 'template-parts/service-pricing', 'fallback' );
+        endif; ?>
 
         <!-- お問い合わせセクション -->
         <section id="service-inquiry" class="service-inquiry">
