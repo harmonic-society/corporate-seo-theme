@@ -159,8 +159,15 @@ function corporate_seo_pro_scripts() {
     // モバイルアニメーション修正CSS（全ページで読み込み）
     wp_enqueue_style( 'corporate-seo-pro-mobile-animations-fix', get_template_directory_uri() . '/assets/css/mobile-animations-fix.css', array('corporate-seo-pro-style'), wp_get_theme()->get( 'Version' ) );
     
+    // Harmonic Society ヘッダー＆フッターデザイン
+    wp_enqueue_style( 'corporate-seo-pro-header-footer', get_template_directory_uri() . '/assets/css/header-footer-harmony.css', array('corporate-seo-pro-style'), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'corporate-seo-pro-header-footer-override', get_template_directory_uri() . '/assets/css/header-footer-override.css', array('corporate-seo-pro-header-footer'), wp_get_theme()->get( 'Version' ) );
+    
     // アニメーションユーティリティ（全ページで必要）
     wp_enqueue_script( 'corporate-seo-pro-animation-utils', get_template_directory_uri() . '/assets/js/utils/animation-utils.js', array(), wp_get_theme()->get( 'Version' ), true );
+    
+    // ヘッダーナビゲーションスクリプト
+    wp_enqueue_script( 'corporate-seo-pro-header-nav', get_template_directory_uri() . '/assets/js/header-navigation.js', array(), wp_get_theme()->get( 'Version' ), true );
     
     // 統合されたメインスクリプト
     wp_enqueue_script( 'corporate-seo-pro-theme', get_template_directory_uri() . '/assets/js/theme.js', array('corporate-seo-pro-animation-utils'), wp_get_theme()->get( 'Version' ), true );
