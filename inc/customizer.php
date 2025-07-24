@@ -18,8 +18,9 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
      * ヒーローセクション
      */
     $wp_customize->add_section( 'corporate_seo_hero', array(
-        'title'    => __( 'ヒーローセクション', 'corporate-seo-pro' ),
+        'title'    => __( 'ヒーローセクション設定', 'corporate-seo-pro' ),
         'priority' => 30,
+        'description' => __( 'トップページのヒーローセクション（メインビジュアル）の設定を行います。', 'corporate-seo-pro' ),
     ) );
     
     // ヒーローセクションの表示
