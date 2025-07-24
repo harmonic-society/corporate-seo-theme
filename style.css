@@ -857,8 +857,8 @@ span.menu-text {
 
 /* Harmonic Hero 専用スタイル */
 .harmonic-hero {
-    background: #ffffff;
-    color: #1a1a1a;
+    background: transparent;
+    color: #ffffff;
     min-height: 90vh;
     position: relative;
     overflow: hidden;
@@ -7009,7 +7009,7 @@ select:focus {
 }
 
 .hero-bottom-wave path {
-    fill: #ffffff;
+    fill: #f8f9fa;
 }
 
 /* ヒーローセクションの高さバリエーション */

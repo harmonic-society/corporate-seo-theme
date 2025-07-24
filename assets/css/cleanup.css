@@ -61,6 +61,17 @@ body .site-header .menu-text {
     z-index: 10 !important;
 }
 
+/* Remove white background from harmonic-hero */
+.harmonic-hero {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure hero section has dark background */
+.hero-section {
+    background-color: #1a1a1a !important;
+}
+
 /* ==========================================================================
    Fix Mobile Menu Conflicts
    ========================================================================== */
