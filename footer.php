@@ -45,7 +45,14 @@
                             'container'      => false,
                             'menu_class'     => 'footer-menu',
                             'depth'          => 1,
-                            'fallback_cb'    => false,
+                            'fallback_cb'    => function() {
+                                echo '<ul class="footer-menu">';
+                                echo '<li><a href="' . esc_url( home_url( '/services/#ai-consulting' ) ) . '">AIコンサルティング</a></li>';
+                                echo '<li><a href="' . esc_url( home_url( '/services/#dx-solution' ) ) . '">DXソリューション</a></li>';
+                                echo '<li><a href="' . esc_url( home_url( '/services/#data-analysis' ) ) . '">データ分析</a></li>';
+                                echo '<li><a href="' . esc_url( home_url( '/services/#system-development' ) ) . '">システム開発</a></li>';
+                                echo '</ul>';
+                            },
                         ) );
                         ?>
                     </div>
@@ -59,7 +66,14 @@
                             'container'      => false,
                             'menu_class'     => 'footer-menu',
                             'depth'          => 1,
-                            'fallback_cb'    => false,
+                            'fallback_cb'    => function() {
+                                echo '<ul class="footer-menu">';
+                                echo '<li><a href="' . esc_url( home_url( '/about/' ) ) . '">会社概要</a></li>';
+                                echo '<li><a href="' . esc_url( home_url( '/about/#message' ) ) . '">代表メッセージ</a></li>';
+                                echo '<li><a href="' . esc_url( home_url( '/careers/' ) ) . '">採用情報</a></li>';
+                                echo '<li><a href="' . esc_url( home_url( '/news/' ) ) . '">ニュース</a></li>';
+                                echo '</ul>';
+                            },
                         ) );
                         ?>
                     </div>

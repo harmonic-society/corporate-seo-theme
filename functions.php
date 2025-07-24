@@ -52,7 +52,10 @@ function corporate_seo_pro_setup() {
     register_nav_menus( array(
         'primary'   => esc_html__( 'プライマリーメニュー', 'corporate-seo-pro' ),
         'footer'    => esc_html__( 'フッターメニュー', 'corporate-seo-pro' ),
+        'footer-1'  => esc_html__( 'フッターメニュー1（サービス）', 'corporate-seo-pro' ),
+        'footer-2'  => esc_html__( 'フッターメニュー2（会社情報）', 'corporate-seo-pro' ),
         'social'    => esc_html__( 'ソーシャルメニュー', 'corporate-seo-pro' ),
+        'mobile'    => esc_html__( 'モバイルメニュー', 'corporate-seo-pro' ),
     ) );
 
     // カスタムヘッダー
@@ -107,6 +110,68 @@ function corporate_seo_pro_create_default_menu() {
         // メニューを位置に割り当て
         $locations = get_theme_mod( 'nav_menu_locations' );
         $locations['primary'] = $menu_id;
+        set_theme_mod( 'nav_menu_locations', $locations );
+    }
+    
+    // フッターメニュー1（サービス）のデフォルト作成
+    $footer1_menu_name = 'Footer Menu 1';
+    $footer1_exists = wp_get_nav_menu_object( $footer1_menu_name );
+    
+    if ( ! $footer1_exists ) {
+        $footer1_id = wp_create_nav_menu( $footer1_menu_name );
+        
+        // フッターメニュー1の項目を追加
+        $footer1_items = array(
+            'AIコンサルティング' => home_url( '/services/#ai-consulting' ),
+            'DXソリューション' => home_url( '/services/#dx-solution' ),
+            'データ分析' => home_url( '/services/#data-analysis' ),
+            'システム開発' => home_url( '/services/#system-development' )
+        );
+        
+        $position = 1;
+        foreach ( $footer1_items as $title => $url ) {
+            wp_update_nav_menu_item( $footer1_id, 0, array(
+                'menu-item-title'   => $title,
+                'menu-item-url'     => $url,
+                'menu-item-status'  => 'publish',
+                'menu-item-position' => $position++
+            ) );
+        }
+        
+        // メニューを位置に割り当て
+        $locations = get_theme_mod( 'nav_menu_locations' );
+        $locations['footer-1'] = $footer1_id;
+        set_theme_mod( 'nav_menu_locations', $locations );
+    }
+    
+    // フッターメニュー2（会社情報）のデフォルト作成
+    $footer2_menu_name = 'Footer Menu 2';
+    $footer2_exists = wp_get_nav_menu_object( $footer2_menu_name );
+    
+    if ( ! $footer2_exists ) {
+        $footer2_id = wp_create_nav_menu( $footer2_menu_name );
+        
+        // フッターメニュー2の項目を追加
+        $footer2_items = array(
+            '会社概要' => home_url( '/about/' ),
+            '代表メッセージ' => home_url( '/about/#message' ),
+            '採用情報' => home_url( '/careers/' ),
+            'ニュース' => home_url( '/news/' )
+        );
+        
+        $position = 1;
+        foreach ( $footer2_items as $title => $url ) {
+            wp_update_nav_menu_item( $footer2_id, 0, array(
+                'menu-item-title'   => $title,
+                'menu-item-url'     => $url,
+                'menu-item-status'  => 'publish',
+                'menu-item-position' => $position++
+            ) );
+        }
+        
+        // メニューを位置に割り当て
+        $locations = get_theme_mod( 'nav_menu_locations' );
+        $locations['footer-2'] = $footer2_id;
         set_theme_mod( 'nav_menu_locations', $locations );
     }
 }
