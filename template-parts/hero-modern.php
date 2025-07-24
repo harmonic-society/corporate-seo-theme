@@ -45,7 +45,7 @@
                 </p>
                 
                 <div class="hero-cta-group">
-                    <a href="#contact" class="hero-btn-primary">
+                    <a href="/contact" class="hero-btn-primary">
                         <span>無料相談はこちら</span>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M7 13L10 10L7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -53,7 +53,7 @@
                         </svg>
                     </a>
                     
-                    <a href="#services" class="hero-btn-secondary">
+                    <a href="/services" class="hero-btn-secondary">
                         <span>サービスを見る</span>
                     </a>
                 </div>

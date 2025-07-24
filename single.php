@@ -52,7 +52,7 @@ get_header(); ?>
                             <div class="meta-stats">
                                 <span class="reading-time">
                                     <i class="far fa-clock"></i>
-                                    <span><?php echo corporate_seo_pro_reading_time(); ?></span>
+                                    <span><?php echo corporate_seo_get_reading_time(); ?></span>
                                 </span>
                                 <?php if ( comments_open() ) : ?>
                                     <span class="comment-count">

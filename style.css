@@ -6830,6 +6830,7 @@ select:focus {
     margin-top: 5rem;
     position: relative;
     z-index: 2;
+    padding: 0 20px; /* モバイルでの表示を確保 */
 }
 
 .values-title {
@@ -6874,6 +6875,16 @@ select:focus {
     
     .about-hero {
         padding: 4rem 0 10rem; /* モバイルでも十分な余白を確保 */
+        min-height: auto;
+    }
+    
+    .hero-values {
+        margin-top: 3rem;
+    }
+    
+    .values-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
     }
     
     .hero-wave {
@@ -7448,6 +7459,20 @@ select:focus {
 @media (max-width: 768px) {
     .values-grid {
         grid-template-columns: 1fr;
+        padding: 0 10px; /* モバイルでのパディングを追加 */
+    }
+    
+    .value-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .value-icon {
+        font-size: 2.5rem;
+    }
+    
+    .value-title {
+        font-size: 1.125rem;
     }
     
     .vision-wrapper,
