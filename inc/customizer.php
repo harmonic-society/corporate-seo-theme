@@ -34,6 +34,19 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
         'type'    => 'checkbox',
     ) );
     
+    // 背景画像
+    $wp_customize->add_setting( 'hero_background_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_background_image', array(
+        'label'   => __( 'ヒーロー背景画像', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_hero',
+        'settings' => 'hero_background_image',
+        'description' => __( '推奨サイズ: 1920x1080px', 'corporate-seo-pro' ),
+    ) ) );
+    
     // タイトル
     $wp_customize->add_setting( 'hero_title', array(
         'default'           => get_bloginfo( 'name' ),

@@ -10,7 +10,10 @@ get_header(); ?>
 <main id="main" class="site-main">
     
     <!-- Hero Section - Harmonic Society Style -->
-    <section class="hero-section harmonic-hero">
+    <?php 
+    $hero_bg_image = get_theme_mod( 'hero_background_image', 'https://harmonic-society.co.jp/wp-content/uploads/2024/10/GettyImages-981641584-scaled.jpg' );
+    ?>
+    <section class="hero-section harmonic-hero" <?php if ( $hero_bg_image ) : ?>style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"<?php endif; ?>>
         <div class="hero-bg-pattern">
             <div class="hero-gradient-primary"></div>
             <div class="hero-gradient-secondary"></div>
