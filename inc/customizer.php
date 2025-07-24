@@ -107,7 +107,7 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
     
     // ヒーローバリエーション
     $wp_customize->add_setting( 'hero_style', array(
-        'default'           => 'gradient',
+        'default'           => 'image',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
     

@@ -36,11 +36,6 @@ get_header(); ?>
         <?php elseif ( $hero_style === 'gradient' ) : ?>
             <!-- 背景画像をグラデーションの下に表示 -->
             <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
-            <div class="hero-bg-pattern">
-                <div class="hero-gradient-primary"></div>
-                <div class="hero-gradient-secondary"></div>
-                <div class="geometric-pattern"></div>
-            </div>
         <?php endif; ?>
         
         <?php if ( $hero_style === 'video' && $hero_bg_video ) : ?>
@@ -51,7 +46,9 @@ get_header(); ?>
             </div>
         <?php endif; ?>
         
-        <?php if ( $hero_style === 'gradient' || $hero_style === 'particles' || $hero_style === 'geometric' ) : ?>
+        <?php if ( $hero_style === 'gradient' ) : ?>
+            <div class="hero-gradient-overlay" style="background: linear-gradient(135deg, <?php echo esc_attr( $gradient_start ); ?> 0%, <?php echo esc_attr( $gradient_end ); ?> 100%); opacity: 0.7;"></div>
+        <?php elseif ( $hero_style === 'particles' || $hero_style === 'geometric' ) : ?>
             <div class="hero-gradient-overlay" style="background: linear-gradient(135deg, <?php echo esc_attr( $gradient_start ); ?> 0%, <?php echo esc_attr( $gradient_end ); ?> 100%)"></div>
         <?php endif; ?>
         
