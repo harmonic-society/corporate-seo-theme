@@ -10,6 +10,7 @@ get_header(); ?>
 <main id="main" class="site-main">
     
     <!-- Hero Section - Harmonic Society Style -->
+    <?php if ( get_theme_mod( 'show_hero_section', true ) ) : ?>
     <?php 
     $hero_bg_image = get_theme_mod( 'hero_background_image', 'https://harmonic-society.co.jp/wp-content/uploads/2024/10/GettyImages-981641584-scaled.jpg' );
     ?>
@@ -29,12 +30,21 @@ get_header(); ?>
                     </div>
                     
                     <h1 class="hero-title">
-                        <span class="title-line-1">ビジネスと社会の</span>
-                        <span class="title-line-2" data-text="調和を創造する">調和を創造する</span>
+                        <?php 
+                        $hero_title = get_theme_mod( 'hero_title', 'ビジネスと社会の調和を創造する' );
+                        // タイトルを2行に分割する処理
+                        if ( strpos( $hero_title, '調和' ) !== false ) {
+                            $parts = explode( '調和', $hero_title, 2 );
+                            echo '<span class="title-line-1">' . esc_html( $parts[0] ) . '</span>';
+                            echo '<span class="title-line-2" data-text="調和' . esc_attr( $parts[1] ) . '">調和' . esc_html( $parts[1] ) . '</span>';
+                        } else {
+                            echo '<span class="title-line-1">' . esc_html( $hero_title ) . '</span>';
+                        }
+                        ?>
                     </h1>
                     
                     <p class="hero-lead">
-                        <?php echo esc_html( get_theme_mod( 'hero_lead', 'テクノロジーと人間性の融合で、持続可能な成長を実現' ) ); ?>
+                        <?php echo esc_html( get_theme_mod( 'hero_description', 'テクノロジーと人間性の融合で、持続可能な成長を実現' ) ); ?>
                     </p>
                     
                     <div class="hero-features">
@@ -82,6 +92,7 @@ get_header(); ?>
             </svg>
         </div>
     </section>
+    <?php endif; ?>
     
     <?php if ( get_theme_mod( 'show_services_section', true ) ) : ?>
         <section class="services-section">
