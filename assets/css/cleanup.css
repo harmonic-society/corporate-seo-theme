@@ -50,6 +50,17 @@ body .site-header .menu-text {
     display: none !important;
 }
 
+/* Fix white overlay issue */
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Ensure text is visible */
+.hero-content {
+    position: relative;
+    z-index: 10 !important;
+}
+
 /* ==========================================================================
    Fix Mobile Menu Conflicts
    ========================================================================== */

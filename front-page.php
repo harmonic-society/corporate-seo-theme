@@ -13,7 +13,7 @@ get_header(); ?>
     <?php if ( get_theme_mod( 'show_hero_section', true ) ) : ?>
     <?php 
     // Hero section variables
-    $hero_style = get_theme_mod( 'hero_style', 'gradient' );
+    $hero_style = get_theme_mod( 'hero_style', 'image' );
     $hero_bg_image = get_theme_mod( 'hero_background_image', 'https://harmonic-society.co.jp/wp-content/uploads/2024/10/GettyImages-981641584-scaled.jpg' );
     $hero_bg_video = get_theme_mod( 'hero_background_video', '' );
     $hero_overlay = get_theme_mod( 'hero_overlay_opacity', '0.5' );
@@ -47,7 +47,7 @@ get_header(); ?>
         <?php endif; ?>
         
         <?php if ( $hero_style === 'gradient' ) : ?>
-            <div class="hero-gradient-overlay" style="background: linear-gradient(135deg, <?php echo esc_attr( $gradient_start ); ?> 0%, <?php echo esc_attr( $gradient_end ); ?> 100%); opacity: 0.7;"></div>
+            <div class="hero-gradient-overlay" style="background: linear-gradient(135deg, <?php echo esc_attr( $gradient_start ); ?> 0%, <?php echo esc_attr( $gradient_end ); ?> 100%); opacity: 0.9;"></div>
         <?php elseif ( $hero_style === 'particles' || $hero_style === 'geometric' ) : ?>
             <div class="hero-gradient-overlay" style="background: linear-gradient(135deg, <?php echo esc_attr( $gradient_start ); ?> 0%, <?php echo esc_attr( $gradient_end ); ?> 100%)"></div>
         <?php endif; ?>
