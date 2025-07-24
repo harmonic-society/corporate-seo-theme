@@ -226,29 +226,25 @@ get_header(); ?>
         <!-- お問い合わせセクション -->
         <section id="service-inquiry" class="service-inquiry">
             <div class="container">
-                <div class="inquiry-box">
-                    <h2 class="inquiry-title">
-                        <span class="title-main">お問い合わせ・ご相談</span>
-                        <span class="title-sub">まずはお気軽にご相談ください</span>
-                    </h2>
+                <h2 class="section-title text-center">
+                    <span class="title-main">お問い合わせ・ご相談</span>
+                    <span class="title-sub">まずはお気軽にご相談ください</span>
+                </h2>
+                
+                <p class="inquiry-lead text-center">
+                    サービスに関するご質問やご相談は、下記フォームまたはお電話にてお気軽にお問い合わせください。
+                </p>
+                
+                <div class="inquiry-buttons">
+                    <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        お問い合わせフォーム
+                    </a>
                     
-                    <div class="inquiry-content">
-                        <p class="inquiry-lead">
-                            サービスに関するご質問やご相談は、下記フォームまたはお電話にてお気軽にお問い合わせください。
-                        </p>
-                        
-                        <div class="inquiry-actions">
-                            <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn-contact">
-                                <i class="fas fa-envelope"></i>
-                                お問い合わせフォーム
-                            </a>
-                            
-                            <a href="tel:03-1234-5678" class="btn-phone">
-                                <i class="fas fa-phone"></i>
-                                03-1234-5678
-                            </a>
-                        </div>
-                    </div>
+                    <a href="tel:03-1234-5678" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i>
+                        03-1234-5678
+                    </a>
                 </div>
             </div>
         </section>

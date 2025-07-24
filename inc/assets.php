@@ -56,6 +56,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'footer-grid-override' => '/assets/css/footer-grid-override.css',
         'header-cta-fix'       => '/assets/css/header-cta-fix.css',
         'service-acf-fix'      => '/assets/css/service-acf-fix.css',
+        'service-inquiry-fix'  => '/assets/css/service-inquiry-fix.css',
     );
     
     // 依存関係の設定
@@ -233,6 +234,14 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
         wp_enqueue_style( 
             'corporate-seo-pro-service-acf-fix', 
             get_template_directory_uri() . '/assets/css/service-acf-fix.css', 
+            array( 'corporate-seo-pro-style' ), 
+            $version 
+        );
+        
+        // サービスページ用のCTA修正CSS
+        wp_enqueue_style( 
+            'corporate-seo-pro-service-inquiry-fix', 
+            get_template_directory_uri() . '/assets/css/service-inquiry-fix.css', 
             array( 'corporate-seo-pro-style' ), 
             $version 
         );
