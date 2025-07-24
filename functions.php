@@ -120,13 +120,31 @@ function corporate_seo_pro_create_default_menu() {
     if ( ! $footer1_exists ) {
         $footer1_id = wp_create_nav_menu( $footer1_menu_name );
         
-        // フッターメニュー1の項目を追加
-        $footer1_items = array(
-            'AIコンサルティング' => home_url( '/services/#ai-consulting' ),
-            'DXソリューション' => home_url( '/services/#dx-solution' ),
-            'データ分析' => home_url( '/services/#data-analysis' ),
-            'システム開発' => home_url( '/services/#system-development' )
-        );
+        // フッターメニュー1の項目を追加（実際のサービス投稿から取得）
+        $footer1_items = array();
+        
+        // 実際のサービス投稿を取得
+        $services = get_posts( array(
+            'post_type'      => 'service',
+            'posts_per_page' => 6,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
+            'post_status'    => 'publish'
+        ) );
+        
+        if ( ! empty( $services ) ) {
+            foreach ( $services as $service ) {
+                $footer1_items[ $service->post_title ] = get_permalink( $service->ID );
+            }
+        } else {
+            // サービス投稿がない場合のデフォルト
+            $footer1_items = array(
+                'AIコンサルティング' => home_url( '/services/#ai-consulting' ),
+                'DXソリューション' => home_url( '/services/#dx-solution' ),
+                'データ分析' => home_url( '/services/#data-analysis' ),
+                'システム開発' => home_url( '/services/#system-development' )
+            );
+        }
         
         $position = 1;
         foreach ( $footer1_items as $title => $url ) {

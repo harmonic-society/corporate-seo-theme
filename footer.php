@@ -46,11 +46,26 @@
                             'menu_class'     => 'footer-menu',
                             'depth'          => 1,
                             'fallback_cb'    => function() {
+                                // 実際のサービス投稿を取得
+                                $services = get_posts( array(
+                                    'post_type'      => 'service',
+                                    'posts_per_page' => 6,
+                                    'orderby'        => 'menu_order',
+                                    'order'          => 'ASC',
+                                    'post_status'    => 'publish'
+                                ) );
+                                
                                 echo '<ul class="footer-menu">';
-                                echo '<li><a href="' . esc_url( home_url( '/services/#ai-consulting' ) ) . '">AIコンサルティング</a></li>';
-                                echo '<li><a href="' . esc_url( home_url( '/services/#dx-solution' ) ) . '">DXソリューション</a></li>';
-                                echo '<li><a href="' . esc_url( home_url( '/services/#data-analysis' ) ) . '">データ分析</a></li>';
-                                echo '<li><a href="' . esc_url( home_url( '/services/#system-development' ) ) . '">システム開発</a></li>';
+                                
+                                if ( ! empty( $services ) ) {
+                                    foreach ( $services as $service ) {
+                                        echo '<li><a href="' . esc_url( get_permalink( $service->ID ) ) . '">' . esc_html( $service->post_title ) . '</a></li>';
+                                    }
+                                } else {
+                                    // サービスがない場合は全サービス一覧へのリンク
+                                    echo '<li><a href="' . esc_url( home_url( '/services/' ) ) . '">サービス一覧</a></li>';
+                                }
+                                
                                 echo '</ul>';
                             },
                         ) );
