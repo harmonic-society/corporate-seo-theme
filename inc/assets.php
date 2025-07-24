@@ -52,6 +52,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'header-footer'        => '/assets/css/header-footer-harmony.css',
         'header-footer-override'=> '/assets/css/header-footer-override.css',
         'mobile-menu-fix'      => '/assets/css/mobile-menu-fix.css',
+        'footer-layout-fix'    => '/assets/css/footer-layout-fix.css',
     );
     
     // 依存関係の設定
@@ -61,6 +62,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'mobile-animations-fix'=> array( 'corporate-seo-pro-style' ),
         'header-footer-override'=> array( 'corporate-seo-pro-header-footer' ),
         'mobile-menu-fix'      => array( 'corporate-seo-pro-header-footer' ),
+        'footer-layout-fix'    => array( 'corporate-seo-pro-header-footer' ),
     );
     
     foreach ( $css_files as $handle => $file ) {

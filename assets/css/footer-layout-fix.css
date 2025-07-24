@@ -1,0 +1,167 @@
+/**
+ * Footer Layout Fix
+ * 
+ * フッターレイアウトの修正 - 中央寄せと適切な配置
+ */
+
+/* ==========================================================================
+   フッターコンテナの修正
+   ========================================================================== */
+
+/* コンテナの中央寄せを確実に */
+body .site-footer .container,
+body #colophon .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+}
+
+/* フッターグリッドの修正 */
+body .footer-main,
+body #colophon .footer-main {
+    padding: 4rem 0 3rem;
+    position: relative;
+}
+
+body .footer-grid,
+body #colophon .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+    justify-content: center;
+}
+
+/* フッターウィジェットの配置調整 */
+body .footer-widget,
+body #colophon .footer-widget {
+    padding: 0;
+}
+
+/* 会社情報セクションの幅調整 */
+body .footer-info,
+body #colophon .footer-info {
+    max-width: 300px;
+}
+
+/* フッターメニューの適切な間隔 */
+body .footer-widget .footer-menu,
+body #colophon .footer-widget .footer-menu {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* お問い合わせセクションの配置 */
+body .footer-contact-widget,
+body #colophon .footer-contact-widget {
+    justify-self: end;
+}
+
+/* ==========================================================================
+   フッター下部の修正
+   ========================================================================== */
+
+body .footer-bottom,
+body #colophon .footer-bottom {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 2rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body .footer-bottom-content,
+body #colophon .footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* ==========================================================================
+   レスポンシブ対応
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    body .footer-grid,
+    body #colophon .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    
+    body .footer-info,
+    body #colophon .footer-info {
+        max-width: 100%;
+    }
+    
+    body .footer-contact-widget,
+    body #colophon .footer-contact-widget {
+        justify-self: start;
+    }
+}
+
+@media (max-width: 768px) {
+    body .site-footer .container,
+    body #colophon .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    body .footer-grid,
+    body #colophon .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+    
+    body .footer-widget h3::after,
+    body #colophon .footer-widget h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    body .footer-social .social-links,
+    body #colophon .footer-social .social-links {
+        justify-content: center;
+    }
+    
+    body .footer-menu,
+    body #colophon .footer-menu {
+        text-align: left;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    body .footer-contact,
+    body #colophon .footer-contact {
+        text-align: left;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    body .footer-bottom-content,
+    body #colophon .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   デバッグ用境界線（問題解決後は削除）
+   ========================================================================== */
+
+/* 
+.footer-grid {
+    border: 2px solid red;
+}
+
+.footer-widget {
+    border: 1px solid blue;
+}
+
+.container {
+    border: 1px solid green;
+}
+*/
