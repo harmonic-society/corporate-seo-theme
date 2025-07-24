@@ -8,17 +8,33 @@
    フッターグリッドの強制適用
    ========================================================================== */
 
+/* コンテナを中央寄せ */
+#colophon .footer-main,
+.site-footer .footer-main {
+    display: flex !important;
+    justify-content: center !important;
+    padding: 4rem 0 3rem !important;
+}
+
+#colophon .footer-main .container,
+.site-footer .footer-main .container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+}
+
 /* 既存のグリッドスタイルを完全に上書き */
 #colophon .footer-main .footer-grid,
 .site-footer .footer-main .footer-grid {
     display: grid !important;
     grid-template-columns: minmax(250px, 2fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(200px, 1.5fr) !important;
-    gap: 2rem !important;
+    gap: 3rem !important;
     align-items: start !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
     padding: 0 !important;
 }
 
@@ -105,4 +121,35 @@
         display: inline-block !important;
         text-align: left !important;
     }
+}
+
+/* ==========================================================================
+   フッター下部の中央寄せ
+   ========================================================================== */
+
+#colophon .footer-bottom,
+.site-footer .footer-bottom {
+    display: flex !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+    padding: 2rem 0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+#colophon .footer-bottom .container,
+.site-footer .footer-bottom .container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+}
+
+#colophon .footer-bottom-content,
+.site-footer .footer-bottom-content {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
 }
