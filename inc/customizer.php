@@ -58,14 +58,47 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
         'type'    => 'url',
     ) );
     
-    // モダンヒーロー画像
+    // モダンヒーロー背景画像
+    $wp_customize->add_setting( 'hero_modern_bg_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_modern_bg_image', array(
+        'label'       => __( 'ヒーロー背景画像', 'corporate-seo-pro' ),
+        'description' => __( 'ヒーローセクションの背景画像をアップロード（推奨: 1920x1080px以上）', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_hero',
+        'settings'    => 'hero_modern_bg_image',
+        'priority'    => 24,
+    ) ) );
+    
+    // 背景オーバーレイの透明度
+    $wp_customize->add_setting( 'hero_bg_overlay_opacity', array(
+        'default'           => '0.8',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    
+    $wp_customize->add_control( 'hero_bg_overlay_opacity', array(
+        'label'       => __( '背景オーバーレイの透明度', 'corporate-seo-pro' ),
+        'description' => __( '0（透明）から1（不透明）の値を入力', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_hero',
+        'type'        => 'number',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 1,
+            'step' => 0.1,
+        ),
+        'priority'    => 24.5,
+    ) );
+    
+    // モダンヒーロー画像（右側）
     $wp_customize->add_setting( 'hero_modern_image', array(
         'default'           => '',
         'sanitize_callback' => 'esc_url_raw',
     ) );
     
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_modern_image', array(
-        'label'       => __( 'モダンヒーロー画像', 'corporate-seo-pro' ),
+        'label'       => __( 'モダンヒーロー画像（右側）', 'corporate-seo-pro' ),
         'description' => __( 'ヒーローセクションの右側に表示される画像をアップロード（推奨: 800x600px以上）', 'corporate-seo-pro' ),
         'section'     => 'corporate_seo_hero',
         'settings'    => 'hero_modern_image',

@@ -35,7 +35,31 @@
    背景要素 - 繊細なアニメーション
    ========================================================================== */
 
-/* 動的な背景グラデーション */
+/* 背景画像 */
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+/* 背景画像のオーバーレイ */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+    z-index: 1;
+}
+
+/* 動的な背景グラデーション（画像がない場合） */
 .hero-gradient-bg {
     position: absolute;
     top: 0;

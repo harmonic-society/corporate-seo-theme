@@ -7,8 +7,17 @@
 ?>
 
 <section class="hero-modern">
+    <!-- 背景画像 -->
+    <?php 
+    $hero_bg_image = get_theme_mod( 'hero_modern_bg_image', '' );
+    if ( $hero_bg_image ) : 
+    ?>
+    <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
+    <div class="hero-bg-overlay" style="opacity: <?php echo esc_attr( get_theme_mod( 'hero_bg_overlay_opacity', '0.8' ) ); ?>"></div>
+    <?php else : ?>
     <!-- 動的背景グラデーション -->
     <div class="hero-gradient-bg"></div>
+    <?php endif; ?>
     
     <!-- 幾何学的アクセント -->
     <div class="hero-geometric-accent">

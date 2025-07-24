@@ -13,6 +13,7 @@
 
     // パララックス効果
     const parallaxElements = {
+        bgImage: heroSection.querySelector('.hero-bg-image'),
         gradientBg: heroSection.querySelector('.hero-gradient-bg'),
         geometricShapes: heroSection.querySelectorAll('.geometric-shape'),
         heroCard: heroSection.querySelector('.hero-card')
@@ -22,6 +23,10 @@
     let ticking = false;
     function updateParallax() {
         const scrolled = window.pageYOffset;
+        
+        if (parallaxElements.bgImage) {
+            parallaxElements.bgImage.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
         
         if (parallaxElements.gradientBg) {
             parallaxElements.gradientBg.style.transform = `translateY(${scrolled * 0.5}px)`;
