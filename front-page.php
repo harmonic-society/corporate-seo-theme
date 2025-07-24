@@ -9,6 +9,45 @@ get_header(); ?>
 
 <main id="main" class="site-main">
     
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-effect">
+            <div class="hero-gradient"></div>
+            <div class="hero-particles"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-title-wrapper">
+                    <h1 class="hero-title">
+                        <span><?php echo esc_html( get_theme_mod( 'hero_title', 'ビジネスの成長を加速させる' ) ); ?></span>
+                    </h1>
+                    <p class="hero-subtitle"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'Professional Business Solutions' ) ); ?></p>
+                </div>
+                
+                <p class="hero-description">
+                    <?php echo esc_html( get_theme_mod( 'hero_description', '最新のテクノロジーと豊富な経験を活かし、お客様のビジネスを次のステージへ導きます' ) ); ?>
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'contact' ) ) ); ?>" class="btn btn-primary btn-lg">
+                        <span class="btn-text"><?php esc_html_e( 'お問い合わせ', 'corporate-seo-pro' ); ?></span>
+                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'services' ) ) ); ?>" class="btn btn-outline btn-lg">
+                        <span class="btn-text"><?php esc_html_e( 'サービス一覧', 'corporate-seo-pro' ); ?></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
+    </section>
+    
     <?php if ( get_theme_mod( 'show_services_section', true ) ) : ?>
         <section class="services-section">
             <div class="container">
