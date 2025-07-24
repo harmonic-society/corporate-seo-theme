@@ -13,10 +13,10 @@ get_header(); ?>
     <?php if ( get_theme_mod( 'show_hero_section', true ) ) : ?>
     <?php 
     $hero_bg_image = get_theme_mod( 'hero_background_image', 'https://harmonic-society.co.jp/wp-content/uploads/2024/10/GettyImages-981641584-scaled.jpg' );
-    // デバッグ: 画像URLを確認
     ?>
-    <!-- Hero Background Image URL: <?php echo esc_html( $hero_bg_image ); ?> -->
-    <section class="hero-section harmonic-hero" <?php if ( $hero_bg_image ) : ?>style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>') !important;"<?php endif; ?>>
+    <section class="hero-section harmonic-hero">
+        <!-- 背景画像を別divで処理 -->
+        <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
         <div class="hero-bg-pattern">
             <div class="hero-gradient-primary"></div>
             <div class="hero-gradient-secondary"></div>
