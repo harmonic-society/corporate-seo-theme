@@ -153,6 +153,9 @@ function corporate_seo_pro_scripts() {
     wp_enqueue_style( 'corporate-seo-pro-blog-archive', get_template_directory_uri() . '/assets/css/blog-archive.css', array(), wp_get_theme()->get( 'Version' ) );
     wp_enqueue_style( 'corporate-seo-pro-utilities', get_template_directory_uri() . '/assets/css/utilities.css', array(), wp_get_theme()->get( 'Version' ) );
     
+    // リファクタリングされたユーティリティCSS（!important削減版）
+    wp_enqueue_style( 'corporate-seo-pro-utilities-refactored', get_template_directory_uri() . '/assets/css/utilities-refactored.css', array('corporate-seo-pro-utilities'), wp_get_theme()->get( 'Version' ) );
+    
     // クリーンアップCSS（競合を解決）
     wp_enqueue_style( 'corporate-seo-pro-cleanup', get_template_directory_uri() . '/assets/css/cleanup.css', array('corporate-seo-pro-style'), wp_get_theme()->get( 'Version' ) );
     
