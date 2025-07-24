@@ -31,8 +31,16 @@ get_header(); ?>
     ?>
     <section class="<?php echo esc_attr( $hero_classes ); ?>" style="color: <?php echo esc_attr( $hero_text_color ); ?>">
         <!-- 背景処理 -->
-        <?php if ( $hero_style === 'image' || $hero_style === 'gradient' ) : ?>
+        <?php if ( $hero_style === 'image' ) : ?>
             <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
+        <?php elseif ( $hero_style === 'gradient' ) : ?>
+            <!-- 背景画像をグラデーションの下に表示 -->
+            <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
+            <div class="hero-bg-pattern">
+                <div class="hero-gradient-primary"></div>
+                <div class="hero-gradient-secondary"></div>
+                <div class="geometric-pattern"></div>
+            </div>
         <?php endif; ?>
         
         <?php if ( $hero_style === 'video' && $hero_bg_video ) : ?>
