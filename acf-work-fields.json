@@ -1,0 +1,276 @@
+[
+  {
+    "key": "group_work_fields",
+    "title": "実績詳細情報",
+    "fields": [
+      {
+        "key": "field_work_client",
+        "label": "クライアント名",
+        "name": "work_client",
+        "type": "text",
+        "instructions": "プロジェクトのクライアント企業名を入力してください",
+        "required": 1,
+        "default_value": "",
+        "placeholder": "例: 株式会社〇〇",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_work_duration",
+        "label": "プロジェクト期間",
+        "name": "work_duration",
+        "type": "text",
+        "instructions": "プロジェクトの実施期間を入力してください",
+        "required": 0,
+        "default_value": "",
+        "placeholder": "例: 2024年1月 - 2024年3月",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_work_url",
+        "label": "プロジェクトURL",
+        "name": "work_url",
+        "type": "url",
+        "instructions": "公開されているWebサイトやサービスのURLがあれば入力してください",
+        "required": 0,
+        "default_value": "",
+        "placeholder": "https://example.com"
+      },
+      {
+        "key": "field_work_team_size",
+        "label": "チーム規模",
+        "name": "work_team_size",
+        "type": "number",
+        "instructions": "プロジェクトに関わったチームメンバーの人数",
+        "required": 0,
+        "default_value": "",
+        "placeholder": "5",
+        "prepend": "",
+        "append": "名",
+        "min": 1,
+        "max": 100,
+        "step": 1
+      },
+      {
+        "key": "field_work_role",
+        "label": "担当領域",
+        "name": "work_role",
+        "type": "text",
+        "instructions": "このプロジェクトでの担当領域・役割",
+        "required": 0,
+        "default_value": "",
+        "placeholder": "例: UI/UXデザイン、フロントエンド開発",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_work_technologies",
+        "label": "使用技術",
+        "name": "work_technologies",
+        "type": "textarea",
+        "instructions": "使用した技術・ツール（カンマ区切りまたは改行区切り）",
+        "required": 0,
+        "default_value": "",
+        "placeholder": "React, Next.js, TypeScript, Tailwind CSS",
+        "maxlength": "",
+        "rows": 3,
+        "new_lines": ""
+      },
+      {
+        "key": "field_work_challenge",
+        "label": "課題",
+        "name": "work_challenge",
+        "type": "wysiwyg",
+        "instructions": "プロジェクトで直面した課題や問題点",
+        "required": 0,
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_work_solution",
+        "label": "解決策",
+        "name": "work_solution",
+        "type": "wysiwyg",
+        "instructions": "課題に対してどのような解決策を実施したか",
+        "required": 0,
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_work_gallery",
+        "label": "プロジェクトギャラリー",
+        "name": "work_gallery",
+        "type": "gallery",
+        "instructions": "プロジェクトのスクリーンショットや関連画像",
+        "required": 0,
+        "return_format": "array",
+        "preview_size": "medium",
+        "insert": "append",
+        "library": "all",
+        "min": "",
+        "max": "",
+        "min_width": "",
+        "min_height": "",
+        "min_size": "",
+        "max_width": "",
+        "max_height": "",
+        "max_size": "",
+        "mime_types": ""
+      },
+      {
+        "key": "field_work_results",
+        "label": "成果・実績",
+        "name": "work_results",
+        "type": "wysiwyg",
+        "instructions": "プロジェクトの成果や達成した実績",
+        "required": 0,
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_work_stats",
+        "label": "成果の数値データ",
+        "name": "work_stats",
+        "type": "repeater",
+        "instructions": "数値で表せる成果（例: 売上向上率、アクセス数増加など）",
+        "required": 0,
+        "collapsed": "",
+        "min": 0,
+        "max": 4,
+        "layout": "table",
+        "button_label": "数値データを追加",
+        "sub_fields": [
+          {
+            "key": "field_work_stat_icon",
+            "label": "アイコン",
+            "name": "icon",
+            "type": "text",
+            "instructions": "Font Awesomeのアイコンクラス",
+            "required": 0,
+            "default_value": "fas fa-chart-line",
+            "placeholder": "fas fa-chart-line",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "parent_repeater": "field_work_stats"
+          },
+          {
+            "key": "field_work_stat_number",
+            "label": "数値",
+            "name": "number",
+            "type": "number",
+            "instructions": "成果の数値",
+            "required": 1,
+            "default_value": "",
+            "placeholder": "150",
+            "prepend": "",
+            "append": "",
+            "min": 0,
+            "max": 99999,
+            "step": 1,
+            "parent_repeater": "field_work_stats"
+          },
+          {
+            "key": "field_work_stat_label",
+            "label": "ラベル",
+            "name": "label",
+            "type": "text",
+            "instructions": "数値の説明",
+            "required": 1,
+            "default_value": "",
+            "placeholder": "売上向上率",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "parent_repeater": "field_work_stats"
+          }
+        ]
+      },
+      {
+        "key": "field_work_testimonial",
+        "label": "お客様の声",
+        "name": "work_testimonial",
+        "type": "wysiwyg",
+        "instructions": "クライアントからのフィードバックやコメント",
+        "required": 0,
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "basic",
+        "media_upload": 0,
+        "delay": 0
+      },
+      {
+        "key": "field_work_testimonial_author",
+        "label": "お客様の声 - 発言者名",
+        "name": "work_testimonial_author",
+        "type": "text",
+        "instructions": "お客様の声を提供してくださった方のお名前",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_work_testimonial",
+              "operator": "!=empty"
+            }
+          ]
+        ],
+        "default_value": "",
+        "placeholder": "山田 太郎 様",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_work_testimonial_position",
+        "label": "お客様の声 - 役職",
+        "name": "work_testimonial_position",
+        "type": "text",
+        "instructions": "発言者の会社名・役職",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_work_testimonial",
+              "operator": "!=empty"
+            }
+          ]
+        ],
+        "default_value": "",
+        "placeholder": "株式会社〇〇 代表取締役",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "work"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "実績（Works）投稿タイプ用のカスタムフィールド"
+  }
+]

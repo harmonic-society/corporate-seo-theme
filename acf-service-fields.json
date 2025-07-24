@@ -1,0 +1,397 @@
+[
+  {
+    "key": "group_service_fields",
+    "title": "サービス詳細情報",
+    "fields": [
+      {
+        "key": "field_service_subtitle",
+        "label": "サービスサブタイトル",
+        "name": "service_subtitle",
+        "type": "text",
+        "instructions": "サービスのサブタイトルを入力してください",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "例：お客様のビジネスを次のレベルへ",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_service_duration",
+        "label": "サービス所要時間",
+        "name": "service_duration",
+        "type": "text",
+        "instructions": "サービスの標準的な所要時間を入力してください",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "例：1〜3ヶ月",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_service_price",
+        "label": "サービス価格",
+        "name": "service_price",
+        "type": "text",
+        "instructions": "サービスの価格帯を入力してください",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "例：¥100,000〜",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_service_features",
+        "label": "サービスの特徴",
+        "name": "service_features",
+        "type": "repeater",
+        "instructions": "サービスの主な特徴を入力してください（3つ推奨）",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "field_feature_title",
+        "min": 0,
+        "max": 6,
+        "layout": "block",
+        "button_label": "特徴を追加",
+        "sub_fields": [
+          {
+            "key": "field_feature_icon",
+            "label": "アイコンクラス",
+            "name": "icon",
+            "type": "text",
+            "instructions": "Font Awesomeのアイコンクラスを入力（例：fas fa-rocket）",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "25",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "fas fa-check-circle",
+            "placeholder": "fas fa-rocket",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_feature_title",
+            "label": "特徴タイトル",
+            "name": "title",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "75",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：迅速な対応",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_feature_description",
+            "label": "特徴説明",
+            "name": "description",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "この特徴の詳細な説明を入力してください",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": ""
+          }
+        ]
+      },
+      {
+        "key": "field_service_process",
+        "label": "サービスの流れ",
+        "name": "service_process",
+        "type": "repeater",
+        "instructions": "サービス提供の流れを順番に入力してください",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "field_process_title",
+        "min": 0,
+        "max": 10,
+        "layout": "block",
+        "button_label": "ステップを追加",
+        "sub_fields": [
+          {
+            "key": "field_process_title",
+            "label": "ステップタイトル",
+            "name": "title",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "40",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：お問い合わせ",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_process_description",
+            "label": "ステップ説明",
+            "name": "description",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "60",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：まずはお気軽にご相談ください",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          }
+        ]
+      },
+      {
+        "key": "field_service_plans",
+        "label": "料金プラン",
+        "name": "service_plans",
+        "type": "repeater",
+        "instructions": "サービスの料金プランを入力してください",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "field_plan_name",
+        "min": 0,
+        "max": 6,
+        "layout": "block",
+        "button_label": "プランを追加",
+        "sub_fields": [
+          {
+            "key": "field_plan_name",
+            "label": "プラン名",
+            "name": "name",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "50",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：スタンダードプラン",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_plan_price",
+            "label": "価格",
+            "name": "price",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "30",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：¥100,000〜",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_plan_recommended",
+            "label": "おすすめプラン",
+            "name": "recommended",
+            "type": "true_false",
+            "instructions": "このプランをおすすめとして表示する",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "20",
+              "class": "",
+              "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "おすすめ",
+            "ui_off_text": ""
+          },
+          {
+            "key": "field_plan_features",
+            "label": "プラン機能",
+            "name": "features",
+            "type": "repeater",
+            "instructions": "このプランに含まれる機能を入力",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "collapsed": "",
+            "min": 1,
+            "max": 10,
+            "layout": "table",
+            "button_label": "機能を追加",
+            "sub_fields": [
+              {
+                "key": "field_plan_feature_item",
+                "label": "機能",
+                "name": "feature",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "default_value": "",
+                "placeholder": "例：24時間サポート",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "field_service_faq",
+        "label": "よくある質問（FAQ）",
+        "name": "service_faq",
+        "type": "repeater",
+        "instructions": "よくある質問と回答を入力してください",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "field_faq_question",
+        "min": 0,
+        "max": 20,
+        "layout": "block",
+        "button_label": "質問を追加",
+        "sub_fields": [
+          {
+            "key": "field_faq_question",
+            "label": "質問",
+            "name": "question",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：サービスの導入期間はどのくらいですか？",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_faq_answer",
+            "label": "回答",
+            "name": "answer",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "質問に対する回答を入力してください",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "service"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Harmonic Societyのサービス詳細ページで使用するカスタムフィールド",
+    "show_in_rest": 1
+  }
+]

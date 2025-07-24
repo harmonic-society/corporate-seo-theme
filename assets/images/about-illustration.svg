@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- 背景円 -->
+  <circle cx="200" cy="300" r="80" fill="#e8f5f3" opacity="0.5"/>
+  
+  <!-- 人物1（双眼鏡を持つ人） -->
+  <g transform="translate(150, 180)">
+    <!-- 体 -->
+    <path d="M30 60 Q30 40 35 35 Q40 30 50 30 Q60 30 65 35 Q70 40 70 60 L70 90 Q70 95 65 95 L35 95 Q30 95 30 90 Z" fill="#00c9a7"/>
+    <!-- 頭 -->
+    <circle cx="50" cy="20" r="15" fill="#fdbcb4"/>
+    <!-- 髪 -->
+    <path d="M35 15 Q35 5 50 5 Q65 5 65 15 Q65 20 60 18 Q55 16 50 16 Q45 16 40 18 Q35 20 35 15 Z" fill="#333"/>
+    <!-- 腕（双眼鏡を持つ） -->
+    <path d="M65 45 L75 35 Q78 33 80 35 L85 40" stroke="#00c9a7" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <path d="M35 45 L25 35 Q22 33 20 35 L15 40" stroke="#00c9a7" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <!-- 双眼鏡 -->
+    <g transform="translate(50, 35) rotate(-10)">
+      <rect x="-15" y="-5" width="10" height="8" rx="2" fill="#333"/>
+      <rect x="5" y="-5" width="10" height="8" rx="2" fill="#333"/>
+      <rect x="-5" y="-3" width="10" height="4" fill="#666"/>
+    </g>
+    <!-- 脚 -->
+    <rect x="38" y="90" width="8" height="20" fill="#333" rx="2"/>
+    <rect x="54" y="90" width="8" height="20" fill="#333" rx="2"/>
+  </g>
+  
+  <!-- 人物2（立っている人） -->
+  <g transform="translate(250, 200)">
+    <!-- 体 -->
+    <path d="M20 50 Q20 35 25 30 Q30 25 40 25 Q50 25 55 30 Q60 35 60 50 L60 75 Q60 80 55 80 L25 80 Q20 80 20 75 Z" fill="#87ceeb"/>
+    <!-- 頭 -->
+    <circle cx="40" cy="15" r="12" fill="#fdbcb4"/>
+    <!-- 髪（女性） -->
+    <path d="M28 10 Q28 0 40 0 Q52 0 52 10 Q52 20 50 25 Q48 30 40 30 Q32 30 30 25 Q28 20 28 10 Z" fill="#8b4513"/>
+    <!-- 腕 -->
+    <rect x="15" y="40" width="6" height="25" fill="#87ceeb" rx="3" transform="rotate(-20 18 52)"/>
+    <rect x="59" y="40" width="6" height="25" fill="#87ceeb" rx="3" transform="rotate(20 62 52)"/>
+    <!-- 脚 -->
+    <rect x="30" y="75" width="7" height="18" fill="#333" rx="2"/>
+    <rect x="43" y="75" width="7" height="18" fill="#333" rx="2"/>
+  </g>
+  
+  <!-- デスクと作業している人 -->
+  <g transform="translate(80, 250)">
+    <!-- デスク -->
+    <rect x="0" y="30" width="80" height="4" fill="#8b6f47"/>
+    <rect x="5" y="34" width="8" height="25" fill="#6b5637"/>
+    <rect x="67" y="34" width="8" height="25" fill="#6b5637"/>
+    
+    <!-- 椅子に座る人 -->
+    <g transform="translate(40, 0)">
+      <!-- 体（座っている） -->
+      <path d="M-15 20 Q-15 10 -10 5 Q-5 0 5 0 Q15 0 20 5 Q25 10 25 20 L25 35 Q25 40 20 40 L-10 40 Q-15 40 -15 35 Z" fill="#00c9a7"/>
+      <!-- 頭 -->
+      <circle cx="5" cy="-10" r="10" fill="#fdbcb4"/>
+      <!-- 髪 -->
+      <path d="M-5 -15 Q-5 -20 5 -20 Q15 -20 15 -15 Q15 -10 12 -12 Q9 -14 5 -14 Q1 -14 -2 -12 Q-5 -10 -5 -15 Z" fill="#333"/>
+      <!-- 腕（タイピング） -->
+      <rect x="-15" y="10" width="5" height="15" fill="#00c9a7" rx="2" transform="rotate(-45 -12 17)"/>
+      <rect x="15" y="10" width="5" height="15" fill="#00c9a7" rx="2" transform="rotate(45 17 17)"/>
+    </g>
+    
+    <!-- ノートPC -->
+    <g transform="translate(30, 15)">
+      <rect x="0" y="10" width="20" height="2" fill="#666"/>
+      <path d="M2 10 L2 0 Q2 -2 4 -2 L16 -2 Q18 -2 18 0 L18 10" fill="#999"/>
+      <rect x="4" y="0" width="12" height="8" fill="#333"/>
+    </g>
+  </g>
+  
+  <!-- 装飾的な要素 -->
+  <circle cx="100" cy="150" r="3" fill="#00c9a7" opacity="0.6"/>
+  <circle cx="300" cy="180" r="4" fill="#87ceeb" opacity="0.6"/>
+  <circle cx="320" cy="280" r="3" fill="#00c9a7" opacity="0.6"/>
+  <circle cx="80" cy="220" r="2" fill="#87ceeb" opacity="0.6"/>
+  
+  <!-- 植物 -->
+  <g transform="translate(320, 320)">
+    <rect x="-5" y="0" width="10" height="20" fill="#8b6f47"/>
+    <circle cx="0" cy="-5" r="15" fill="#90ee90" opacity="0.8"/>
+    <circle cx="-8" cy="-8" r="12" fill="#90ee90" opacity="0.8"/>
+    <circle cx="8" cy="-8" r="12" fill="#90ee90" opacity="0.8"/>
+  </g>
+</svg>
