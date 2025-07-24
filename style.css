@@ -628,6 +628,11 @@ span.menu-text {
     
     .site-header {
         height: 60px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1100;
     }
     
     .site-branding {
@@ -677,14 +682,98 @@ span.menu-text {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* モバイルメニュー自体も非表示 */
+/* モバイルメニュー */
 .mobile-menu {
-    display: none !important;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    background: #ffffff;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
 }
 
-/* モバイルメニューオーバーレイも非表示 */
+.mobile-menu.active {
+    right: 0;
+}
+
+/* モバイルメニューオーバーレイ */
 .mobile-menu-overlay {
-    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* モバイルメニュー内部 */
+.mobile-menu-inner {
+    padding: 80px 20px 40px;
+}
+
+.mobile-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-menu-list li {
+    margin: 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-menu-list a {
+    display: block;
+    padding: 15px 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-list a:hover {
+    color: #00867b;
+    background: #f8f8f8;
+}
+
+/* モバイルメニューCTA */
+.mobile-menu-cta {
+    margin-top: 30px;
+    padding: 0 10px;
+}
+
+.mobile-cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px 20px;
+    background: #00867b;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.mobile-cta-button:hover {
+    background: #00a596;
+    transform: translateY(-2px);
 }
 
 .menu-icon {
@@ -1817,8 +1906,9 @@ span.menu-text {
     
     /* Harmonic Hero モバイル対応 */
     .harmonic-hero {
-        min-height: 100vh;
-        padding-top: 60px; /* ヘッダーの高さ分 */
+        min-height: calc(100vh - 60px);
+        margin-top: -60px;
+        padding-top: 60px;
     }
     
     .hero-bg-image {
@@ -1951,10 +2041,12 @@ span.menu-text {
     /* 基本レイアウト */
     .container {
         padding: 0 15px;
+        max-width: 100%;
     }
     
     .site-main {
-        padding: 2rem 0;
+        padding: 0;
+        margin-top: 60px; /* ヘッダーの高さ分 */
     }
     
     /* セクション間隔 */

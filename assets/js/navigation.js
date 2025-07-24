@@ -6,17 +6,18 @@
 
     // DOM要素の取得
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
     const mainNavigation = document.querySelector('.main-navigation');
-    const menuItems = document.querySelectorAll('.main-navigation a');
+    const menuItems = document.querySelectorAll('.mobile-menu a');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
 
     // モバイルメニューの切り替え
-    if (mobileMenuToggle && mainNavigation) {
+    if (mobileMenuToggle && mobileMenu) {
         mobileMenuToggle.addEventListener('click', function() {
-            const isOpen = mainNavigation.classList.contains('active');
+            const isOpen = mobileMenu.classList.contains('active');
             
             if (isOpen) {
-                mainNavigation.classList.remove('active');
+                mobileMenu.classList.remove('active');
                 mobileMenuToggle.classList.remove('active');
                 if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
                 document.body.style.overflow = '';
@@ -25,7 +26,7 @@
                     mobileMenuToggle.setAttribute('aria-label', corporateSEOPro.menuOpen);
                 }
             } else {
-                mainNavigation.classList.add('active');
+                mobileMenu.classList.add('active');
                 mobileMenuToggle.classList.add('active');
                 if (mobileMenuOverlay) mobileMenuOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -39,7 +40,7 @@
         // オーバーレイクリックでメニューを閉じる
         if (mobileMenuOverlay) {
             mobileMenuOverlay.addEventListener('click', function() {
-                mainNavigation.classList.remove('active');
+                mobileMenu.classList.remove('active');
                 mobileMenuToggle.classList.remove('active');
                 mobileMenuOverlay.classList.remove('active');
                 document.body.style.overflow = '';
