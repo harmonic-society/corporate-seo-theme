@@ -9,9 +9,11 @@ get_header(); ?>
 
 <main id="main" class="site-main">
     
-    <!-- Hero Section - Harmonic Society Style -->
+    <!-- Modern Hero Section -->
     <?php if ( get_theme_mod( 'show_hero_section', true ) ) : ?>
-    <?php 
+        <?php get_template_part( 'template-parts/hero', 'modern' ); ?>
+    <?php else : ?>
+    <?php /* 
     // Hero section variables
     $hero_style = get_theme_mod( 'hero_style', 'image' );
     $hero_bg_image = get_theme_mod( 'hero_background_image', 'https://harmonic-society.co.jp/wp-content/uploads/2024/10/GettyImages-981641584-scaled.jpg' );
@@ -168,6 +170,7 @@ get_header(); ?>
             </svg>
         </div>
     </section>
+    */ ?>
     <?php endif; ?>
     
     <?php if ( get_theme_mod( 'show_services_section', true ) ) : ?>
