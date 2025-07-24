@@ -1,0 +1,221 @@
+/**
+ * Mobile Menu Fix
+ * 
+ * モバイルメニューボタンの表示と動作を修正
+ */
+
+/* ==========================================================================
+   モバイルメニューボタンの修正
+   ========================================================================== */
+
+/* 既存のスタイルを完全に上書き */
+body .mobile-menu-toggle,
+body #page .mobile-menu-toggle,
+body #masthead .mobile-menu-toggle {
+    display: none; /* デフォルトは非表示 */
+    position: relative;
+    width: 48px !important;
+    height: 48px !important;
+    background: #F5F3F0 !important; /* 変数が効かない場合のフォールバック */
+    background: var(--harmony-light, #F5F3F0) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+    margin: 0;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+    /* テキストを隠す */
+    font-size: 0;
+}
+
+/* モバイルで表示 */
+@media (max-width: 768px) {
+    body .mobile-menu-toggle,
+    body #page .mobile-menu-toggle {
+        display: flex !important; /* モバイルでは確実に表示 */
+    }
+}
+
+/* ハンバーガーアイコンの修正 */
+body .mobile-menu-toggle .hamburger,
+body #page .mobile-menu-toggle .hamburger,
+body #masthead .mobile-menu-toggle .hamburger {
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 20px;
+    display: block;
+    pointer-events: none;
+}
+
+/* ハンバーガーの線 */
+body .mobile-menu-toggle .hamburger span,
+body #page .mobile-menu-toggle .hamburger span,
+body #masthead .mobile-menu-toggle .hamburger span {
+    display: block !important;
+    position: absolute !important;
+    left: 0;
+    width: 100% !important;
+    height: 2px !important;
+    background: #2C3E50 !important; /* 確実に見えるように */
+    background: var(--harmony-dark, #2C3E50) !important;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* 各線の位置を確実に設定 */
+body .mobile-menu-toggle .hamburger span:nth-child(1),
+body #masthead .mobile-menu-toggle .hamburger span:nth-child(1) {
+    top: 0 !important;
+}
+
+body .mobile-menu-toggle .hamburger span:nth-child(2),
+body #masthead .mobile-menu-toggle .hamburger span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+body .mobile-menu-toggle .hamburger span:nth-child(3),
+body #masthead .mobile-menu-toggle .hamburger span:nth-child(3) {
+    bottom: 0 !important;
+    top: auto !important;
+}
+
+/* ホバー効果 */
+body .mobile-menu-toggle:hover,
+body #page .mobile-menu-toggle:hover {
+    background: var(--harmony-primary, #4A6FA5);
+}
+
+body .mobile-menu-toggle:hover .hamburger span,
+body #page .mobile-menu-toggle:hover .hamburger span {
+    background: white;
+}
+
+/* アクティブ状態（メニューが開いている時） */
+body .mobile-menu-toggle.active .hamburger span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+body .mobile-menu-toggle.active .hamburger span:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-50%) scale(0);
+}
+
+body .mobile-menu-toggle.active .hamburger span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+}
+
+/* ==========================================================================
+   ヘッダーコンテナの調整
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* ヘッダーコンテナのレイアウト修正 */
+    body .header-container,
+    body #page .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+    
+    /* ロゴエリアの調整 */
+    body .site-branding,
+    body #page .site-branding {
+        flex: 1;
+        max-width: 200px;
+    }
+    
+    /* メインナビゲーションを非表示 */
+    body .main-navigation .nav-wrapper,
+    body #masthead .main-navigation .nav-wrapper {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   モバイルメニュー本体の修正
+   ========================================================================== */
+
+body .mobile-menu,
+body #page .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    z-index: 2000;
+}
+
+body .mobile-menu.active,
+body #page .mobile-menu.active {
+    right: 0;
+}
+
+/* モバイルメニューオーバーレイ */
+body .mobile-menu-overlay,
+body #page .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1999;
+}
+
+body .mobile-menu-overlay.active,
+body #page .mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==========================================================================
+   タッチ対応の改善
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* タップエリアを拡大 */
+    body .mobile-menu-toggle,
+    body #page .mobile-menu-toggle {
+        min-width: 48px;
+        min-height: 48px;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* タップフィードバック */
+    body .mobile-menu-toggle:active,
+    body #page .mobile-menu-toggle:active {
+        transform: scale(0.95);
+    }
+}
+
+/* ==========================================================================
+   デバッグ用（問題解決後は削除）
+   ========================================================================== */
+
+/* モバイルメニューボタンを強制的に表示（デバッグ用） */
+@media (max-width: 768px) {
+    body .mobile-menu-toggle {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+}
