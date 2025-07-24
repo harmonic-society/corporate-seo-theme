@@ -24,15 +24,17 @@ body .footer-main,
 body #colophon .footer-main {
     padding: 4rem 0 3rem;
     position: relative;
+    width: 100%;
 }
 
 body .footer-grid,
 body #colophon .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 4rem;
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
+    gap: 3rem !important;
     align-items: start;
     justify-content: center;
+    width: 100%;
 }
 
 /* フッターウィジェットの配置調整 */
@@ -145,6 +147,36 @@ body #colophon .footer-bottom-content {
     body #colophon .footer-bottom-content {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+/* ==========================================================================
+   優先度を高めるための追加スタイル
+   ========================================================================== */
+
+/* header-footer-harmony.cssの上書きを確実にする */
+body .site-footer .footer-main .container .footer-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
+    gap: 3rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* 各カラムが正しく配置されるように */
+body .site-footer .footer-widget {
+    grid-column: auto !important;
+    width: 100% !important;
+}
+
+/* デスクトップでの最小幅を確保 */
+@media (min-width: 1025px) {
+    body .site-footer .footer-main .container {
+        min-width: 1000px;
+    }
+    
+    body .site-footer .footer-widget {
+        min-width: 0;
     }
 }
 
