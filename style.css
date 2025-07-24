@@ -11745,12 +11745,13 @@ body.lightbox-open {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
+/* featured記事のスタイルを削除
 .blog-article.featured {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: auto;
-}
+} */
 
 .article-link {
     text-decoration: none;
@@ -11760,9 +11761,10 @@ body.lightbox-open {
     height: 100%;
 }
 
+/* featuredスタイルを削除
 .featured .article-link {
     flex-direction: row;
-}
+} */
 
 /* サムネイル */
 .article-thumbnail {
@@ -11771,10 +11773,10 @@ body.lightbox-open {
     aspect-ratio: 16/9;
 }
 
-.featured .article-thumbnail {
+/* .featured .article-thumbnail {
     aspect-ratio: auto;
     height: 100%;
-}
+} */
 
 .article-thumbnail img {
     width: 100%;
@@ -11845,6 +11847,7 @@ body.lightbox-open {
     gap: 8px;
 }
 
+/* FEATUREDバッジを削除
 .featured-badge {
     position: absolute;
     top: 20px;
@@ -11859,7 +11862,7 @@ body.lightbox-open {
     align-items: center;
     gap: 6px;
     z-index: 10;
-}
+} */
 
 /* 記事コンテンツ */
 .article-content {
@@ -11869,9 +11872,9 @@ body.lightbox-open {
     flex-direction: column;
 }
 
-.featured .article-content {
+/* .featured .article-content {
     padding: 40px;
-}
+} */
 
 /* メタ情報 */
 .article-meta {
@@ -11913,10 +11916,10 @@ body.lightbox-open {
     overflow: hidden;
 }
 
-.featured .article-title {
+/* .featured .article-title {
     font-size: 2rem;
     -webkit-line-clamp: 3;
-}
+} */
 
 /* 抜粋 */
 .article-excerpt {
@@ -11931,9 +11934,9 @@ body.lightbox-open {
     overflow: hidden;
 }
 
-.featured .article-excerpt {
+/* .featured .article-excerpt {
     -webkit-line-clamp: 4;
-}
+} */
 
 /* フッター */
 .article-footer {
@@ -12282,35 +12285,35 @@ body.lightbox-open {
         gap: 20px;
     }
     
-    .blog-article.featured {
+    /* .blog-article.featured {
         grid-template-columns: 1fr;
-    }
+    } */
     
-    .featured .article-link {
+    /* .featured .article-link {
         flex-direction: column;
-    }
+    } */
     
-    .featured .article-thumbnail {
+    /* .featured .article-thumbnail {
         aspect-ratio: 16/9;
         height: auto;
-    }
+    } */
     
     /* 記事コンテンツ */
     .article-content {
         padding: 20px;
     }
     
-    .featured .article-content {
+    /* .featured .article-content {
         padding: 25px;
-    }
+    } */
     
     .article-title {
         font-size: 1.25rem;
     }
     
-    .featured .article-title {
+    /* .featured .article-title {
         font-size: 1.5rem;
-    }
+    } */
     
     /* ニュースレター */
     .newsletter-wrapper {

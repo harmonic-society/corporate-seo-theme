@@ -199,9 +199,7 @@ get_header(); ?>
                         the_post();
                         $post_index++;
                         
-                        // 最初の記事を特集記事として表示
-                        $is_featured = ($post_index === 1 && $paged < 2);
-                        $article_class = $is_featured ? 'blog-article featured' : 'blog-article';
+                        $article_class = 'blog-article';
                         ?>
                         
                         <article id="post-<?php the_ID(); ?>" <?php post_class( $article_class ); ?> data-aos="fade-up" data-aos-delay="<?php echo $post_index * 50; ?>">
@@ -228,13 +226,6 @@ get_header(); ?>
                                         </span>
                                     </div>
                                     
-                                    <!-- 特集バッジ -->
-                                    <?php if ($is_featured) : ?>
-                                        <div class="featured-badge">
-                                            <i class="fas fa-star"></i>
-                                            <span>FEATURED</span>
-                                        </div>
-                                    <?php endif; ?>
                                 </div>
                                 
                                 <!-- コンテンツ -->
@@ -269,7 +260,7 @@ get_header(); ?>
                                     
                                     <!-- 抜粋 -->
                                     <div class="article-excerpt">
-                                        <?php echo wp_trim_words( get_the_excerpt(), $is_featured ? 40 : 20, '...' ); ?>
+                                        <?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?>
                                     </div>
                                     
                                     <!-- フッター -->
