@@ -29,13 +29,13 @@ get_header(); ?>
     $hero_classes .= ' hero-height-' . $hero_height;
     $hero_classes .= $hero_animation ? ' animations-enabled' : '';
     ?>
-    <section class="<?php echo esc_attr( $hero_classes ); ?>" style="color: <?php echo esc_attr( $hero_text_color ); ?>">
+    <section class="<?php echo esc_attr( $hero_classes ); ?>" style="--hero-text-color: <?php echo esc_attr( $hero_text_color ); ?>">
         <!-- 背景処理 -->
         <?php if ( $hero_style === 'image' ) : ?>
-            <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
+            <div class="hero-bg-image" style="--hero-bg-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
         <?php elseif ( $hero_style === 'gradient' ) : ?>
             <!-- 背景画像をグラデーションの下に表示 -->
-            <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
+            <div class="hero-bg-image" style="--hero-bg-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
         <?php endif; ?>
         
         <?php if ( $hero_style === 'video' && $hero_bg_video ) : ?>
@@ -47,13 +47,13 @@ get_header(); ?>
         <?php endif; ?>
         
         <?php if ( $hero_style === 'gradient' ) : ?>
-            <div class="hero-gradient-overlay" style="background: linear-gradient(135deg, <?php echo esc_attr( $gradient_start ); ?> 0%, <?php echo esc_attr( $gradient_end ); ?> 100%); opacity: 0.9;"></div>
+            <div class="hero-gradient-overlay" style="--gradient-start: <?php echo esc_attr( $gradient_start ); ?>; --gradient-end: <?php echo esc_attr( $gradient_end ); ?>; --gradient-opacity: 0.9;"></div>
         <?php elseif ( $hero_style === 'particles' || $hero_style === 'geometric' ) : ?>
-            <div class="hero-gradient-overlay" style="background: linear-gradient(135deg, <?php echo esc_attr( $gradient_start ); ?> 0%, <?php echo esc_attr( $gradient_end ); ?> 100%)"></div>
+            <div class="hero-gradient-overlay" style="--gradient-start: <?php echo esc_attr( $gradient_start ); ?>; --gradient-end: <?php echo esc_attr( $gradient_end ); ?>;"></div>
         <?php endif; ?>
         
         <?php if ( $hero_overlay !== '0' && ( $hero_style === 'image' || $hero_style === 'video' ) ) : ?>
-            <div class="hero-overlay" style="opacity: <?php echo esc_attr( $hero_overlay ); ?>"></div>
+            <div class="hero-overlay" style="--overlay-opacity: <?php echo esc_attr( $hero_overlay ); ?>"></div>
         <?php endif; ?>
         
         <?php if ( $hero_style === 'particles' ) : ?>
@@ -64,7 +64,7 @@ get_header(); ?>
             <div class="hero-geometric-pattern"></div>
         <?php endif; ?>
         
-        <div class="hero-content" style="text-align: <?php echo esc_attr( $hero_text_align ); ?>">
+        <div class="hero-content" style="--hero-text-align: <?php echo esc_attr( $hero_text_align ); ?>">
             <div class="container">
                 <div class="hero-main">
                     <div class="hero-badge">

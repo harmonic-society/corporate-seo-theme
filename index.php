@@ -100,7 +100,7 @@ get_header(); ?>
                 </button>
                 
                 <!-- 検索サジェスト -->
-                <div class="search-suggestions" style="display: none;">
+                <div class="search-suggestions hidden">
                     <div class="suggestions-header">
                         <span>人気の検索キーワード</span>
                     </div>
@@ -114,7 +114,7 @@ get_header(); ?>
                 </div>
                 
                 <!-- フィルターパネル -->
-                <div class="filter-panel" style="display: none;">
+                <div class="filter-panel hidden">
                     <div class="filter-panel-inner">
                         <div class="filter-group">
                             <h4>カテゴリー</h4>
@@ -236,7 +236,7 @@ get_header(); ?>
                                         $categories = get_the_category();
                                         if ( ! empty( $categories ) ) :
                                         ?>
-                                            <span class="article-category" style="background: <?php echo get_theme_mod( 'category_color_' . $categories[0]->term_id, '#10b981' ); ?>">
+                                            <span class="article-category" style="--category-color: <?php echo get_theme_mod( 'category_color_' . $categories[0]->term_id, '#10b981' ); ?>">
                                                 <?php echo esc_html( $categories[0]->name ); ?>
                                             </span>
                                         <?php endif; ?>

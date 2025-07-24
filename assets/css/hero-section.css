@@ -17,6 +17,7 @@
     justify-content: center;
     overflow: hidden;
     background-color: #1a1a1a;
+    color: var(--hero-text-color, #ffffff);
 }
 
 /* Background Image Layer */
@@ -26,6 +27,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    background-image: var(--hero-bg-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -78,7 +80,21 @@
     left: 0;
     width: 100%;
     height: 100%;
+    background: linear-gradient(135deg, var(--gradient-start, #10b981) 0%, var(--gradient-end, #059669) 100%);
+    opacity: var(--gradient-opacity, 1);
     z-index: 2;
+}
+
+/* Overlay for image/video styles */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: var(--overlay-opacity, 1);
+    z-index: 1;
 }
 
 /* Video Style */
@@ -158,6 +174,7 @@
     width: 100%;
     padding: 0;
     max-width: none;
+    text-align: var(--hero-text-align, center);
 }
 
 .hero-main {

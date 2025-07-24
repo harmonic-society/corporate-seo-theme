@@ -89,7 +89,7 @@ $category = get_queried_object();
                     </div>
                     
                     <!-- 検索候補表示エリア -->
-                    <div class="search-suggestions" style="display: none;">
+                    <div class="search-suggestions hidden">
                         <div class="suggestions-list"></div>
                     </div>
                 </form>

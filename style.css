@@ -11889,6 +11889,7 @@ body.lightbox-open {
     font-weight: 600;
     color: white;
     text-transform: uppercase;
+    background-color: var(--category-color, #10b981);
 }
 
 .article-date,
