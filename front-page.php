@@ -9,41 +9,73 @@ get_header(); ?>
 
 <main id="main" class="site-main">
     
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-bg-effect">
-            <div class="hero-gradient"></div>
-            <div class="hero-particles"></div>
+    <!-- Hero Section - Harmonic Society Style -->
+    <section class="hero-section harmonic-hero">
+        <div class="hero-bg-pattern">
+            <div class="hero-gradient-primary"></div>
+            <div class="hero-gradient-secondary"></div>
+            <div class="geometric-pattern"></div>
         </div>
         
         <div class="hero-content">
             <div class="container">
-                <div class="hero-title-wrapper">
+                <div class="hero-main">
+                    <div class="hero-badge">
+                        <span class="badge-icon">✨</span>
+                        <span class="badge-text">Innovation & Harmony</span>
+                    </div>
+                    
                     <h1 class="hero-title">
-                        <span><?php echo esc_html( get_theme_mod( 'hero_title', 'ビジネスの成長を加速させる' ) ); ?></span>
+                        <span class="title-line-1">ビジネスと社会の</span>
+                        <span class="title-line-2">調和を創造する</span>
                     </h1>
-                    <p class="hero-subtitle"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'Professional Business Solutions' ) ); ?></p>
-                </div>
-                
-                <p class="hero-description">
-                    <?php echo esc_html( get_theme_mod( 'hero_description', '最新のテクノロジーと豊富な経験を活かし、お客様のビジネスを次のステージへ導きます' ) ); ?>
-                </p>
-                
-                <div class="hero-buttons">
-                    <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'contact' ) ) ); ?>" class="btn btn-primary btn-lg">
-                        <span class="btn-text"><?php esc_html_e( 'お問い合わせ', 'corporate-seo-pro' ); ?></span>
-                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
-                    </a>
-                    <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'services' ) ) ); ?>" class="btn btn-outline btn-lg">
-                        <span class="btn-text"><?php esc_html_e( 'サービス一覧', 'corporate-seo-pro' ); ?></span>
-                    </a>
+                    
+                    <p class="hero-lead">
+                        <?php echo esc_html( get_theme_mod( 'hero_lead', 'テクノロジーと人間性の融合で、持続可能な成長を実現' ) ); ?>
+                    </p>
+                    
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i class="fas fa-rocket"></i>
+                            <span>成長戦略</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>持続可能性</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i>
+                            <span>共創価値</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'contact' ) ) ); ?>" class="btn-harmonic btn-primary">
+                            <span class="btn-inner">
+                                <span class="btn-text">無料相談を申し込む</span>
+                                <span class="btn-arrow">→</span>
+                            </span>
+                        </a>
+                        <a href="#services" class="btn-harmonic btn-secondary">
+                            <span class="btn-inner">
+                                <span class="btn-text">サービスを見る</span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="hero-trust">
+                        <p class="trust-text">
+                            <span class="trust-icon">🛡️</span>
+                            <span>500社以上の企業様に選ばれています</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="hero-wave">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+        <div class="hero-bottom-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,40 C480,100 960,100 1440,40 L1440,120 L0,120 Z"></path>
             </svg>
         </div>
     </section>

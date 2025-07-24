@@ -745,6 +745,50 @@ span.menu-text {
     color: white;
 }
 
+/* Harmonic Hero 専用スタイル */
+.harmonic-hero {
+    background: #ffffff;
+    color: #1a1a1a;
+    min-height: 90vh;
+    position: relative;
+}
+
+/* 背景パターン */
+.hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-gradient-primary {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    right: -25%;
+    background: radial-gradient(circle at center, rgba(0, 134, 123, 0.03) 0%, transparent 70%);
+    transform: rotate(-15deg);
+}
+
+.hero-gradient-secondary {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    bottom: -20%;
+    left: -20%;
+    background: radial-gradient(circle at center, rgba(0, 201, 167, 0.02) 0%, transparent 60%);
+}
+
+.geometric-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(90deg, rgba(0, 134, 123, 0.02) 1px, transparent 1px),
+        linear-gradient(rgba(0, 134, 123, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
 .hero-section::before {
     content: '';
     position: absolute;
@@ -812,6 +856,174 @@ span.menu-text {
     margin: 0 auto;
     text-align: center;
     padding: 4rem 0;
+}
+
+/* Harmonic Hero コンテンツスタイル */
+.harmonic-hero .hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 0;
+    max-width: none;
+}
+
+.hero-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+/* ヒーローバッジ */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 134, 123, 0.1);
+    border: 1px solid rgba(0, 134, 123, 0.2);
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+    color: #00867b;
+    font-weight: 500;
+}
+
+.badge-icon {
+    font-size: 1.2rem;
+}
+
+/* Harmonic Hero タイトル */
+.harmonic-hero .hero-title {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 2rem;
+    letter-spacing: -0.02em;
+}
+
+.title-line-1,
+.title-line-2 {
+    display: block;
+}
+
+.title-line-1 {
+    color: #1a1a1a;
+}
+
+.title-line-2 {
+    background: linear-gradient(135deg, #00867b 0%, #00c9a7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* リード文 */
+.hero-lead {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    color: #666;
+    margin: 0 auto 3rem;
+    max-width: 700px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* 特徴アイテム */
+.hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.feature-item i {
+    font-size: 1.25rem;
+    color: #00867b;
+}
+
+/* Harmonic CTAボタン */
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.btn-harmonic {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.25rem 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-harmonic.btn-primary {
+    background: linear-gradient(135deg, #00867b 0%, #00a596 100%);
+    color: white;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 134, 123, 0.3);
+}
+
+.btn-harmonic.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(0, 134, 123, 0.4);
+}
+
+.btn-harmonic.btn-secondary {
+    background: transparent;
+    color: #00867b;
+    border: 2px solid #00867b;
+    border-radius: 50px;
+}
+
+.btn-harmonic.btn-secondary:hover {
+    background: #00867b;
+    color: white;
+}
+
+.btn-arrow {
+    transition: transform 0.3s ease;
+}
+
+.btn-harmonic:hover .btn-arrow {
+    transform: translateX(3px);
+}
+
+/* 信頼性表示 */
+.hero-trust {
+    margin-top: 3rem;
+}
+
+.trust-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.trust-icon {
+    font-size: 1.2rem;
 }
 
 .hero-title {
@@ -1541,6 +1753,54 @@ span.menu-text {
         min-height: 600px;
         height: calc(100vh - var(--header-height));
         max-height: 750px;
+    }
+    
+    /* Harmonic Hero モバイル対応 */
+    .harmonic-hero {
+        min-height: 80vh;
+    }
+    
+    .hero-main {
+        padding: 3rem 1.5rem;
+    }
+    
+    .harmonic-hero .hero-title {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-lead {
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-features {
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .feature-item {
+        font-size: 0.9rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .btn-harmonic {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .btn-inner {
+        justify-content: center;
+        padding: 1rem 2rem;
+    }
+    
+    .hero-bottom-wave {
+        height: 80px;
     }
     
     .hero-image {
@@ -6425,6 +6685,28 @@ select:focus {
 .hero-wave svg {
     width: 100%;
     height: 100%;
+}
+
+/* Harmonic Hero 波形装飾 */
+.hero-bottom-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.hero-bottom-wave svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-bottom-wave path {
+    fill: #ffffff;
 }
 
 /* ビジョンセクション */
