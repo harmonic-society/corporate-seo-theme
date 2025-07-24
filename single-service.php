@@ -10,6 +10,13 @@ get_header(); ?>
 <main id="main" class="site-main single-service">
     <?php while ( have_posts() ) : the_post(); ?>
         
+        <!-- パンくずリスト -->
+        <div class="breadcrumb-wrapper">
+            <div class="container">
+                <?php get_template_part( 'template-parts/breadcrumb' ); ?>
+            </div>
+        </div>
+        
         <!-- サービスヒーローセクション -->
         <section class="service-hero">
             <div class="hero-bg-effect">
@@ -25,14 +32,6 @@ get_header(); ?>
             
             <div class="container">
                 <div class="hero-content">
-                    <nav class="service-breadcrumb">
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>">ホーム</a>
-                        <span class="separator">/</span>
-                        <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>">サービス一覧</a>
-                        <span class="separator">/</span>
-                        <span class="current"><?php the_title(); ?></span>
-                    </nav>
-                    
                     <h1 class="service-title">
                         <span class="title-main"><?php the_title(); ?></span>
                         <?php if ( function_exists('get_field') && get_field('service_subtitle') ) : ?>
@@ -40,21 +39,8 @@ get_header(); ?>
                         <?php endif; ?>
                     </h1>
                     
-                    <div class="hero-meta">
-                        <?php if ( function_exists('get_field') && get_field('service_duration') ) : ?>
-                            <div class="meta-item">
-                                <i class="fas fa-clock"></i>
-                                <span><?php the_field('service_duration'); ?></span>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <?php if ( function_exists('get_field') && get_field('service_price') ) : ?>
-                            <div class="meta-item">
-                                <i class="fas fa-yen-sign"></i>
-                                <span><?php the_field('service_price'); ?></span>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+                    <!-- メタ情報コンポーネント -->
+                    <?php get_template_part( 'template-parts/post-meta', null, array( 'type' => 'service' ) ); ?>
                     
                     <div class="hero-actions">
                         <a href="#service-inquiry" class="btn-primary smooth-scroll">
@@ -97,8 +83,8 @@ get_header(); ?>
                     
                     <?php if ( has_post_thumbnail() ) : ?>
                         <div class="overview-visual">
-                            <div class="visual-wrapper">
-                                <?php the_post_thumbnail( 'large', array( 'class' => 'overview-image' ) ); ?>
+                            <div class="visual-container">
+                                <?php the_post_thumbnail( 'large', array( 'class' => 'service-image' ) ); ?>
                                 <div class="visual-decoration"></div>
                             </div>
                         </div>
@@ -107,8 +93,9 @@ get_header(); ?>
             </div>
         </section>
 
-        <!-- サービス特徴セクション -->
-        <section id="service-features" class="service-features-section">
+        <!-- サービスの特徴セクション -->
+        <?php if ( function_exists('get_field') && have_rows('service_features') ) : ?>
+        <section id="service-features" class="service-features">
             <div class="container">
                 <h2 class="section-title text-center">
                     <span class="title-en">Features</span>
@@ -116,83 +103,25 @@ get_header(); ?>
                 </h2>
                 
                 <div class="features-grid">
-                    <?php 
-                    // カスタムフィールドまたはデフォルトの特徴を表示
-                    $features = function_exists('get_field') ? get_field('service_features') : null;
-                    if ( !$features ) {
-                        // デフォルトの特徴（例）
-                        $features = array(
-                            array(
-                                'icon' => 'fas fa-rocket',
-                                'title' => '迅速な対応',
-                                'description' => 'お客様のご要望に素早くお応えし、スピーディーな課題解決を実現します。'
-                            ),
-                            array(
-                                'icon' => 'fas fa-shield-alt',
-                                'title' => '高品質保証',
-                                'description' => '業界最高水準の品質基準を設け、安心してご利用いただけるサービスを提供します。'
-                            ),
-                            array(
-                                'icon' => 'fas fa-users',
-                                'title' => '専門チーム',
-                                'description' => '経験豊富な専門家チームが、お客様のプロジェクトを成功へと導きます。'
-                            )
-                        );
-                    }
-                    
-                    foreach ( $features as $index => $feature ) : ?>
-                        <div class="feature-card" data-feature="<?php echo $index + 1; ?>">
+                    <?php while ( have_rows('service_features') ) : the_row(); ?>
+                        <div class="feature-card">
                             <div class="feature-icon">
-                                <i class="<?php echo esc_attr( isset($feature['icon']) ? $feature['icon'] : 'fas fa-check-circle' ); ?>"></i>
+                                <?php if ( get_sub_field('feature_icon') ) : ?>
+                                    <i class="<?php the_sub_field('feature_icon'); ?>"></i>
+                                <?php endif; ?>
                             </div>
-                            <h3 class="feature-title"><?php echo esc_html( isset($feature['title']) ? $feature['title'] : '' ); ?></h3>
-                            <p class="feature-description"><?php echo esc_html( isset($feature['description']) ? $feature['description'] : '' ); ?></p>
+                            <h3 class="feature-title"><?php the_sub_field('feature_title'); ?></h3>
+                            <p class="feature-description"><?php the_sub_field('feature_description'); ?></p>
                         </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
-
-        <!-- サービスプロセスセクション -->
-        <?php if ( (function_exists('get_field') && get_field('service_process')) || !function_exists('get_field') ) : ?>
-        <section class="service-process-section">
-            <div class="container">
-                <h2 class="section-title text-center">
-                    <span class="title-en">Process</span>
-                    <span class="title-ja">サービスの流れ</span>
-                </h2>
-                
-                <div class="process-timeline">
-                    <?php 
-                    $processes = function_exists('get_field') ? get_field('service_process') : null;
-                    if ( !$processes ) {
-                        // デフォルトのプロセス
-                        $processes = array(
-                            array('title' => 'お問い合わせ', 'description' => 'まずはお気軽にご相談ください'),
-                            array('title' => 'ヒアリング', 'description' => 'お客様のご要望を詳しくお伺いします'),
-                            array('title' => 'ご提案', 'description' => '最適なソリューションをご提案します'),
-                            array('title' => '実施', 'description' => 'プロフェッショナルチームが実行します'),
-                            array('title' => 'フォローアップ', 'description' => '継続的なサポートを提供します')
-                        );
-                    }
-                    
-                    foreach ( $processes as $index => $process ) : ?>
-                        <div class="process-step" data-step="<?php echo $index + 1; ?>">
-                            <div class="step-number"><?php echo sprintf( '%02d', $index + 1 ); ?></div>
-                            <div class="step-content">
-                                <h4 class="step-title"><?php echo esc_html( isset($process['title']) ? $process['title'] : '' ); ?></h4>
-                                <p class="step-description"><?php echo esc_html( isset($process['description']) ? $process['description'] : '' ); ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                    <?php endwhile; ?>
                 </div>
             </div>
         </section>
         <?php endif; ?>
 
-        <!-- 価格・プランセクション -->
-        <?php if ( (function_exists('get_field') && get_field('service_plans')) || !function_exists('get_field') ) : ?>
-        <section class="service-pricing-section">
+        <!-- 料金プランセクション -->
+        <?php if ( function_exists('get_field') && have_rows('service_plans') ) : ?>
+        <section class="service-pricing">
             <div class="container">
                 <h2 class="section-title text-center">
                     <span class="title-en">Pricing</span>
@@ -200,150 +129,65 @@ get_header(); ?>
                 </h2>
                 
                 <div class="pricing-grid">
-                    <?php 
-                    $plans = function_exists('get_field') ? get_field('service_plans') : null;
-                    if ( !$plans ) {
-                        // デフォルトのプラン例
-                        $plans = array(
-                            array(
-                                'name' => 'ベーシックプラン',
-                                'price' => '¥50,000〜',
-                                'features' => array('基本機能', 'メールサポート', '月1回のレポート'),
-                                'recommended' => false
-                            ),
-                            array(
-                                'name' => 'スタンダードプラン',
-                                'price' => '¥100,000〜',
-                                'features' => array('全機能利用可能', '優先サポート', '週次レポート', 'カスタマイズ対応'),
-                                'recommended' => true
-                            ),
-                            array(
-                                'name' => 'プレミアムプラン',
-                                'price' => 'お見積もり',
-                                'features' => array('フルカスタマイズ', '24時間サポート', 'リアルタイムレポート', '専任担当者'),
-                                'recommended' => false
-                            )
-                        );
-                    }
-                    
-                    foreach ( $plans as $plan ) : ?>
-                        <div class="pricing-card <?php echo (isset($plan['recommended']) && $plan['recommended']) ? 'recommended' : ''; ?>">
-                            <?php if ( isset($plan['recommended']) && $plan['recommended'] ) : ?>
+                    <?php while ( have_rows('service_plans') ) : the_row(); ?>
+                        <div class="pricing-card <?php echo get_sub_field('plan_recommended') ? 'recommended' : ''; ?>">
+                            <?php if ( get_sub_field('plan_recommended') ) : ?>
                                 <div class="recommended-badge">おすすめ</div>
                             <?php endif; ?>
                             
-                            <h3 class="plan-name"><?php echo esc_html( isset($plan['name']) ? $plan['name'] : '' ); ?></h3>
-                            <div class="plan-price"><?php echo esc_html( isset($plan['price']) ? $plan['price'] : '' ); ?></div>
+                            <h3 class="plan-name"><?php the_sub_field('plan_name'); ?></h3>
+                            <div class="plan-price">
+                                <span class="price-currency">¥</span>
+                                <span class="price-amount"><?php the_sub_field('plan_price'); ?></span>
+                                <span class="price-unit"><?php the_sub_field('plan_unit'); ?></span>
+                            </div>
                             
-                            <ul class="plan-features">
-                                <?php 
-                                $features = isset($plan['features']) ? $plan['features'] : array();
-                                
-                                // ACFのテキストエリアから改行区切りの機能リストを処理
-                                if ( is_string($features) ) {
-                                    $features = array_filter(array_map('trim', explode("\n", $features)));
-                                }
-                                
-                                foreach ( $features as $feature ) : 
-                                    // ACFのリピーターフィールドの場合
-                                    if ( is_array($feature) && isset($feature['feature']) ) {
-                                        $feature_text = $feature['feature'];
-                                    } else {
-                                        $feature_text = $feature;
-                                    }
-                                ?>
-                                    <li><i class="fas fa-check"></i> <?php echo wp_kses_post( $feature_text ); ?></li>
-                                <?php endforeach; ?>
-                            </ul>
+                            <?php if ( have_rows('plan_features') ) : ?>
+                                <ul class="plan-features">
+                                    <?php while ( have_rows('plan_features') ) : the_row(); ?>
+                                        <li>
+                                            <i class="fas fa-check"></i>
+                                            <?php the_sub_field('feature'); ?>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
+                            <?php endif; ?>
                             
                             <a href="#service-inquiry" class="plan-cta smooth-scroll">
                                 このプランで相談する
                             </a>
                         </div>
-                    <?php endforeach; ?>
+                    <?php endwhile; ?>
                 </div>
             </div>
         </section>
         <?php endif; ?>
 
-        <!-- FAQ セクション -->
-        <?php if ( (function_exists('get_field') && get_field('service_faq')) || !function_exists('get_field') ) : ?>
-        <section class="service-faq-section">
+        <!-- お問い合わせセクション -->
+        <section id="service-inquiry" class="service-inquiry">
             <div class="container">
-                <h2 class="section-title text-center">
-                    <span class="title-en">FAQ</span>
-                    <span class="title-ja">よくある質問</span>
-                </h2>
-                
-                <div class="faq-accordion">
-                    <?php 
-                    $faqs = function_exists('get_field') ? get_field('service_faq') : null;
-                    if ( !$faqs ) {
-                        // デフォルトのFAQ
-                        $faqs = array(
-                            array(
-                                'question' => 'サービスの導入期間はどのくらいですか？',
-                                'answer' => 'プロジェクトの規模により異なりますが、通常2週間〜1ヶ月程度での導入が可能です。'
-                            ),
-                            array(
-                                'question' => 'サポート体制について教えてください。',
-                                'answer' => '専任の担当者がつき、メール・電話・チャットでのサポートを提供しています。'
-                            ),
-                            array(
-                                'question' => '他社からの乗り換えは可能ですか？',
-                                'answer' => 'はい、可能です。データ移行のサポートも含めて対応いたします。'
-                            )
-                        );
-                    }
+                <div class="inquiry-box">
+                    <h2 class="inquiry-title">
+                        <span class="title-main">お問い合わせ・ご相談</span>
+                        <span class="title-sub">まずはお気軽にご相談ください</span>
+                    </h2>
                     
-                    foreach ( $faqs as $index => $faq ) : ?>
-                        <div class="faq-item" data-faq="<?php echo $index + 1; ?>">
-                            <button class="faq-question">
-                                <span class="question-text"><?php echo esc_html( isset($faq['question']) ? $faq['question'] : '' ); ?></span>
-                                <span class="question-icon"><i class="fas fa-plus"></i></span>
-                            </button>
-                            <div class="faq-answer">
-                                <p><?php echo esc_html( isset($faq['answer']) ? $faq['answer'] : '' ); ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
-        <?php endif; ?>
-
-        <!-- お問い合わせCTAセクション -->
-        <section id="service-inquiry" class="service-inquiry-section">
-            <div class="container">
-                <div class="inquiry-wrapper">
                     <div class="inquiry-content">
-                        <h2 class="inquiry-title">
-                            <span class="title-main">お問い合わせ・ご相談</span>
-                            <span class="title-sub">まずはお気軽にご相談ください</span>
-                        </h2>
-                        
-                        <p class="inquiry-description">
-                            <?php the_title(); ?>に関するご質問やお見積もりのご依頼など、<br>
-                            お気軽にお問い合わせください。専門スタッフが丁寧にご対応いたします。
+                        <p class="inquiry-lead">
+                            サービスに関するご質問やご相談は、下記フォームまたはお電話にてお気軽にお問い合わせください。
                         </p>
                         
-                        <div class="inquiry-buttons">
-                            <a href="<?php echo esc_url( get_contact_page_url() ); ?>?utm_source=service&utm_medium=detail&utm_content=<?php echo urlencode( get_the_title() ); ?>" class="btn-inquiry-primary">
-                                <span class="btn-icon"><i class="fas fa-envelope"></i></span>
-                                <span class="btn-text">お問い合わせフォーム</span>
+                        <div class="inquiry-actions">
+                            <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn-contact">
+                                <i class="fas fa-envelope"></i>
+                                お問い合わせフォーム
                             </a>
                             
-                            <a href="tel:08069464006" class="btn-inquiry-secondary">
-                                <span class="btn-icon"><i class="fas fa-phone"></i></span>
-                                <span class="btn-text">電話で相談する</span>
+                            <a href="tel:03-1234-5678" class="btn-phone">
+                                <i class="fas fa-phone"></i>
+                                03-1234-5678
                             </a>
                         </div>
-                    </div>
-                    
-                    <div class="inquiry-decoration">
-                        <div class="decoration-circle-1"></div>
-                        <div class="decoration-circle-2"></div>
-                        <div class="decoration-circle-3"></div>
                     </div>
                 </div>
             </div>
@@ -355,50 +199,30 @@ get_header(); ?>
             'post_type' => 'service',
             'posts_per_page' => 3,
             'post__not_in' => array( get_the_ID() ),
-            'orderby' => 'rand'
+            'orderby' => 'rand',
         ) );
         
         if ( $related_services->have_posts() ) : ?>
-            <section class="related-services-section">
-                <div class="container">
-                    <h2 class="section-title text-center">
-                        <span class="title-en">Related Services</span>
-                        <span class="title-ja">関連サービス</span>
-                    </h2>
-                    
-                    <div class="related-services-grid">
-                        <?php while ( $related_services->have_posts() ) : $related_services->the_post(); ?>
-                            <article class="related-service-card">
-                                <?php if ( has_post_thumbnail() ) : ?>
-                                    <div class="related-service-image">
-                                        <a href="<?php the_permalink(); ?>">
-                                            <?php the_post_thumbnail( 'medium' ); ?>
-                                            <div class="image-overlay">
-                                                <span class="overlay-icon"><i class="fas fa-arrow-right"></i></span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-                                
-                                <div class="related-service-content">
-                                    <h3 class="related-service-title">
-                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    </h3>
-                                    <p class="related-service-excerpt">
-                                        <?php echo wp_trim_words( get_the_excerpt(), 20 ); ?>
-                                    </p>
-                                    <a href="<?php the_permalink(); ?>" class="related-service-link">
-                                        詳細を見る <i class="fas fa-chevron-right"></i>
-                                    </a>
-                                </div>
-                            </article>
-                        <?php endwhile; ?>
-                    </div>
-                </div>
-            </section>
-            <?php wp_reset_postdata(); ?>
-        <?php endif; ?>
-
+        <section class="related-services">
+            <div class="container">
+                <h2 class="section-title text-center">
+                    <span class="title-en">Related Services</span>
+                    <span class="title-ja">関連サービス</span>
+                </h2>
+                
+                <?php
+                // グリッドコンポーネントを使用
+                set_query_var( 'grid_query', $related_services );
+                get_template_part( 'template-parts/content-grid', null, array(
+                    'post_type' => 'service',
+                    'columns' => 3,
+                    'show_pagination' => false,
+                ) );
+                ?>
+            </div>
+        </section>
+        <?php endif; wp_reset_postdata(); ?>
+        
     <?php endwhile; ?>
 </main>
 
