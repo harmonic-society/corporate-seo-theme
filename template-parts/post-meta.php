@@ -54,8 +54,14 @@ $show_reading_time = isset( $args['show_reading_time'] ) ? $args['show_reading_t
     <?php elseif ( $meta_type === 'service' ) : ?>
         
         <?php 
-        $duration = get_post_meta( get_the_ID(), '_service_duration', true );
-        $price = get_post_meta( get_the_ID(), '_service_price', true );
+        // ACF fields or post meta
+        if ( function_exists('get_field') ) {
+            $duration = get_field('service_duration');
+            $price = get_field('service_price');
+        } else {
+            $duration = get_post_meta( get_the_ID(), '_service_duration', true );
+            $price = get_post_meta( get_the_ID(), '_service_price', true );
+        }
         ?>
         
         <?php if ( $duration ) : ?>
