@@ -60,7 +60,13 @@ if ( $meta_key && $meta_value ) {
 }
 
 // クエリ実行
-$grid_query = new WP_Query( $query_args );
+// Check if a query was passed via set_query_var
+$passed_query = get_query_var( 'grid_query', false );
+if ( $passed_query && is_object( $passed_query ) && $passed_query instanceof WP_Query ) {
+    $grid_query = $passed_query;
+} else {
+    $grid_query = new WP_Query( $query_args );
+}
 
 if ( $grid_query->have_posts() ) : ?>
     
@@ -174,5 +180,8 @@ if ( $grid_query->have_posts() ) : ?>
     
 <?php endif;
 
-wp_reset_postdata();
+// Only reset postdata if we created a new query
+if ( ! $passed_query ) {
+    wp_reset_postdata();
+}
 ?>

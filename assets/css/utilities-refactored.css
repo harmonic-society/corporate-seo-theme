@@ -243,16 +243,14 @@ body #page .u-pb-0 {
 
 /* モバイルで非表示 */
 @media (max-width: 768px) {
-    body .u-hidden-mobile,
-    body #page .u-hidden-mobile {
+    .u-hidden-mobile {
         display: none;
     }
 }
 
 /* デスクトップで非表示 */
-@media (min-width: 769px) {
-    body .u-hidden-desktop,
-    body #page .u-hidden-desktop {
+@media (min-width: 768.1px) {
+    .u-hidden-desktop {
         display: none;
     }
 }

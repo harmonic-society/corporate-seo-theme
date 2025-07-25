@@ -1,0 +1,314 @@
+/**
+ * Mobile Menu Complete Styles
+ * 
+ * モバイルメニューの完全なスタイル定義
+ */
+
+/* ==========================================================================
+   ハンバーガーメニューボタン
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        margin: 0;
+        margin-left: auto;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        z-index: 1002;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* ハンバーガーアイコンコンテナ */
+    .mobile-menu-toggle .hamburger {
+        width: 24px;
+        height: 18px;
+        position: relative;
+        display: block;
+        pointer-events: none;
+    }
+    
+    /* ハンバーガーの3本線 */
+    .mobile-menu-toggle .hamburger span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #333333;
+        border-radius: 2px;
+        left: 0;
+        transition: all 0.25s ease-in-out;
+    }
+    
+    .mobile-menu-toggle .hamburger span:nth-child(1) {
+        top: 0;
+    }
+    
+    .mobile-menu-toggle .hamburger span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .mobile-menu-toggle .hamburger span:nth-child(3) {
+        bottom: 0;
+    }
+    
+    /* アクティブ時のX形状 */
+    .mobile-menu-toggle.active .hamburger span:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+    
+    .mobile-menu-toggle.active .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active .hamburger span:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+    }
+}
+
+/* ==========================================================================
+   モバイルメニュー本体
+   ========================================================================== */
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.15);
+    transition: right 0.3s ease-in-out;
+    overflow-y: auto;
+    z-index: 2000;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+/* メニュー内部のパディング */
+.mobile-menu-inner {
+    padding: 80px 0 40px;
+}
+
+/* ==========================================================================
+   モバイルメニューリスト
+   ========================================================================== */
+
+.mobile-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-menu-list li {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-menu-list li:first-child {
+    border-top: 1px solid #f0f0f0;
+}
+
+.mobile-menu-list a {
+    display: block;
+    padding: 18px 30px;
+    color: #333333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.mobile-menu-list a:hover,
+.mobile-menu-list a:active {
+    background-color: #f8f8f8;
+    color: var(--primary-color, #00867b);
+    padding-left: 35px;
+}
+
+/* 現在のページ */
+.mobile-menu-list .current-menu-item > a,
+.mobile-menu-list .current-menu-parent > a {
+    color: var(--primary-color, #00867b);
+    font-weight: 600;
+}
+
+.mobile-menu-list .current-menu-item > a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--primary-color, #00867b);
+}
+
+/* サブメニュー */
+.mobile-menu-list .sub-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+.mobile-menu-list .sub-menu a {
+    padding-left: 50px;
+    font-size: 15px;
+}
+
+/* ==========================================================================
+   モバイルCTAボタン
+   ========================================================================== */
+
+.mobile-menu-cta {
+    padding: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.mobile-cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: var(--primary-color, #00867b);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.mobile-cta-button:hover {
+    background-color: var(--primary-dark, #006b62);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 134, 123, 0.3);
+}
+
+.mobile-cta-button .cta-icon {
+    font-size: 18px;
+}
+
+/* ==========================================================================
+   ソーシャルリンク
+   ========================================================================== */
+
+.mobile-menu-social {
+    padding: 20px 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.mobile-menu-social .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-menu-social .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    color: #666666;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-social .social-links a:hover {
+    background-color: var(--primary-color, #00867b);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   モバイルメニューオーバーレイ
+   ========================================================================== */
+
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1999;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==========================================================================
+   ボディのスクロール制御
+   ========================================================================== */
+
+body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* ==========================================================================
+   アニメーション改善
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .mobile-menu-overlay,
+    .mobile-menu-toggle .hamburger span {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   ダークモード対応（オプション）
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .mobile-menu {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+    
+    .mobile-menu-list li {
+        border-color: #333333;
+    }
+    
+    .mobile-menu-list a {
+        color: #ffffff;
+    }
+    
+    .mobile-menu-list a:hover {
+        background-color: #2a2a2a;
+    }
+    
+    .mobile-menu-toggle .hamburger span {
+        background-color: #ffffff;
+    }
+}

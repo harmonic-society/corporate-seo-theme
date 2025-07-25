@@ -57,6 +57,10 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'header-cta-fix'       => '/assets/css/header-cta-fix.css',
         'service-acf-fix'      => '/assets/css/service-acf-fix.css',
         'service-inquiry-fix'  => '/assets/css/service-inquiry-fix.css',
+        'service-grid'         => '/assets/css/service-grid.css',
+        'mobile-master'        => '/assets/css/mobile-master.css',
+        'mobile-hamburger-fix' => '/assets/css/mobile-hamburger-fix.css',
+        'mobile-menu-complete' => '/assets/css/mobile-menu-complete.css',
     );
     
     // 依存関係の設定
@@ -69,6 +73,9 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'footer-layout-fix'    => array( 'corporate-seo-pro-header-footer' ),
         'footer-grid-override' => array( 'corporate-seo-pro-footer-layout-fix' ),
         'header-cta-fix'       => array( 'corporate-seo-pro-header-footer' ),
+        'mobile-master'        => array( 'corporate-seo-pro-style', 'corporate-seo-pro-mobile-animations-fix', 'corporate-seo-pro-mobile-menu-fix' ),
+        'mobile-hamburger-fix' => array( 'corporate-seo-pro-mobile-master' ),
+        'mobile-menu-complete' => array( 'corporate-seo-pro-mobile-hamburger-fix' ),
     );
     
     foreach ( $css_files as $handle => $file ) {
@@ -88,10 +95,10 @@ function corporate_seo_pro_enqueue_styles( $version ) {
 function corporate_seo_pro_enqueue_scripts( $version ) {
     // 共通スクリプト
     $js_files = array(
-        'animation-utils'   => '/assets/js/utils/animation-utils.js',
-        'header-nav'        => '/assets/js/header-navigation.js',
-        'mobile-menu-fix'   => '/assets/js/mobile-menu-fix.js',
-        'theme'             => '/assets/js/theme.js',
+        'animation-utils'      => '/assets/js/utils/animation-utils.js',
+        'header-nav'           => '/assets/js/header-navigation.js',
+        'mobile-menu-improved' => '/assets/js/mobile-menu-improved.js',
+        'theme'                => '/assets/js/theme.js',
     );
     
     // 依存関係の設定
@@ -220,8 +227,8 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
         );
     }
     
-    // サービス詳細ページ
-    if ( is_singular( 'service' ) ) {
+    // サービス関連ページ
+    if ( is_singular( 'service' ) || is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
         wp_enqueue_script( 
             'corporate-seo-pro-service', 
             get_template_directory_uri() . '/assets/js/single-service.js', 

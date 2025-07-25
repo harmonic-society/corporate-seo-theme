@@ -21,8 +21,10 @@
 
     /**
      * Mobile Menu Functionality
+     * DISABLED - Using mobile-menu-improved.js instead
      */
     function initMobileMenu() {
+        return; // Disabled to prevent conflicts
         const toggleButton = document.querySelector('.mobile-menu-toggle');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileOverlay = document.querySelector('.mobile-menu-overlay');
