@@ -1,0 +1,99 @@
+/**
+ * Mobile Logo Fix
+ * モバイルでのロゴサイズ調整
+ */
+
+/* モバイルでのロゴサイズ制御 */
+@media (max-width: 768px) {
+    /* サイトブランディングエリア */
+    .site-branding {
+        max-width: 60%;
+        flex: 0 0 auto;
+    }
+    
+    /* ロゴの基本サイズ */
+    .site-logo img,
+    .custom-logo {
+        height: 35px !important;
+        width: auto !important;
+        max-width: 100%;
+        object-fit: contain;
+    }
+    
+    /* カスタムロゴリンク */
+    .custom-logo-link {
+        display: inline-block;
+        height: 35px !important;
+        line-height: 1;
+    }
+    
+    /* スクロール時のロゴ */
+    .scrolled .site-logo img,
+    .scrolled .custom-logo {
+        height: 30px !important;
+    }
+    
+    .scrolled .custom-logo-link {
+        height: 30px !important;
+    }
+    
+    /* ヘッダーコンテナの調整 */
+    .header-container {
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    /* ヘッダーの高さ調整 */
+    .site-header {
+        --header-height: 60px;
+        height: 60px !important;
+        min-height: 60px;
+    }
+    
+    .scrolled.site-header {
+        height: 55px !important;
+        min-height: 55px;
+    }
+}
+
+/* さらに小さい画面用 */
+@media (max-width: 480px) {
+    .site-branding {
+        max-width: 50%;
+    }
+    
+    .site-logo img,
+    .custom-logo {
+        height: 30px !important;
+    }
+    
+    .custom-logo-link {
+        height: 30px !important;
+    }
+    
+    .scrolled .site-logo img,
+    .scrolled .custom-logo {
+        height: 25px !important;
+    }
+    
+    .scrolled .custom-logo-link {
+        height: 25px !important;
+    }
+    
+    .header-container {
+        padding: 0 0.75rem;
+    }
+}
+
+/* テキストロゴの場合 */
+@media (max-width: 768px) {
+    .site-title {
+        font-size: 1.2rem !important;
+        margin: 0;
+        line-height: 1.2;
+    }
+    
+    .site-description {
+        display: none;
+    }
+}
