@@ -3579,7 +3579,7 @@ span.menu-text {
 
 @media (max-width: 768px) {
     .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 2.5rem;
     }
 }
@@ -3603,10 +3603,11 @@ span.menu-text {
 @media (max-width: 768px) {
     .footer-widget {
         text-align: center;
+        grid-column: 1 !important;
     }
     
     .footer-info {
-        grid-column: 1;
+        grid-column: 1 !important;
     }
 }
 
@@ -3800,6 +3801,12 @@ span.menu-text {
 @media (max-width: 1024px) {
     .footer-contact-widget {
         grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-contact-widget {
+        grid-column: 1 !important;
     }
 }
 
