@@ -64,6 +64,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'mobile-menu-modal'    => '/assets/css/mobile-menu-modal.css',
         'hamburger-fix'        => '/assets/css/hamburger-fix.css',
         'tablet-optimization'  => '/assets/css/tablet-optimization.css',
+        'tablet-touch-styles'  => '/assets/css/tablet-touch-styles.css',
     );
     
     // 依存関係の設定
@@ -82,6 +83,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'mobile-menu-modal'    => array( 'corporate-seo-pro-style' ),
         'hamburger-fix'        => array( 'corporate-seo-pro-mobile-menu-modal' ),
         'tablet-optimization'  => array( 'corporate-seo-pro-style', 'corporate-seo-pro-typography', 'corporate-seo-pro-utilities' ),
+        'tablet-touch-styles'  => array( 'corporate-seo-pro-tablet-optimization' ),
     );
     
     foreach ( $css_files as $handle => $file ) {
@@ -102,13 +104,18 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
     // 共通スクリプト
     $js_files = array(
         'animation-utils'      => '/assets/js/utils/animation-utils.js',
+        'tablet-detection'     => '/assets/js/utils/tablet-detection.js',
         'mobile-menu-modal'    => '/assets/js/mobile-menu-modal.js',
+        'tablet-optimizations' => '/assets/js/tablet-optimizations.js',
+        'tablet-menu-enhancements' => '/assets/js/tablet-menu-enhancements.js',
         'theme'                => '/assets/js/theme.js',
     );
     
     // 依存関係の設定
     $dependencies = array(
-        'theme' => array( 'corporate-seo-pro-animation-utils' ),
+        'tablet-optimizations' => array( 'corporate-seo-pro-tablet-detection' ),
+        'tablet-menu-enhancements' => array( 'corporate-seo-pro-tablet-detection', 'corporate-seo-pro-mobile-menu-modal' ),
+        'theme' => array( 'corporate-seo-pro-animation-utils', 'corporate-seo-pro-tablet-detection' ),
     );
     
     foreach ( $js_files as $handle => $file ) {
