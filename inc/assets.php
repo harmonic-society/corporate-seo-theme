@@ -156,6 +156,14 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             $version 
         );
         
+        // Hero description animation fix CSS
+        wp_enqueue_style( 
+            'corporate-seo-pro-hero-description-fix', 
+            get_template_directory_uri() . '/assets/css/hero-description-fix.css', 
+            array( 'corporate-seo-pro-hero-modern' ), 
+            $version 
+        );
+        
         wp_enqueue_script( 
             'corporate-seo-pro-hero-animations', 
             get_template_directory_uri() . '/assets/js/hero-animations-optimized.js', 
