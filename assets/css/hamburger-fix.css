@@ -38,6 +38,8 @@
     height: 20px;
     pointer-events: none;
     display: block !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 /* ハンバーガーの3本線 */
@@ -53,6 +55,9 @@
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
 
 /* 各線の位置を明確に設定 */
@@ -116,5 +121,24 @@
     .mobile-menu-toggle::before,
     .mobile-menu-toggle::after {
         display: none !important;
+    }
+    
+    /* ハンバーガーアイコンが塗りつぶされないように強制 */
+    .hamburger,
+    .hamburger::before,
+    .hamburger::after {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+    
+    /* 3本線を確実に表示 */
+    .hamburger span {
+        background-color: #333 !important;
+        background: #333 !important;
+        width: 24px !important;
+        height: 3px !important;
+        position: absolute !important;
+        left: 0 !important;
+        display: block !important;
     }
 }
