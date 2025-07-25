@@ -333,6 +333,14 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
                 array( 'corporate-seo-pro-single-service' ), 
                 $version 
             );
+            
+            // サービス詳細ページの特徴セクション修正CSS
+            wp_enqueue_style( 
+                'corporate-seo-pro-single-service-features-fix', 
+                get_template_directory_uri() . '/assets/css/single-service-features-fix.css', 
+                array( 'corporate-seo-pro-single-service' ), 
+                $version 
+            );
         }
         
         wp_enqueue_script( 
@@ -358,6 +366,16 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             array( 'corporate-seo-pro-style' ), 
             $version 
         );
+        
+        // サービス詳細ページ用のお問い合わせセクションモバイル修正CSS
+        if ( is_singular( 'service' ) ) {
+            wp_enqueue_style( 
+                'corporate-seo-pro-single-service-inquiry-mobile-fix', 
+                get_template_directory_uri() . '/assets/css/single-service-inquiry-mobile-fix.css', 
+                array( 'corporate-seo-pro-service-inquiry-fix' ), 
+                $version 
+            );
+        }
     }
     
     // 実績ページ

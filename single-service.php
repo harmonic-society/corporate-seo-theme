@@ -238,9 +238,9 @@ get_header(); ?>
                         お問い合わせフォーム
                     </a>
                     
-                    <a href="tel:03-1234-5678" class="btn btn-secondary">
+                    <a href="tel:080-6946-4006" class="btn btn-secondary">
                         <i class="fas fa-phone"></i>
-                        03-1234-5678
+                        080-6946-4006
                     </a>
                 </div>
             </div>
