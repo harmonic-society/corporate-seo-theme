@@ -16,27 +16,7 @@
     animation: fadeInUp 0.8s ease-out 0.4s forwards;
 }
 
-/* Ensure text section children animate properly */
-.hero-text-section > * {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.hero-text-section .hero-subtitle {
-    animation-delay: 0.1s;
-}
-
-.hero-text-section .hero-title-modern {
-    animation-delay: 0.2s;
-}
-
-.hero-text-section .hero-description {
-    animation-delay: 0.3s;
-}
-
-.hero-text-section .hero-cta-group {
-    animation-delay: 0.4s;
-}
+/* Remove the problematic section that was hiding other elements */
 
 /* Fallback for loaded state */
 body.loaded .hero-description,
@@ -44,22 +24,18 @@ body.loaded .hero-description,
     opacity: 1 !important;
 }
 
-/* Mobile devices - instant visibility with subtle animation */
+/* Mobile devices - ensure visibility */
 @media (max-width: 768px) {
     .hero-description {
-        opacity: 0;
-        animation: fadeInUpMobile 0.5s ease-out 0.2s forwards;
+        opacity: 1 !important;
+        animation: none;
     }
     
-    @keyframes fadeInUpMobile {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* Keep other hero elements visible on mobile */
+    .hero-text-section .hero-subtitle,
+    .hero-text-section .hero-title-modern,
+    .hero-text-section .hero-cta-group {
+        opacity: 1 !important;
     }
 }
 
