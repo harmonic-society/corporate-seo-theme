@@ -148,6 +148,13 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
 function corporate_seo_pro_enqueue_conditional_assets( $version ) {
     // フロントページ
     if ( is_front_page() ) {
+        // Service mobile image fix CSS
+        wp_enqueue_style( 
+            'corporate-seo-pro-service-mobile-image-fix', 
+            get_template_directory_uri() . '/assets/css/service-mobile-image-fix.css', 
+            array( 'corporate-seo-pro-style' ), 
+            $version 
+        );
         // Hero feature fix CSS
         wp_enqueue_style( 
             'corporate-seo-pro-hero-feature-fix', 
