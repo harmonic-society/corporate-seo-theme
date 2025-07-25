@@ -45,7 +45,15 @@ get_header(); ?>
                     <?php endwhile; ?>
                 </div>
                 
-                <?php corporate_seo_pro_pagination(); ?>
+                <div class="pagination">
+                    <?php
+                    the_posts_pagination( array(
+                        'mid_size'  => 2,
+                        'prev_text' => '<i class="fas fa-chevron-left"></i><span>' . __( '前へ', 'corporate-seo-pro' ) . '</span>',
+                        'next_text' => '<span>' . __( '次へ', 'corporate-seo-pro' ) . '</span><i class="fas fa-chevron-right"></i>',
+                    ) );
+                    ?>
+                </div>
                 
             <?php else : ?>
                 <div class="no-results">
