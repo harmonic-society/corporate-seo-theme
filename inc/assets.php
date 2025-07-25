@@ -375,6 +375,21 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
                 array( 'corporate-seo-pro-service-inquiry-fix' ), 
                 $version 
             );
+            
+            // サービス詳細ページの統合修正CSS（最高優先度）
+            wp_enqueue_style( 
+                'corporate-seo-pro-single-service-unified-fix', 
+                get_template_directory_uri() . '/assets/css/single-service-unified-fix.css', 
+                array( 
+                    'corporate-seo-pro-style',
+                    'corporate-seo-pro-cleanup',
+                    'corporate-seo-pro-single-service',
+                    'corporate-seo-pro-single-service-mobile-fix',
+                    'corporate-seo-pro-single-service-features-fix',
+                    'corporate-seo-pro-single-service-inquiry-mobile-fix'
+                ), 
+                $version 
+            );
         }
     }
     

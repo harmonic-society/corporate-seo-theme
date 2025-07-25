@@ -56,10 +56,12 @@ body .site-header .menu-text {
 }
 
 /* Ensure text is visible */
+/* Commented out - causing issues with service detail pages
 .hero-content {
     position: relative;
     z-index: 10 !important;
 }
+*/
 
 /* Remove white background from harmonic-hero */
 .harmonic-hero {
