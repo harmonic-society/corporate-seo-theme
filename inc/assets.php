@@ -216,6 +216,15 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             );
         }
         
+        // Blog archive mobile fix CSS
+        wp_enqueue_style( 
+            'corporate-seo-pro-blog-archive-mobile-fix', 
+            get_template_directory_uri() . '/assets/css/blog-archive-mobile-fix.css', 
+            array( 'corporate-seo-pro-style' ), 
+            $version,
+            'screen and (max-width: 768px)'
+        );
+        
         wp_enqueue_script( 
             'corporate-seo-pro-blog-archive', 
             get_template_directory_uri() . '/assets/js/blog-archive-optimized.js', 
