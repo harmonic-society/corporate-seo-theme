@@ -207,3 +207,15 @@ function corporate_seo_pro_register_news_post_type() {
     
     register_post_type( 'news', $args );
 }
+
+/**
+ * カスタム投稿タイプ登録後のリライトルールフラッシュ
+ */
+function corporate_seo_pro_flush_rewrite_rules() {
+    // ニュースリリース投稿タイプが登録されているかチェック
+    if ( ! get_option( 'corporate_seo_pro_news_flushed' ) ) {
+        flush_rewrite_rules();
+        update_option( 'corporate_seo_pro_news_flushed', true );
+    }
+}
+add_action( 'init', 'corporate_seo_pro_flush_rewrite_rules', 20 );
