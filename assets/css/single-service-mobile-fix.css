@@ -1,0 +1,267 @@
+/**
+ * Single Service Mobile Fix
+ * 
+ * サービス詳細ページのモバイル表示修正
+ */
+
+/* ==========================================================================
+   モバイル表示の修正
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* コンテンツの基本修正 */
+    .single-service .site-main {
+        overflow-x: hidden;
+        padding: 0;
+    }
+    
+    /* パンくずリストの調整 */
+    .single-service .breadcrumb-wrapper {
+        padding: 1rem 0;
+        background: var(--color-bg-light);
+    }
+    
+    /* ヒーローセクションの修正 */
+    .single-service .service-hero {
+        min-height: auto;
+        padding: 60px 0 40px;
+    }
+    
+    .single-service .hero-content {
+        padding: 0 15px;
+    }
+    
+    /* タイトルのサイズ調整 */
+    .single-service .service-title .title-main {
+        font-size: 1.75rem;
+        line-height: 1.3;
+        word-break: keep-all;
+    }
+    
+    .single-service .service-title .title-sub {
+        font-size: 0.95rem;
+    }
+    
+    /* ボタンの修正 */
+    .single-service .hero-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+    
+    .single-service .hero-actions .btn-primary,
+    .single-service .hero-actions .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    /* スクロールインジケーター非表示 */
+    .single-service .hero-scroll-indicator {
+        display: none;
+    }
+    
+    /* 概要セクションの修正 */
+    .single-service .service-overview {
+        padding: 40px 0;
+    }
+    
+    .single-service .overview-grid {
+        display: block;
+        padding: 0 15px;
+    }
+    
+    .single-service .overview-content {
+        margin-bottom: 2rem;
+    }
+    
+    .single-service .section-title {
+        margin-bottom: 1.5rem;
+    }
+    
+    .single-service .section-title .title-en {
+        font-size: 0.75rem;
+    }
+    
+    .single-service .section-title .title-ja {
+        font-size: 1.5rem;
+    }
+    
+    .single-service .service-lead {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .single-service .service-description {
+        font-size: 0.95rem;
+    }
+    
+    /* 画像の修正 */
+    .single-service .overview-visual {
+        order: -1;
+        margin-bottom: 2rem;
+    }
+    
+    .single-service .visual-container {
+        position: relative;
+    }
+    
+    .single-service .visual-container .service-image {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+    
+    .single-service .visual-decoration {
+        display: none;
+    }
+    
+    /* 特徴セクションの修正 */
+    .single-service .service-features {
+        padding: 40px 0;
+    }
+    
+    .single-service .features-grid {
+        display: block;
+        padding: 0 15px;
+    }
+    
+    .single-service .feature-card {
+        margin-bottom: 1.5rem;
+        padding: 2rem 1.5rem;
+    }
+    
+    .single-service .feature-card:last-child {
+        margin-bottom: 0;
+    }
+    
+    .single-service .feature-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .single-service .feature-title {
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .single-service .feature-description {
+        font-size: 0.95rem;
+    }
+    
+    /* 料金プランセクションの修正 */
+    .single-service .service-pricing {
+        padding: 40px 0;
+    }
+    
+    .single-service .pricing-grid {
+        display: block;
+        padding: 0 15px;
+    }
+    
+    .single-service .pricing-card {
+        margin-bottom: 1.5rem;
+        padding: 2rem 1.5rem;
+    }
+    
+    .single-service .pricing-card:last-child {
+        margin-bottom: 0;
+    }
+    
+    .single-service .pricing-card.recommended {
+        transform: none;
+        margin: 0 0 1.5rem 0;
+    }
+    
+    .single-service .plan-name {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .single-service .plan-price {
+        margin-bottom: 1.5rem;
+    }
+    
+    .single-service .price-amount {
+        font-size: 2.25rem;
+    }
+    
+    .single-service .plan-features {
+        margin-bottom: 1.5rem;
+    }
+    
+    .single-service .plan-features li {
+        padding: 0.5rem 0;
+        font-size: 0.95rem;
+    }
+    
+    /* お問い合わせセクションの修正 */
+    .single-service .service-inquiry {
+        padding: 40px 0;
+    }
+    
+    .single-service .inquiry-lead {
+        font-size: 0.95rem;
+        padding: 0 15px;
+        margin-bottom: 2rem;
+    }
+    
+    .single-service .inquiry-buttons {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+    
+    .single-service .inquiry-buttons .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    /* 関連サービスセクションの修正 */
+    .single-service .related-services {
+        padding: 40px 0;
+    }
+    
+    /* コンテナの修正 */
+    .single-service .container {
+        padding: 0 15px;
+        max-width: 100%;
+    }
+    
+    /* テキストの中央揃えを修正 */
+    .single-service .text-center {
+        text-align: center;
+    }
+}
+
+/* 小さいモバイルデバイス用の追加修正 */
+@media (max-width: 480px) {
+    .single-service .service-title .title-main {
+        font-size: 1.5rem;
+    }
+    
+    .single-service .price-amount {
+        font-size: 2rem;
+    }
+    
+    .single-service .feature-card,
+    .single-service .pricing-card {
+        padding: 1.5rem 1.25rem;
+    }
+}
+
+/* タッチデバイス用のホバー効果無効化 */
+@media (hover: none) and (pointer: coarse) {
+    .single-service .feature-card:hover,
+    .single-service .pricing-card:hover,
+    .single-service .hero-actions .btn-primary:hover,
+    .single-service .hero-actions .btn-secondary:hover,
+    .single-service .plan-cta:hover,
+    .single-service .inquiry-buttons .btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}

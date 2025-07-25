@@ -317,6 +317,24 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             );
         }
         
+        // サービス詳細ページ
+        if ( is_singular( 'service' ) ) {
+            wp_enqueue_style( 
+                'corporate-seo-pro-single-service', 
+                get_template_directory_uri() . '/assets/css/pages/single-service.css', 
+                array( 'corporate-seo-pro-style' ), 
+                $version 
+            );
+            
+            // サービス詳細ページのモバイル修正CSS
+            wp_enqueue_style( 
+                'corporate-seo-pro-single-service-mobile-fix', 
+                get_template_directory_uri() . '/assets/css/single-service-mobile-fix.css', 
+                array( 'corporate-seo-pro-single-service' ), 
+                $version 
+            );
+        }
+        
         wp_enqueue_script( 
             'corporate-seo-pro-service', 
             get_template_directory_uri() . '/assets/js/single-service.js', 
