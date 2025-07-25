@@ -39,6 +39,7 @@ Tags: corporate, seo, responsive, custom-header, custom-menu, featured-images, t
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -48,6 +49,8 @@ body {
     background-color: #ffffff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    position: relative;
 }
 
 /* タイポグラフィ */

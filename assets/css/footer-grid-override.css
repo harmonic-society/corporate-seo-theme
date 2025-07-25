@@ -55,21 +55,70 @@
     }
     
     .footer-main .container {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
+        max-width: 100%;
     }
     
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
     }
     
     .footer-widget {
-        text-align: center;
+        text-align: left;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        max-width: none;
+        width: 100%;
+    }
+    
+    .footer-widget:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    .footer-title {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
     }
     
     .footer-menu {
-        display: inline-block;
-        text-align: left;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .footer-menu li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .footer-menu a {
+        font-size: 0.95rem;
+        padding: 0.25rem 0;
+        display: block;
+    }
+    
+    /* 会社情報セクション */
+    .footer-info .footer-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    /* お問い合わせセクション */
+    .footer-contact-widget .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .footer-contact a {
+        font-size: 0.95rem;
+    }
+    
+    .footer-cta-button {
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+        padding: 0.75rem 1.5rem;
+        text-align: center;
     }
 }
 
@@ -98,7 +147,7 @@
 
 @media (max-width: 768px) {
     .footer-bottom .container {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
     }
     
     .footer-bottom-content {

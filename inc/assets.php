@@ -59,6 +59,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'service-archive-mobile-fix' => '/assets/css/service-archive-mobile-fix.css',
         'mobile-menu-unified'  => '/assets/css/mobile-menu-unified.css',
         'mobile-menu-button-fix' => '/assets/css/mobile-menu-button-fix.css',
+        'mobile-overflow-fix'  => '/assets/css/mobile-overflow-fix.css',
     );
     
     // 依存関係の設定
@@ -72,6 +73,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'service-archive-mobile-fix' => array( 'corporate-seo-pro-style' ),
         'mobile-menu-unified'  => array( 'corporate-seo-pro-navigation' ),
         'mobile-menu-button-fix' => array( 'corporate-seo-pro-mobile-menu-unified' ),
+        'mobile-overflow-fix'  => array( 'corporate-seo-pro-style' ),
     );
     
     foreach ( $css_files as $handle => $file ) {
