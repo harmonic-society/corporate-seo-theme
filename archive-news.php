@@ -12,7 +12,7 @@ get_header(); ?>
         <div class="container">
             <h1 class="page-title"><?php _e( 'ニュースリリース', 'corporate-seo-pro' ); ?></h1>
             <div class="breadcrumbs">
-                <?php corporate_seo_pro_breadcrumbs(); ?>
+                <?php corporate_seo_pro_breadcrumb(); ?>
             </div>
         </div>
     </div>
