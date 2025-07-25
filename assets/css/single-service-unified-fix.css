@@ -156,13 +156,17 @@
     
     /* 特徴セクションの修正 */
     .single-service .service-features {
+        display: block !important;
         padding: 40px 0 !important;
         background: #f8f9fa !important;
         overflow: hidden !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .single-service .service-features .container {
         padding: 0 15px !important;
+        display: block !important;
     }
     
     .single-service .features-grid {
@@ -170,9 +174,12 @@
         padding: 0 !important;
         max-width: 100% !important;
         margin: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .single-service .feature-card {
+        display: block !important;
         margin-bottom: 1.5rem !important;
         padding: 2rem 1.5rem !important;
         background: white !important;
@@ -180,6 +187,34 @@
         box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
         width: 100% !important;
         box-sizing: border-box !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .single-service .feature-card .feature-icon {
+        display: flex !important;
+        width: 60px !important;
+        height: 60px !important;
+        margin: 0 auto 1rem !important;
+        background: rgba(107, 70, 193, 0.1) !important;
+        color: #6b46c1 !important;
+        border-radius: 50% !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.5rem !important;
+    }
+    
+    .single-service .feature-card .feature-title {
+        font-size: 1.125rem !important;
+        margin-bottom: 0.75rem !important;
+        font-weight: 700 !important;
+        color: #333 !important;
+    }
+    
+    .single-service .feature-card .feature-description {
+        font-size: 0.95rem !important;
+        color: #666 !important;
+        line-height: 1.6 !important;
     }
     
     /* 料金セクションの修正 */
@@ -294,6 +329,25 @@
     .single-service .pricing-card {
         padding: 1.5rem 1.25rem !important;
     }
+}
+
+/* 特徴セクションを強制的に表示 */
+.single-service #service-features {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 空のセクションも表示 */
+.single-service .service-features:empty {
+    display: block !important;
+}
+
+/* フォールバックコンテンツも確実に表示 */
+.single-service .service-features-fallback {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 /* デバッグ用の可視化（開発時のみ使用） */
