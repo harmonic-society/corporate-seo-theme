@@ -39,7 +39,13 @@
     .service-item-reverse {
         display: grid !important;
         grid-template-columns: 1fr !important;
+        grid-template-areas: none !important;
         gap: 0 !important;
+    }
+    
+    /* Reset grid areas for all items */
+    .service-item:not(.service-item-reverse) {
+        grid-template-areas: none !important;
     }
     
     /* Force image to show first */
@@ -47,6 +53,7 @@
     .service-item-reverse .service-image {
         order: 1 !important;
         grid-area: unset !important;
+        display: block !important;
     }
     
     /* Content comes after image */
@@ -54,6 +61,7 @@
     .service-item-reverse .service-content {
         order: 2 !important;
         grid-area: unset !important;
+        display: block !important;
     }
     
     /* Remove any transform that might hide images */
@@ -107,19 +115,42 @@
     height: auto;
 }
 
-/* Debug styles - uncomment to troubleshoot */
-/*
+/* Force visibility for all service items regardless of odd/even */
 @media (max-width: 768px) {
-    .service-image {
-        border: 2px solid red !important;
+    /* Override any grid-area based hiding */
+    .services-list .service-item:nth-child(odd) .service-image,
+    .services-list .service-item:nth-child(even) .service-image {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        width: 100% !important;
+        height: 250px !important;
     }
     
-    .service-image img {
-        border: 2px solid blue !important;
+    /* Ensure consistent layout for all items */
+    .services-list .service-item:nth-child(odd),
+    .services-list .service-item:nth-child(even) {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-areas: none !important;
     }
     
-    .service-placeholder-image {
-        border: 2px solid green !important;
+    /* Remove any CSS that might hide based on position */
+    .service-item:first-child .service-image,
+    .service-item:last-child .service-image,
+    .service-item:nth-child(2) .service-image,
+    .service-item:nth-child(3) .service-image {
+        display: block !important;
+        visibility: visible !important;
     }
 }
-*/
+
+/* Additional specificity to override any conflicting styles */
+@media (max-width: 768px) {
+    .site-main .services-section .services-list .service-item .service-image {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
