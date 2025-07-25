@@ -36,6 +36,14 @@ function corporate_seo_pro_enqueue_styles( $version ) {
     // メインスタイルシート
     wp_enqueue_style( 'corporate-seo-pro-style', get_stylesheet_uri(), array(), $version );
     
+    // カラースキーム（ティール）
+    wp_enqueue_style( 
+        'corporate-seo-pro-color-scheme-teal', 
+        get_template_directory_uri() . '/assets/css/color-scheme-teal.css', 
+        array( 'corporate-seo-pro-style' ), 
+        $version 
+    );
+    
     // モジュール化されたCSSファイル
     $css_files = array(
         'typography'           => '/assets/css/typography.css',
