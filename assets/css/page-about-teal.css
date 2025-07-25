@@ -11,6 +11,24 @@
 /* Hero Section */
 .about-hero {
     background: linear-gradient(135deg, #e6f7f5 0%, #ccede9 100%);
+    color: #1a2e2e !important; /* Darker text for light background */
+}
+
+/* Hero Text Contrast Improvements */
+.hero-title .title-label {
+    color: #2d4a4a !important; /* Darker gray for better contrast */
+}
+
+.hero-title .title-main {
+    color: #0a1f1e !important; /* Very dark teal for maximum contrast */
+}
+
+.values-title {
+    color: #1a2e2e !important; /* Dark text for light background */
+}
+
+.value-title {
+    color: #0a1f1e !important; /* Dark text below light background */
 }
 
 .equals {
@@ -48,9 +66,22 @@
     box-shadow: 0 20px 40px rgba(0, 134, 123, 0.3) !important;
 }
 
+/* Vision Section Background */
+.vision-section {
+    background: #f5fafa !important; /* Slightly tinted light background */
+}
+
 /* Vision Content */
 .item-title {
-    color: #00867b !important;
+    color: #00665c !important; /* Darker teal for better contrast */
+}
+
+.item-text {
+    color: #1a2e2e !important; /* Dark text for light background */
+}
+
+.values-list li {
+    color: #2d4a4a !important; /* Dark gray for readability */
 }
 
 .values-list strong {
@@ -58,12 +89,25 @@
 }
 
 /* Company Info Section */
+.company-info-section {
+    background: #ffffff !important;
+    color: #1a2e2e !important; /* Dark text for white background */
+}
+
+.section-title .title-ja {
+    color: #0a1f1e !important; /* Very dark for white background */
+}
+
 .title-en {
-    color: #00867b !important;
+    color: #00665c !important; /* Darker teal for better contrast */
 }
 
 .info-item dt {
-    color: #00867b !important;
+    color: #00665c !important; /* Darker teal for better contrast */
+}
+
+.info-item dd {
+    color: #2d4a4a !important; /* Dark gray for optimal readability */
 }
 
 .info-item dd a {
@@ -111,6 +155,15 @@
     border: 1px solid rgba(0, 134, 123, 0.1);
 }
 
+/* Ensure text contrast in info content */
+.info-content .info-item dt {
+    font-weight: 700;
+}
+
+.info-content .info-item dd {
+    font-weight: 500; /* Slightly bolder for better readability */
+}
+
 /* Enhanced Visual Effects */
 .hero-wave svg path {
     fill: #f8fafb;
@@ -151,7 +204,8 @@
     outline-offset: 3px;
 }
 
-/* Gradient Text Effect */
+/* Gradient Text Effect - Removed for better contrast */
+/* The gradient text effect is disabled to ensure proper text contrast
 @supports (-webkit-background-clip: text) {
     .title-main {
         background: linear-gradient(135deg, #00867b 0%, #00665c 100%);
@@ -160,6 +214,27 @@
         background-clip: text;
         text-fill-color: transparent;
     }
+}
+*/
+
+/* Additional Contrast Improvements */
+/* Ensure circle text remains readable */
+.circle h3 {
+    color: white !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Add shadow for better contrast */
+}
+
+/* Value circle text improvements */
+.value-icon,
+.value-number {
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Link hover states with proper contrast */
+.info-item dd a:hover {
+    color: #004d44 !important; /* Very dark teal for hover */
+    text-decoration: underline;
 }
 
 /* Mobile Adjustments */
