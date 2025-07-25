@@ -18,6 +18,10 @@
      * 初期化
      */
     document.addEventListener('DOMContentLoaded', function() {
+        console.log('Blog Archive JS: DOMContentLoaded');
+        console.log('isMobile:', isMobile);
+        console.log('prefersReducedMotion:', prefersReducedMotion);
+        
         // モバイルまたはアニメーション削減設定時は軽量版を実行
         if (!isMobile && !prefersReducedMotion) {
             initHeroAnimations();
@@ -29,9 +33,9 @@
         initLoadMore();
         initReadingProgress();
         
-        if (!isMobile) {
-            initStats();
-        }
+        // 統計カウンターは全デバイスで初期化
+        console.log('Initializing stats');
+        initStats();
     });
 
     /**
@@ -230,12 +234,31 @@
      * 統計カウンター（最適化版）
      */
     function initStats() {
+        console.log('initStats called');
+        
+        const statNumbers = document.querySelectorAll('.stat-number');
+        console.log('Found stat numbers:', statNumbers.length);
+        
+        if (statNumbers.length === 0) {
+            console.warn('No .stat-number elements found');
+            return;
+        }
+        
         const observer = utils.createOptimizedObserver((entry) => {
             const statNumber = entry.target;
+            console.log('Observer triggered for:', statNumber);
+            
             if (!statNumber.dataset.counted) {
                 statNumber.dataset.counted = 'true';
                 
                 const target = parseInt(statNumber.dataset.count, 10);
+                console.log('Animating to:', target);
+                
+                if (isNaN(target)) {
+                    console.error('Invalid target number:', statNumber.dataset.count);
+                    return;
+                }
+                
                 const duration = 2000;
                 const startTime = performance.now();
                 
@@ -253,6 +276,7 @@
                         requestAnimationFrame(animate);
                     } else {
                         statNumber.textContent = target.toLocaleString();
+                        console.log('Animation completed for target:', target);
                     }
                 };
                 
@@ -260,7 +284,8 @@
             }
         }, { threshold: 0.5 });
         
-        document.querySelectorAll('.stat-number').forEach(stat => {
+        statNumbers.forEach(stat => {
+            console.log('Observing stat element:', stat, 'with count:', stat.dataset.count);
             observer.observe(stat);
         });
     }
