@@ -47,6 +47,7 @@ body #masthead .nav-cta-button .cta-text {
     align-items: center !important; /* テキストも垂直中央配置 */
     line-height: 1 !important; /* 1に戻して正確な中央配置 */
     height: 100% !important; /* 親要素の高さいっぱいに */
+    margin: 0 !important; /* マージンをリセット */
 }
 
 body .nav-cta-button .cta-icon,
