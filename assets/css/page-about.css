@@ -1,0 +1,557 @@
+/**
+ * About Page Styles
+ * 
+ * 会社概要ページのスタイル
+ */
+
+/* ==========================================================================
+   About Page Base
+   ========================================================================== */
+
+.about-page {
+    padding-top: 80px; /* Header height */
+    background-color: #ffffff;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.about-hero {
+    position: relative;
+    padding: 80px 0 120px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    overflow: hidden;
+}
+
+.about-hero .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.hero-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.title-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #10b981;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.title-main {
+    display: block;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+}
+
+.equals {
+    color: #10b981;
+    font-weight: 900;
+    margin: 0 0.5rem;
+}
+
+/* Values Grid */
+.hero-values {
+    text-align: center;
+}
+
+.values-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 3rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.value-item {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.value-item[data-value="1"] { animation-delay: 0.1s; }
+.value-item[data-value="2"] { animation-delay: 0.2s; }
+.value-item[data-value="3"] { animation-delay: 0.3s; }
+
+.value-circle {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover .value-circle {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+}
+
+.value-icon {
+    font-size: 3rem;
+    color: white;
+}
+
+.value-number {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: white;
+}
+
+.value-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Hero Wave */
+.hero-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    overflow: hidden;
+}
+
+.hero-wave svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================================================
+   Vision Section
+   ========================================================================== */
+
+.vision-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.vision-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.vision-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Vision Visual */
+.vision-visual {
+    position: relative;
+    height: 500px;
+}
+
+.circle-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.circle h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.circle-vision {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.circle-purpose {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    top: 120px;
+    left: 0;
+}
+
+.circle-mission {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    top: 120px;
+    right: 0;
+}
+
+.circle-values {
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Vision Content */
+.vision-content {
+    padding-left: 2rem;
+}
+
+.vision-item {
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateX(30px);
+    animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.vision-item:nth-child(1) { animation-delay: 0.1s; }
+.vision-item:nth-child(2) { animation-delay: 0.2s; }
+.vision-item:nth-child(3) { animation-delay: 0.3s; }
+.vision-item:nth-child(4) { animation-delay: 0.4s; }
+
+.item-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.item-text {
+    font-size: 1.25rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Company Info Section
+   ========================================================================== */
+
+.company-info-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.company-info-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Company Grid */
+.company-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+
+.company-table {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 3rem;
+}
+
+.company-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.company-table th,
+.company-table td {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.company-table th {
+    font-weight: 700;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+    width: 180px;
+}
+
+.company-table td {
+    color: #333;
+    line-height: 1.6;
+}
+
+.company-table tr:last-child th,
+.company-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Message Box */
+.ceo-message {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 12px;
+    padding: 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.ceo-message::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-size: 120px;
+    opacity: 0.1;
+    font-weight: 900;
+}
+
+.message-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.message-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.ceo-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ceo-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ceo-details h4 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.ceo-details p {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .about-hero {
+        padding: 60px 0 100px;
+    }
+    
+    .values-grid {
+        gap: 2rem;
+    }
+    
+    .value-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .value-icon {
+        font-size: 2.5rem;
+    }
+    
+    .vision-wrapper {
+        gap: 3rem;
+    }
+    
+    .circle {
+        transform: scale(0.9);
+    }
+    
+    .company-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .company-table {
+        padding: 2rem;
+    }
+    
+    .ceo-message {
+        padding: 2.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .about-page {
+        padding-top: 60px;
+    }
+    
+    .about-hero {
+        padding: 40px 0 80px;
+    }
+    
+    .about-hero .container {
+        padding: 0 20px;
+    }
+    
+    .title-main {
+        font-size: 1.75rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        max-width: 300px;
+    }
+    
+    .value-circle {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .value-icon {
+        font-size: 2rem;
+    }
+    
+    .vision-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .vision-visual {
+        height: 400px;
+        margin-bottom: 2rem;
+    }
+    
+    .circle {
+        transform: scale(0.8);
+    }
+    
+    .vision-content {
+        padding-left: 0;
+    }
+    
+    .company-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .company-table {
+        padding: 1.5rem;
+        overflow-x: auto;
+    }
+    
+    .company-table th {
+        width: 120px;
+    }
+    
+    .ceo-message {
+        padding: 2rem;
+    }
+    
+    .message-text {
+        font-size: 1rem;
+    }
+}
