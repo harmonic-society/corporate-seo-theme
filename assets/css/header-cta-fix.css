@@ -21,6 +21,7 @@ body .nav-cta-button,
 body #masthead .nav-cta-button {
     display: inline-flex !important;
     align-items: center !important;
+    justify-content: center !important; /* 内容を中央配置 */
     gap: 0.5rem !important;
     padding: 0.75rem 1.5rem !important;
     background: linear-gradient(135deg, var(--harmony-primary, #4A6FA5), var(--harmony-secondary, #7BA098)) !important;
@@ -36,20 +37,24 @@ body #masthead .nav-cta-button {
     margin-left: auto !important;
     position: relative !important;
     overflow: hidden !important;
+    min-height: 44px !important; /* 最小高さを設定して垂直中央配置を確実に */
 }
 
 /* テキストとアイコンの適切な配置 */
 body .nav-cta-button .cta-text,
 body #masthead .nav-cta-button .cta-text {
-    display: inline-block !important;
-    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important; /* テキストも垂直中央配置 */
+    line-height: 1.2 !important;
 }
 
 body .nav-cta-button .cta-icon,
 body #masthead .nav-cta-button .cta-icon {
     display: inline-flex !important;
     align-items: center !important;
+    justify-content: center !important;
     transition: transform 0.3s ease !important;
+    line-height: 0 !important; /* アイコンの高さを正確に */
 }
 
 /* ホバー効果 */
