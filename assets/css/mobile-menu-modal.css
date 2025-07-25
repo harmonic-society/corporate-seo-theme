@@ -17,12 +17,14 @@
     z-index: 9998;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .mobile-menu-modal-overlay.is-active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 /* ==========================================================================
@@ -43,6 +45,7 @@
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: all 0.3s ease;
     overflow: hidden;
     display: flex;
@@ -52,6 +55,7 @@
 .mobile-menu-modal.is-active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
     transform: translate(-50%, -50%) scale(1);
 }
 
