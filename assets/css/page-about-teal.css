@@ -16,11 +16,12 @@
 
 /* Hero Text Contrast Improvements */
 .hero-title .title-label {
-    color: #2d4a4a !important; /* Darker gray for better contrast */
+    color: #00867b !important; /* Brand color for label */
 }
 
 .hero-title .title-main {
-    color: #0a1f1e !important; /* Very dark teal for maximum contrast */
+    color: #00867b !important; /* Brand color for main title */
+    font-weight: 800;
 }
 
 .values-title {
