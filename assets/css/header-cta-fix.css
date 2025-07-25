@@ -58,6 +58,7 @@ body #masthead .nav-cta-button .cta-icon {
     transition: transform 0.3s ease !important;
     line-height: 1 !important; /* アイコンも同じline-heightに */
     height: 100% !important; /* 親要素の高さいっぱいに */
+    margin: 0 !important; /* アイコンのマージンもリセット */
 }
 
 /* ホバー効果 */
