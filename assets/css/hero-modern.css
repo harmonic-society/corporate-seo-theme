@@ -373,6 +373,141 @@
    レスポンシブデザイン
    ========================================================================== */
 
+/* Tablet Optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-content-modern {
+        padding: 0 40px;
+        max-width: 1000px;
+    }
+    
+    .hero-content-inner {
+        gap: 60px;
+    }
+    
+    /* Typography adjustments */
+    .hero-subtitle {
+        font-size: 13px;
+        letter-spacing: 2.5px;
+        margin-bottom: 18px;
+    }
+    
+    .hero-title-modern {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 25px;
+        letter-spacing: -1.5px;
+    }
+    
+    .hero-description {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-bottom: 35px;
+        max-width: 550px;
+    }
+    
+    /* CTA adjustments */
+    .hero-cta-group {
+        gap: 18px;
+    }
+    
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        padding: 14px 32px;
+        font-size: 0.9375rem;
+    }
+    
+    /* Visual section optimization */
+    .hero-visual-frame {
+        max-width: 450px;
+        padding: 35px;
+    }
+    
+    .visual-badge {
+        padding: 10px 24px;
+        font-size: 0.875rem;
+    }
+    
+    /* Geometric shapes adjustment */
+    .geometric-shape:nth-child(1) {
+        width: 250px;
+        height: 250px;
+        right: -125px;
+    }
+    
+    .geometric-shape:nth-child(2) {
+        width: 175px;
+        height: 175px;
+        left: -87px;
+    }
+    
+    .geometric-shape:nth-child(3) {
+        width: 125px;
+        height: 125px;
+    }
+    
+    /* Stats section */
+    .hero-stats {
+        gap: 35px;
+        margin-top: 50px;
+    }
+    
+    .stat-value {
+        font-size: 2.25rem;
+    }
+    
+    .stat-label {
+        font-size: 0.875rem;
+    }
+}
+
+/* Portrait tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    .hero-content-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-visual-section {
+        order: -1;
+        margin-bottom: 20px;
+    }
+    
+    .hero-visual-frame {
+        margin: 0 auto;
+    }
+    
+    .hero-subtitle::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .hero-description {
+        margin: 0 auto 35px;
+    }
+    
+    .hero-cta-group {
+        justify-content: center;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+    }
+}
+
+/* Landscape tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .hero-modern {
+        min-height: calc(100vh - 70px);
+    }
+    
+    .hero-content-inner {
+        gap: 50px;
+    }
+    
+    .hero-title-modern {
+        font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    }
+}
+
 @media (max-width: 1024px) {
     .hero-content-inner {
         grid-template-columns: 1fr;

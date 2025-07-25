@@ -199,6 +199,174 @@
 }
 
 /* ==========================================================================
+   Tablet Optimizations
+   ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Base button adjustments for touch */
+    .btn,
+    .button,
+    [type="submit"] {
+        min-height: 48px; /* Touch-friendly minimum height */
+        padding: 0.875rem 2.25rem;
+        font-size: 1.0625rem;
+        border-radius: 10px;
+        /* Ensure good tap targets */
+        position: relative;
+    }
+    
+    /* Add invisible tap area extension */
+    .btn::before,
+    .button::before,
+    [type="submit"]::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        bottom: -8px;
+        left: -8px;
+        z-index: -1;
+    }
+    
+    /* Primary button enhancements */
+    .btn-primary {
+        box-shadow: 0 3px 12px rgba(16, 185, 129, 0.25);
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+    }
+    
+    /* Secondary button */
+    .btn-secondary {
+        border-width: 2.5px;
+    }
+    
+    /* Harmonic button adjustments */
+    .btn-harmonic {
+        padding: 1.125rem 2.75rem;
+        font-size: 1.0625rem;
+        border-radius: 45px;
+    }
+    
+    .btn-harmonic .btn-inner {
+        gap: 0.875rem;
+    }
+    
+    .btn-harmonic.btn-primary {
+        box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+    }
+    
+    .btn-harmonic.btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(16, 185, 129, 0.45);
+    }
+    
+    /* Navigation CTA button */
+    .nav-cta-button {
+        min-height: 44px;
+        padding: 0.75rem 1.75rem;
+        font-size: 0.9375rem;
+        box-shadow: 0 2px 12px rgba(16, 185, 129, 0.25);
+    }
+    
+    .nav-cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+    }
+    
+    /* Button sizes */
+    .btn-sm {
+        min-height: 40px;
+        padding: 0.625rem 1.75rem;
+        font-size: 0.9375rem;
+    }
+    
+    .btn-lg {
+        min-height: 56px;
+        padding: 1.125rem 3.25rem;
+        font-size: 1.1875rem;
+    }
+    
+    /* Icon buttons */
+    .btn-icon {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 0.875rem;
+    }
+    
+    /* Button groups */
+    .btn-group {
+        gap: 1rem;
+    }
+    
+    .btn-group .btn {
+        flex: 1 1 auto;
+        min-width: 120px;
+    }
+    
+    /* Loading state adjustments */
+    .btn-loading::after {
+        width: 22px;
+        height: 22px;
+        margin-left: -11px;
+        margin-top: -11px;
+        border-width: 2.5px;
+    }
+}
+
+/* Portrait tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    /* Full-width buttons on portrait */
+    .btn-block-tablet {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Button groups stack vertically */
+    .btn-group-tablet-vertical {
+        flex-direction: column;
+    }
+    
+    .btn-group-tablet-vertical .btn {
+        width: 100%;
+    }
+}
+
+/* Landscape tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    /* Compact buttons for landscape */
+    .btn-compact-landscape {
+        padding: 0.75rem 1.75rem;
+        font-size: 0.9375rem;
+    }
+    
+    /* Side-by-side button groups */
+    .btn-group {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Touch-specific enhancements */
+@media (hover: none) and (pointer: coarse) and (min-width: 769px) and (max-width: 1024px) {
+    /* Remove hover effects on touch devices */
+    .btn:hover,
+    .button:hover,
+    [type="submit"]:hover {
+        transform: none;
+    }
+    
+    /* Add active state for touch feedback */
+    .btn:active,
+    .button:active,
+    [type="submit"]:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* ==========================================================================
    Responsive Design
    ========================================================================== */
 

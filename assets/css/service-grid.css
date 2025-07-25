@@ -27,10 +27,143 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-/* Tablet adjustments */
-@media (max-width: 1024px) {
+/* ==========================================================================
+   Tablet Optimizations
+   ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Grid adjustments */
+    .content-grid {
+        gap: 1.75rem;
+        margin-top: 2.5rem;
+    }
+    
+    /* Optimize grid columns for tablets */
+    .content-grid.grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .content-grid.grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .content-grid.grid-cols-4 {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Service card adjustments */
+    .service-card {
+        border-radius: 0.875rem;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    }
+    
+    .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 25px rgba(0, 134, 123, 0.12);
+    }
+    
+    /* Image aspect ratio optimization */
+    .service-card-image {
+        aspect-ratio: 16/9;
+    }
+    
+    /* Content spacing */
+    .service-card-content {
+        padding: 1.5rem;
+    }
+    
+    .service-card-title {
+        font-size: 1.1875rem;
+        margin-bottom: 0.625rem;
+    }
+    
+    .service-card-excerpt {
+        font-size: 0.9375rem;
+        line-height: 1.65;
+        -webkit-line-clamp: 4;
+    }
+    
+    /* Price section */
+    .service-card-price {
+        padding-top: 0.875rem;
+    }
+    
+    .price-label {
+        font-size: 0.8125rem;
+    }
+    
+    .price-value {
+        font-size: 1.0625rem;
+    }
+    
+    /* View details button */
+    .view-details {
+        font-size: 0.9375rem;
+        padding: 0.625rem 1.375rem;
+    }
+    
+    /* Related services section */
+    .related-services {
+        padding: 4rem 0;
+    }
+    
+    .related-services .section-title {
+        margin-bottom: 2.5rem;
+    }
+    
+    /* Section titles */
+    .section-title .title-en {
+        font-size: 0.8125rem;
+    }
+    
+    .section-title .title-ja {
+        font-size: 1.75rem;
+    }
+    
+    .section-title.text-center::after {
+        margin: 1.25rem auto 0;
+    }
+}
+
+/* Portrait tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    /* Single column on portrait for better readability */
+    .content-grid.grid-cols-3,
+    .content-grid.grid-cols-4 {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Larger cards on single column */
+    .service-card-content {
+        padding: 1.75rem;
+    }
+    
+    .service-card-title {
+        font-size: 1.375rem;
+    }
+}
+
+/* Landscape tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    /* Optimize for landscape viewing */
+    .content-grid {
+        gap: 1.5rem;
+    }
+    
+    .content-grid.grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Compact card design */
+    .service-card-content {
+        padding: 1.25rem;
+    }
+    
+    .service-card-excerpt {
+        -webkit-line-clamp: 2;
     }
 }
 

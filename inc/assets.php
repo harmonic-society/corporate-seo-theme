@@ -63,6 +63,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'mobile-logo-fix'      => '/assets/css/mobile-logo-fix.css',
         'mobile-menu-modal'    => '/assets/css/mobile-menu-modal.css',
         'hamburger-fix'        => '/assets/css/hamburger-fix.css',
+        'tablet-optimization'  => '/assets/css/tablet-optimization.css',
     );
     
     // 依存関係の設定
@@ -80,6 +81,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'mobile-logo-fix'      => array( 'corporate-seo-pro-navigation' ),
         'mobile-menu-modal'    => array( 'corporate-seo-pro-style' ),
         'hamburger-fix'        => array( 'corporate-seo-pro-mobile-menu-modal' ),
+        'tablet-optimization'  => array( 'corporate-seo-pro-style', 'corporate-seo-pro-typography', 'corporate-seo-pro-utilities' ),
     );
     
     foreach ( $css_files as $handle => $file ) {

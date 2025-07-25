@@ -389,6 +389,139 @@
 }
 
 /* ==========================================================================
+   Tablet Optimizations
+   ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Hero section adjustments */
+    .hero-section {
+        min-height: calc(100vh - 75px); /* Account for tablet header height */
+    }
+    
+    /* Content spacing */
+    .hero-main {
+        padding: 4rem 2rem;
+        max-width: 900px;
+    }
+    
+    /* Badge optimization */
+    .hero-badge {
+        padding: 0.875rem 2.25rem;
+        font-size: 0.9375rem;
+        margin-bottom: 2.25rem;
+    }
+    
+    .badge-icon {
+        font-size: 1.25rem;
+    }
+    
+    /* Title optimization */
+    .hero-title {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        margin-bottom: 2.25rem;
+        line-height: 1.25;
+    }
+    
+    /* Lead text optimization */
+    .hero-lead {
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        max-width: 700px;
+        margin-bottom: 2.75rem;
+        line-height: 1.65;
+    }
+    
+    /* Features layout */
+    .hero-features {
+        gap: 2.5rem;
+        margin-bottom: 2.75rem;
+    }
+    
+    .hero-feature,
+    .feature-item {
+        gap: 0.625rem;
+    }
+    
+    .hero-feature i,
+    .feature-item i {
+        font-size: 1.625rem;
+    }
+    
+    .hero-feature h3,
+    .hero-feature span {
+        font-size: 1.0625rem;
+    }
+    
+    .hero-feature p {
+        font-size: 0.9375rem;
+    }
+    
+    /* Actions optimization */
+    .hero-actions {
+        gap: 1.25rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    /* Trust section */
+    .trust-text {
+        font-size: 0.9375rem;
+        gap: 0.875rem;
+    }
+    
+    .trust-icon {
+        font-size: 1.375rem;
+    }
+    
+    /* Wave height adjustment */
+    .hero-bottom-wave {
+        height: 100px;
+    }
+    
+    /* Height variations for tablets */
+    .hero-height-small {
+        min-height: 45vh;
+    }
+    
+    .hero-height-default {
+        min-height: 65vh;
+    }
+    
+    .hero-height-large {
+        min-height: 85vh;
+    }
+}
+
+/* Portrait tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    .hero-main {
+        padding: 3.5rem 1.75rem;
+    }
+    
+    .hero-features {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    
+    .hero-title {
+        font-size: clamp(2rem, 4.5vw, 3rem);
+    }
+}
+
+/* Landscape tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .hero-section {
+        min-height: calc(100vh - 70px);
+    }
+    
+    .hero-main {
+        padding: 3rem 2rem;
+    }
+    
+    .hero-bottom-wave {
+        height: 80px;
+    }
+}
+
+/* ==========================================================================
    Responsive Design
    ========================================================================== */
 

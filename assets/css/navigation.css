@@ -281,6 +281,129 @@
 }
 
 /* ==========================================================================
+   Tablet Optimizations
+   ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Header adjustments */
+    .site-header {
+        height: 75px;
+    }
+    
+    .site-header.scrolled {
+        height: 65px;
+    }
+    
+    .header-container {
+        padding: 0 2rem;
+    }
+    
+    /* Logo optimization */
+    .site-logo img {
+        height: 45px;
+    }
+    
+    .site-title {
+        font-size: 1.375rem;
+    }
+    
+    /* Navigation menu adjustments */
+    .primary-menu {
+        gap: 1.5rem;
+    }
+    
+    .primary-menu > li > a {
+        font-size: 0.9375rem;
+        padding: 0.625rem 0;
+    }
+    
+    /* Dropdown refinements */
+    .sub-menu {
+        min-width: 220px;
+        padding: 0.625rem 0;
+        margin-top: 8px;
+    }
+    
+    .sub-menu a {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9375rem;
+    }
+    
+    /* Touch-friendly targets */
+    .primary-menu > li {
+        position: relative;
+    }
+    
+    .primary-menu > li > a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Hide sub-menus on tablets - show on tap */
+    .sub-menu {
+        display: none;
+    }
+    
+    .primary-menu > li:hover .sub-menu,
+    .primary-menu > li:focus-within .sub-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+/* Portrait tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    /* Compact navigation for portrait */
+    .primary-menu {
+        gap: 1.25rem;
+    }
+    
+    .primary-menu > li > a {
+        font-size: 0.875rem;
+    }
+    
+    /* Consider showing mobile menu on smaller tablets */
+    @media (max-width: 900px) {
+        .primary-menu {
+            display: none;
+        }
+        
+        .mobile-menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+        }
+        
+        .nav-cta-button {
+            margin-right: 1rem;
+            font-size: 0.875rem;
+            padding: 0.625rem 1.25rem;
+        }
+    }
+}
+
+/* Landscape tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    /* More space in landscape */
+    .site-header {
+        height: 70px;
+    }
+    
+    .site-header.scrolled {
+        height: 60px;
+    }
+    
+    .primary-menu {
+        gap: 1.75rem;
+    }
+}
+
+/* ==========================================================================
    Responsive Design
    ========================================================================== */
 

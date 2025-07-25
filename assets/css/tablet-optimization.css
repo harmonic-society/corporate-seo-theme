@@ -1,0 +1,224 @@
+/* Tablet Optimization System
+   ================================================== */
+
+/* Unified Breakpoint System */
+:root {
+    /* Breakpoint definitions */
+    --breakpoint-mobile: 768px;
+    --breakpoint-tablet-min: 769px;
+    --breakpoint-tablet-max: 1024px;
+    --breakpoint-desktop: 1025px;
+    --breakpoint-wide: 1280px;
+    
+    /* Tablet-specific spacing */
+    --tablet-spacing-xs: 0.75rem;
+    --tablet-spacing-sm: 1rem;
+    --tablet-spacing-md: 1.5rem;
+    --tablet-spacing-lg: 2rem;
+    --tablet-spacing-xl: 3rem;
+    --tablet-spacing-2xl: 4rem;
+    
+    /* Tablet-specific typography scale */
+    --tablet-text-xs: 0.875rem;
+    --tablet-text-sm: 0.9375rem;
+    --tablet-text-base: 1rem;
+    --tablet-text-lg: 1.125rem;
+    --tablet-text-xl: 1.375rem;
+    --tablet-text-2xl: 1.75rem;
+    --tablet-text-3xl: 2.25rem;
+    --tablet-text-4xl: 2.75rem;
+    --tablet-text-5xl: 3.25rem;
+    
+    /* Touch-friendly sizes */
+    --tablet-touch-target: 44px;
+    --tablet-button-padding-x: 1.5rem;
+    --tablet-button-padding-y: 0.875rem;
+    
+    /* Grid configurations */
+    --tablet-grid-columns: 2;
+    --tablet-grid-gap: 1.5rem;
+    
+    /* Container widths */
+    --tablet-container-padding: 2rem;
+    --tablet-max-content-width: 90%;
+}
+
+/* Tablet Media Query Mixin Pattern */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Base Container Adjustments */
+    .container,
+    .site-main,
+    .content-area {
+        padding-left: var(--tablet-container-padding);
+        padding-right: var(--tablet-container-padding);
+        max-width: var(--tablet-max-content-width);
+    }
+    
+    /* Typography Base Scale */
+    body {
+        font-size: var(--tablet-text-base);
+        line-height: 1.6;
+    }
+    
+    h1, .h1 {
+        font-size: var(--tablet-text-4xl);
+        line-height: 1.2;
+        margin-bottom: var(--tablet-spacing-lg);
+    }
+    
+    h2, .h2 {
+        font-size: var(--tablet-text-3xl);
+        line-height: 1.3;
+        margin-bottom: var(--tablet-spacing-md);
+    }
+    
+    h3, .h3 {
+        font-size: var(--tablet-text-2xl);
+        line-height: 1.4;
+        margin-bottom: var(--tablet-spacing-md);
+    }
+    
+    h4, .h4 {
+        font-size: var(--tablet-text-xl);
+        line-height: 1.4;
+        margin-bottom: var(--tablet-spacing-sm);
+    }
+    
+    h5, .h5 {
+        font-size: var(--tablet-text-lg);
+        line-height: 1.5;
+        margin-bottom: var(--tablet-spacing-sm);
+    }
+    
+    h6, .h6 {
+        font-size: var(--tablet-text-base);
+        line-height: 1.5;
+        margin-bottom: var(--tablet-spacing-sm);
+    }
+    
+    p {
+        font-size: var(--tablet-text-base);
+        line-height: 1.7;
+        margin-bottom: var(--tablet-spacing-md);
+    }
+    
+    /* Section Spacing */
+    section,
+    .section {
+        padding-top: var(--tablet-spacing-2xl);
+        padding-bottom: var(--tablet-spacing-2xl);
+    }
+    
+    /* Touch-Optimized Links */
+    a {
+        min-height: var(--tablet-touch-target);
+        display: inline-flex;
+        align-items: center;
+        padding: var(--tablet-spacing-xs) 0;
+    }
+    
+    /* Grid System Base */
+    .grid,
+    .grid-container {
+        grid-template-columns: repeat(var(--tablet-grid-columns), 1fr);
+        gap: var(--tablet-grid-gap);
+    }
+    
+    /* Flexbox Utilities */
+    .flex-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--tablet-spacing-md);
+    }
+    
+    /* Card Components */
+    .card,
+    .box,
+    .panel {
+        padding: var(--tablet-spacing-lg);
+        margin-bottom: var(--tablet-spacing-md);
+    }
+    
+    /* Image Responsive */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Table Responsive */
+    table {
+        font-size: var(--tablet-text-sm);
+    }
+    
+    /* List Spacing */
+    ul, ol {
+        padding-left: var(--tablet-spacing-lg);
+        margin-bottom: var(--tablet-spacing-md);
+    }
+    
+    li {
+        margin-bottom: var(--tablet-spacing-xs);
+    }
+    
+    /* Blockquote */
+    blockquote {
+        padding: var(--tablet-spacing-md);
+        margin: var(--tablet-spacing-lg) 0;
+        font-size: var(--tablet-text-lg);
+    }
+    
+    /* Code Blocks */
+    pre, code {
+        font-size: var(--tablet-text-sm);
+    }
+    
+    /* Utility Classes */
+    .mt-auto { margin-top: auto; }
+    .mb-auto { margin-bottom: auto; }
+    .ml-auto { margin-left: auto; }
+    .mr-auto { margin-right: auto; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .my-auto { margin-top: auto; margin-bottom: auto; }
+    
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+    
+    .hidden-tablet { display: none !important; }
+    .visible-tablet { display: block !important; }
+}
+
+/* Landscape Tablet Optimization */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    :root {
+        --tablet-spacing-2xl: 3rem;
+        --tablet-text-4xl: 2.5rem;
+        --tablet-text-5xl: 3rem;
+    }
+    
+    section,
+    .section {
+        padding-top: var(--tablet-spacing-xl);
+        padding-bottom: var(--tablet-spacing-xl);
+    }
+}
+
+/* Portrait Tablet Optimization */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    :root {
+        --tablet-container-padding: 1.5rem;
+    }
+    
+    .grid,
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* iPad Pro Specific (1024x1366) */
+@media (min-width: 1024px) and (max-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    :root {
+        --tablet-text-base: 1.0625rem;
+        --tablet-container-padding: 2.5rem;
+    }
+}
