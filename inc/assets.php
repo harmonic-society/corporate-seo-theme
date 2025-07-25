@@ -48,34 +48,28 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'utilities'            => '/assets/css/utilities.css',
         'utilities-refactored' => '/assets/css/utilities-refactored.css',
         'cleanup'              => '/assets/css/cleanup.css',
-        'mobile-animations-fix'=> '/assets/css/mobile-animations-fix.css',
         'header-footer'        => '/assets/css/header-footer-harmony.css',
         'header-footer-override'=> '/assets/css/header-footer-override.css',
-        'mobile-menu-fix'      => '/assets/css/mobile-menu-fix.css',
         'footer-layout-fix'    => '/assets/css/footer-layout-fix.css',
         'footer-grid-override' => '/assets/css/footer-grid-override.css',
         'header-cta-fix'       => '/assets/css/header-cta-fix.css',
         'service-acf-fix'      => '/assets/css/service-acf-fix.css',
         'service-inquiry-fix'  => '/assets/css/service-inquiry-fix.css',
         'service-grid'         => '/assets/css/service-grid.css',
-        'mobile-master'        => '/assets/css/mobile-master.css',
-        'mobile-hamburger-fix' => '/assets/css/mobile-hamburger-fix.css',
-        'mobile-menu-complete' => '/assets/css/mobile-menu-complete.css',
+        'service-archive-mobile-fix' => '/assets/css/service-archive-mobile-fix.css',
+        'mobile-menu-unified'  => '/assets/css/mobile-menu-unified.css',
     );
     
     // 依存関係の設定
     $dependencies = array(
         'utilities-refactored' => array( 'corporate-seo-pro-utilities' ),
         'cleanup'              => array( 'corporate-seo-pro-style' ),
-        'mobile-animations-fix'=> array( 'corporate-seo-pro-style' ),
         'header-footer-override'=> array( 'corporate-seo-pro-header-footer' ),
-        'mobile-menu-fix'      => array( 'corporate-seo-pro-header-footer' ),
         'footer-layout-fix'    => array( 'corporate-seo-pro-header-footer' ),
         'footer-grid-override' => array( 'corporate-seo-pro-footer-layout-fix' ),
         'header-cta-fix'       => array( 'corporate-seo-pro-header-footer' ),
-        'mobile-master'        => array( 'corporate-seo-pro-style', 'corporate-seo-pro-mobile-animations-fix', 'corporate-seo-pro-mobile-menu-fix' ),
-        'mobile-hamburger-fix' => array( 'corporate-seo-pro-mobile-master' ),
-        'mobile-menu-complete' => array( 'corporate-seo-pro-mobile-hamburger-fix' ),
+        'service-archive-mobile-fix' => array( 'corporate-seo-pro-style' ),
+        'mobile-menu-unified'  => array( 'corporate-seo-pro-navigation' ),
     );
     
     foreach ( $css_files as $handle => $file ) {
@@ -96,8 +90,7 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
     // 共通スクリプト
     $js_files = array(
         'animation-utils'      => '/assets/js/utils/animation-utils.js',
-        'header-nav'           => '/assets/js/header-navigation.js',
-        'mobile-menu-improved' => '/assets/js/mobile-menu-improved.js',
+        'mobile-menu-unified'  => '/assets/js/mobile-menu-unified.js',
         'theme'                => '/assets/js/theme.js',
     );
     

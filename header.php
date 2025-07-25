@@ -85,38 +85,39 @@
         </div>
 
         <!-- モバイルメニュー -->
-        <div class="mobile-menu">
-            <div class="mobile-menu-inner">
-                <?php
-                wp_nav_menu( array(
-                    'theme_location' => 'mobile',
-                    'menu_id'        => 'mobile-menu',
-                    'container'      => false,
-                    'menu_class'     => 'mobile-menu-list',
-                    'fallback_cb'    => function() {
-                        wp_nav_menu( array(
-                            'theme_location' => 'primary',
-                            'menu_id'        => 'mobile-menu-fallback',
-                            'container'      => false,
-                            'menu_class'     => 'mobile-menu-list',
-                            'fallback_cb'    => function() {
-                                echo '<ul class="mobile-menu-list">';
-                                wp_list_pages( array(
-                                    'title_li' => '',
-                                    'depth'    => 2,
-                                ) );
-                                echo '</ul>';
-                            },
-                        ) );
-                    },
-                ) );
-                ?>
+        <div class="mobile-menu" aria-hidden="true" role="navigation">
+            <div class="mobile-menu-content">
+                <nav class="mobile-menu-nav">
+                    <?php
+                    wp_nav_menu( array(
+                        'theme_location' => 'mobile',
+                        'menu_id'        => 'mobile-navigation',
+                        'container'      => false,
+                        'menu_class'     => 'mobile-menu-list',
+                        'fallback_cb'    => function() {
+                            wp_nav_menu( array(
+                                'theme_location' => 'primary',
+                                'menu_id'        => 'mobile-navigation-fallback',
+                                'container'      => false,
+                                'menu_class'     => 'mobile-menu-list',
+                                'fallback_cb'    => function() {
+                                    echo '<ul class="mobile-menu-list">';
+                                    wp_list_pages( array(
+                                        'title_li' => '',
+                                        'depth'    => 2,
+                                    ) );
+                                    echo '</ul>';
+                                },
+                            ) );
+                        },
+                    ) );
+                    ?>
+                </nav>
                 
-                <!-- モバイルCTA -->
-                <div class="mobile-menu-cta">
-                    <a href="<?php echo esc_url( $contact_url ); ?>" class="mobile-cta-button">
-                        <span class="cta-icon"><i class="fas fa-envelope"></i></span>
-                        <span class="cta-text"><?php esc_html_e( 'お問い合わせ', 'corporate-seo-pro' ); ?></span>
+                <!-- モバイルメニューアクション -->
+                <div class="mobile-menu-actions">
+                    <a href="<?php echo esc_url( $contact_url ); ?>" class="btn btn-primary">
+                        <span><?php esc_html_e( 'お問い合わせ', 'corporate-seo-pro' ); ?></span>
                     </a>
                 </div>
                 
@@ -139,7 +140,7 @@
         </div>
         
         <!-- モバイルメニューオーバーレイ -->
-        <div class="mobile-menu-overlay"></div>
+        <div class="mobile-menu-overlay" aria-hidden="true"></div>
     </header>
 
     <div id="content" class="site-content">

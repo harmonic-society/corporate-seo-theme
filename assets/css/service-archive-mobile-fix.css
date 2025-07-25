@@ -1,0 +1,196 @@
+/**
+ * Service Archive Mobile Fix
+ * モバイルでのサービスアーカイブ表示問題の修正
+ */
+
+/* サービスアーカイブアイテムの表示修正 */
+.service-archive-item {
+    opacity: 1 !important; /* アニメーション依存を解消 */
+    animation: none !important; /* モバイルではアニメーションを無効化 */
+}
+
+/* fadeInUpアニメーションのフォールバック */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* デスクトップでのみアニメーションを有効化 */
+@media (min-width: 1025px) {
+    .service-archive-item {
+        opacity: 0 !important;
+        animation: fadeInUp 0.8s ease-out forwards !important;
+    }
+    
+    .service-archive-item[data-service="1"] { animation-delay: 0.1s; }
+    .service-archive-item[data-service="2"] { animation-delay: 0.2s; }
+    .service-archive-item[data-service="3"] { animation-delay: 0.3s; }
+    .service-archive-item[data-service="4"] { animation-delay: 0.4s; }
+    .service-archive-item[data-service="5"] { animation-delay: 0.5s; }
+    .service-archive-item[data-service="6"] { animation-delay: 0.6s; }
+}
+
+/* モバイルグリッドレイアウトの最適化 */
+@media (max-width: 768px) {
+    .service-archive-section {
+        padding: 2rem 0;
+    }
+    
+    .service-archive-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    /* サービスカードのモバイル最適化 */
+    .service-card {
+        border-radius: 1rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* ホバーエフェクトをタッチデバイス用に調整 */
+    @media (hover: none) {
+        .service-card:hover {
+            transform: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .service-image img {
+            transform: none !important;
+        }
+        
+        .service-overlay {
+            display: none;
+        }
+    }
+    
+    /* サービス情報のパディング調整 */
+    .service-info {
+        padding: 1.5rem;
+    }
+    
+    /* サービス名のフォントサイズ調整 */
+    .service-name {
+        font-size: 1.375rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* サービス説明文の行数制限 */
+    .service-description {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+    
+    /* サービスアクションの最適化 */
+    .service-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+    
+    .service-link {
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        font-size: 0.875rem;
+    }
+    
+    .service-inquiry {
+        margin-left: 0;
+        justify-content: center;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.875rem;
+    }
+    
+    /* サービス番号の位置調整 */
+    .service-number {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    /* 画像のアスペクト比調整 */
+    .service-image-wrapper {
+        aspect-ratio: 16/9;
+    }
+    
+    /* 特徴リストの最適化 */
+    .feature-list {
+        font-size: 0.875rem;
+    }
+    
+    .feature-list li {
+        padding: 0.375rem 0;
+    }
+    
+    /* ページネーションの最適化 */
+    .service-pagination {
+        margin-top: 3rem;
+    }
+    
+    .service-pagination .page-numbers li a,
+    .service-pagination .page-numbers li span {
+        min-width: 36px;
+        height: 36px;
+        font-size: 0.875rem;
+        padding: 0 0.75rem;
+    }
+}
+
+/* 小型モバイルデバイス向けの追加調整 */
+@media (max-width: 375px) {
+    .service-archive-grid {
+        gap: 1rem;
+    }
+    
+    .service-info {
+        padding: 1.25rem;
+    }
+    
+    .service-name {
+        font-size: 1.25rem;
+    }
+    
+    .service-actions {
+        gap: 0.5rem;
+    }
+}
+
+/* パフォーマンス最適化 */
+@media (max-width: 768px) {
+    /* GPUアクセラレーションを無効化 */
+    .service-card,
+    .service-card-image img {
+        will-change: auto;
+    }
+    
+    /* 不要なトランジションを削除 */
+    .service-card,
+    .service-image img,
+    .service-overlay,
+    .overlay-icon {
+        transition: none;
+    }
+}
+
+/* アクセシビリティ：モーション設定を尊重 */
+@media (prefers-reduced-motion: reduce) {
+    .service-archive-item {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
