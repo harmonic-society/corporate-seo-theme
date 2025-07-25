@@ -53,7 +53,7 @@ body #masthead .nav-cta-button .cta-icon {
 /* ホバー効果 */
 body .nav-cta-button:hover,
 body #masthead .nav-cta-button:hover {
-    transform: translateY(-2px) !important;
+    /* transform はJavaScriptで制御するため削除 */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
     color: white !important;
 }

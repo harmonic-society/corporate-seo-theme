@@ -9,11 +9,15 @@
         
         if (!navCtaButton) return;
 
-        // マウス追従エフェクト
-        navCtaButton.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        // マウス追従エフェクト（スロットル付き）
+        let isThrottled = false;
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        function updateTransform() {
+            const rect = navCtaButton.getBoundingClientRect();
+            const x = mouseX - rect.left;
+            const y = mouseY - rect.top;
             
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
@@ -21,11 +25,29 @@
             const deltaX = (x - centerX) / centerX;
             const deltaY = (y - centerY) / centerY;
             
-            this.style.transform = `perspective(1000px) rotateY(${deltaX * 10}deg) rotateX(${-deltaY * 10}deg)`;
+            // より穏やかな変形を適用（10deg → 5deg）
+            navCtaButton.style.transform = `perspective(1000px) rotateY(${deltaX * 5}deg) rotateX(${-deltaY * 5}deg) translateZ(0)`;
+            isThrottled = false;
+        }
+        
+        navCtaButton.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // 60fpsにスロットル（約16ms）
+            if (!isThrottled) {
+                isThrottled = true;
+                requestAnimationFrame(updateTransform);
+            }
         });
 
         navCtaButton.addEventListener('mouseleave', function() {
             this.style.transform = '';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        navCtaButton.addEventListener('mouseenter', function() {
+            this.style.transition = 'none';
         });
 
         // クリック時のリップルエフェクト
