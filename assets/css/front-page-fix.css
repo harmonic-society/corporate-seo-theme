@@ -19,6 +19,7 @@
     opacity: 1 !important;
     position: relative !important;
     z-index: 1 !important;
+    overflow: visible !important;
 }
 
 /* Placeholder styles for empty content */
