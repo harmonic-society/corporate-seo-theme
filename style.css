@@ -2358,7 +2358,20 @@ span.menu-text {
     .service-item,
     .service-item-reverse {
         grid-template-columns: 1fr;
+        grid-template-areas: none;
         direction: ltr;
+    }
+    
+    .service-item .service-image,
+    .service-item-reverse .service-image {
+        grid-area: auto;
+        order: 1;
+    }
+    
+    .service-item .service-content,
+    .service-item-reverse .service-content {
+        grid-area: auto;
+        order: 2;
     }
     
     .service-image {
