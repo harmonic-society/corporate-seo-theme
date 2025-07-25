@@ -45,7 +45,8 @@ body .nav-cta-button .cta-text,
 body #masthead .nav-cta-button .cta-text {
     display: inline-flex !important;
     align-items: center !important; /* テキストも垂直中央配置 */
-    line-height: 1.2 !important;
+    line-height: 1 !important; /* 1に戻して正確な中央配置 */
+    height: 100% !important; /* 親要素の高さいっぱいに */
 }
 
 body .nav-cta-button .cta-icon,
@@ -54,7 +55,8 @@ body #masthead .nav-cta-button .cta-icon {
     align-items: center !important;
     justify-content: center !important;
     transition: transform 0.3s ease !important;
-    line-height: 0 !important; /* アイコンの高さを正確に */
+    line-height: 1 !important; /* アイコンも同じline-heightに */
+    height: 100% !important; /* 親要素の高さいっぱいに */
 }
 
 /* ホバー効果 */
