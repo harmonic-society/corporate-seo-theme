@@ -147,6 +147,14 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
 function corporate_seo_pro_enqueue_conditional_assets( $version ) {
     // フロントページ
     if ( is_front_page() ) {
+        // Hero feature fix CSS
+        wp_enqueue_style( 
+            'corporate-seo-pro-hero-feature-fix', 
+            get_template_directory_uri() . '/assets/css/hero-feature-fix.css', 
+            array( 'corporate-seo-pro-style' ), 
+            $version 
+        );
+        
         wp_enqueue_script( 
             'corporate-seo-pro-hero-animations', 
             get_template_directory_uri() . '/assets/js/hero-animations-optimized.js', 
@@ -154,6 +162,16 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             $version, 
             true 
         );
+        
+        // Hero feature fix JS
+        wp_enqueue_script( 
+            'corporate-seo-pro-hero-feature-fix', 
+            get_template_directory_uri() . '/assets/js/hero-feature-fix.js', 
+            array(), 
+            $version, 
+            true 
+        );
+        
         wp_enqueue_script( 
             'corporate-seo-pro-hero-modern', 
             get_template_directory_uri() . '/assets/js/hero-modern.js', 

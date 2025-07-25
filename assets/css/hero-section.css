@@ -269,6 +269,35 @@
     animation: fadeInUp 0.8s ease-out 0.8s forwards;
 }
 
+/* Fallback for animation issues */
+@media (prefers-reduced-motion: reduce) {
+    .hero-feature,
+    .feature-item {
+        opacity: 1 !important;
+        animation: none !important;
+    }
+}
+
+/* Ensure visibility after animation should complete */
+.hero-section.animations-enabled .hero-feature,
+.hero-section.animations-enabled .feature-item {
+    animation-fill-mode: forwards;
+}
+
+/* Force visibility if animation fails */
+.hero-feature,
+.feature-item {
+    animation-fill-mode: forwards;
+}
+
+/* Additional fallback for older browsers */
+@supports not (animation: fadeInUp 0.8s ease-out 0.8s forwards) {
+    .hero-feature,
+    .feature-item {
+        opacity: 1 !important;
+    }
+}
+
 .hero-feature i,
 .feature-item i {
     font-size: 1.5rem;
