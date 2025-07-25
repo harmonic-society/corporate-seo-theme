@@ -218,10 +218,7 @@ get_header(); ?>
                 </div>
             </div>
         </section>
-        <?php else : 
-            // ACFが設定されていない場合はデフォルトの料金セクションを表示
-            get_template_part( 'template-parts/service-pricing', 'fallback' );
-        endif; ?>
+        <?php endif; // ACFが設定されていない場合は料金セクションを非表示 ?>
 
         <!-- お問い合わせセクション -->
         <section id="service-inquiry" class="service-inquiry">

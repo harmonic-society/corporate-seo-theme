@@ -24,8 +24,8 @@
 /* デスクトップでのみアニメーションを有効化 */
 @media (min-width: 1025px) {
     .service-archive-item {
-        opacity: 0 !important;
-        animation: fadeInUp 0.8s ease-out forwards !important;
+        opacity: 1; /* デフォルトで表示 */
+        animation: fadeInUp 0.8s ease-out forwards;
     }
     
     .service-archive-item[data-service="1"] { animation-delay: 0.1s; }
