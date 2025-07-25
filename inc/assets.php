@@ -280,6 +280,15 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             array( 'corporate-seo-pro-style' ), 
             $version 
         );
+        
+        // ティールカラースキーム適用
+        wp_enqueue_style( 
+            'corporate-seo-pro-page-about-teal', 
+            get_template_directory_uri() . '/assets/css/page-about-teal.css', 
+            array( 'corporate-seo-pro-page-about', 'corporate-seo-pro-color-scheme-teal' ), 
+            $version 
+        );
+        
         wp_enqueue_script( 
             'corporate-seo-pro-about', 
             get_template_directory_uri() . '/assets/js/about-animations-optimized.js', 
