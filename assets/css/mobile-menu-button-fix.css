@@ -150,4 +150,6 @@
     right: -8px;
     bottom: -8px;
     left: -8px;
+    z-index: -1; /* ハンバーガーアイコンの下に配置 */
+    background: transparent; /* 透明背景を明示 */
 }
