@@ -61,6 +61,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'mobile-menu-button-fix' => '/assets/css/mobile-menu-button-fix.css',
         'mobile-overflow-fix'  => '/assets/css/mobile-overflow-fix.css',
         'mobile-logo-fix'      => '/assets/css/mobile-logo-fix.css',
+        'mobile-menu-modal'    => '/assets/css/mobile-menu-modal.css',
     );
     
     // 依存関係の設定
@@ -76,6 +77,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'mobile-menu-button-fix' => array( 'corporate-seo-pro-mobile-menu-unified' ),
         'mobile-overflow-fix'  => array( 'corporate-seo-pro-style' ),
         'mobile-logo-fix'      => array( 'corporate-seo-pro-navigation' ),
+        'mobile-menu-modal'    => array( 'corporate-seo-pro-style' ),
     );
     
     foreach ( $css_files as $handle => $file ) {
@@ -96,7 +98,7 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
     // 共通スクリプト
     $js_files = array(
         'animation-utils'      => '/assets/js/utils/animation-utils.js',
-        'mobile-menu-unified'  => '/assets/js/mobile-menu-unified.js',
+        'mobile-menu-modal'    => '/assets/js/mobile-menu-modal.js',
         'theme'                => '/assets/js/theme.js',
     );
     

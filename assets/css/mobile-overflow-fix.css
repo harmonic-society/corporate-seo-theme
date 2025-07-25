@@ -105,13 +105,13 @@ body.mobile-menu-open {
     height: 100% !important;
 }
 
-/* モバイルメニューの初期状態を確実に非表示に */
+/* 既存のモバイルメニューを完全に非表示 */
 .mobile-menu {
     display: none !important;
 }
 
-.mobile-menu.is-active {
-    display: flex !important;
+.mobile-menu-overlay {
+    display: none !important;
 }
 
 /* デスクトップでモバイルメニューを完全に非表示 */
