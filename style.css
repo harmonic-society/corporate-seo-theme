@@ -449,7 +449,8 @@ span.menu-text {
     -moz-osx-font-smoothing: grayscale;
 } */
 
-/* 光沢エフェクト */
+/* 光沢エフェクト - 一時的に無効化 */
+/*
 .nav-cta-button::before {
     content: '';
     position: absolute;
@@ -467,8 +468,10 @@ span.menu-text {
 .nav-cta-button:hover::before {
     left: 100%;
 }
+*/
 
-/* パルスエフェクト */
+/* パルスエフェクト - 一時的に無効化 */
+/*
 .nav-cta-button::after {
     content: '';
     position: absolute;
@@ -483,6 +486,7 @@ span.menu-text {
     z-index: -1;
     /* animation: ctaPulse 2s infinite; */
 }
+*/
 
 /* @keyframes ctaPulse {
     0% {

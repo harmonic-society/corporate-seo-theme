@@ -34,6 +34,8 @@ body #masthead .nav-cta-button {
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     margin-left: auto !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
 
 /* テキストとアイコンの適切な配置 */
