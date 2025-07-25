@@ -6157,6 +6157,7 @@ span.menu-text {
     
     .share-buttons {
         flex-direction: column;
+        gap: 0.75rem;
     }
     
     .share-button {
