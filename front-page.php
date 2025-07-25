@@ -267,6 +267,63 @@ get_header(); ?>
         </section>
     <?php endif; ?>
 
+    <?php if ( get_theme_mod( 'show_news_release_section', true ) ) : ?>
+        <section class="news-release-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label"><?php echo esc_html( get_theme_mod( 'news_release_label', __( 'News Release', 'corporate-seo-pro' ) ) ); ?></span>
+                    <h2 class="section-title"><?php echo esc_html( get_theme_mod( 'news_release_title', __( 'ニュースリリース', 'corporate-seo-pro' ) ) ); ?></h2>
+                    <?php if ( get_theme_mod( 'news_release_description' ) ) : ?>
+                        <p class="section-description"><?php echo esc_html( get_theme_mod( 'news_release_description' ) ); ?></p>
+                    <?php endif; ?>
+                </div>
+
+                <?php
+                $news_release_query = new WP_Query( array(
+                    'post_type'      => 'news',
+                    'posts_per_page' => 3,
+                    'orderby'        => 'date',
+                    'order'          => 'DESC',
+                ) );
+
+                if ( $news_release_query->have_posts() ) : ?>
+                    <div class="news-release-list">
+                        <?php while ( $news_release_query->have_posts() ) : $news_release_query->the_post(); ?>
+                            <article class="news-release-item">
+                                <a href="<?php the_permalink(); ?>" class="news-release-link">
+                                    <div class="news-release-date">
+                                        <time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
+                                            <?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?>
+                                        </time>
+                                    </div>
+                                    <div class="news-release-content">
+                                        <h3 class="news-release-title"><?php the_title(); ?></h3>
+                                        <?php if ( has_excerpt() ) : ?>
+                                            <p class="news-release-excerpt"><?php echo wp_trim_words( get_the_excerpt(), 50, '...' ); ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="news-release-arrow">
+                                        <span aria-hidden="true">→</span>
+                                    </div>
+                                </a>
+                            </article>
+                        <?php endwhile; ?>
+                    </div>
+                    <?php wp_reset_postdata(); ?>
+                    
+                    <div class="section-footer">
+                        <a href="<?php echo esc_url( get_post_type_archive_link( 'news' ) ); ?>" class="btn btn-outline">
+                            <?php esc_html_e( 'すべてのニュースを見る', 'corporate-seo-pro' ); ?>
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                <?php else : ?>
+                    <p class="no-posts"><?php esc_html_e( 'ニュースリリースはまだありません。', 'corporate-seo-pro' ); ?></p>
+                <?php endif; ?>
+            </div>
+        </section>
+    <?php endif; ?>
+
     <?php if ( get_theme_mod( 'show_features_section', true ) ) : ?>
         <section class="features-section">
             <div class="container">

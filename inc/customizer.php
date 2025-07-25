@@ -631,6 +631,51 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
         ) );
     }
     
+    // ニュースリリースセクション
+    $wp_customize->add_setting( 'show_news_release_section', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+    
+    $wp_customize->add_control( 'show_news_release_section', array(
+        'label'   => __( 'ニュースリリースセクションを表示', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_front_sections',
+        'type'    => 'checkbox',
+    ) );
+    
+    $wp_customize->add_setting( 'news_release_label', array(
+        'default'           => __( 'News Release', 'corporate-seo-pro' ),
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    
+    $wp_customize->add_control( 'news_release_label', array(
+        'label'   => __( 'ニュースリリースラベル', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_front_sections',
+        'type'    => 'text',
+    ) );
+    
+    $wp_customize->add_setting( 'news_release_title', array(
+        'default'           => __( 'ニュースリリース', 'corporate-seo-pro' ),
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    
+    $wp_customize->add_control( 'news_release_title', array(
+        'label'   => __( 'ニュースリリースセクションタイトル', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_front_sections',
+        'type'    => 'text',
+    ) );
+    
+    $wp_customize->add_setting( 'news_release_description', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    
+    $wp_customize->add_control( 'news_release_description', array(
+        'label'   => __( 'ニュースリリースセクション説明文', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_front_sections',
+        'type'    => 'text',
+    ) );
+    
     // ニュースセクション
     $wp_customize->add_setting( 'show_news_section', array(
         'default'           => true,

@@ -21,6 +21,9 @@ function corporate_seo_pro_register_post_types() {
     
     // 実績カテゴリータクソノミー
     corporate_seo_pro_register_work_taxonomy();
+    
+    // ニュースリリース投稿タイプ
+    corporate_seo_pro_register_news_post_type();
 }
 add_action( 'init', 'corporate_seo_pro_register_post_types' );
 
@@ -153,4 +156,54 @@ function corporate_seo_pro_register_work_taxonomy() {
     );
     
     register_taxonomy( 'work_category', array( 'work' ), $args );
+}
+
+/**
+ * ニュースリリース投稿タイプの登録
+ */
+function corporate_seo_pro_register_news_post_type() {
+    $labels = array(
+        'name'                  => _x( 'ニュースリリース', 'Post Type General Name', 'corporate-seo-pro' ),
+        'singular_name'         => _x( 'ニュースリリース', 'Post Type Singular Name', 'corporate-seo-pro' ),
+        'menu_name'             => __( 'ニュースリリース', 'corporate-seo-pro' ),
+        'name_admin_bar'        => __( 'ニュースリリース', 'corporate-seo-pro' ),
+        'archives'              => __( 'ニュースリリース一覧', 'corporate-seo-pro' ),
+        'attributes'            => __( 'ニュースリリースの属性', 'corporate-seo-pro' ),
+        'parent_item_colon'     => __( '親ニュース:', 'corporate-seo-pro' ),
+        'all_items'             => __( 'すべてのニュース', 'corporate-seo-pro' ),
+        'add_new_item'          => __( '新しいニュースを追加', 'corporate-seo-pro' ),
+        'add_new'               => __( '新規追加', 'corporate-seo-pro' ),
+        'new_item'              => __( '新しいニュース', 'corporate-seo-pro' ),
+        'edit_item'             => __( 'ニュースを編集', 'corporate-seo-pro' ),
+        'update_item'           => __( 'ニュースを更新', 'corporate-seo-pro' ),
+        'view_item'             => __( 'ニュースを見る', 'corporate-seo-pro' ),
+        'view_items'            => __( 'ニュースを見る', 'corporate-seo-pro' ),
+        'search_items'          => __( 'ニュースを検索', 'corporate-seo-pro' ),
+        'not_found'             => __( 'ニュースが見つかりません', 'corporate-seo-pro' ),
+        'not_found_in_trash'    => __( 'ゴミ箱にニュースはありません', 'corporate-seo-pro' ),
+    );
+    
+    $args = array(
+        'label'                 => __( 'ニュースリリース', 'corporate-seo-pro' ),
+        'description'           => __( '企業のニュースリリース', 'corporate-seo-pro' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'excerpt' ),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'menu_position'         => 5,
+        'menu_icon'             => 'dashicons-megaphone',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => true,
+        'has_archive'           => true,
+        'exclude_from_search'   => false,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'post',
+        'show_in_rest'          => true,
+        'rewrite'               => array( 'slug' => 'news' ),
+    );
+    
+    register_post_type( 'news', $args );
 }

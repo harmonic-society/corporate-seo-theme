@@ -70,6 +70,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'page-blog-archive'    => '/assets/css/page-blog-archive.css',
         'page-works-archive'   => '/assets/css/page-works-archive.css',
         'page-contact'         => '/assets/css/page-contact.css',
+        'news-release'         => '/assets/css/components/news-release.css',
     );
     
     // 依存関係の設定
