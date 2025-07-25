@@ -86,7 +86,7 @@
     // 既存のメニュー内容をモーダルにコピー
     function copyMenuContent() {
         // 既存のモバイルメニューを探す
-        const existingMenu = document.querySelector('.mobile-menu-nav, .main-navigation');
+        const existingMenu = document.querySelector('.mobile-menu-nav ul, .main-navigation ul, #primary-menu, #mobile-navigation');
         const modalNav = modal.querySelector('#mobile-menu-modal-nav');
         
         if (existingMenu) {
@@ -94,14 +94,16 @@
             const menuClone = existingMenu.cloneNode(true);
             
             // クラス名を調整
-            if (menuClone.querySelector('ul')) {
-                const menuList = menuClone.querySelector('ul');
-                menuList.className = 'mobile-menu-modal-list';
-                modalNav.appendChild(menuList);
-            } else if (menuClone.tagName === 'UL') {
-                menuClone.className = 'mobile-menu-modal-list';
-                modalNav.appendChild(menuClone);
-            }
+            menuClone.className = 'mobile-menu-modal-list';
+            
+            // すべてのインラインスタイルを削除（横並びになっている可能性があるため）
+            menuClone.style.cssText = '';
+            const allElements = menuClone.querySelectorAll('*');
+            allElements.forEach(el => {
+                el.style.cssText = '';
+            });
+            
+            modalNav.appendChild(menuClone);
         }
 
         // ソーシャルリンクをコピー
