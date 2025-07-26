@@ -71,6 +71,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'hamburger-fix'        => '/assets/css/hamburger-fix.css',
         'tablet-optimization'  => '/assets/css/tablet-optimization.css',
         'tablet-touch-styles'  => '/assets/css/tablet-touch-styles.css',
+        'sticky-header'        => '/assets/css/sticky-header.css',
         'page-about'           => '/assets/css/page-about.css',
         'page-services-archive'=> '/assets/css/page-services-archive.css',
         'page-blog-archive'    => '/assets/css/page-blog-archive.css',
@@ -94,6 +95,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'hamburger-fix'        => array( 'corporate-seo-pro-mobile-menu-modal' ),
         'tablet-optimization'  => array( 'corporate-seo-pro-style', 'corporate-seo-pro-typography', 'corporate-seo-pro-utilities' ),
         'tablet-touch-styles'  => array( 'corporate-seo-pro-tablet-optimization' ),
+        'sticky-header'        => array( 'corporate-seo-pro-navigation', 'corporate-seo-pro-header-footer-override', 'corporate-seo-pro-mobile-logo-fix' ),
     );
     
     foreach ( $css_files as $handle => $file ) {
@@ -119,6 +121,7 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
         'tablet-optimizations' => '/assets/js/tablet-optimizations.js',
         'tablet-menu-enhancements' => '/assets/js/tablet-menu-enhancements.js',
         'theme'                => '/assets/js/theme.js',
+        'sticky-header-handler' => '/assets/js/sticky-header-handler.js',
     );
     
     // 依存関係の設定
@@ -126,6 +129,7 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
         'tablet-optimizations' => array( 'corporate-seo-pro-tablet-detection' ),
         'tablet-menu-enhancements' => array( 'corporate-seo-pro-tablet-detection', 'corporate-seo-pro-mobile-menu-modal' ),
         'theme' => array( 'corporate-seo-pro-animation-utils', 'corporate-seo-pro-tablet-detection' ),
+        'sticky-header-handler' => array( 'corporate-seo-pro-theme' ),
     );
     
     foreach ( $js_files as $handle => $file ) {
