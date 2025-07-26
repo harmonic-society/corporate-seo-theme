@@ -90,8 +90,9 @@
         margin-bottom: 0.75rem;
     }
     
-    /* サービス説明文の行数制限 */
-    .service-description {
+    /* サービス説明文の行数制限 - アーカイブページのみに適用 */
+    .archive-service .service-description,
+    .post-type-archive-service .service-description {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;

@@ -127,6 +127,11 @@
     
     .single-service .service-description {
         font-size: 0.95rem !important;
+        display: block !important;
+        -webkit-line-clamp: unset !important;
+        -webkit-box-orient: unset !important;
+        overflow: visible !important;
+        max-height: none !important;
     }
     
     .single-service .service-description p {

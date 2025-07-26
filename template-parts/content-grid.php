@@ -97,13 +97,15 @@ if ( $grid_query->have_posts() ) : ?>
                             </p>
                             
                             <?php 
-                            $price = get_post_meta( get_the_ID(), '_service_price', true );
-                            if ( $price ) : ?>
-                                <div class="service-card-price">
-                                    <span class="price-label">料金:</span>
-                                    <span class="price-value"><?php echo esc_html( $price ); ?></span>
-                                </div>
-                            <?php endif; ?>
+                            if ( function_exists('get_field') ) {
+                                $price = get_field('service_price');
+                                if ( $price ) : ?>
+                                    <div class="service-card-price">
+                                        <span class="price-label">料金:</span>
+                                        <span class="price-value"><?php echo esc_html( $price ); ?></span>
+                                    </div>
+                                <?php endif;
+                            } ?>
                         </div>
                     </a>
                 </article>
