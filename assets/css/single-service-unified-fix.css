@@ -220,7 +220,7 @@
     /* 料金セクションの修正 */
     .single-service .service-pricing {
         padding: 40px 0 !important;
-        overflow: hidden !important;
+        overflow: visible !important; /* Changed from hidden to allow recommended badge */
     }
     
     .single-service .service-pricing .container {

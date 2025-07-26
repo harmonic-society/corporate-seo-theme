@@ -172,6 +172,7 @@
     .single-service .pricing-grid {
         display: block;
         padding: 0 15px;
+        margin-top: 2rem; /* Add space for recommended badges */
     }
     
     .single-service .pricing-card {
@@ -185,7 +186,7 @@
     
     .single-service .pricing-card.recommended {
         transform: none;
-        margin: 0 0 1.5rem 0;
+        margin: 1.5rem 0 1.5rem 0; /* Add top margin for badge space */
     }
     
     .single-service .plan-name {
