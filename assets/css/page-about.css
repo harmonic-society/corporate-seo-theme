@@ -21,7 +21,7 @@
     position: relative;
     padding: 80px 0 120px;
     background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    overflow: visible;
+    overflow: hidden;
     color: #333333;
 }
 
@@ -148,6 +148,7 @@
     right: 0;
     height: 100px;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .hero-wave svg {
@@ -564,8 +565,9 @@
     }
     
     .about-hero {
-        padding: 40px 0 100px;
-        overflow: visible;
+        padding: 40px 0 80px;
+        overflow: hidden;
+        min-height: auto;
     }
     
     .about-hero .container {
@@ -573,7 +575,8 @@
     }
     
     .hero-values {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
     }
     
     .title-main {
@@ -582,9 +585,10 @@
     
     .values-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
         max-width: 100%;
         padding: 0 10px;
+        margin-bottom: 0;
     }
     
     .value-item {

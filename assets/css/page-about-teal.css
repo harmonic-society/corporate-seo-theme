@@ -139,6 +139,7 @@
     position: relative;
 }
 
+/* Section title underline - may cause layout issues
 .section-title::after {
     content: '';
     position: absolute;
@@ -149,6 +150,7 @@
     height: 3px;
     background: #00867b;
 }
+*/
 
 /* Info Content Background */
 .info-content {
@@ -170,7 +172,8 @@
     fill: #f8fafb;
 }
 
-/* Subtle Pattern Overlay */
+/* Subtle Pattern Overlay - Disabled to fix grey line issue */
+/* 
 .about-hero::before {
     content: '';
     position: absolute;
@@ -184,6 +187,7 @@
         radial-gradient(circle at 40% 40%, rgba(0, 134, 123, 0.03) 0%, transparent 50%);
     pointer-events: none;
 }
+*/
 
 /* Animated Accents */
 @keyframes float {
