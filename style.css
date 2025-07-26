@@ -3969,10 +3969,12 @@ span.menu-text {
         gap: 0.25rem;
     }
     
-    /* モバイルでの装飾的アニメーションを無効化 */
-    *,
-    *::before,
-    *::after {
+    /* モバイルでの装飾的アニメーションを無効化 - 特定の要素のみ */
+    .hero-particles,
+    .hero-gradient-1,
+    .hero-gradient-2,
+    .hero-bg-pattern::before,
+    .hero-bg-pattern::after {
         animation: none !important;
         animation-duration: 0s !important;
         animation-delay: 0s !important;
