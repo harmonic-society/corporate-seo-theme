@@ -86,6 +86,12 @@
 
         <!-- モバイルメニュー -->
         <div class="mobile-menu" aria-hidden="true" role="navigation">
+            <!-- 閉じるボタン -->
+            <button class="mobile-menu-close" aria-label="<?php esc_attr_e( 'メニューを閉じる', 'corporate-seo-pro' ); ?>">
+                <span></span>
+                <span></span>
+            </button>
+            
             <div class="mobile-menu-content">
                 <nav class="mobile-menu-nav">
                     <?php

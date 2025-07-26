@@ -431,20 +431,19 @@
    Responsive Styles
    ========================================================================== */
 @media (max-width: 1024px) {
-    .main-navigation {
+    /* デスクトップナビゲーションを非表示 */
+    .nav-wrapper {
         display: none;
     }
     
+    /* モバイルメニューボタンを表示 */
     .mobile-menu-toggle {
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
     }
     
-    .mobile-menu-modal {
-        display: block;
-    }
-    
+    /* ヘッダーCTAを非表示 */
     .header-cta {
         display: none;
     }

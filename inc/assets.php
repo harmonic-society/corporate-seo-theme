@@ -99,6 +99,13 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version 
     );
     
+    wp_enqueue_style( 
+        'corporate-seo-pro-mobile-menu', 
+        get_template_directory_uri() . '/assets/css/components/mobile-menu.css', 
+        array( 'corporate-seo-pro-navigation' ), 
+        $version 
+    );
+    
     // Color scheme
     wp_enqueue_style( 
         'corporate-seo-pro-color-scheme', 
@@ -178,7 +185,7 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
     
     wp_enqueue_script( 
         'corporate-seo-pro-mobile-menu', 
-        get_template_directory_uri() . '/assets/js/mobile-menu-modal.js', 
+        get_template_directory_uri() . '/assets/js/mobile-menu.js', 
         array(), 
         $version, 
         true 
