@@ -24,6 +24,15 @@ body.loaded .hero-description,
     opacity: 1 !important;
 }
 
+/* Works page hero elements - ensure visibility */
+.work-hero .hero-badge,
+.work-hero .hero-title,
+.work-hero .title-main,
+.work-hero .title-sub,
+.work-hero .hero-stats {
+    opacity: 1;
+}
+
 /* Mobile devices - ensure visibility */
 @media (max-width: 768px) {
     .hero-description {
@@ -36,6 +45,18 @@ body.loaded .hero-description,
     .hero-text-section .hero-title-modern,
     .hero-text-section .hero-cta-group {
         opacity: 1 !important;
+    }
+    
+    /* Works page hero elements */
+    .work-hero .hero-content,
+    .work-hero .hero-badge,
+    .work-hero .hero-title,
+    .work-hero .title-main,
+    .work-hero .title-sub,
+    .work-hero .hero-description,
+    .work-hero .hero-stats {
+        opacity: 1 !important;
+        animation: none !important;
     }
 }
 
