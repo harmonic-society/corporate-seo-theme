@@ -79,7 +79,7 @@ get_header(); ?>
                                                             continue;
                                                         }
                                                     ?>
-                                                        <li><i class="fas fa-check"></i> <?php echo esc_html( $feature_text ); ?></li>
+                                                        <li><?php echo esc_html( $feature_text ); ?></li>
                                                     <?php endforeach; ?>
                                                 </ul>
                                             <?php endif; ?>
