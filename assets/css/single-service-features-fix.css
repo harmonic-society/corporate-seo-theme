@@ -34,15 +34,8 @@
     position: relative;
 }
 
-/* タイトル下の装飾線 */
-.single-service .service-features .section-title .title-ja::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--color-primary, #6b46c1);
-    margin: 1.5rem auto 0;
-}
+/* タイトル下の装飾線 - service-grid.cssで定義済みのため削除 */
+/* .single-service .service-features .section-title .title-ja::after は削除 */
 
 /* フォールバックコンテンツのスタイル */
 .single-service .service-features-fallback {
