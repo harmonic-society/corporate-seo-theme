@@ -155,7 +155,7 @@
 /* Info Content Background */
 .info-content {
     background: linear-gradient(135deg, #f8fafb 0%, #e6f7f5 100%) !important;
-    border: 1px solid rgba(0, 134, 123, 0.1);
+    border: none !important;
 }
 
 /* Ensure text contrast in info content */
@@ -320,6 +320,7 @@
     transition: all 0.3s ease;
 }
 
+/* Disabled to prevent shadow issues
 .info-content::before {
     content: '';
     position: absolute;
@@ -334,13 +335,16 @@
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     z-index: -1;
 }
+*/
 
 .info-content:hover {
     transform: translateY(-2px);
 }
 
+/* Disabled along with ::before
 .info-content:hover::before {
     box-shadow: 
         0 14px 28px rgba(0, 134, 123, 0.25),
         0 10px 10px rgba(0, 134, 123, 0.22);
 }
+*/
