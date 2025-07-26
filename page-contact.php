@@ -178,16 +178,6 @@ get_header(); ?>
         </div>
     </section>
     
-    <!-- マップセクション -->
-    <section class="contact-map">
-        <div class="map-overlay">
-            <div class="map-info">
-                <h3>アクセス</h3>
-                <p>JR総武線「幕張本郷駅」より徒歩5分</p>
-            </div>
-        </div>
-        <div id="map" class="map-container"></div>
-    </section>
     
     <!-- CTAセクション -->
     <section class="contact-cta">
