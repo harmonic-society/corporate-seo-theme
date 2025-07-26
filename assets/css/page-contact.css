@@ -140,6 +140,13 @@
     text-align: center;
 }
 
+.contact-hero .hero-content {
+    position: relative;
+    z-index: 10;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
 .contact-subtitle {
     display: inline-block;
     font-size: 0.875rem;
@@ -673,13 +680,35 @@
         padding: 0 20px;
     }
     
+    .contact-hero .hero-content {
+        position: relative !important;
+        z-index: 10 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        color: #ffffff !important;
+        width: 100% !important;
+        display: block !important;
+    }
+    
+    .contact-subtitle,
+    .contact-title,
+    .title-line,
+    .contact-description,
+    .trust-indicators {
+        opacity: 1 !important;
+        visibility: visible !important;
+        animation: none !important;
+    }
+    
     .title-line {
         font-size: 2rem;
+        color: #ffffff !important;
     }
     
     .contact-description {
         font-size: 1rem;
         margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.9) !important;
     }
     
     .trust-indicators {
