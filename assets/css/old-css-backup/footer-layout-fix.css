@@ -1,0 +1,335 @@
+/**
+ * Footer Layout Fix
+ * 
+ * フッターレイアウトの修正 - 中央寄せと適切な配置
+ */
+
+/* ==========================================================================
+   フッターコンテナの修正
+   ========================================================================== */
+
+/* コンテナの中央寄せを確実に */
+body .site-footer .container,
+body #colophon .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+}
+
+/* フッターグリッドの修正 */
+body .footer-main,
+body #colophon .footer-main {
+    padding: 4rem 0 3rem;
+    position: relative;
+    width: 100%;
+}
+
+body .footer-grid,
+body #colophon .footer-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
+    gap: 3rem !important;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+}
+
+/* フッターウィジェットの配置調整 */
+body .footer-widget,
+body #colophon .footer-widget {
+    padding: 0;
+}
+
+/* 会社情報セクションの幅調整 */
+body .footer-info,
+body #colophon .footer-info {
+    max-width: 300px;
+}
+
+/* フッターメニューの適切な間隔 */
+body .footer-widget .footer-menu,
+body #colophon .footer-widget .footer-menu {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* お問い合わせセクションの配置 */
+body .footer-contact-widget,
+body #colophon .footer-contact-widget {
+    justify-self: end;
+}
+
+/* ==========================================================================
+   フッター下部の修正
+   ========================================================================== */
+
+body .footer-bottom,
+body #colophon .footer-bottom {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 2rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body .footer-bottom-content,
+body #colophon .footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* ==========================================================================
+   レスポンシブ対応
+   ========================================================================== */
+
+/* Tablet Optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Container adjustments */
+    body .site-footer .container,
+    body #colophon .container {
+        max-width: 95%;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+    
+    /* Footer main spacing */
+    body .footer-main,
+    body #colophon .footer-main {
+        padding: 3.5rem 0 2.5rem;
+    }
+    
+    /* Grid optimization for tablets */
+    body .footer-grid,
+    body #colophon .footer-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 2.5rem 2rem !important;
+    }
+    
+    /* Widget spacing */
+    body .footer-widget,
+    body #colophon .footer-widget {
+        margin-bottom: 1rem;
+    }
+    
+    /* Info section takes full width on first row */
+    body .footer-info,
+    body #colophon .footer-info {
+        grid-column: 1 / -1;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    /* Center align social links */
+    body .footer-social .social-links,
+    body #colophon .footer-social .social-links {
+        justify-content: center;
+        gap: 1.25rem;
+    }
+    
+    /* Typography adjustments */
+    body .footer-widget h3,
+    body #colophon .footer-widget h3 {
+        font-size: 1.125rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    body .footer-menu li,
+    body #colophon .footer-menu li {
+        margin-bottom: 0.875rem;
+    }
+    
+    body .footer-menu a,
+    body #colophon .footer-menu a {
+        font-size: 0.9375rem;
+        padding: 0.25rem 0;
+        display: inline-block;
+    }
+    
+    /* Contact section optimization */
+    body .footer-contact,
+    body #colophon .footer-contact {
+        font-size: 0.9375rem;
+    }
+    
+    body .footer-contact-item,
+    body #colophon .footer-contact-item {
+        margin-bottom: 1rem;
+    }
+    
+    /* Footer bottom adjustments */
+    body .footer-bottom,
+    body #colophon .footer-bottom {
+        padding: 1.75rem 0;
+    }
+    
+    body .footer-bottom-content,
+    body #colophon .footer-bottom-content {
+        font-size: 0.875rem;
+    }
+}
+
+/* Portrait tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    body .footer-grid,
+    body #colophon .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    body .footer-widget,
+    body #colophon .footer-widget {
+        text-align: center;
+    }
+    
+    body .footer-widget h3::after,
+    body #colophon .footer-widget h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    body .footer-menu,
+    body #colophon .footer-menu {
+        display: inline-block;
+        text-align: left;
+    }
+}
+
+/* Landscape tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    body .footer-main,
+    body #colophon .footer-main {
+        padding: 3rem 0 2rem;
+    }
+    
+    body .footer-grid,
+    body #colophon .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
+        gap: 2rem !important;
+    }
+    
+    body .footer-info,
+    body #colophon .footer-info {
+        grid-column: auto;
+        max-width: 100%;
+        text-align: left;
+    }
+}
+
+@media (max-width: 1024px) {
+    body .footer-grid,
+    body #colophon .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    
+    body .footer-info,
+    body #colophon .footer-info {
+        max-width: 100%;
+    }
+    
+    body .footer-contact-widget,
+    body #colophon .footer-contact-widget {
+        justify-self: start;
+    }
+}
+
+@media (max-width: 768px) {
+    body .site-footer .container,
+    body #colophon .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    body .footer-grid,
+    body #colophon .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+    
+    body .footer-widget h3::after,
+    body #colophon .footer-widget h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    body .footer-social .social-links,
+    body #colophon .footer-social .social-links {
+        justify-content: center;
+    }
+    
+    body .footer-menu,
+    body #colophon .footer-menu {
+        text-align: left;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    body .footer-contact,
+    body #colophon .footer-contact {
+        text-align: left;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    body .footer-bottom-content,
+    body #colophon .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   優先度を高めるための追加スタイル
+   ========================================================================== */
+
+/* header-footer-harmony.cssの上書きを確実にする */
+body .site-footer .footer-main .container .footer-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
+    gap: 3rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* 各カラムが正しく配置されるように */
+body .site-footer .footer-widget {
+    grid-column: auto !important;
+    width: 100% !important;
+}
+
+/* デスクトップでの最小幅を確保 */
+@media (min-width: 1025px) {
+    body .site-footer .footer-main .container {
+        min-width: 1000px;
+    }
+    
+    body .site-footer .footer-widget {
+        min-width: 0;
+    }
+}
+
+/* ==========================================================================
+   デバッグ用境界線（問題解決後は削除）
+   ========================================================================== */
+
+/* 
+.footer-grid {
+    border: 2px solid red;
+}
+
+.footer-widget {
+    border: 1px solid blue;
+}
+
+.container {
+    border: 1px solid green;
+}
+*/

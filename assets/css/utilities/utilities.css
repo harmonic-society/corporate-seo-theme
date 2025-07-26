@@ -1,0 +1,581 @@
+/**
+ * Utilities
+ * 
+ * Utility classes for rapid development
+ * Using strategic specificity to avoid !important overuse
+ */
+
+/* ==========================================================================
+   Display
+   ========================================================================== */
+[class*="u-"] {
+    /* Base specificity boost for all utility classes */
+}
+
+.u-hidden {
+    display: none;
+}
+
+.u-block {
+    display: block;
+}
+
+.u-inline-block {
+    display: inline-block;
+}
+
+.u-inline {
+    display: inline;
+}
+
+.u-flex {
+    display: flex;
+}
+
+.u-inline-flex {
+    display: inline-flex;
+}
+
+.u-grid {
+    display: grid;
+}
+
+.u-table {
+    display: table;
+}
+
+/* ==========================================================================
+   Position
+   ========================================================================== */
+.u-static {
+    position: static;
+}
+
+.u-relative {
+    position: relative;
+}
+
+.u-absolute {
+    position: absolute;
+}
+
+.u-fixed {
+    position: fixed;
+}
+
+.u-sticky {
+    position: sticky;
+}
+
+/* Position Values */
+.u-inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.u-top-0 {
+    top: 0;
+}
+
+.u-right-0 {
+    right: 0;
+}
+
+.u-bottom-0 {
+    bottom: 0;
+}
+
+.u-left-0 {
+    left: 0;
+}
+
+/* ==========================================================================
+   Flexbox
+   ========================================================================== */
+.u-flex-row {
+    flex-direction: row;
+}
+
+.u-flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.u-flex-col {
+    flex-direction: column;
+}
+
+.u-flex-col-reverse {
+    flex-direction: column-reverse;
+}
+
+.u-flex-wrap {
+    flex-wrap: wrap;
+}
+
+.u-flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+.u-justify-start {
+    justify-content: flex-start;
+}
+
+.u-justify-center {
+    justify-content: center;
+}
+
+.u-justify-end {
+    justify-content: flex-end;
+}
+
+.u-justify-between {
+    justify-content: space-between;
+}
+
+.u-justify-around {
+    justify-content: space-around;
+}
+
+.u-justify-evenly {
+    justify-content: space-evenly;
+}
+
+.u-items-start {
+    align-items: flex-start;
+}
+
+.u-items-center {
+    align-items: center;
+}
+
+.u-items-end {
+    align-items: flex-end;
+}
+
+.u-items-stretch {
+    align-items: stretch;
+}
+
+.u-items-baseline {
+    align-items: baseline;
+}
+
+/* Flex Grow/Shrink */
+.u-flex-1 {
+    flex: 1 1 0%;
+}
+
+.u-flex-auto {
+    flex: 1 1 auto;
+}
+
+.u-flex-initial {
+    flex: 0 1 auto;
+}
+
+.u-flex-none {
+    flex: none;
+}
+
+/* ==========================================================================
+   Grid
+   ========================================================================== */
+.u-grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.u-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.u-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.u-grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ==========================================================================
+   Spacing
+   ========================================================================== */
+/* Margin */
+.u-m-0 {
+    margin: 0;
+}
+
+.u-m-auto {
+    margin: auto;
+}
+
+.u-mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.u-my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* Margin Scale */
+.u-mt-0 { margin-top: 0; }
+.u-mt-1 { margin-top: var(--space-xs); }
+.u-mt-2 { margin-top: var(--space-sm); }
+.u-mt-3 { margin-top: var(--space-md); }
+.u-mt-4 { margin-top: var(--space-lg); }
+.u-mt-5 { margin-top: var(--space-xl); }
+.u-mt-6 { margin-top: var(--space-2xl); }
+
+.u-mb-0 { margin-bottom: 0; }
+.u-mb-1 { margin-bottom: var(--space-xs); }
+.u-mb-2 { margin-bottom: var(--space-sm); }
+.u-mb-3 { margin-bottom: var(--space-md); }
+.u-mb-4 { margin-bottom: var(--space-lg); }
+.u-mb-5 { margin-bottom: var(--space-xl); }
+.u-mb-6 { margin-bottom: var(--space-2xl); }
+
+/* Padding */
+.u-p-0 {
+    padding: 0;
+}
+
+/* Padding Scale */
+.u-p-1 { padding: var(--space-xs); }
+.u-p-2 { padding: var(--space-sm); }
+.u-p-3 { padding: var(--space-md); }
+.u-p-4 { padding: var(--space-lg); }
+.u-p-5 { padding: var(--space-xl); }
+.u-p-6 { padding: var(--space-2xl); }
+
+.u-px-0 { padding-left: 0; padding-right: 0; }
+.u-px-1 { padding-left: var(--space-xs); padding-right: var(--space-xs); }
+.u-px-2 { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+.u-px-3 { padding-left: var(--space-md); padding-right: var(--space-md); }
+.u-px-4 { padding-left: var(--space-lg); padding-right: var(--space-lg); }
+.u-px-5 { padding-left: var(--space-xl); padding-right: var(--space-xl); }
+
+.u-py-0 { padding-top: 0; padding-bottom: 0; }
+.u-py-1 { padding-top: var(--space-xs); padding-bottom: var(--space-xs); }
+.u-py-2 { padding-top: var(--space-sm); padding-bottom: var(--space-sm); }
+.u-py-3 { padding-top: var(--space-md); padding-bottom: var(--space-md); }
+.u-py-4 { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+.u-py-5 { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+
+/* Gap */
+.u-gap-0 { gap: 0; }
+.u-gap-1 { gap: var(--space-xs); }
+.u-gap-2 { gap: var(--space-sm); }
+.u-gap-3 { gap: var(--space-md); }
+.u-gap-4 { gap: var(--space-lg); }
+.u-gap-5 { gap: var(--space-xl); }
+
+/* ==========================================================================
+   Width & Height
+   ========================================================================== */
+.u-w-full {
+    width: 100%;
+}
+
+.u-w-auto {
+    width: auto;
+}
+
+.u-w-1\/2 {
+    width: 50%;
+}
+
+.u-w-1\/3 {
+    width: 33.333333%;
+}
+
+.u-w-2\/3 {
+    width: 66.666667%;
+}
+
+.u-w-1\/4 {
+    width: 25%;
+}
+
+.u-w-3\/4 {
+    width: 75%;
+}
+
+.u-h-full {
+    height: 100%;
+}
+
+.u-h-auto {
+    height: auto;
+}
+
+.u-h-screen {
+    height: 100vh;
+}
+
+.u-min-h-screen {
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   Overflow
+   ========================================================================== */
+.u-overflow-auto {
+    overflow: auto;
+}
+
+.u-overflow-hidden {
+    overflow: hidden;
+}
+
+.u-overflow-visible {
+    overflow: visible;
+}
+
+.u-overflow-scroll {
+    overflow: scroll;
+}
+
+.u-overflow-x-auto {
+    overflow-x: auto;
+}
+
+.u-overflow-x-hidden {
+    overflow-x: hidden;
+}
+
+.u-overflow-y-auto {
+    overflow-y: auto;
+}
+
+.u-overflow-y-hidden {
+    overflow-y: hidden;
+}
+
+/* ==========================================================================
+   Z-Index
+   ========================================================================== */
+.u-z-0 {
+    z-index: 0;
+}
+
+.u-z-10 {
+    z-index: 10;
+}
+
+.u-z-20 {
+    z-index: 20;
+}
+
+.u-z-30 {
+    z-index: 30;
+}
+
+.u-z-40 {
+    z-index: 40;
+}
+
+.u-z-50 {
+    z-index: 50;
+}
+
+.u-z-auto {
+    z-index: auto;
+}
+
+/* ==========================================================================
+   Opacity
+   ========================================================================== */
+.u-opacity-0 {
+    opacity: 0;
+}
+
+.u-opacity-25 {
+    opacity: 0.25;
+}
+
+.u-opacity-50 {
+    opacity: 0.5;
+}
+
+.u-opacity-75 {
+    opacity: 0.75;
+}
+
+.u-opacity-100 {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Visibility
+   ========================================================================== */
+.u-visible {
+    visibility: visible;
+}
+
+.u-invisible {
+    visibility: hidden;
+}
+
+/* ==========================================================================
+   Border
+   ========================================================================== */
+.u-border-0 {
+    border-width: 0;
+}
+
+.u-border {
+    border-width: 1px;
+}
+
+.u-border-2 {
+    border-width: 2px;
+}
+
+.u-border-t {
+    border-top-width: 1px;
+}
+
+.u-border-r {
+    border-right-width: 1px;
+}
+
+.u-border-b {
+    border-bottom-width: 1px;
+}
+
+.u-border-l {
+    border-left-width: 1px;
+}
+
+/* Border Radius */
+.u-rounded-none {
+    border-radius: 0;
+}
+
+.u-rounded-sm {
+    border-radius: var(--radius-sm);
+}
+
+.u-rounded {
+    border-radius: var(--radius-md);
+}
+
+.u-rounded-lg {
+    border-radius: var(--radius-lg);
+}
+
+.u-rounded-full {
+    border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   Shadow
+   ========================================================================== */
+.u-shadow-none {
+    box-shadow: none;
+}
+
+.u-shadow-sm {
+    box-shadow: var(--shadow-sm);
+}
+
+.u-shadow {
+    box-shadow: var(--shadow-md);
+}
+
+.u-shadow-lg {
+    box-shadow: var(--shadow-lg);
+}
+
+.u-shadow-xl {
+    box-shadow: var(--shadow-xl);
+}
+
+/* ==========================================================================
+   Responsive Utilities
+   ========================================================================== */
+@media (max-width: 768px) {
+    .u-hidden-mobile {
+        display: none;
+    }
+    
+    .u-block-mobile {
+        display: block;
+    }
+    
+    .u-flex-mobile {
+        display: flex;
+    }
+    
+    .u-flex-col-mobile {
+        flex-direction: column;
+    }
+    
+    .u-w-full-mobile {
+        width: 100%;
+    }
+    
+    .u-text-center-mobile {
+        text-align: center;
+    }
+    
+    .u-px-0-mobile {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .u-hidden-tablet {
+        display: none;
+    }
+    
+    .u-block-tablet {
+        display: block;
+    }
+    
+    .u-flex-tablet {
+        display: flex;
+    }
+    
+    .u-grid-cols-2-tablet {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1025px) {
+    .u-hidden-desktop {
+        display: none;
+    }
+    
+    .u-block-desktop {
+        display: block;
+    }
+    
+    .u-flex-desktop {
+        display: flex;
+    }
+}
+
+/* ==========================================================================
+   Important Overrides (Use Sparingly)
+   ========================================================================== */
+/* Only for critical overrides where cascade cannot be fixed */
+.u-important-hidden {
+    display: none !important;
+}
+
+.u-important-block {
+    display: block !important;
+}
+
+.u-important-w-full {
+    width: 100% !important;
+}
+
+.u-important-overflow-hidden {
+    overflow: hidden !important;
+}

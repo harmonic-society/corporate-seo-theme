@@ -1,0 +1,687 @@
+/**
+ * About Page Styles
+ * 
+ * 会社概要ページのスタイル
+ */
+
+/* ==========================================================================
+   About Page Base
+   ========================================================================== */
+
+.about-page {
+    padding-top: 80px; /* Header height */
+    background-color: #ffffff;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.about-hero {
+    position: relative;
+    padding: 80px 0 120px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    overflow: hidden;
+    color: #333333;
+}
+
+.about-hero .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.hero-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.title-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666666;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.title-main {
+    display: block;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.equals {
+    color: #10b981;
+    font-weight: 900;
+    margin: 0 0.5rem;
+}
+
+/* Values Grid */
+.hero-values {
+    text-align: center;
+}
+
+.values-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 3rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.value-item {
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.value-item[data-value="1"] { animation-delay: 0.1s; }
+.value-item[data-value="2"] { animation-delay: 0.2s; }
+.value-item[data-value="3"] { animation-delay: 0.3s; }
+
+.value-circle {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover .value-circle {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+}
+
+.value-icon {
+    font-size: 3rem;
+    color: white;
+}
+
+.value-number {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: white;
+}
+
+.value-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333333;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Hero Wave */
+.hero-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hero-wave svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================================================
+   Vision Section
+   ========================================================================== */
+
+.vision-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.vision-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.vision-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Vision Visual */
+.vision-visual {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-wrapper {
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.circle h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.circle-vision {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #0b7b6b 0%, #067a8b 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+
+.circle-purpose {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #5bb3a6 0%, #4a9d90 100%);
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.circle-mission {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    display: none;
+}
+
+.circle-values {
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg, #ef6f6c 0%, #e74c3c 100%);
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.circle:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.circle-purpose:hover,
+.circle-values:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Vision Content */
+.vision-content {
+    padding-left: 2rem;
+}
+
+.vision-item {
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateX(30px);
+    animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.vision-item:nth-child(1) { animation-delay: 0.1s; }
+.vision-item:nth-child(2) { animation-delay: 0.2s; }
+.vision-item:nth-child(3) { animation-delay: 0.3s; }
+.vision-item:nth-child(4) { animation-delay: 0.4s; }
+
+.item-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.item-text {
+    font-size: 1.25rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.values-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.values-list li {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+}
+
+.values-list strong {
+    color: #10b981;
+}
+
+/* ==========================================================================
+   Company Info Section
+   ========================================================================== */
+
+.company-info-section {
+    padding: 80px 0;
+    background: #ffffff;
+    color: #333333;
+}
+
+.company-info-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+}
+
+.title-en {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.title-ja {
+    display: block;
+    color: #1a1a1a;
+}
+
+/* Company Info Wrapper */
+.company-info-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.info-content {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 3rem;
+}
+
+.info-list {
+    margin: 0;
+}
+
+.info-item {
+    display: flex;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item dt {
+    font-weight: 700;
+    color: #10b981;
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.info-item dd {
+    margin: 0;
+    color: #333333;
+    line-height: 1.6;
+}
+
+.info-item dd a {
+    color: #10b981;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-item dd a:hover {
+    color: #059669;
+    text-decoration: underline;
+}
+
+/* Info Illustration */
+.info-illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.illustration {
+    width: 100%;
+    height: auto;
+}
+
+/* About CTA Section */
+.about-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    text-align: center;
+}
+
+.about-cta .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.cta-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.about-cta .btn-primary {
+    background: white;
+    color: #10b981;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.about-cta .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.about-cta .btn-primary i {
+    transition: transform 0.3s ease;
+}
+
+.about-cta .btn-primary:hover i {
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure items are visible even without animation */
+@media (prefers-reduced-motion: reduce) {
+    .value-item {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .about-hero {
+        padding: 60px 0 100px;
+    }
+    
+    .values-grid {
+        gap: 2rem;
+    }
+    
+    .value-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .value-icon {
+        font-size: 2.5rem;
+    }
+    
+    .vision-wrapper {
+        gap: 3rem;
+    }
+    
+    .circle {
+        transform: scale(0.9);
+    }
+    
+    .company-info-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .info-content {
+        padding: 2rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .about-page {
+        padding-top: 60px;
+    }
+    
+    .about-hero {
+        padding: 40px 0 80px;
+        overflow: hidden;
+        min-height: auto;
+    }
+    
+    .about-hero .container {
+        padding: 0 20px;
+    }
+    
+    .hero-values {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+    
+    .title-main {
+        font-size: 1.75rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 100%;
+        padding: 0 10px;
+        margin-bottom: 0;
+    }
+    
+    .value-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        animation: none !important;
+    }
+    
+    .value-circle {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 1rem;
+    }
+    
+    .value-icon {
+        font-size: 2rem;
+    }
+    
+    .value-number {
+        width: 35px;
+        height: 35px;
+        font-size: 0.75rem;
+    }
+    
+    .value-title {
+        font-size: 1rem;
+        text-align: center;
+        padding: 0 10px;
+    }
+    
+    .vision-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .vision-visual {
+        height: 400px;
+        margin-bottom: 2rem;
+    }
+    
+    .circle-wrapper {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+    }
+    
+    .circle-vision {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .circle-purpose {
+        width: 130px;
+        height: 130px;
+        left: 25%;
+    }
+    
+    .circle-values {
+        width: 120px;
+        height: 120px;
+        left: 75%;
+    }
+    
+    .circle h3 {
+        font-size: 1rem;
+    }
+    
+    .vision-content {
+        padding-left: 0;
+    }
+    
+    .company-info-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .info-content {
+        padding: 1.5rem;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .info-item dt {
+        width: auto;
+    }
+    
+    .info-illustration {
+        margin-top: 2rem;
+    }
+}

@@ -1,0 +1,102 @@
+/**
+ * Header Footer Override Styles
+ * 
+ * 既存のスタイルを上書きしてHarmonic Societyデザインを適用
+ * 詳細度を高めることで!importantを削減
+ */
+
+/* ヘッダースタイルの上書き - より詳細なセレクタを使用 */
+body #page .site-header {
+    position: sticky;
+    top: 0;
+    height: auto;
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: none;
+}
+
+body #page .site-header.scrolled {
+    box-shadow: var(--harmony-shadow-soft);
+}
+
+/* ナビゲーションスタイル - 階層的セレクタで詳細度を上げる */
+body .site-header .main-navigation a,
+body #masthead .main-navigation a {
+    color: var(--harmony-text);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    height: auto;
+    padding: 0.5rem 0;
+}
+
+body .site-header .main-navigation .menu-line,
+body #masthead .main-navigation .menu-line {
+    display: none;
+}
+
+body .site-header .main-navigation a::after,
+body #masthead .main-navigation a::after {
+    background: linear-gradient(to right, var(--harmony-primary), var(--harmony-secondary));
+}
+
+/* メニューテキストの色を統一 - 複合セレクタで詳細度を確保 */
+body .site-header #primary-menu li a .menu-text,
+body .site-header .main-navigation .menu-text,
+body #primary-menu > li > a > .menu-text,
+body #page .site-header .menu-text {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/* サブメニューのスタイル */
+body .site-header .main-navigation .sub-menu,
+body #masthead .main-navigation ul.sub-menu {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--harmony-shadow-medium);
+    border: none;
+}
+
+body .site-header .main-navigation .sub-menu a,
+body #masthead .main-navigation ul.sub-menu a {
+    color: var(--harmony-text);
+    font-size: 0.9rem;
+}
+
+body .site-header .main-navigation .sub-menu a:hover,
+body #masthead .main-navigation ul.sub-menu a:hover {
+    background: var(--harmony-light);
+    color: var(--harmony-primary);
+}
+
+/* フッタースタイル */
+body #page .site-footer,
+body #colophon.site-footer {
+    background: linear-gradient(180deg, var(--harmony-light) 0%, white 100%);
+    color: var(--harmony-text);
+}
+
+/* モバイルナビゲーション - メディアクエリ内でも詳細度を保つ */
+@media (max-width: 768px) {
+    body .site-header .main-navigation,
+    body #masthead .main-navigation {
+        display: block;
+    }
+    
+    body .site-header .main-navigation .nav-wrapper,
+    body #masthead .main-navigation .nav-wrapper {
+        display: none;
+    }
+    
+    body .site-header .main-navigation.active .nav-wrapper,
+    body #masthead .main-navigation.active .nav-wrapper {
+        display: none;
+    }
+    
+    body #page .site-header {
+        position: sticky;
+        height: auto;
+    }
+}

@@ -1,0 +1,405 @@
+/**
+ * Typography
+ * 
+ * All typography-related styles in one place
+ */
+
+/* ==========================================================================
+   Typography Scale
+   ========================================================================== */
+.text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+.text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   Font Weight
+   ========================================================================== */
+.font-normal {
+    font-weight: 400;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Text Color
+   ========================================================================== */
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-secondary {
+    color: var(--secondary-color);
+}
+
+.text-accent {
+    color: var(--accent-color);
+}
+
+.text-dark {
+    color: var(--text-color);
+}
+
+.text-light {
+    color: var(--text-light);
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.text-success {
+    color: var(--success-color);
+}
+
+.text-error {
+    color: var(--error-color);
+}
+
+/* ==========================================================================
+   Text Alignment
+   ========================================================================== */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+/* ==========================================================================
+   Text Transform
+   ========================================================================== */
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.normal-case {
+    text-transform: none;
+}
+
+/* ==========================================================================
+   Text Decoration
+   ========================================================================== */
+.underline {
+    text-decoration: underline;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Line Height
+   ========================================================================== */
+.leading-none {
+    line-height: 1;
+}
+
+.leading-tight {
+    line-height: 1.25;
+}
+
+.leading-snug {
+    line-height: 1.375;
+}
+
+.leading-normal {
+    line-height: 1.5;
+}
+
+.leading-relaxed {
+    line-height: 1.625;
+}
+
+.leading-loose {
+    line-height: 2;
+}
+
+/* ==========================================================================
+   Letter Spacing
+   ========================================================================== */
+.tracking-tighter {
+    letter-spacing: -0.05em;
+}
+
+.tracking-tight {
+    letter-spacing: -0.025em;
+}
+
+.tracking-normal {
+    letter-spacing: 0;
+}
+
+.tracking-wide {
+    letter-spacing: 0.025em;
+}
+
+.tracking-wider {
+    letter-spacing: 0.05em;
+}
+
+.tracking-widest {
+    letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   Text Overflow
+   ========================================================================== */
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-ellipsis {
+    text-overflow: ellipsis;
+}
+
+.text-clip {
+    text-overflow: clip;
+}
+
+/* ==========================================================================
+   Whitespace
+   ========================================================================== */
+.whitespace-normal {
+    white-space: normal;
+}
+
+.whitespace-nowrap {
+    white-space: nowrap;
+}
+
+.whitespace-pre {
+    white-space: pre;
+}
+
+.whitespace-pre-line {
+    white-space: pre-line;
+}
+
+.whitespace-pre-wrap {
+    white-space: pre-wrap;
+}
+
+/* ==========================================================================
+   Word Break
+   ========================================================================== */
+.break-normal {
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+.break-words {
+    overflow-wrap: break-word;
+}
+
+.break-all {
+    word-break: break-all;
+}
+
+/* ==========================================================================
+   Content Styles
+   ========================================================================== */
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
+}
+
+.content h1:first-child,
+.content h2:first-child,
+.content h3:first-child,
+.content h4:first-child,
+.content h5:first-child,
+.content h6:first-child {
+    margin-top: 0;
+}
+
+.content p {
+    margin-bottom: var(--space-lg);
+}
+
+.content ul,
+.content ol {
+    margin-bottom: var(--space-lg);
+}
+
+.content li {
+    margin-bottom: var(--space-xs);
+}
+
+.content blockquote {
+    margin: var(--space-xl) 0;
+    padding-left: var(--space-lg);
+    border-left: 4px solid var(--border-color);
+    font-style: italic;
+    color: var(--text-light);
+}
+
+.content code {
+    padding: 0.125rem 0.25rem;
+    background-color: var(--light-gray);
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+}
+
+.content pre {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg);
+    background-color: var(--light-gray);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+}
+
+.content pre code {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+/* ==========================================================================
+   Responsive Typography
+   ========================================================================== */
+@media (max-width: 768px) {
+    .text-xs-mobile {
+        font-size: 0.75rem;
+    }
+    
+    .text-sm-mobile {
+        font-size: 0.875rem;
+    }
+    
+    .text-base-mobile {
+        font-size: 1rem;
+    }
+    
+    .text-lg-mobile {
+        font-size: 1.125rem;
+    }
+    
+    .text-xl-mobile {
+        font-size: 1.25rem;
+    }
+    
+    .text-2xl-mobile {
+        font-size: 1.5rem;
+    }
+    
+    .text-3xl-mobile {
+        font-size: 1.875rem;
+    }
+    
+    .text-center-mobile {
+        text-align: center;
+    }
+    
+    .text-left-mobile {
+        text-align: left;
+    }
+    
+    .text-right-mobile {
+        text-align: right;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .text-base-tablet {
+        font-size: 1.0625rem;
+    }
+    
+    .text-lg-tablet {
+        font-size: 1.1875rem;
+    }
+    
+    .text-xl-tablet {
+        font-size: 1.375rem;
+    }
+    
+    .text-2xl-tablet {
+        font-size: 1.625rem;
+    }
+    
+    .text-3xl-tablet {
+        font-size: 2rem;
+    }
+    
+    .text-center-tablet {
+        text-align: center;
+    }
+}

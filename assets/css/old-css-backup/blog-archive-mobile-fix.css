@@ -1,0 +1,258 @@
+/**
+ * Blog Archive Mobile Fix
+ * 
+ * Fixes mobile visibility and scrolling issues for blog archive pages
+ */
+
+/* ==========================================================================
+   Mobile Specific Fixes
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Fix overflow issues */
+    .blog-archive-modern,
+    .archive-page {
+        overflow: visible !important;
+    }
+    
+    /* Fix hero section height and padding */
+    .blog-hero-modern {
+        min-height: 400px !important;
+        padding: 40px 0 !important;
+    }
+    
+    /* Disable problematic animations on mobile */
+    .gradient-layer,
+    .floating-element {
+        animation: none !important;
+    }
+    
+    /* Simplify gradient backgrounds */
+    .hero-gradient-bg {
+        background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%) !important;
+    }
+    
+    .gradient-layer {
+        display: none !important;
+    }
+    
+    /* Fix container padding */
+    .blog-archive-modern .container,
+    .archive-page .container {
+        padding: 0 15px !important;
+        max-width: 100% !important;
+    }
+    
+    /* Fix blog grid */
+    .blog-grid-modern {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        margin-bottom: 40px !important;
+    }
+    
+    /* Fix post card styles */
+    .post-card-modern {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Optimize image container */
+    .post-image-container {
+        aspect-ratio: 16/9 !important;
+        height: auto !important;
+    }
+    
+    /* Fix content wrapper padding */
+    .post-content-wrapper {
+        padding: 1.25rem !important;
+    }
+    
+    /* Fix title sizes */
+    .post-title-modern {
+        font-size: 1.125rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    /* Fix excerpt */
+    .post-excerpt-modern {
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1rem !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 3 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+    
+    /* Fix meta information */
+    .post-meta-modern {
+        font-size: 0.75rem !important;
+        gap: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .author-avatar {
+        width: 24px !important;
+        height: 24px !important;
+    }
+    
+    /* Fix category badge */
+    .post-category-badge {
+        font-size: 0.625rem !important;
+        padding: 0.375rem 0.75rem !important;
+        top: 15px !important;
+        left: 15px !important;
+    }
+    
+    /* Fix read more link */
+    .read-more-modern {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Fix search section */
+    .blog-search-section {
+        padding: 30px 0 !important;
+    }
+    
+    .blog-search-form {
+        gap: 0.75rem !important;
+    }
+    
+    .search-input {
+        font-size: 16px !important; /* Prevent zoom on iOS */
+        padding: 0.875rem 1rem 0.875rem 2.5rem !important;
+    }
+    
+    .search-submit {
+        padding: 0.875rem 1.5rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    /* Fix filter tags */
+    .filter-tags {
+        gap: 0.5rem !important;
+        padding: 0 15px !important;
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+    }
+    
+    .filter-tags::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .filter-tag {
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Fix pagination */
+    .pagination-modern,
+    .pagination {
+        margin-top: 40px !important;
+        gap: 0.25rem !important;
+    }
+    
+    .page-numbers {
+        min-width: 35px !important;
+        height: 35px !important;
+        font-size: 0.875rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    /* Fix archive header */
+    .archive-header {
+        padding: 20px 0 !important;
+    }
+    
+    .archive-title {
+        font-size: 1.75rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .archive-label {
+        font-size: 0.75rem !important;
+        display: block !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* Fix section padding */
+    .blog-content-modern,
+    .archive-posts {
+        padding: 40px 0 !important;
+    }
+    
+    /* Remove hover effects on mobile */
+    .post-card-modern:hover {
+        transform: none !important;
+    }
+    
+    .post-card-modern:hover .post-image {
+        transform: none !important;
+    }
+    
+    /* Fix breadcrumb */
+    .breadcrumb-wrapper {
+        padding: 15px 0 !important;
+        font-size: 0.75rem !important;
+    }
+    
+    /* Performance optimizations */
+    .post-card-modern {
+        will-change: auto !important;
+    }
+    
+    /* Fix no content message */
+    .no-content-wrapper {
+        padding: 40px 15px !important;
+    }
+    
+    .no-content-message {
+        font-size: 0.875rem !important;
+    }
+    
+    .no-content-message h2 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+    .blog-hero-modern {
+        min-height: 350px !important;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .post-title-modern {
+        font-size: 1rem !important;
+    }
+    
+    .blog-grid-modern {
+        gap: 1.25rem !important;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .filter-tag,
+    .page-numbers,
+    .read-more-modern {
+        min-height: 44px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+    }
+}
+
+/* Fix for iOS Safari bounce scroll */
+@supports (-webkit-touch-callout: none) {
+    .blog-archive-modern,
+    .archive-page {
+        -webkit-overflow-scrolling: touch !important;
+    }
+}

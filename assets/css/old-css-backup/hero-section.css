@@ -1,0 +1,601 @@
+/**
+ * Hero Section Styles
+ * 
+ * This file contains all hero section related styles
+ * to avoid conflicts and duplications
+ */
+
+/* ==========================================================================
+   Base Hero Section
+   ========================================================================== */
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    color: var(--hero-text-color, #ffffff);
+}
+
+/* Background Image Layer */
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--hero-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+/* Desktop background attachment */
+@media (min-width: 769px) {
+    .hero-bg-image {
+        background-attachment: fixed;
+    }
+}
+
+/* Mobile background attachment */
+@media (max-width: 768px) {
+    .hero-bg-image {
+        background-attachment: scroll;
+    }
+}
+
+/* ==========================================================================
+   Hero Style Variations
+   ========================================================================== */
+
+/* Image Style */
+.hero-image .hero-bg-image {
+    opacity: 1;
+    filter: none;
+}
+
+.hero-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Gradient Style */
+.hero-gradient .hero-bg-image {
+    opacity: 0.3;
+}
+
+.hero-gradient .hero-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--gradient-start, #10b981) 0%, var(--gradient-end, #059669) 100%);
+    opacity: var(--gradient-opacity, 1);
+    z-index: 2;
+}
+
+/* Overlay for image/video styles */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: var(--overlay-opacity, 1);
+    z-index: 1;
+}
+
+/* Video Style */
+.hero-video .hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-video .hero-video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+/* Particles Style */
+.hero-particles .hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Geometric Style */
+.hero-geometric .hero-geometric-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0.1;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+}
+
+/* ==========================================================================
+   Hero Height Variations
+   ========================================================================== */
+
+.hero-height-small {
+    min-height: 50vh;
+}
+
+.hero-height-default {
+    min-height: 70vh;
+}
+
+.hero-height-large {
+    min-height: 90vh;
+}
+
+.hero-height-full {
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   Hero Content
+   ========================================================================== */
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 0;
+    max-width: none;
+    text-align: var(--hero-text-align, center);
+}
+
+.hero-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+/* Hero Badge */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 2rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.badge-icon {
+    font-size: 1.125rem;
+}
+
+/* Hero Title */
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 2rem;
+    color: #ffffff;
+}
+
+.title-line-1,
+.title-line-2 {
+    display: block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.title-line-1 {
+    animation-delay: 0.2s;
+}
+
+.title-line-2 {
+    position: relative;
+    animation-delay: 0.4s;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hero Lead Text */
+.hero-lead {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+/* Hero Features */
+.hero-features {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.hero-feature,
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.8s forwards;
+}
+
+/* Fallback for animation issues */
+@media (prefers-reduced-motion: reduce) {
+    .hero-feature,
+    .feature-item {
+        opacity: 1 !important;
+        animation: none !important;
+    }
+}
+
+/* Ensure visibility after animation should complete */
+.hero-section.animations-enabled .hero-feature,
+.hero-section.animations-enabled .feature-item {
+    animation-fill-mode: forwards;
+}
+
+/* Force visibility if animation fails */
+.hero-feature,
+.feature-item {
+    animation-fill-mode: forwards;
+}
+
+/* Additional fallback for older browsers */
+@supports not (animation: fadeInUp 0.8s ease-out 0.8s forwards) {
+    .hero-feature,
+    .feature-item {
+        opacity: 1 !important;
+    }
+}
+
+.hero-feature i,
+.feature-item i {
+    font-size: 1.5rem;
+    color: #10b981;
+}
+
+.hero-feature h3,
+.hero-feature span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.hero-feature p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+/* Hero Actions */
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+/* Hero Trust */
+.hero-trust {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 1s forwards;
+}
+
+.trust-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+}
+
+.trust-icon {
+    font-size: 1.25rem;
+}
+
+/* Hero Bottom Wave */
+.hero-bottom-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.hero-bottom-wave svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-bottom-wave path {
+    fill: #ffffff;
+}
+
+/* ==========================================================================
+   Text Alignment Variations
+   ========================================================================== */
+
+.hero-content[style*="text-align: left"] .hero-main {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.hero-content[style*="text-align: left"] .hero-badge {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.hero-content[style*="text-align: left"] .hero-features,
+.hero-content[style*="text-align: left"] .hero-actions {
+    justify-content: flex-start;
+}
+
+.hero-content[style*="text-align: right"] .hero-main {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.hero-content[style*="text-align: right"] .hero-badge {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.hero-content[style*="text-align: right"] .hero-features,
+.hero-content[style*="text-align: right"] .hero-actions {
+    justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Tablet Optimizations
+   ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Hero section adjustments */
+    .hero-section {
+        min-height: calc(100vh - 75px); /* Account for tablet header height */
+    }
+    
+    /* Content spacing */
+    .hero-main {
+        padding: 4rem 2rem;
+        max-width: 900px;
+    }
+    
+    /* Badge optimization */
+    .hero-badge {
+        padding: 0.875rem 2.25rem;
+        font-size: 0.9375rem;
+        margin-bottom: 2.25rem;
+    }
+    
+    .badge-icon {
+        font-size: 1.25rem;
+    }
+    
+    /* Title optimization */
+    .hero-title {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        margin-bottom: 2.25rem;
+        line-height: 1.25;
+    }
+    
+    /* Lead text optimization */
+    .hero-lead {
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        max-width: 700px;
+        margin-bottom: 2.75rem;
+        line-height: 1.65;
+    }
+    
+    /* Features layout */
+    .hero-features {
+        gap: 2.5rem;
+        margin-bottom: 2.75rem;
+    }
+    
+    .hero-feature,
+    .feature-item {
+        gap: 0.625rem;
+    }
+    
+    .hero-feature i,
+    .feature-item i {
+        font-size: 1.625rem;
+    }
+    
+    .hero-feature h3,
+    .hero-feature span {
+        font-size: 1.0625rem;
+    }
+    
+    .hero-feature p {
+        font-size: 0.9375rem;
+    }
+    
+    /* Actions optimization */
+    .hero-actions {
+        gap: 1.25rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    /* Trust section */
+    .trust-text {
+        font-size: 0.9375rem;
+        gap: 0.875rem;
+    }
+    
+    .trust-icon {
+        font-size: 1.375rem;
+    }
+    
+    /* Wave height adjustment */
+    .hero-bottom-wave {
+        height: 100px;
+    }
+    
+    /* Height variations for tablets */
+    .hero-height-small {
+        min-height: 45vh;
+    }
+    
+    .hero-height-default {
+        min-height: 65vh;
+    }
+    
+    .hero-height-large {
+        min-height: 85vh;
+    }
+}
+
+/* Portrait tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    .hero-main {
+        padding: 3.5rem 1.75rem;
+    }
+    
+    .hero-features {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    
+    .hero-title {
+        font-size: clamp(2rem, 4.5vw, 3rem);
+    }
+}
+
+/* Landscape tablets */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .hero-section {
+        min-height: calc(100vh - 70px);
+    }
+    
+    .hero-main {
+        padding: 3rem 2rem;
+    }
+    
+    .hero-bottom-wave {
+        height: 80px;
+    }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: calc(100vh - 60px);
+    }
+    
+    .hero-main {
+        padding: 3rem 1rem;
+    }
+    
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 0.5rem 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-lead {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-features {
+        gap: 2rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+    
+    .hero-bottom-wave {
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-features {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}

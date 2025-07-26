@@ -1,0 +1,313 @@
+/**
+ * Utility Classes
+ * 
+ * Common utility classes for quick styling
+ */
+
+/* ==========================================================================
+   Display Utilities
+   ========================================================================== */
+
+.hidden {
+    display: none !important;
+}
+
+.block {
+    display: block !important;
+}
+
+.inline-block {
+    display: inline-block !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.inline-flex {
+    display: inline-flex !important;
+}
+
+.grid {
+    display: grid !important;
+}
+
+/* ==========================================================================
+   Width Utilities
+   ========================================================================== */
+
+.w-full {
+    width: 100% !important;
+}
+
+.w-auto {
+    width: auto !important;
+}
+
+/* ==========================================================================
+   Text Alignment
+   ========================================================================== */
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+
+/* ==========================================================================
+   Visibility
+   ========================================================================== */
+
+.invisible {
+    visibility: hidden !important;
+}
+
+.visible {
+    visibility: visible !important;
+}
+
+/* ==========================================================================
+   Opacity
+   ========================================================================== */
+
+.opacity-0 {
+    opacity: 0 !important;
+}
+
+.opacity-50 {
+    opacity: 0.5 !important;
+}
+
+.opacity-100 {
+    opacity: 1 !important;
+}
+
+/* ==========================================================================
+   Position
+   ========================================================================== */
+
+.relative {
+    position: relative !important;
+}
+
+.absolute {
+    position: absolute !important;
+}
+
+.fixed {
+    position: fixed !important;
+}
+
+.sticky {
+    position: sticky !important;
+}
+
+/* ==========================================================================
+   Z-Index
+   ========================================================================== */
+
+.z-0 {
+    z-index: 0 !important;
+}
+
+.z-10 {
+    z-index: 10 !important;
+}
+
+.z-20 {
+    z-index: 20 !important;
+}
+
+.z-30 {
+    z-index: 30 !important;
+}
+
+.z-40 {
+    z-index: 40 !important;
+}
+
+.z-50 {
+    z-index: 50 !important;
+}
+
+/* ==========================================================================
+   Tablet-Specific Utilities
+   ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Display utilities for tablets */
+    .hidden-tablet {
+        display: none !important;
+    }
+    
+    .block-tablet {
+        display: block !important;
+    }
+    
+    .inline-block-tablet {
+        display: inline-block !important;
+    }
+    
+    .flex-tablet {
+        display: flex !important;
+    }
+    
+    .grid-tablet {
+        display: grid !important;
+    }
+    
+    /* Flex direction for tablets */
+    .flex-col-tablet {
+        flex-direction: column !important;
+    }
+    
+    .flex-row-tablet {
+        flex-direction: row !important;
+    }
+    
+    /* Text alignment for tablets */
+    .text-left-tablet {
+        text-align: left !important;
+    }
+    
+    .text-center-tablet {
+        text-align: center !important;
+    }
+    
+    .text-right-tablet {
+        text-align: right !important;
+    }
+    
+    /* Width utilities for tablets */
+    .w-full-tablet {
+        width: 100% !important;
+    }
+    
+    .w-auto-tablet {
+        width: auto !important;
+    }
+    
+    .w-50-tablet {
+        width: 50% !important;
+    }
+    
+    /* Margin utilities for tablets */
+    .mx-auto-tablet {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .my-auto-tablet {
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+    }
+    
+    /* Padding utilities for tablets */
+    .p-0-tablet {
+        padding: 0 !important;
+    }
+    
+    .px-0-tablet {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .py-0-tablet {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Gap utilities for tablets */
+    .gap-0-tablet {
+        gap: 0 !important;
+    }
+    
+    .gap-1-tablet {
+        gap: 0.25rem !important;
+    }
+    
+    .gap-2-tablet {
+        gap: 0.5rem !important;
+    }
+    
+    .gap-3-tablet {
+        gap: 0.75rem !important;
+    }
+    
+    .gap-4-tablet {
+        gap: 1rem !important;
+    }
+    
+    /* Order utilities for tablets */
+    .order-1-tablet {
+        order: 1 !important;
+    }
+    
+    .order-2-tablet {
+        order: 2 !important;
+    }
+    
+    .order-3-tablet {
+        order: 3 !important;
+    }
+    
+    .order-first-tablet {
+        order: -1 !important;
+    }
+    
+    .order-last-tablet {
+        order: 999 !important;
+    }
+}
+
+/* Portrait tablet utilities */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    .hidden-tablet-portrait {
+        display: none !important;
+    }
+    
+    .block-tablet-portrait {
+        display: block !important;
+    }
+    
+    .flex-col-tablet-portrait {
+        flex-direction: column !important;
+    }
+    
+    .text-center-tablet-portrait {
+        text-align: center !important;
+    }
+    
+    .w-full-tablet-portrait {
+        width: 100% !important;
+    }
+}
+
+/* Landscape tablet utilities */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .hidden-tablet-landscape {
+        display: none !important;
+    }
+    
+    .block-tablet-landscape {
+        display: block !important;
+    }
+    
+    .flex-row-tablet-landscape {
+        flex-direction: row !important;
+    }
+    
+    .grid-cols-2-tablet-landscape {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}

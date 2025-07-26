@@ -1,0 +1,153 @@
+/**
+ * Mobile Overflow Fix
+ * モバイルでの横スクロール問題を解決
+ */
+
+/* 全体的なオーバーフロー対策 */
+@media (max-width: 768px) {
+    /* html/bodyのオーバーフロー制御 */
+    html,
+    body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative;
+    }
+
+    /* メインコンテンツエリア */
+    #page,
+    #content,
+    .site-content {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* すべてのセクション要素 */
+    main,
+    section,
+    article,
+    aside,
+    header,
+    footer,
+    div {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    /* コンテナの最大幅を制限 */
+    .container {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* フッター装飾要素の制御 */
+    .footer-decoration,
+    .decoration-circle {
+        overflow: hidden !important;
+        max-width: 100vw !important;
+    }
+
+    /* 絶対位置要素の制御 */
+    .decoration-circle {
+        position: absolute !important;
+        right: auto !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
+    /* ヒーローセクションの装飾要素 */
+    .hero-decoration,
+    .hero-shape,
+    .shape-circle {
+        max-width: 100vw !important;
+        overflow: hidden !important;
+    }
+
+    /* グリッドやフレックスボックスの制御 */
+    .footer-grid,
+    .services-grid,
+    .works-grid,
+    .blog-grid {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    /* 画像の制御 */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* テーブルの制御 */
+    table {
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        display: block !important;
+    }
+
+    /* プリフォーマットテキストの制御 */
+    pre,
+    code {
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        word-wrap: break-word !important;
+    }
+}
+
+/* モバイルメニューが開いている時の状態 */
+body.mobile-menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* 既存のモバイルメニューを完全に非表示 */
+.mobile-menu {
+    display: none !important;
+}
+
+.mobile-menu-overlay {
+    display: none !important;
+}
+
+/* デスクトップでモバイルメニューを完全に非表示 */
+@media (min-width: 769px) {
+    .mobile-menu,
+    .mobile-menu-toggle,
+    .mobile-menu-overlay {
+        display: none !important;
+    }
+}
+
+/* 特定の問題のある要素への対処 */
+@media (max-width: 768px) {
+    /* ヘッダーの幅制限 */
+    .site-header {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+
+    /* ナビゲーションの制御 */
+    .main-navigation {
+        max-width: 100% !important;
+    }
+
+    /* ボタンやリンクの制御 */
+    .button,
+    .btn,
+    a {
+        max-width: 100% !important;
+        word-wrap: break-word !important;
+    }
+
+    /* フォーム要素の制御 */
+    input,
+    textarea,
+    select {
+        max-width: 100% !important;
+    }
+}

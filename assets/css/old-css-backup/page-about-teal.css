@@ -1,0 +1,350 @@
+/**
+ * About Page Teal Color Scheme
+ * 
+ * #00867bを基調とした会社概要ページのスタイル
+ */
+
+/* ==========================================================================
+   About Page Teal Theme Override
+   ========================================================================== */
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(135deg, #e6f7f5 0%, #ccede9 100%);
+    color: #1a2e2e !important; /* Darker text for light background */
+}
+
+/* Hero Text Contrast Improvements */
+.hero-title .title-label {
+    color: #00867b !important; /* Brand color for label */
+}
+
+.hero-title .title-main {
+    color: #00867b !important; /* Brand color for main title */
+    font-weight: 800;
+}
+
+.values-title {
+    color: #1a2e2e !important; /* Dark text for light background */
+}
+
+.value-title {
+    color: #0a1f1e !important; /* Dark text below light background */
+}
+
+.equals {
+    color: #00867b !important;
+}
+
+/* Value Circles */
+.value-circle {
+    background: linear-gradient(135deg, #00867b 0%, #00665c 100%) !important;
+    box-shadow: 0 10px 30px rgba(0, 134, 123, 0.3) !important;
+}
+
+.value-item:hover .value-circle {
+    box-shadow: 0 15px 40px rgba(0, 134, 123, 0.4) !important;
+}
+
+/* Vision Section Circles */
+.circle-vision {
+    background: linear-gradient(135deg, #00867b 0%, #00665c 100%) !important;
+}
+
+.circle-purpose {
+    background: linear-gradient(135deg, #4db8ac 0%, #00867b 100%) !important;
+}
+
+.circle-mission {
+    background: linear-gradient(135deg, #ffd93d 0%, #f4c430 100%) !important;
+}
+
+.circle-values {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%) !important;
+}
+
+.circle:hover {
+    box-shadow: 0 20px 40px rgba(0, 134, 123, 0.3) !important;
+}
+
+/* Vision Section Background */
+.vision-section {
+    background: #f5fafa !important; /* Slightly tinted light background */
+}
+
+/* Vision Content */
+.item-title {
+    color: #00665c !important; /* Darker teal for better contrast */
+}
+
+.item-text {
+    color: #1a2e2e !important; /* Dark text for light background */
+}
+
+.values-list li {
+    color: #2d4a4a !important; /* Dark gray for readability */
+}
+
+.values-list strong {
+    color: #00867b !important;
+}
+
+/* Company Info Section */
+.company-info-section {
+    background: #ffffff !important;
+    color: #1a2e2e !important; /* Dark text for white background */
+}
+
+.section-title .title-ja {
+    color: #0a1f1e !important; /* Very dark for white background */
+}
+
+.title-en {
+    color: #00665c !important; /* Darker teal for better contrast */
+}
+
+.info-item dt {
+    color: #00665c !important; /* Darker teal for better contrast */
+}
+
+.info-item dd {
+    color: #2d4a4a !important; /* Dark gray for optimal readability */
+}
+
+.info-item dd a {
+    color: #00867b !important;
+}
+
+.info-item dd a:hover {
+    color: #00665c !important;
+}
+
+/* CTA Section */
+.about-cta {
+    background: linear-gradient(135deg, #00867b 0%, #00665c 100%) !important;
+}
+
+.about-cta .btn-primary {
+    background: white !important;
+    color: #00867b !important;
+}
+
+.about-cta .btn-primary:hover {
+    background: #f0f9ff !important;
+    box-shadow: 0 10px 30px rgba(0, 134, 123, 0.3) !important;
+}
+
+/* Additional Teal Accents */
+.section-title {
+    position: relative;
+}
+
+/* Section title underline - may cause layout issues
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #00867b;
+}
+*/
+
+/* Info Content Background */
+.info-content {
+    background: linear-gradient(135deg, #f8fafb 0%, #e6f7f5 100%) !important;
+    border: none !important;
+}
+
+/* Ensure text contrast in info content */
+.info-content .info-item dt {
+    font-weight: 700;
+}
+
+.info-content .info-item dd {
+    font-weight: 500; /* Slightly bolder for better readability */
+}
+
+/* Enhanced Visual Effects */
+.hero-wave svg path {
+    fill: #f8fafb;
+}
+
+/* Subtle Pattern Overlay - Disabled to fix grey line issue */
+/* 
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 134, 123, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 134, 123, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(0, 134, 123, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+*/
+
+/* Animated Accents */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Animation disabled for now to fix display issues
+.value-circle {
+    animation: float 6s ease-in-out infinite;
+}
+
+.value-item[data-value="1"] .value-circle { animation-delay: 0s; }
+.value-item[data-value="2"] .value-circle { animation-delay: 2s; }
+.value-item[data-value="3"] .value-circle { animation-delay: 4s; }
+*/
+
+/* Focus States */
+.about-cta .btn-primary:focus {
+    outline: 3px solid rgba(0, 134, 123, 0.5);
+    outline-offset: 3px;
+}
+
+/* Gradient Text Effect - Removed for better contrast */
+/* The gradient text effect is disabled to ensure proper text contrast
+@supports (-webkit-background-clip: text) {
+    .title-main {
+        background: linear-gradient(135deg, #00867b 0%, #00665c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    }
+}
+*/
+
+/* Additional Contrast Improvements */
+/* Ensure circle text remains readable */
+.circle h3 {
+    color: white !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Add shadow for better contrast */
+}
+
+/* Value circle text improvements */
+.value-icon,
+.value-number {
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Link hover states with proper contrast */
+.info-item dd a:hover {
+    color: #004d44 !important; /* Very dark teal for hover */
+    text-decoration: underline;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .about-hero {
+        background: linear-gradient(135deg, #e6f7f5 0%, #d4f1ed 100%);
+    }
+    
+    .section-title::after {
+        width: 40px;
+        height: 2px;
+    }
+    
+    .value-circle {
+        animation: none;
+    }
+    
+    /* Force display of values grid on mobile */
+    .hero-values {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .values-grid {
+        display: grid !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .value-item {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Hover Effects Enhancement */
+.value-item {
+    transition: transform 0.3s ease;
+    position: relative !important;
+    display: block !important;
+}
+
+.value-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Button Ripple Effect */
+.about-cta .btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-cta .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0, 134, 123, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.about-cta .btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Card Depth Effect */
+.info-content {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Disabled to prevent shadow issues
+.info-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    box-shadow: 
+        0 1px 3px rgba(0, 134, 123, 0.12),
+        0 1px 2px rgba(0, 134, 123, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    z-index: -1;
+}
+*/
+
+.info-content:hover {
+    transform: translateY(-2px);
+}
+
+/* Disabled along with ::before
+.info-content:hover::before {
+    box-shadow: 
+        0 14px 28px rgba(0, 134, 123, 0.25),
+        0 10px 10px rgba(0, 134, 123, 0.22);
+}
+*/

@@ -1,0 +1,137 @@
+/**
+ * Header CTA Button Fix
+ * 
+ * ヘッダーのお問い合わせボタンレイアウト修正
+ */
+
+/* ==========================================================================
+   ヘッダーCTAボタンの修正
+   ========================================================================== */
+
+/* ナビゲーション内のCTAボタン配置修正 */
+body .main-navigation .nav-wrapper,
+body #masthead .main-navigation .nav-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 2rem !important;
+}
+
+/* CTAボタンのレイアウト修正 */
+body .nav-cta-button,
+body #masthead .nav-cta-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important; /* 内容を中央配置 */
+    gap: 0.5rem !important;
+    padding: 0.75rem 1.5rem !important;
+    background: linear-gradient(135deg, var(--harmony-primary, #4A6FA5), var(--harmony-secondary, #7BA098)) !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 50px !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+    position: relative !important;
+    overflow: hidden !important;
+    min-height: 44px !important; /* 最小高さを設定して垂直中央配置を確実に */
+}
+
+/* テキストとアイコンの適切な配置 */
+body .nav-cta-button .cta-text,
+body #masthead .nav-cta-button .cta-text {
+    display: inline-flex !important;
+    align-items: center !important; /* テキストも垂直中央配置 */
+    line-height: 1 !important; /* 1に戻して正確な中央配置 */
+    height: 100% !important; /* 親要素の高さいっぱいに */
+    margin: 0 !important; /* マージンをリセット */
+}
+
+body .nav-cta-button .cta-icon,
+body #masthead .nav-cta-button .cta-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.3s ease !important;
+    line-height: 1 !important; /* アイコンも同じline-heightに */
+    height: 100% !important; /* 親要素の高さいっぱいに */
+    margin: 0 !important; /* アイコンのマージンもリセット */
+}
+
+/* ホバー効果 */
+body .nav-cta-button:hover,
+body #masthead .nav-cta-button:hover {
+    /* transform はJavaScriptで制御するため削除 */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    color: white !important;
+}
+
+body .nav-cta-button:hover .cta-icon,
+body #masthead .nav-cta-button:hover .cta-icon {
+    transform: translateX(3px) !important;
+}
+
+/* ==========================================================================
+   レスポンシブ対応
+   ========================================================================== */
+
+/* Tablet optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Adjust CTA button for tablets */
+    body .nav-cta-button,
+    body #masthead .nav-cta-button {
+        padding: 0.625rem 1.375rem !important;
+        font-size: 0.875rem !important;
+        border-radius: 45px !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+    }
+    
+    /* Navigation wrapper adjustments */
+    body .main-navigation .nav-wrapper,
+    body #masthead .main-navigation .nav-wrapper {
+        gap: 1.5rem !important;
+    }
+    
+    /* Menu spacing adjustments */
+    body #primary-menu,
+    body #masthead #primary-menu {
+        margin-right: 1.5rem !important;
+    }
+}
+
+/* Portrait tablets - more compact */
+@media (min-width: 769px) and (max-width: 900px) and (orientation: portrait) {
+    body .nav-cta-button,
+    body #masthead .nav-cta-button {
+        padding: 0.5rem 1.25rem !important;
+        font-size: 0.8125rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* モバイルではCTAボタンを非表示 */
+    body .nav-cta-button,
+    body #masthead .nav-cta-button {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   ナビゲーションメニューとの間隔調整
+   ========================================================================== */
+
+/* メインメニューとCTAボタンの間隔 */
+body #primary-menu,
+body #masthead #primary-menu {
+    margin-right: 2rem !important;
+    flex: 1 1 auto !important;
+}
+
+/* メニューアイテムの配置調整 */
+body #primary-menu > li:last-child,
+body #masthead #primary-menu > li:last-child {
+    margin-right: 0 !important;
+}

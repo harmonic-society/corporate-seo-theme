@@ -1,0 +1,522 @@
+/**
+ * Navigation Component
+ * 
+ * Complete navigation system including desktop and mobile
+ */
+
+/* ==========================================================================
+   Site Header
+   ========================================================================== */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow-sm);
+    z-index: var(--z-sticky);
+    transition: all var(--transition-base);
+    height: var(--header-height);
+}
+
+.site-header.scrolled {
+    height: calc(var(--header-height) - 10px);
+    box-shadow: var(--shadow-md);
+}
+
+.header-container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+/* ==========================================================================
+   Site Branding
+   ========================================================================== */
+.site-branding {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.site-logo {
+    display: block;
+    max-height: 50px;
+    transition: transform var(--transition-base);
+}
+
+.site-logo:hover {
+    transform: scale(1.05);
+}
+
+.site-logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.site-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.site-title a:hover {
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   Desktop Navigation
+   ========================================================================== */
+.main-navigation {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.primary-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--space-xl);
+}
+
+.primary-menu > li {
+    position: relative;
+}
+
+.primary-menu > li > a {
+    display: flex;
+    align-items: center;
+    padding: var(--space-sm) 0;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color var(--transition-base);
+    position: relative;
+}
+
+.primary-menu > li > a:hover,
+.primary-menu > li > a:focus {
+    color: var(--primary-color);
+}
+
+/* Active/Current Menu Item */
+.primary-menu > li.current-menu-item > a,
+.primary-menu > li.current-menu-parent > a {
+    color: var(--primary-color);
+}
+
+.primary-menu > li.current-menu-item > a::after,
+.primary-menu > li.current-menu-parent > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(1);
+}
+
+/* Hover Effect */
+.primary-menu > li > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform var(--transition-base);
+}
+
+.primary-menu > li > a:hover::after {
+    transform: scaleX(1);
+}
+
+/* ==========================================================================
+   Dropdown Menu
+   ========================================================================== */
+.primary-menu .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-color);
+    min-width: 200px;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) 0;
+    list-style: none;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-base);
+    z-index: var(--z-dropdown);
+}
+
+.primary-menu li:hover > .sub-menu,
+.primary-menu li:focus-within > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sub-menu li {
+    margin: 0;
+}
+
+.sub-menu a {
+    display: block;
+    padding: var(--space-sm) var(--space-lg);
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all var(--transition-base);
+}
+
+.sub-menu a:hover,
+.sub-menu a:focus {
+    background-color: var(--light-gray);
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   CTA Button
+   ========================================================================== */
+.header-cta {
+    margin-left: var(--space-xl);
+}
+
+.header-cta .cta-button {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+.header-cta .cta-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   Mobile Menu Toggle
+   ========================================================================== */
+.mobile-menu-toggle {
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: var(--z-modal);
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity var(--transition-base);
+}
+
+.mobile-menu-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Hamburger Icon */
+.hamburger {
+    position: relative;
+    width: 24px;
+    height: 20px;
+    display: inline-block;
+    pointer-events: none;
+}
+
+.hamburger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+    transition: all var(--transition-base);
+    transform-origin: center;
+    display: block;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger span:nth-child(3) {
+    bottom: 0;
+}
+
+/* Active state */
+.mobile-menu-toggle.is-active .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-toggle.is-active .hamburger span:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+}
+
+.mobile-menu-toggle.is-active .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ==========================================================================
+   Mobile Menu Modal
+   ========================================================================== */
+.mobile-menu-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: var(--z-modal-backdrop);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.mobile-menu-modal.is-active {
+    opacity: 1;
+}
+
+.mobile-menu-container {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow-xl);
+    transition: right var(--transition-base);
+    overflow-y: auto;
+    z-index: var(--z-modal);
+}
+
+.mobile-menu-modal.is-active .mobile-menu-container {
+    right: 0;
+}
+
+/* Mobile Menu Header */
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu-close {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: color var(--transition-base);
+}
+
+.mobile-menu-close:hover {
+    color: var(--primary-color);
+}
+
+/* Mobile Menu Navigation */
+.mobile-menu {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-lg);
+}
+
+.mobile-menu li {
+    margin-bottom: var(--space-md);
+}
+
+.mobile-menu a {
+    display: block;
+    padding: var(--space-sm) 0;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 500;
+    transition: color var(--transition-base);
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:focus {
+    color: var(--primary-color);
+}
+
+.mobile-menu .current-menu-item > a {
+    color: var(--primary-color);
+}
+
+/* Mobile Sub-menu */
+.mobile-menu .sub-menu {
+    list-style: none;
+    margin: var(--space-sm) 0 0 var(--space-lg);
+    padding: 0;
+}
+
+.mobile-menu .sub-menu a {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Mobile CTA */
+.mobile-menu-cta {
+    padding: var(--space-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.mobile-menu-cta .cta-button {
+    display: block;
+    width: 100%;
+    padding: var(--space-md);
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all var(--transition-base);
+}
+
+.mobile-menu-cta .cta-button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .main-navigation {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .mobile-menu-modal {
+        display: block;
+    }
+    
+    .header-cta {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        height: var(--header-height-mobile);
+    }
+    
+    .site-header.scrolled {
+        height: var(--header-height-mobile);
+    }
+    
+    .site-logo img {
+        height: 40px;
+    }
+    
+    .site-title {
+        font-size: 1.25rem;
+    }
+    
+    .mobile-menu-container {
+        max-width: 100%;
+    }
+}
+
+/* ==========================================================================
+   Sticky Header Behavior
+   ========================================================================== */
+body.admin-bar .site-header {
+    top: 32px;
+}
+
+@media (max-width: 782px) {
+    body.admin-bar .site-header {
+        top: 46px;
+    }
+}
+
+/* Add padding to body to account for fixed header */
+body {
+    padding-top: var(--header-height);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: var(--header-height-mobile);
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+.menu-item a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Skip navigation link */
+.skip-nav {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: var(--primary-color);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    z-index: var(--z-tooltip);
+}
+
+.skip-nav:focus {
+    top: 10px;
+}

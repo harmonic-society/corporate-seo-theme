@@ -21,9 +21,6 @@ function corporate_seo_pro_scripts() {
     // JavaScript files
     corporate_seo_pro_enqueue_scripts( $theme_version );
     
-    // Conditional assets
-    corporate_seo_pro_enqueue_conditional_assets( $theme_version );
-    
     // External libraries
     corporate_seo_pro_enqueue_libraries();
 }
@@ -36,74 +33,114 @@ function corporate_seo_pro_enqueue_styles( $version ) {
     // メインスタイルシート
     wp_enqueue_style( 'corporate-seo-pro-style', get_stylesheet_uri(), array(), $version );
     
-    // カラースキーム（ティール）
+    // Base styles (order matters!)
     wp_enqueue_style( 
-        'corporate-seo-pro-color-scheme-teal', 
-        get_template_directory_uri() . '/assets/css/color-scheme-teal.css', 
+        'corporate-seo-pro-base', 
+        get_template_directory_uri() . '/assets/css/base/base.css', 
         array( 'corporate-seo-pro-style' ), 
         $version 
     );
     
-    // モジュール化されたCSSファイル
-    $css_files = array(
-        'typography'           => '/assets/css/typography.css',
-        'navigation'           => '/assets/css/navigation.css',
-        'buttons'              => '/assets/css/buttons.css',
-        'hero'                 => '/assets/css/hero-section.css',
-        'hero-modern'          => '/assets/css/hero-modern.css',
-        'forms'                => '/assets/css/forms.css',
-        'blog-archive'         => '/assets/css/blog-archive.css',
-        'utilities'            => '/assets/css/utilities.css',
-        'utilities-refactored' => '/assets/css/utilities-refactored.css',
-        'cleanup'              => '/assets/css/cleanup.css',
-        'header-footer'        => '/assets/css/header-footer-harmony.css',
-        'header-footer-override'=> '/assets/css/header-footer-override.css',
-        'header-cta-fix'       => '/assets/css/header-cta-fix.css',
-        'service-acf-fix'      => '/assets/css/service-acf-fix.css',
-        'service-inquiry-fix'  => '/assets/css/service-inquiry-fix.css',
-        'service-grid'         => '/assets/css/service-grid.css',
-        'service-archive-mobile-fix' => '/assets/css/service-archive-mobile-fix.css',
-        'mobile-menu-unified'  => '/assets/css/mobile-menu-unified.css',
-        'mobile-menu-button-fix' => '/assets/css/mobile-menu-button-fix.css',
-        'mobile-overflow-fix'  => '/assets/css/mobile-overflow-fix.css',
-        'mobile-logo-fix'      => '/assets/css/mobile-logo-fix.css',
-        'mobile-menu-modal'    => '/assets/css/mobile-menu-modal.css',
-        'hamburger-fix'        => '/assets/css/hamburger-fix.css',
-        'tablet-optimization'  => '/assets/css/tablet-optimization.css',
-        'tablet-touch-styles'  => '/assets/css/tablet-touch-styles.css',
-        'page-about'           => '/assets/css/page-about.css',
-        'page-services-archive'=> '/assets/css/page-services-archive.css',
-        'page-blog-archive'    => '/assets/css/page-blog-archive.css',
-        'page-works-archive'   => '/assets/css/page-works-archive.css',
-        'page-contact'         => '/assets/css/page-contact.css',
-        'news-release'         => '/assets/css/components/news-release.css',
-        'sticky-header'        => '/assets/css/sticky-header.css',
+    wp_enqueue_style( 
+        'corporate-seo-pro-typography', 
+        get_template_directory_uri() . '/assets/css/base/typography.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
     );
     
-    // 依存関係の設定
-    $dependencies = array(
-        'utilities-refactored' => array( 'corporate-seo-pro-utilities' ),
-        'cleanup'              => array( 'corporate-seo-pro-style' ),
-        'header-footer-override'=> array( 'corporate-seo-pro-header-footer' ),
-        'header-cta-fix'       => array( 'corporate-seo-pro-header-footer' ),
-        'service-archive-mobile-fix' => array( 'corporate-seo-pro-style' ),
-        'mobile-menu-unified'  => array( 'corporate-seo-pro-navigation' ),
-        'mobile-menu-button-fix' => array( 'corporate-seo-pro-mobile-menu-unified' ),
-        'mobile-overflow-fix'  => array( 'corporate-seo-pro-style' ),
-        'mobile-logo-fix'      => array( 'corporate-seo-pro-navigation' ),
-        'mobile-menu-modal'    => array( 'corporate-seo-pro-style' ),
-        'hamburger-fix'        => array( 'corporate-seo-pro-mobile-menu-modal' ),
-        'tablet-optimization'  => array( 'corporate-seo-pro-style', 'corporate-seo-pro-typography', 'corporate-seo-pro-utilities' ),
-        'tablet-touch-styles'  => array( 'corporate-seo-pro-tablet-optimization' ),
-        'sticky-header'        => array( 'corporate-seo-pro-style', 'corporate-seo-pro-navigation', 'corporate-seo-pro-header-footer-override', 'corporate-seo-pro-mobile-logo-fix', 'corporate-seo-pro-mobile-overflow-fix', 'corporate-seo-pro-tablet-optimization' ),
+    wp_enqueue_style( 
+        'corporate-seo-pro-responsive', 
+        get_template_directory_uri() . '/assets/css/base/responsive.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
     );
     
-    foreach ( $css_files as $handle => $file ) {
-        $deps = isset( $dependencies[ $handle ] ) ? $dependencies[ $handle ] : array();
+    // Utilities
+    wp_enqueue_style( 
+        'corporate-seo-pro-utilities', 
+        get_template_directory_uri() . '/assets/css/utilities/utilities.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
+    );
+    
+    // Components
+    wp_enqueue_style( 
+        'corporate-seo-pro-navigation', 
+        get_template_directory_uri() . '/assets/css/components/navigation.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
+    );
+    
+    wp_enqueue_style( 
+        'corporate-seo-pro-buttons', 
+        get_template_directory_uri() . '/assets/css/components/buttons.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
+    );
+    
+    wp_enqueue_style( 
+        'corporate-seo-pro-forms', 
+        get_template_directory_uri() . '/assets/css/components/forms.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
+    );
+    
+    wp_enqueue_style( 
+        'corporate-seo-pro-hero', 
+        get_template_directory_uri() . '/assets/css/components/hero.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
+    );
+    
+    wp_enqueue_style( 
+        'corporate-seo-pro-footer', 
+        get_template_directory_uri() . '/assets/css/components/footer.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
+    );
+    
+    // Color scheme
+    wp_enqueue_style( 
+        'corporate-seo-pro-color-scheme', 
+        get_template_directory_uri() . '/assets/css/color-scheme-teal.css', 
+        array( 'corporate-seo-pro-base' ), 
+        $version 
+    );
+    
+    // Page-specific styles (loaded conditionally)
+    corporate_seo_pro_enqueue_conditional_styles( $version );
+}
+
+/**
+ * 条件付きスタイルの読み込み
+ */
+function corporate_seo_pro_enqueue_conditional_styles( $version ) {
+    // Service pages
+    if ( is_singular( 'service' ) || is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
         wp_enqueue_style( 
-            'corporate-seo-pro-' . $handle, 
-            get_template_directory_uri() . $file, 
-            $deps, 
+            'corporate-seo-pro-service', 
+            get_template_directory_uri() . '/assets/css/components/service.css', 
+            array( 'corporate-seo-pro-base' ), 
+            $version 
+        );
+    }
+    
+    // All page templates
+    if ( is_page() ) {
+        wp_enqueue_style( 
+            'corporate-seo-pro-pages', 
+            get_template_directory_uri() . '/assets/css/pages/pages.css', 
+            array( 'corporate-seo-pro-base' ), 
+            $version 
+        );
+    }
+    
+    // News/Blog components
+    if ( is_home() || is_archive() || is_single() || is_category() || is_tag() ) {
+        wp_enqueue_style( 
+            'corporate-seo-pro-news-release', 
+            get_template_directory_uri() . '/assets/css/components/news-release.css', 
+            array( 'corporate-seo-pro-base' ), 
             $version 
         );
     }
@@ -113,85 +150,70 @@ function corporate_seo_pro_enqueue_styles( $version ) {
  * JavaScriptファイルの読み込み
  */
 function corporate_seo_pro_enqueue_scripts( $version ) {
-    // 共通スクリプト
-    $js_files = array(
-        'animation-utils'      => '/assets/js/utils/animation-utils.js',
-        'tablet-detection'     => '/assets/js/utils/tablet-detection.js',
-        'mobile-menu-modal'    => '/assets/js/mobile-menu-modal.js',
-        'tablet-optimizations' => '/assets/js/tablet-optimizations.js',
-        'tablet-menu-enhancements' => '/assets/js/tablet-menu-enhancements.js',
-        'theme'                => '/assets/js/theme.js',
-        'sticky-header-handler' => '/assets/js/sticky-header-handler.js',
+    // Utility scripts
+    wp_enqueue_script( 
+        'corporate-seo-pro-animation-utils', 
+        get_template_directory_uri() . '/assets/js/utils/animation-utils.js', 
+        array(), 
+        $version, 
+        true 
     );
     
-    // 依存関係の設定
-    $dependencies = array(
-        'tablet-optimizations' => array( 'corporate-seo-pro-tablet-detection' ),
-        'tablet-menu-enhancements' => array( 'corporate-seo-pro-tablet-detection', 'corporate-seo-pro-mobile-menu-modal' ),
-        'theme' => array( 'corporate-seo-pro-animation-utils', 'corporate-seo-pro-tablet-detection' ),
-        'sticky-header-handler' => array( 'corporate-seo-pro-theme' ),
+    wp_enqueue_script( 
+        'corporate-seo-pro-tablet-detection', 
+        get_template_directory_uri() . '/assets/js/utils/tablet-detection.js', 
+        array(), 
+        $version, 
+        true 
     );
     
-    foreach ( $js_files as $handle => $file ) {
-        $deps = isset( $dependencies[ $handle ] ) ? $dependencies[ $handle ] : array();
-        wp_enqueue_script( 
-            'corporate-seo-pro-' . $handle, 
-            get_template_directory_uri() . $file, 
-            $deps, 
-            $version, 
-            true 
-        );
-    }
+    // Navigation
+    wp_enqueue_script( 
+        'corporate-seo-pro-mobile-menu', 
+        get_template_directory_uri() . '/assets/js/mobile-menu-modal.js', 
+        array(), 
+        $version, 
+        true 
+    );
     
-    // ローカライズ
+    // Main theme script
+    wp_enqueue_script( 
+        'corporate-seo-pro-theme', 
+        get_template_directory_uri() . '/assets/js/theme.js', 
+        array( 'corporate-seo-pro-animation-utils', 'corporate-seo-pro-tablet-detection' ), 
+        $version, 
+        true 
+    );
+    
+    // Sticky header
+    wp_enqueue_script( 
+        'corporate-seo-pro-sticky-header', 
+        get_template_directory_uri() . '/assets/js/sticky-header-handler.js', 
+        array( 'corporate-seo-pro-theme' ), 
+        $version, 
+        true 
+    );
+    
+    // Localization
     wp_localize_script( 'corporate-seo-pro-theme', 'corporateSEOPro', array(
         'menuOpen'  => esc_html__( 'メニューを開く', 'corporate-seo-pro' ),
         'menuClose' => esc_html__( 'メニューを閉じる', 'corporate-seo-pro' ),
     ) );
+    
+    // Conditional scripts
+    corporate_seo_pro_enqueue_conditional_scripts( $version );
 }
 
 /**
- * 条件付きアセットの読み込み
+ * 条件付きスクリプトの読み込み
  */
-function corporate_seo_pro_enqueue_conditional_assets( $version ) {
-    // フロントページ
+function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
+    // Front page
     if ( is_front_page() ) {
-        // Service mobile image fix CSS
-        wp_enqueue_style( 
-            'corporate-seo-pro-service-mobile-image-fix', 
-            get_template_directory_uri() . '/assets/css/service-mobile-image-fix.css', 
-            array( 'corporate-seo-pro-style' ), 
-            $version 
-        );
-        // Hero feature fix CSS
-        wp_enqueue_style( 
-            'corporate-seo-pro-hero-feature-fix', 
-            get_template_directory_uri() . '/assets/css/hero-feature-fix.css', 
-            array( 'corporate-seo-pro-style' ), 
-            $version 
-        );
-        
-        // Hero description animation fix CSS
-        wp_enqueue_style( 
-            'corporate-seo-pro-hero-description-fix', 
-            get_template_directory_uri() . '/assets/css/hero-description-fix.css', 
-            array( 'corporate-seo-pro-hero-modern' ), 
-            $version 
-        );
-        
         wp_enqueue_script( 
             'corporate-seo-pro-hero-animations', 
             get_template_directory_uri() . '/assets/js/hero-animations-optimized.js', 
             array( 'corporate-seo-pro-animation-utils' ), 
-            $version, 
-            true 
-        );
-        
-        // Hero feature fix JS
-        wp_enqueue_script( 
-            'corporate-seo-pro-hero-feature-fix', 
-            get_template_directory_uri() . '/assets/js/hero-feature-fix.js', 
-            array(), 
             $version, 
             true 
         );
@@ -205,7 +227,7 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
         );
     }
     
-    // ブログ詳細ページ
+    // Single post
     if ( is_singular( 'post' ) ) {
         wp_enqueue_script( 
             'corporate-seo-pro-single', 
@@ -214,6 +236,7 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             $version, 
             true 
         );
+        
         wp_enqueue_script( 
             'corporate-seo-pro-toc', 
             get_template_directory_uri() . '/assets/js/toc.js', 
@@ -223,14 +246,8 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
         );
     }
     
-    // 検索ページ
+    // Search page
     if ( is_search() ) {
-        wp_enqueue_style( 
-            'corporate-seo-pro-blog-search', 
-            get_template_directory_uri() . '/assets/css/blog-search.css', 
-            array( 'corporate-seo-pro-style' ), 
-            $version 
-        );
         wp_enqueue_script( 
             'corporate-seo-pro-blog-search', 
             get_template_directory_uri() . '/assets/js/blog-search.js', 
@@ -239,34 +256,14 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             true 
         );
         
-        // REST APIのURLをJavaScriptに渡す
         wp_localize_script( 'corporate-seo-pro-blog-search', 'wp_vars', array(
             'rest_url' => esc_url_raw( rest_url() ),
             'nonce' => wp_create_nonce( 'wp_rest' ),
         ) );
     }
     
-    // ブログアーカイブ
+    // Blog archive
     if ( is_home() || is_archive() || is_category() || is_tag() ) {
-        // ブログアーカイブページCSS
-        if ( is_home() ) {
-            wp_enqueue_style( 
-                'corporate-seo-pro-page-blog-archive', 
-                get_template_directory_uri() . '/assets/css/page-blog-archive.css', 
-                array( 'corporate-seo-pro-style' ), 
-                $version 
-            );
-        }
-        
-        // Blog archive mobile fix CSS
-        wp_enqueue_style( 
-            'corporate-seo-pro-blog-archive-mobile-fix', 
-            get_template_directory_uri() . '/assets/css/blog-archive-mobile-fix.css', 
-            array( 'corporate-seo-pro-style' ), 
-            $version,
-            'screen and (max-width: 768px)'
-        );
-        
         wp_enqueue_script( 
             'corporate-seo-pro-blog-archive', 
             get_template_directory_uri() . '/assets/js/blog-archive-optimized.js', 
@@ -276,23 +273,8 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
         );
     }
     
-    // Aboutページ
+    // About page
     if ( is_page_template( 'page-about.php' ) ) {
-        wp_enqueue_style( 
-            'corporate-seo-pro-page-about', 
-            get_template_directory_uri() . '/assets/css/page-about.css', 
-            array( 'corporate-seo-pro-style' ), 
-            $version 
-        );
-        
-        // ティールカラースキーム適用
-        wp_enqueue_style( 
-            'corporate-seo-pro-page-about-teal', 
-            get_template_directory_uri() . '/assets/css/page-about-teal.css', 
-            array( 'corporate-seo-pro-page-about', 'corporate-seo-pro-color-scheme-teal' ), 
-            $version 
-        );
-        
         wp_enqueue_script( 
             'corporate-seo-pro-about', 
             get_template_directory_uri() . '/assets/js/about-animations-optimized.js', 
@@ -302,14 +284,8 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
         );
     }
     
-    // Contactページ
+    // Contact page
     if ( is_page_template( 'page-contact.php' ) ) {
-        wp_enqueue_style( 
-            'corporate-seo-pro-page-contact', 
-            get_template_directory_uri() . '/assets/css/page-contact.css', 
-            array( 'corporate-seo-pro-style' ), 
-            $version 
-        );
         wp_enqueue_script( 
             'corporate-seo-pro-contact', 
             get_template_directory_uri() . '/assets/js/contact.js', 
@@ -317,6 +293,7 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             $version, 
             true 
         );
+        
         wp_enqueue_script( 
             'corporate-seo-pro-cf7-mobile-fix', 
             get_template_directory_uri() . '/assets/js/cf7-mobile-fix.js', 
@@ -326,44 +303,8 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
         );
     }
     
-    // サービス関連ページ
+    // Service pages
     if ( is_singular( 'service' ) || is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
-        // サービスアーカイブページ
-        if ( is_post_type_archive( 'service' ) ) {
-            wp_enqueue_style( 
-                'corporate-seo-pro-page-services-archive', 
-                get_template_directory_uri() . '/assets/css/page-services-archive.css', 
-                array( 'corporate-seo-pro-style' ), 
-                $version 
-            );
-        }
-        
-        // サービス詳細ページ
-        if ( is_singular( 'service' ) ) {
-            wp_enqueue_style( 
-                'corporate-seo-pro-single-service', 
-                get_template_directory_uri() . '/assets/css/pages/single-service.css', 
-                array( 'corporate-seo-pro-style' ), 
-                $version 
-            );
-            
-            // サービス詳細ページのモバイル修正CSS
-            wp_enqueue_style( 
-                'corporate-seo-pro-single-service-mobile-fix', 
-                get_template_directory_uri() . '/assets/css/single-service-mobile-fix.css', 
-                array( 'corporate-seo-pro-single-service' ), 
-                $version 
-            );
-            
-            // サービス詳細ページの特徴セクション修正CSS
-            wp_enqueue_style( 
-                'corporate-seo-pro-single-service-features-fix', 
-                get_template_directory_uri() . '/assets/css/single-service-features-fix.css', 
-                array( 'corporate-seo-pro-single-service' ), 
-                $version 
-            );
-        }
-        
         wp_enqueue_script( 
             'corporate-seo-pro-service', 
             get_template_directory_uri() . '/assets/js/single-service.js', 
@@ -371,61 +312,10 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
             $version, 
             true 
         );
-        
-        // サービスページ用のACF修正CSS
-        wp_enqueue_style( 
-            'corporate-seo-pro-service-acf-fix', 
-            get_template_directory_uri() . '/assets/css/service-acf-fix.css', 
-            array( 'corporate-seo-pro-style' ), 
-            $version 
-        );
-        
-        // サービスページ用のCTA修正CSS
-        wp_enqueue_style( 
-            'corporate-seo-pro-service-inquiry-fix', 
-            get_template_directory_uri() . '/assets/css/service-inquiry-fix.css', 
-            array( 'corporate-seo-pro-style' ), 
-            $version 
-        );
-        
-        // サービス詳細ページ用のお問い合わせセクションモバイル修正CSS
-        if ( is_singular( 'service' ) ) {
-            wp_enqueue_style( 
-                'corporate-seo-pro-single-service-inquiry-mobile-fix', 
-                get_template_directory_uri() . '/assets/css/single-service-inquiry-mobile-fix.css', 
-                array( 'corporate-seo-pro-service-inquiry-fix' ), 
-                $version 
-            );
-            
-            // サービス詳細ページの統合修正CSS（最高優先度）
-            wp_enqueue_style( 
-                'corporate-seo-pro-single-service-unified-fix', 
-                get_template_directory_uri() . '/assets/css/single-service-unified-fix.css', 
-                array( 
-                    'corporate-seo-pro-style',
-                    'corporate-seo-pro-cleanup',
-                    'corporate-seo-pro-single-service',
-                    'corporate-seo-pro-single-service-mobile-fix',
-                    'corporate-seo-pro-single-service-features-fix',
-                    'corporate-seo-pro-single-service-inquiry-mobile-fix'
-                ), 
-                $version 
-            );
-        }
     }
     
-    // 実績ページ
+    // Work pages
     if ( is_post_type_archive( 'work' ) || is_singular( 'work' ) || is_tax( 'work_category' ) ) {
-        // 実績アーカイブページ
-        if ( is_post_type_archive( 'work' ) ) {
-            wp_enqueue_style( 
-                'corporate-seo-pro-page-works-archive', 
-                get_template_directory_uri() . '/assets/css/page-works-archive.css', 
-                array( 'corporate-seo-pro-style' ), 
-                $version 
-            );
-        }
-        
         wp_enqueue_script( 
             'corporate-seo-pro-work', 
             get_template_directory_uri() . '/assets/js/work-archive.js', 
@@ -435,7 +325,7 @@ function corporate_seo_pro_enqueue_conditional_assets( $version ) {
         );
     }
     
-    // コメント返信
+    // Comment reply
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
