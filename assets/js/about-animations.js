@@ -1,53 +1,93 @@
 /**
- * Aboutページのアニメーション
+ * Aboutページのアニメーション（最適化版）
  */
 document.addEventListener('DOMContentLoaded', function() {
-    // 円形ビジュアルのホバー効果
-    const circles = document.querySelectorAll('.circle');
-    circles.forEach(circle => {
-        circle.addEventListener('mouseenter', function() {
-            this.style.transform = 'translate(-50%, -50%) scale(1.05)';
-        });
-        
-        circle.addEventListener('mouseleave', function() {
-            this.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-    });
+    // AnimationUtilsが読み込まれているか確認
+    if (typeof AnimationUtils === 'undefined') {
+        console.error('AnimationUtils is required for about-animations-optimized.js');
+        return;
+    }
 
-    // スクロールアニメーション
-    const observerOptions = {
+    const utils = AnimationUtils;
+    const isMobile = utils.isMobile();
+    const prefersReducedMotion = utils.prefersReducedMotion();
+
+    // モバイルまたはアニメーション削減設定時は簡易版を実行
+    if (isMobile || prefersReducedMotion) {
+        // フェードインのみ実行
+        document.querySelectorAll('.circle-wrapper, .info-list, .vision-item').forEach(element => {
+            element.style.opacity = '1';
+            element.style.transform = 'none';
+        });
+        return;
+    }
+
+    // ==========================================================================
+    // デスクトップ向けアニメーション
+    // ==========================================================================
+
+    // 円形ビジュアルのホバー効果（タッチデバイスでは無効）
+    if (!utils.isTouchDevice()) {
+        const circles = document.querySelectorAll('.circle');
+        circles.forEach(circle => {
+            // GPUアクセラレーションを有効化
+            utils.enableGPUAcceleration(circle);
+            
+            circle.addEventListener('mouseenter', function() {
+                this.style.transform = 'translate3d(-50%, -50%, 0) scale(1.05)';
+            });
+            
+            circle.addEventListener('mouseleave', function() {
+                this.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
+            });
+        });
+    }
+
+    // スクロールアニメーション（最適化されたIntersection Observer）
+    const observer = utils.createOptimizedObserver((entry) => {
+        const target = entry.target;
+        target.classList.add('visible');
+        
+        // 円形アニメーション
+        if (target.classList.contains('circle-wrapper')) {
+            const circles = target.querySelectorAll('.circle');
+            circles.forEach((circle, index) => {
+                // GPUアクセラレーションを有効化
+                utils.enableGPUAcceleration(circle);
+                
+                setTimeout(() => {
+                    circle.style.animation = 'scaleIn 0.6s ease-out forwards';
+                    // アニメーション終了後にGPUアクセラレーションをクリーンアップ
+                    circle.addEventListener('animationend', () => {
+                        utils.cleanupGPUAcceleration(circle);
+                    }, { once: true });
+                }, index * 100);
+            });
+        }
+        
+        // 会社情報アニメーション
+        if (target.classList.contains('info-list')) {
+            const items = target.querySelectorAll('.info-item');
+            items.forEach((item, index) => {
+                utils.enableGPUAcceleration(item);
+                
+                setTimeout(() => {
+                    item.style.animation = 'slideInLeft 0.6s ease-out forwards';
+                    item.style.opacity = '1';
+                    
+                    item.addEventListener('animationend', () => {
+                        utils.cleanupGPUAcceleration(item);
+                    }, { once: true });
+                }, index * 50);
+            });
+        }
+        
+        // 監視を解除（一度だけアニメーション実行）
+        observer.unobserve(target);
+    }, {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // 円形アニメーション
-                if (entry.target.classList.contains('circle-wrapper')) {
-                    const circles = entry.target.querySelectorAll('.circle');
-                    circles.forEach((circle, index) => {
-                        setTimeout(() => {
-                            circle.style.animation = 'scaleIn 0.6s ease-out forwards';
-                        }, index * 100);
-                    });
-                }
-                
-                // 会社情報アニメーション
-                if (entry.target.classList.contains('info-list')) {
-                    const items = entry.target.querySelectorAll('.info-item');
-                    items.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.style.animation = 'slideInLeft 0.6s ease-out forwards';
-                            item.style.opacity = '1';
-                        }, index * 50);
-                    });
-                }
-            }
-        });
-    }, observerOptions);
+    });
 
     // 監視対象の要素
     const animatedElements = document.querySelectorAll('.circle-wrapper, .info-list, .vision-item');
@@ -55,96 +95,108 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(element);
     });
 
-    // パララックス効果
+    // パララックス効果（スロットリング済み）
     const heroSection = document.querySelector('.about-hero');
-    if (heroSection) {
-        window.addEventListener('scroll', () => {
+    if (heroSection && !isMobile) {
+        utils.enableGPUAcceleration(heroSection);
+        
+        const updateParallax = utils.throttleScroll(() => {
             const scrolled = window.pageYOffset;
             const parallaxSpeed = 0.5;
             
             if (scrolled < window.innerHeight) {
-                heroSection.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+                heroSection.style.transform = `translate3d(0, ${scrolled * parallaxSpeed}px, 0)`;
             }
         });
+        
+        window.addEventListener('scroll', updateParallax, { passive: true });
     }
 
-    // 値のカウントアップアニメーション
+    // 値のカウントアップアニメーション（requestAnimationFrame使用）
     const countUp = (element, start, end, duration) => {
-        let current = start;
-        const increment = (end - start) / (duration / 16);
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= end) {
-                current = end;
-                clearInterval(timer);
+        const startTime = performance.now();
+        
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // イージング関数
+            const easeOutQuad = progress => 1 - (1 - progress) * (1 - progress);
+            const easedProgress = easeOutQuad(progress);
+            
+            const current = start + (end - start) * easedProgress;
+            element.textContent = Math.floor(current);
+            
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                element.textContent = end;
             }
-            element.textContent = Math.floor(current).toLocaleString();
-        }, 16);
+        };
+        
+        requestAnimationFrame(animate);
     };
 
-    // 資本金のカウントアップ
-    const capitalElement = document.querySelector('[data-count="capital"]');
-    if (capitalElement) {
-        const observerCount = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    countUp(capitalElement, 0, 1000000, 1000);
-                    observerCount.unobserve(entry.target);
+    // カウンターの監視
+    const counterObserver = utils.createOptimizedObserver((entry) => {
+        const counter = entry.target;
+        if (!counter.dataset.counted) {
+            counter.dataset.counted = 'true';
+            const target = parseInt(counter.dataset.target || counter.textContent, 10);
+            countUp(counter, 0, target, 2000);
+        }
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(counter => {
+        counterObserver.observe(counter);
+    });
+
+    // クリーンアップ
+    window.addEventListener('beforeunload', () => {
+        observer.disconnect();
+        counterObserver.disconnect();
+    });
+
+    // アニメーションのCSS定義（JavaScriptから動的に追加）
+    if (!document.getElementById('about-animations-styles')) {
+        const style = document.createElement('style');
+        style.id = 'about-animations-styles';
+        style.textContent = `
+            @keyframes scaleIn {
+                from {
+                    opacity: 0;
+                    transform: translate(-50%, -50%) scale(0.8);
                 }
-            });
-        });
-        observerCount.observe(capitalElement);
+                to {
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+            
+            @keyframes slideInLeft {
+                from {
+                    opacity: 0;
+                    transform: translateX(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            /* モバイルではアニメーションを簡略化 */
+            @media (max-width: 768px) {
+                @keyframes scaleIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                
+                @keyframes slideInLeft {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+            }
+        `;
+        document.head.appendChild(style);
     }
 });
-
-// CSS アニメーション
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes scaleIn {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.8);
-        }
-        to {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-    }
-
-    @keyframes slideInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    .info-item {
-        opacity: 0;
-    }
-
-    .vision-item {
-        transition: all 0.3s ease;
-    }
-
-    .vision-item:hover {
-        transform: translateX(10px);
-    }
-
-    .circle {
-        cursor: pointer;
-        opacity: 0;
-    }
-
-    .value-item {
-        cursor: pointer;
-    }
-
-    .illustration-wrapper svg {
-        filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
-    }
-`;
-document.head.appendChild(style);
