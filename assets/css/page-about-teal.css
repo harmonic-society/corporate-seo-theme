@@ -191,6 +191,7 @@
     50% { transform: translateY(-10px); }
 }
 
+/* Animation disabled for now to fix display issues
 .value-circle {
     animation: float 6s ease-in-out infinite;
 }
@@ -198,6 +199,7 @@
 .value-item[data-value="1"] .value-circle { animation-delay: 0s; }
 .value-item[data-value="2"] .value-circle { animation-delay: 2s; }
 .value-item[data-value="3"] .value-circle { animation-delay: 4s; }
+*/
 
 /* Focus States */
 .about-cta .btn-primary:focus {
@@ -252,11 +254,32 @@
     .value-circle {
         animation: none;
     }
+    
+    /* Force display of values grid on mobile */
+    .hero-values {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .values-grid {
+        display: grid !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .value-item {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
 }
 
 /* Hover Effects Enhancement */
 .value-item {
     transition: transform 0.3s ease;
+    position: relative !important;
+    display: block !important;
 }
 
 .value-item:hover {
