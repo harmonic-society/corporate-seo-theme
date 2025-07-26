@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="mobile-menu-modal-footer">
-                <a href="#" class="mobile-menu-modal-cta" id="mobile-menu-modal-cta">
+                <a href="/contact/" class="mobile-menu-modal-cta" id="mobile-menu-modal-cta">
                     お問い合わせ
                 </a>
             </div>
@@ -123,10 +123,13 @@
         
         if (contactLink && modalCTA) {
             modalCTA.href = contactLink.href;
+        } else if (modalCTA) {
+            // フォールバック: header-ctaが見つからない場合は/contact/を使用
+            modalCTA.href = '/contact/';
         }
 
-        // メニューリンクの参照を更新
-        menuLinks = modal.querySelectorAll('.mobile-menu-modal-list a');
+        // メニューリンクの参照を更新（CTAボタンも含める）
+        menuLinks = modal.querySelectorAll('.mobile-menu-modal-list a, .mobile-menu-modal-cta');
     }
 
     // イベントリスナーの設定
@@ -147,26 +150,28 @@
         }
 
         // メニューリンククリック
-        menuLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                // アンカーリンクの場合はスムーズスクロール
-                if (link.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(link.getAttribute('href'));
-                    if (target) {
+        if (menuLinks) {
+            menuLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    // アンカーリンクの場合はスムーズスクロール
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            closeMenu();
+                            setTimeout(() => {
+                                target.scrollIntoView({ behavior: 'smooth' });
+                            }, 300);
+                        }
+                    } else if (href && !href.startsWith('#')) {
+                        // 通常のリンクの場合はメニューを閉じてから遷移
+                        // e.preventDefaultは呼ばない（通常のリンク遷移を許可）
                         closeMenu();
-                        setTimeout(() => {
-                            target.scrollIntoView({ behavior: 'smooth' });
-                        }, 300);
                     }
-                } else {
-                    // 通常のリンクの場合は少し遅延してから遷移
-                    setTimeout(() => {
-                        closeMenu();
-                    }, 100);
-                }
+                });
             });
-        });
+        }
 
         // ESCキーで閉じる
         document.addEventListener('keydown', (e) => {
