@@ -31,6 +31,7 @@ function corporate_seo_pro_load_includes() {
         '/inc/performance.php',        // Performance optimization
         '/inc/structured-data.php',    // Structured data
         '/inc/acf-fields.php',         // ACF field registration
+        '/inc/sticky-header-inline.php', // Sticky header inline CSS
     );
     
     // Load each file

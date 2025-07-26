@@ -3,8 +3,10 @@
  * Makes header sticky across all devices (PC, tablet, mobile)
  */
 
-/* Base sticky header styles for all devices */
-.site-header {
+/* Base sticky header styles for all devices - High specificity */
+body #page .site-header,
+body .site-header,
+#masthead {
     position: sticky !important;
     position: -webkit-sticky !important;
     top: 0 !important;
@@ -15,8 +17,8 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     width: 100%;
-    left: 0;
-    right: 0;
+    left: 0 !important;
+    right: 0 !important;
 }
 
 /* Ensure proper spacing for sticky header */

@@ -71,13 +71,13 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'hamburger-fix'        => '/assets/css/hamburger-fix.css',
         'tablet-optimization'  => '/assets/css/tablet-optimization.css',
         'tablet-touch-styles'  => '/assets/css/tablet-touch-styles.css',
-        'sticky-header'        => '/assets/css/sticky-header.css',
         'page-about'           => '/assets/css/page-about.css',
         'page-services-archive'=> '/assets/css/page-services-archive.css',
         'page-blog-archive'    => '/assets/css/page-blog-archive.css',
         'page-works-archive'   => '/assets/css/page-works-archive.css',
         'page-contact'         => '/assets/css/page-contact.css',
         'news-release'         => '/assets/css/components/news-release.css',
+        'sticky-header'        => '/assets/css/sticky-header.css',
     );
     
     // 依存関係の設定
@@ -95,7 +95,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         'hamburger-fix'        => array( 'corporate-seo-pro-mobile-menu-modal' ),
         'tablet-optimization'  => array( 'corporate-seo-pro-style', 'corporate-seo-pro-typography', 'corporate-seo-pro-utilities' ),
         'tablet-touch-styles'  => array( 'corporate-seo-pro-tablet-optimization' ),
-        'sticky-header'        => array( 'corporate-seo-pro-navigation', 'corporate-seo-pro-header-footer-override', 'corporate-seo-pro-mobile-logo-fix' ),
+        'sticky-header'        => array( 'corporate-seo-pro-style', 'corporate-seo-pro-navigation', 'corporate-seo-pro-header-footer-override', 'corporate-seo-pro-mobile-logo-fix', 'corporate-seo-pro-mobile-overflow-fix', 'corporate-seo-pro-tablet-optimization' ),
     );
     
     foreach ( $css_files as $handle => $file ) {
