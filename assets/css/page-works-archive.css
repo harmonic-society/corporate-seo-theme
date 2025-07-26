@@ -132,6 +132,11 @@
     text-align: center;
 }
 
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
 .hero-badge {
     display: inline-block;
     padding: 0.75rem 2rem;
@@ -564,6 +569,11 @@
     
     .title-sub {
         font-size: 1rem;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 10;
     }
     
     .hero-description {
