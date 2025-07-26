@@ -10,6 +10,7 @@
     // 状態管理
     let isMenuOpen = false;
     let scrollPosition = 0;
+    let isAnimating = false;
 
     // DOM要素のキャッシュ
     const elements = {
@@ -117,6 +118,9 @@
         e.preventDefault();
         e.stopPropagation();
         
+        // アニメーション中はクリックを無視
+        if (isAnimating) return;
+        
         if (isMenuOpen) {
             closeMenu();
         } else {
@@ -128,9 +132,10 @@
      * メニューを開く
      */
     function openMenu() {
-        if (isMenuOpen) return;
+        if (isMenuOpen || isAnimating) return;
         
         isMenuOpen = true;
+        isAnimating = true;
         
         // スクロール位置を保存
         scrollPosition = window.pageYOffset;
@@ -151,6 +156,7 @@
         
         // フォーカスをメニューに移動
         setTimeout(() => {
+            isAnimating = false;
             const firstLink = elements.menu.querySelector('a');
             if (firstLink) firstLink.focus();
         }, 300);
@@ -163,9 +169,10 @@
      * メニューを閉じる
      */
     function closeMenu() {
-        if (!isMenuOpen) return;
+        if (!isMenuOpen || isAnimating) return;
         
         isMenuOpen = false;
+        isAnimating = true;
         
         // クラスの削除
         elements.toggle.classList.remove('is-active');
@@ -182,8 +189,12 @@
         elements.menu.setAttribute('aria-hidden', 'true');
         elements.overlay.setAttribute('aria-hidden', 'true');
         
-        // フォーカスをトグルボタンに戻す
-        elements.toggle.focus();
+        // アニメーション完了後の処理
+        setTimeout(() => {
+            isAnimating = false;
+            // フォーカスをトグルボタンに戻す
+            elements.toggle.focus();
+        }, 300);
         
         // カスタムイベントの発火
         document.dispatchEvent(new CustomEvent('mobileMenuClosed'));
@@ -265,23 +276,55 @@
      */
     function setupSwipeGestures() {
         let touchStartX = 0;
+        let touchStartY = 0;
         let touchEndX = 0;
+        let touchEndY = 0;
+        let isSwiping = false;
         
         elements.menu.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+            isSwiping = true;
+        }, { passive: true });
+        
+        elements.menu.addEventListener('touchmove', e => {
+            if (!isSwiping) return;
+            
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            
+            const diffX = touchEndX - touchStartX;
+            const diffY = Math.abs(touchEndY - touchStartY);
+            
+            // 水平方向のスワイプを検出（垂直方向の動きが少ない場合）
+            if (diffX > 0 && diffY < 50) {
+                // メニューに追従させる（オプション）
+                const translateX = Math.min(diffX, 0);
+                elements.menu.style.transform = `translateX(${translateX}px)`;
+            }
         }, { passive: true });
         
         elements.menu.addEventListener('touchend', e => {
+            if (!isSwiping) return;
+            
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            isSwiping = false;
+            
+            // スタイルをリセット
+            elements.menu.style.transform = '';
+            
             handleSwipe();
         }, { passive: true });
         
         function handleSwipe() {
             const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
+            const diffX = touchStartX - touchEndX;
+            const diffY = Math.abs(touchStartY - touchEndY);
             
             // 右から左にスワイプ（メニューを閉じる）
-            if (diff > swipeThreshold) {
+            // 垂直方向の動きが少ない場合のみ
+            if (diffX > swipeThreshold && diffY < 100) {
                 closeMenu();
             }
         }

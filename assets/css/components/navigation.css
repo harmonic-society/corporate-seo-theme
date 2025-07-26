@@ -233,8 +233,10 @@
 .mobile-menu-toggle {
     display: none;
     position: relative;
-    width: 44px;
-    height: 44px;
+    min-width: 48px;
+    min-height: 48px;
+    width: 48px;
+    height: 48px;
     padding: 0;
     background: transparent;
     border: none;
@@ -242,6 +244,7 @@
     z-index: var(--z-modal);
     -webkit-tap-highlight-color: transparent;
     transition: opacity var(--transition-base);
+    border-radius: 8px;
 }
 
 .mobile-menu-toggle:focus {
