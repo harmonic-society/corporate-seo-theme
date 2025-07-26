@@ -9,6 +9,15 @@
     animation: none !important; /* モバイルではアニメーションを無効化 */
 }
 
+/* サービスアーカイブヘッダーのテキスト表示修正 */
+@media (max-width: 768px) {
+    .service-archive-title,
+    .service-archive-subtitle {
+        opacity: 1 !important; /* モバイルでの表示を確実に */
+        animation: none !important; /* アニメーションを無効化 */
+    }
+}
+
 /* fadeInUpアニメーションのフォールバック */
 @keyframes fadeInUp {
     from {
