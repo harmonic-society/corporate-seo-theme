@@ -795,4 +795,36 @@
         gap: 1rem;
         align-items: center;
     }
+    
+    /* Mobile Contact Form 7 Fixes */
+    .wpcf7-form select {
+        min-height: 48px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        position: relative;
+        z-index: 10;
+        -webkit-tap-highlight-color: transparent;
+        background-color: #ffffff !important;
+    }
+    
+    /* Contact form wrapper fix */
+    .wpcf7-form-control-wrap {
+        position: relative;
+        display: block;
+        z-index: 10;
+    }
+    
+    .wpcf7-form-control-wrap select {
+        position: relative;
+        z-index: 20;
+        pointer-events: auto !important;
+        touch-action: manipulation;
+        -webkit-touch-callout: default;
+        -webkit-user-select: none;
+    }
+    
+    /* Ensure select is clickable */
+    .wpcf7-form p {
+        position: relative;
+        z-index: 1;
+    }
 }
