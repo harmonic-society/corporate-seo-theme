@@ -2636,14 +2636,17 @@ span.menu-text {
     right: 15px;
     font-size: 3rem;
     font-weight: 700;
-    color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.4);
     line-height: 1;
 }
 
 .feature-circle i {
-    font-size: 3rem;
+    font-size: 4rem;
     color: white;
     z-index: 1;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .feature-content {
@@ -2701,7 +2704,7 @@ span.menu-text {
     }
     
     .feature-circle i {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     
     .feature-title {
