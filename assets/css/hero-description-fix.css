@@ -4,16 +4,17 @@
  * Ensures hero description is visible and animated properly
  */
 
-/* Hero Description Animation */
-.hero-description {
+/* Hero Description Animation - only for specific hero sections */
+.hero-section .hero-description,
+.hero-modern .hero-description {
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.3s forwards;
 }
 
 /* Works page hero description - always visible */
 .work-hero .hero-description {
-    opacity: 1;
-    animation: none;
+    opacity: 1 !important;
+    animation: none !important;
 }
 
 /* Animation override for modern hero */
@@ -41,7 +42,8 @@ body.loaded .hero-description,
 
 /* Mobile devices - ensure visibility */
 @media (max-width: 768px) {
-    .hero-description {
+    .hero-section .hero-description,
+    .hero-modern .hero-description {
         opacity: 1 !important;
         animation: none;
     }
@@ -68,7 +70,8 @@ body.loaded .hero-description,
 
 /* Touch devices - reduce animation */
 @media (hover: none) and (pointer: coarse) {
-    .hero-description {
+    .hero-section .hero-description,
+    .hero-modern .hero-description {
         animation-duration: 0.4s;
         animation-delay: 0.1s;
     }
@@ -76,7 +79,8 @@ body.loaded .hero-description,
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-    .hero-description {
+    .hero-section .hero-description,
+    .hero-modern .hero-description {
         animation: none;
         opacity: 1;
     }
