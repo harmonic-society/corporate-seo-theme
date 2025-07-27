@@ -16,6 +16,9 @@ function corporate_seo_pro_register_post_types() {
     // サービス投稿タイプ
     corporate_seo_pro_register_service_post_type();
     
+    // サービスカテゴリータクソノミー
+    corporate_seo_pro_register_service_taxonomy();
+    
     // 実績投稿タイプ
     corporate_seo_pro_register_work_post_type();
     
@@ -60,9 +63,52 @@ function corporate_seo_pro_register_service_post_type() {
         'menu_icon'             => 'dashicons-admin-tools',
         'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ),
         'show_in_rest'          => true,
+        'taxonomies'            => array( 'service_category' ), // サービスカテゴリーを追加
     );
 
     register_post_type( 'service', $args );
+}
+
+/**
+ * サービスカテゴリータクソノミーの登録
+ */
+function corporate_seo_pro_register_service_taxonomy() {
+    $labels = array(
+        'name'                       => _x( 'サービスカテゴリー', 'Taxonomy General Name', 'corporate-seo-pro' ),
+        'singular_name'              => _x( 'サービスカテゴリー', 'Taxonomy Singular Name', 'corporate-seo-pro' ),
+        'menu_name'                  => __( 'カテゴリー', 'corporate-seo-pro' ),
+        'all_items'                  => __( 'すべてのカテゴリー', 'corporate-seo-pro' ),
+        'parent_item'                => __( '親カテゴリー', 'corporate-seo-pro' ),
+        'parent_item_colon'          => __( '親カテゴリー:', 'corporate-seo-pro' ),
+        'new_item_name'              => __( '新しいカテゴリー名', 'corporate-seo-pro' ),
+        'add_new_item'               => __( '新しいカテゴリーを追加', 'corporate-seo-pro' ),
+        'edit_item'                  => __( 'カテゴリーを編集', 'corporate-seo-pro' ),
+        'update_item'                => __( 'カテゴリーを更新', 'corporate-seo-pro' ),
+        'view_item'                  => __( 'カテゴリーを見る', 'corporate-seo-pro' ),
+        'separate_items_with_commas' => __( 'カテゴリーをカンマで区切る', 'corporate-seo-pro' ),
+        'add_or_remove_items'        => __( 'カテゴリーを追加または削除', 'corporate-seo-pro' ),
+        'choose_from_most_used'      => __( 'よく使われているカテゴリーから選択', 'corporate-seo-pro' ),
+        'popular_items'              => __( '人気のカテゴリー', 'corporate-seo-pro' ),
+        'search_items'               => __( 'カテゴリーを検索', 'corporate-seo-pro' ),
+        'not_found'                  => __( 'カテゴリーが見つかりません', 'corporate-seo-pro' ),
+        'no_terms'                   => __( 'カテゴリーなし', 'corporate-seo-pro' ),
+        'items_list'                 => __( 'カテゴリーリスト', 'corporate-seo-pro' ),
+        'items_list_navigation'      => __( 'カテゴリーリストナビゲーション', 'corporate-seo-pro' ),
+    );
+    
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+        'show_in_rest'               => true,
+        'rewrite'                    => array( 'slug' => 'service-category' ),
+    );
+    
+    register_taxonomy( 'service_category', array( 'service' ), $args );
 }
 
 /**

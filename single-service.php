@@ -240,10 +240,10 @@ get_header(); ?>
 
         <!-- 関連サービス - 新しいUXデザイン -->
         <?php
-        // 現在のサービスのカテゴリーを取得
-        $current_categories = wp_get_post_terms( get_the_ID(), 'service_category', array( 'fields' => 'ids' ) );
+        // デバッグ情報（本番環境では削除）
+        // echo '<!-- Debug: Single Service Page Loaded -->';
         
-        // 関連サービスを取得（同じカテゴリーを優先）
+        // service_categoryタクソノミーが存在しない場合はシンプルな関連サービス取得
         $related_args = array(
             'post_type' => 'service',
             'posts_per_page' => 6,
@@ -252,17 +252,27 @@ get_header(); ?>
             'order' => 'DESC',
         );
         
-        if ( !empty( $current_categories ) ) {
-            $related_args['tax_query'] = array(
-                array(
-                    'taxonomy' => 'service_category',
-                    'field' => 'term_id',
-                    'terms' => $current_categories,
-                ),
-            );
+        // タクソノミーが存在する場合のみカテゴリーフィルタリング
+        if ( taxonomy_exists( 'service_category' ) ) {
+            $current_categories = wp_get_post_terms( get_the_ID(), 'service_category', array( 'fields' => 'ids' ) );
+            
+            if ( !empty( $current_categories ) && !is_wp_error( $current_categories ) ) {
+                $related_args['tax_query'] = array(
+                    array(
+                        'taxonomy' => 'service_category',
+                        'field' => 'term_id',
+                        'terms' => $current_categories,
+                    ),
+                );
+            }
         }
         
         $related_services = new WP_Query( $related_args );
+        
+        // デバッグ: クエリ結果を確認
+        if ( defined('WP_DEBUG') && WP_DEBUG ) {
+            echo '<!-- Debug: Found ' . $related_services->found_posts . ' related services -->';
+        }
         
         if ( $related_services->have_posts() ) : ?>
         <section class="service-related-modern">
@@ -282,25 +292,27 @@ get_header(); ?>
                         <span class="title-sub">あなたのビジネスに最適なソリューションをご提案</span>
                     </h2>
                     
-                    <!-- カテゴリーフィルター -->
+                    <!-- カテゴリーフィルター（タクソノミーが存在する場合のみ表示） -->
                     <?php 
-                    $all_categories = get_terms( array(
-                        'taxonomy' => 'service_category',
-                        'hide_empty' => true,
-                    ) );
-                    
-                    if ( !is_wp_error( $all_categories ) && !empty( $all_categories ) ) : ?>
-                    <div class="category-filter">
-                        <button class="filter-btn active" data-filter="all">
-                            <span>すべて</span>
-                        </button>
-                        <?php foreach ( $all_categories as $category ) : ?>
-                            <button class="filter-btn" data-filter="<?php echo esc_attr( $category->slug ); ?>">
-                                <span><?php echo esc_html( $category->name ); ?></span>
+                    if ( taxonomy_exists( 'service_category' ) ) :
+                        $all_categories = get_terms( array(
+                            'taxonomy' => 'service_category',
+                            'hide_empty' => true,
+                        ) );
+                        
+                        if ( !is_wp_error( $all_categories ) && !empty( $all_categories ) ) : ?>
+                        <div class="category-filter">
+                            <button class="filter-btn active" data-filter="all">
+                                <span>すべて</span>
                             </button>
-                        <?php endforeach; ?>
-                    </div>
-                    <?php endif; ?>
+                            <?php foreach ( $all_categories as $category ) : ?>
+                                <button class="filter-btn" data-filter="<?php echo esc_attr( $category->slug ); ?>">
+                                    <span><?php echo esc_html( $category->name ); ?></span>
+                                </button>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php endif;
+                    endif; ?>
                 </div>
                 
                 <div class="related-services-wrapper">
@@ -310,15 +322,18 @@ get_header(); ?>
                         while ( $related_services->have_posts() ) : $related_services->the_post(); 
                             $service_index++;
                             
-                            // カテゴリー取得
-                            $categories = wp_get_post_terms( get_the_ID(), 'service_category' );
+                            // カテゴリー取得（タクソノミーが存在する場合のみ）
                             $category_classes = array();
                             $category_names = array();
                             
-                            if ( !is_wp_error( $categories ) && !empty( $categories ) ) {
-                                foreach ( $categories as $cat ) {
-                                    $category_classes[] = 'category-' . $cat->slug;
-                                    $category_names[] = $cat->name;
+                            if ( taxonomy_exists( 'service_category' ) ) {
+                                $categories = wp_get_post_terms( get_the_ID(), 'service_category' );
+                                
+                                if ( !is_wp_error( $categories ) && !empty( $categories ) ) {
+                                    foreach ( $categories as $cat ) {
+                                        $category_classes[] = 'category-' . $cat->slug;
+                                        $category_names[] = $cat->name;
+                                    }
                                 }
                             }
                             
