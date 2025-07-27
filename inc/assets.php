@@ -106,19 +106,19 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version 
     );
     
-    // Enhanced Features Section
-    wp_enqueue_style( 
-        'corporate-seo-pro-features-enhanced', 
-        get_template_directory_uri() . '/assets/css/features-section-enhanced.css', 
-        array( 'corporate-seo-pro-base' ), 
-        $version 
-    );
-    
     // Color scheme
     wp_enqueue_style( 
         'corporate-seo-pro-color-scheme', 
         get_template_directory_uri() . '/assets/css/color-scheme-teal.css', 
         array( 'corporate-seo-pro-base' ), 
+        $version 
+    );
+    
+    // Enhanced Features Section - Load last to override other styles
+    wp_enqueue_style( 
+        'corporate-seo-pro-features-enhanced', 
+        get_template_directory_uri() . '/assets/css/features-section-enhanced.css', 
+        array( 'corporate-seo-pro-style', 'corporate-seo-pro-color-scheme' ), 
         $version 
     );
     

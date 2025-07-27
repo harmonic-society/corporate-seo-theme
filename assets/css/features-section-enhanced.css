@@ -1,8 +1,8 @@
 /* Enhanced Features Section - 選ばれる理由セクション改善版 */
 
 .features-section {
-    padding: 6rem 0;
-    background: #f9fafb;
+    padding: 6rem 0 !important;
+    background: #f9fafb !important;
     position: relative;
     overflow: hidden;
 }
@@ -40,6 +40,7 @@
     position: relative;
     z-index: 1;
     margin-bottom: 4rem;
+    text-align: center !important;
 }
 
 .features-section .section-label {
@@ -70,9 +71,9 @@
 
 /* グリッドレイアウト改善 */
 .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 3rem !important;
     margin-top: 4rem;
     position: relative;
     z-index: 1;
@@ -80,16 +81,17 @@
 
 /* フィーチャーアイテム - カードスタイル */
 .feature-item {
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 3rem 2rem;
+    background: #ffffff !important;
+    border-radius: 24px !important;
+    padding: 3rem 2rem !important;
     position: relative;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(229, 231, 235, 0.6);
+    border: 1px solid rgba(229, 231, 235, 0.6) !important;
     box-shadow: 
         0 1px 3px rgba(0, 0, 0, 0.02),
-        0 10px 40px -10px rgba(16, 185, 129, 0.1);
+        0 10px 40px -10px rgba(16, 185, 129, 0.1) !important;
     overflow: hidden;
+    text-align: center !important;
 }
 
 /* カードの背景グラデーション */
@@ -121,18 +123,19 @@
 
 /* 改善された円形デザイン */
 .feature-circle {
-    width: 140px;
-    height: 140px;
-    min-width: 140px;
-    min-height: 140px;
+    width: 140px !important;
+    height: 140px !important;
+    min-width: 140px !important;
+    min-height: 140px !important;
     margin: 0 auto 2rem;
-    border-radius: 50%;
+    border-radius: 50% !important;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.5s ease;
     flex-shrink: 0;
+    aspect-ratio: 1/1 !important;
 }
 
 /* グラデーション背景 */
@@ -198,22 +201,22 @@
 
 /* 数字スタイル改善 */
 .feature-number {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 45px;
-    height: 45px;
-    background: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--primary-color);
+    position: absolute !important;
+    top: -10px !important;
+    right: -10px !important;
+    width: 45px !important;
+    height: 45px !important;
+    background: #ffffff !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    color: var(--primary-color) !important;
     box-shadow: 
         0 5px 15px -5px rgba(0, 0, 0, 0.2),
-        0 0 0 3px rgba(16, 185, 129, 0.1);
+        0 0 0 3px rgba(16, 185, 129, 0.1) !important;
     z-index: 2;
     transition: all 0.3s ease;
 }
@@ -247,10 +250,10 @@
 }
 
 .feature-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-color);
-    margin-bottom: 1rem;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: var(--text-color) !important;
+    margin-bottom: 1rem !important;
     transition: color 0.3s ease;
     line-height: 1.3;
 }
@@ -260,10 +263,10 @@
 }
 
 .feature-description {
-    color: #6b7280;
-    line-height: 1.8;
-    font-size: 1rem;
-    margin: 0;
+    color: #6b7280 !important;
+    line-height: 1.8 !important;
+    font-size: 1rem !important;
+    margin: 0 !important;
     transition: color 0.3s ease;
 }
 
@@ -309,8 +312,8 @@
 /* タブレット対応 */
 @media (max-width: 1024px) {
     .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 2.5rem !important;
     }
     
     .features-section .section-title {
@@ -321,12 +324,12 @@
 /* モバイル対応 */
 @media (max-width: 768px) {
     .features-section {
-        padding: 4rem 0;
+        padding: 4rem 0 !important;
     }
     
     .features-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
         margin-top: 3rem;
     }
     
@@ -335,10 +338,10 @@
     }
     
     .feature-circle {
-        width: 120px;
-        height: 120px;
-        min-width: 120px;
-        min-height: 120px;
+        width: 120px !important;
+        height: 120px !important;
+        min-width: 120px !important;
+        min-height: 120px !important;
     }
     
     .feature-circle i {
@@ -367,7 +370,7 @@
 /* スモールモバイル対応 */
 @media (max-width: 480px) {
     .features-section {
-        padding: 3rem 0;
+        padding: 3rem 0 !important;
     }
     
     .feature-item {
@@ -375,10 +378,10 @@
     }
     
     .feature-circle {
-        width: 100px;
-        height: 100px;
-        min-width: 100px;
-        min-height: 100px;
+        width: 100px !important;
+        height: 100px !important;
+        min-width: 100px !important;
+        min-height: 100px !important;
         margin-bottom: 1.5rem;
     }
     
@@ -395,27 +398,4 @@
     }
 }
 
-/* ダークモード対応（オプション） */
-@media (prefers-color-scheme: dark) {
-    .features-section {
-        background: #1a1a1a;
-    }
-    
-    .feature-item {
-        background: #2a2a2a;
-        border-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .feature-number {
-        background: #333;
-        color: #10b981;
-    }
-    
-    .feature-title {
-        color: #ffffff;
-    }
-    
-    .feature-description {
-        color: #a0a0a0;
-    }
-}
+/* ダークモード対応は削除 */
