@@ -64,29 +64,35 @@ a:hover {
 /* ==========================================================================
    ボタンスタイル
    ========================================================================== */
+/* Primary button color overrides */
 .btn-primary,
 .wp-block-button__link {
-    background-color: var(--color-primary) !important;
-    color: var(--color-text-inverse) !important;
-    border-color: var(--color-primary) !important;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary);
 }
 
 .btn-primary:hover,
-.wp-block-button__link:hover {
-    background-color: var(--color-primary-dark) !important;
-    color: var(--color-text-inverse) !important;
-    border-color: var(--color-primary-dark) !important;
+.btn-primary:focus,
+.wp-block-button__link:hover,
+.wp-block-button__link:focus {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary-dark);
 }
 
+/* Secondary button adjustments */
 .btn-secondary {
-    background-color: var(--color-bg-primary) !important;
-    color: var(--color-primary) !important;
-    border: 2px solid var(--color-primary) !important;
+    background-color: var(--color-bg-primary);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
 }
 
-.btn-secondary:hover {
-    background-color: var(--color-primary) !important;
-    color: var(--color-text-inverse) !important;
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary);
 }
 
 /* ==========================================================================
@@ -106,115 +112,130 @@ a:hover {
 }
 
 .nav-cta-button {
-    background-color: var(--color-primary) !important;
-    color: var(--color-text-inverse) !important;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
 }
 
-.nav-cta-button:hover {
-    background-color: var(--color-primary-dark) !important;
-    color: var(--color-text-inverse) !important;
+.nav-cta-button:hover,
+.nav-cta-button:focus {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-inverse);
 }
 
 /* ==========================================================================
    サービス詳細ページ
    ========================================================================== */
 .single-service .service-hero {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
 }
 
 .single-service .hero-actions .btn-primary {
-    background: var(--color-bg-primary) !important;
-    color: var(--color-primary) !important;
+    background: var(--color-bg-primary);
+    color: var(--color-primary);
 }
 
-.single-service .hero-actions .btn-primary:hover {
-    background: var(--color-bg-secondary) !important;
-    color: var(--color-primary) !important;
+.single-service .hero-actions .btn-primary:hover,
+.single-service .hero-actions .btn-primary:focus {
+    background: var(--color-bg-secondary);
+    color: var(--color-primary);
+    transform: translateY(-2px);
 }
 
 .single-service .hero-actions .btn-secondary {
-    background: transparent !important;
-    color: var(--color-text-inverse) !important;
-    border: 2px solid var(--color-text-inverse) !important;
+    background: transparent;
+    color: var(--color-text-inverse);
+    border: 2px solid var(--color-text-inverse);
 }
 
-.single-service .hero-actions .btn-secondary:hover {
-    background: var(--color-bg-primary) !important;
-    color: var(--color-primary) !important;
+.single-service .hero-actions .btn-secondary:hover,
+.single-service .hero-actions .btn-secondary:focus {
+    background: var(--color-bg-primary);
+    color: var(--color-primary);
+    border-color: var(--color-bg-primary);
 }
 
 /* 特徴セクション */
 .single-service .service-features {
-    background: var(--color-bg-secondary) !important;
+    background: var(--color-bg-secondary);
 }
 
 .single-service .section-title .title-en {
-    color: var(--color-primary) !important;
+    color: var(--color-primary);
 }
 
 .single-service .feature-icon {
-    background: rgba(0, 134, 123, 0.1) !important;
-    color: var(--color-primary) !important;
+    background: rgba(0, 134, 123, 0.1);
+    color: var(--color-primary);
 }
 
 .single-service .feature-card:hover {
-    box-shadow: var(--shadow-lg) !important;
+    box-shadow: var(--shadow-lg);
+    transition: box-shadow var(--transition-base);
 }
 
 /* 料金プラン */
 .single-service .pricing-card {
-    border-color: var(--color-border) !important;
+    border-color: var(--color-border);
 }
 
 .single-service .pricing-card.recommended {
-    border-color: var(--color-primary) !important;
-    box-shadow: var(--shadow-lg) !important;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
 }
 
 .single-service .recommended-badge {
-    background: var(--color-primary) !important;
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
 }
 
 .single-service .price-amount {
-    color: var(--color-primary) !important;
+    color: var(--color-primary);
 }
 
 .single-service .plan-features i {
-    color: var(--color-success) !important;
+    color: var(--color-success);
 }
 
 .single-service .plan-cta {
-    background: var(--color-primary) !important;
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
 }
 
-.single-service .plan-cta:hover {
-    background: var(--color-primary-dark) !important;
+.single-service .plan-cta:hover,
+.single-service .plan-cta:focus {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
 }
 
 /* お問い合わせセクション */
 .single-service .service-inquiry {
-    background: var(--color-bg-secondary) !important;
+    background: var(--color-bg-secondary);
 }
 
 .single-service .inquiry-buttons .btn-primary {
-    background: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-inverse);
 }
 
-.single-service .inquiry-buttons .btn-primary:hover {
-    background: var(--color-primary-dark) !important;
-    border-color: var(--color-primary-dark) !important;
+.single-service .inquiry-buttons .btn-primary:hover,
+.single-service .inquiry-buttons .btn-primary:focus {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-2px);
 }
 
 .single-service .inquiry-buttons .btn-secondary {
-    background: var(--color-bg-primary) !important;
-    color: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
+    background: var(--color-bg-primary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
-.single-service .inquiry-buttons .btn-secondary:hover {
-    background: var(--color-primary) !important;
-    color: var(--color-text-inverse) !important;
+.single-service .inquiry-buttons .btn-secondary:hover,
+.single-service .inquiry-buttons .btn-secondary:focus {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary);
 }
 
 /* ==========================================================================
@@ -223,9 +244,13 @@ a:hover {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+select:focus,
 textarea:focus {
-    border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px rgba(0, 134, 123, 0.1) !important;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 134, 123, 0.1);
+    outline: none;
 }
 
 /* ==========================================================================
@@ -233,19 +258,21 @@ textarea:focus {
    ========================================================================== */
 .tag,
 .category-badge {
-    background: var(--color-bg-accent) !important;
-    color: var(--color-primary-dark) !important;
+    background: var(--color-bg-accent);
+    color: var(--color-primary-dark);
+    transition: all var(--transition-base);
 }
 
 .tag:hover,
 .category-badge:hover {
-    background: var(--color-primary-light) !important;
-    color: var(--color-text-inverse) !important;
+    background: var(--color-primary-light);
+    color: var(--color-text-inverse);
+    transform: translateY(-2px);
 }
 
 /* プログレスバー */
 .progress-bar {
-    background: var(--color-primary) !important;
+    background: var(--color-primary);
 }
 
 /* 選択時の背景色 */

@@ -203,7 +203,7 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
     // Navigation
     wp_enqueue_script( 
         'corporate-seo-pro-navigation', 
-        get_template_directory_uri() . '/assets/js/navigation.js', 
+        get_template_directory_uri() . '/assets/js/components/navigation.js', 
         array(), 
         $version, 
         true 
@@ -211,7 +211,7 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
     
     wp_enqueue_script( 
         'corporate-seo-pro-mobile-menu', 
-        get_template_directory_uri() . '/assets/js/mobile-menu.js', 
+        get_template_directory_uri() . '/assets/js/components/mobile-menu.js', 
         array(), 
         $version, 
         true 
@@ -229,7 +229,7 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
     // Sticky header
     wp_enqueue_script( 
         'corporate-seo-pro-sticky-header', 
-        get_template_directory_uri() . '/assets/js/sticky-header-handler.js', 
+        get_template_directory_uri() . '/assets/js/components/sticky-header-handler.js', 
         array( 'corporate-seo-pro-theme' ), 
         $version, 
         true 
@@ -253,7 +253,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_front_page() ) {
         wp_enqueue_script( 
             'corporate-seo-pro-hero-animations', 
-            get_template_directory_uri() . '/assets/js/hero-animations.js', 
+            get_template_directory_uri() . '/assets/js/features/hero-animations.js', 
             array( 'corporate-seo-pro-animation-utils' ), 
             $version, 
             true 
@@ -261,7 +261,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
         
         wp_enqueue_script( 
             'corporate-seo-pro-hero-modern', 
-            get_template_directory_uri() . '/assets/js/hero-modern.js', 
+            get_template_directory_uri() . '/assets/js/features/hero-modern.js', 
             array( 'corporate-seo-pro-animation-utils' ), 
             $version, 
             true 
@@ -272,7 +272,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_singular( 'post' ) ) {
         wp_enqueue_script( 
             'corporate-seo-pro-single', 
-            get_template_directory_uri() . '/assets/js/single-post.js', 
+            get_template_directory_uri() . '/assets/js/pages/single-post.js', 
             array(), 
             $version, 
             true 
@@ -280,7 +280,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
         
         wp_enqueue_script( 
             'corporate-seo-pro-toc', 
-            get_template_directory_uri() . '/assets/js/toc.js', 
+            get_template_directory_uri() . '/assets/js/components/toc.js', 
             array(), 
             $version, 
             true 
@@ -299,7 +299,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_search() ) {
         wp_enqueue_script( 
             'corporate-seo-pro-blog-search', 
-            get_template_directory_uri() . '/assets/js/blog-search.js', 
+            get_template_directory_uri() . '/assets/js/features/blog-search.js', 
             array(), 
             $version, 
             true 
@@ -315,7 +315,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_home() || is_archive() || is_category() || is_tag() ) {
         wp_enqueue_script( 
             'corporate-seo-pro-blog-archive', 
-            get_template_directory_uri() . '/assets/js/blog-archive.js', 
+            get_template_directory_uri() . '/assets/js/features/blog-archive.js', 
             array( 'corporate-seo-pro-animation-utils' ), 
             $version, 
             true 
@@ -324,7 +324,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
         // Blog search functionality
         wp_enqueue_script( 
             'corporate-seo-pro-blog-search', 
-            get_template_directory_uri() . '/assets/js/blog-search.js', 
+            get_template_directory_uri() . '/assets/js/features/blog-search.js', 
             array(), 
             $version, 
             true 
@@ -338,7 +338,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
         // Blog filters
         wp_enqueue_script( 
             'corporate-seo-pro-blog-filters', 
-            get_template_directory_uri() . '/assets/js/blog-filters.js', 
+            get_template_directory_uri() . '/assets/js/features/blog-filters.js', 
             array(), 
             $version, 
             true 
@@ -355,7 +355,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_page_template( 'page-about.php' ) ) {
         wp_enqueue_script( 
             'corporate-seo-pro-about', 
-            get_template_directory_uri() . '/assets/js/about-animations.js', 
+            get_template_directory_uri() . '/assets/js/pages/about-animations.js', 
             array( 'corporate-seo-pro-animation-utils' ), 
             $version, 
             true 
@@ -364,7 +364,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
         // About values visibility fix script
         wp_enqueue_script( 
             'corporate-seo-pro-about-values-fix', 
-            get_template_directory_uri() . '/assets/js/about-values-fix.js', 
+            get_template_directory_uri() . '/assets/js/pages/about-values-fix.js', 
             array(), 
             $version, 
             true 
@@ -391,7 +391,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_page_template( 'page-contact.php' ) ) {
         wp_enqueue_script( 
             'corporate-seo-pro-contact', 
-            get_template_directory_uri() . '/assets/js/contact.js', 
+            get_template_directory_uri() . '/assets/js/pages/contact.js', 
             array(), 
             $version, 
             true 
@@ -399,7 +399,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
         
         wp_enqueue_script( 
             'corporate-seo-pro-cf7-mobile-fix', 
-            get_template_directory_uri() . '/assets/js/cf7-mobile-fix.js', 
+            get_template_directory_uri() . '/assets/js/features/cf7-mobile-fix.js', 
             array(), 
             $version, 
             true 
@@ -410,7 +410,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_singular( 'service' ) || is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
         wp_enqueue_script( 
             'corporate-seo-pro-service', 
-            get_template_directory_uri() . '/assets/js/single-service.js', 
+            get_template_directory_uri() . '/assets/js/pages/single-service.js', 
             array(), 
             $version, 
             true 
@@ -420,7 +420,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
         if ( is_singular( 'service' ) ) {
             wp_enqueue_script( 
                 'corporate-seo-pro-related-services', 
-                get_template_directory_uri() . '/assets/js/related-services.js', 
+                get_template_directory_uri() . '/assets/js/features/related-services.js', 
                 array( 'corporate-seo-pro-animation-utils' ), 
                 $version, 
                 true 
@@ -432,7 +432,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_post_type_archive( 'work' ) || is_singular( 'work' ) || is_tax( 'work_category' ) ) {
         wp_enqueue_script( 
             'corporate-seo-pro-work', 
-            get_template_directory_uri() . '/assets/js/work-archive.js', 
+            get_template_directory_uri() . '/assets/js/pages/work-archive.js', 
             array( 'jquery' ), 
             $version, 
             true 
