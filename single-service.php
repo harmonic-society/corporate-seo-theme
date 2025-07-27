@@ -340,14 +340,13 @@ get_header(); ?>
                             // おすすめ度（ランダムまたはACFフィールドから）
                             $is_recommended = ( $service_index <= 2 ) || ( rand(1, 10) > 7 );
                             
-                            // 価格情報（ACFから取得、なければダミー）
+                            // 価格情報（ACFから取得）
                             $price_range = '';
                             if ( function_exists('get_field') ) {
-                                $price_range = get_field('service_price_range');
+                                $price_range = get_field('service_price', get_the_ID());
                             }
                             if ( empty( $price_range ) ) {
-                                $price_ranges = array( '¥50,000〜', '¥100,000〜', '¥200,000〜', 'お見積もり' );
-                                $price_range = $price_ranges[array_rand($price_ranges)];
+                                $price_range = 'お見積もり';
                             }
                         ?>
                         
@@ -402,9 +401,14 @@ get_header(); ?>
                                         </div>
                                         
                                         <?php 
-                                        // 導入期間（ダミーデータ）
-                                        $durations = array( '最短1週間', '2週間〜', '1ヶ月〜', '要相談' );
-                                        $duration = $durations[array_rand($durations)];
+                                        // 導入期間（ACFから取得）
+                                        $duration = '';
+                                        if ( function_exists('get_field') ) {
+                                            $duration = get_field('service_duration', get_the_ID());
+                                        }
+                                        if ( empty( $duration ) ) {
+                                            $duration = '要相談';
+                                        }
                                         ?>
                                         <div class="meta-item">
                                             <i class="fas fa-clock"></i>
