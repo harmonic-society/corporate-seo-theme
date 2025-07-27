@@ -440,6 +440,12 @@
     text-align: center;
 }
 
+.service-cta .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
 .service-cta h2 {
     font-size: 2rem;
     color: #333;
@@ -500,6 +506,12 @@
 .service-related {
     padding: 60px 0;
     background-color: white;
+}
+
+.service-related .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
 }
 
 .service-related h2 {
