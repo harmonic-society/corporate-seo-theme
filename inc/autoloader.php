@@ -30,6 +30,10 @@ function corporate_seo_pro_load_includes() {
         '/inc/seo-functions.php',      // SEO functionality
         '/inc/performance.php',        // Performance optimization
         '/inc/structured-data.php',    // Structured data
+        '/inc/sitemap.php',            // Advanced sitemap functionality
+        '/inc/i18n-seo.php',           // Internationalization and hreflang
+        '/inc/internal-linking.php',   // Internal linking optimization
+        '/inc/security-headers.php',   // Security headers and protection
         '/inc/acf-fields.php',         // ACF field registration
         '/inc/sticky-header-inline.php', // Sticky header inline CSS
         '/inc/blog-filters-ajax.php',   // Blog filters Ajax functionality

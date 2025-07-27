@@ -70,9 +70,77 @@ add_action( 'wp_head', 'corporate_seo_pro_meta_tags', 1 );
  */
 function corporate_seo_pro_robots_txt( $output, $public ) {
     if ( '1' == $public ) {
-        $output .= "Sitemap: " . home_url( '/sitemap.xml' ) . "\n";
-        $output .= "Sitemap: " . home_url( '/sitemap_index.xml' ) . "\n";
+        // クリーンアップ
+        $output = "User-agent: *\n";
+        $output .= "Allow: /\n\n";
+        
+        // クロール遅延（秒）
+        $output .= "Crawl-delay: 1\n\n";
+        
+        // WordPress関連ディレクトリのブロック
+        $output .= "# WordPress Core\n";
+        $output .= "Disallow: /wp-admin/\n";
+        $output .= "Allow: /wp-admin/admin-ajax.php\n";
+        $output .= "Disallow: /wp-includes/\n";
+        $output .= "Allow: /wp-includes/js/\n";
+        $output .= "Allow: /wp-includes/css/\n";
+        $output .= "Allow: /wp-includes/images/\n";
+        $output .= "Allow: /wp-includes/fonts/\n";
+        $output .= "Disallow: /wp-content/plugins/\n";
+        $output .= "Disallow: /wp-content/cache/\n";
+        $output .= "Disallow: /wp-content/themes/\n";
+        $output .= "Allow: /wp-content/themes/*/assets/\n";
+        $output .= "Allow: /wp-content/uploads/\n\n";
+        
+        // 検索結果とフィードのブロック
+        $output .= "# Search & Feeds\n";
+        $output .= "Disallow: /?s=\n";
+        $output .= "Disallow: /search/\n";
+        $output .= "Disallow: /feed/\n";
+        $output .= "Disallow: */feed/\n";
+        $output .= "Disallow: */trackback/\n";
+        $output .= "Disallow: */comment-page-\n";
+        $output .= "Disallow: */comments/\n\n";
+        
+        // パラメータ付きURLのブロック
+        $output .= "# URL Parameters\n";
+        $output .= "Disallow: /*?*\n";
+        $output .= "Disallow: /*?\n";
+        $output .= "Allow: /*?utm_*\n";
+        $output .= "Allow: /*?page=\n\n";
+        
+        // ファイルタイプ
+        $output .= "# File Types\n";
+        $output .= "Disallow: /*.pdf$\n";
+        $output .= "Allow: /wp-content/uploads/*.pdf$\n\n";
+        
+        // 特定のボット向け設定
+        $output .= "# Googlebot\n";
+        $output .= "User-agent: Googlebot\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n";
+        $output .= "Allow: /wp-admin/admin-ajax.php\n\n";
+        
+        $output .= "# Googlebot Image\n";
+        $output .= "User-agent: Googlebot-Image\n";
+        $output .= "Allow: /wp-content/uploads/\n";
+        $output .= "Disallow: /wp-content/themes/\n";
+        $output .= "Allow: /wp-content/themes/*/assets/images/\n\n";
+        
+        // 悪意のあるボットのブロック
+        $output .= "# Bad Bots\n";
+        $bad_bots = array( 'AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot' );
+        foreach ( $bad_bots as $bot ) {
+            $output .= "User-agent: $bot\n";
+            $output .= "Disallow: /\n\n";
+        }
+        
+        // サイトマップ
+        $output .= "# Sitemaps\n";
+        $output .= "Sitemap: " . home_url( '/wp-sitemap.xml' ) . "\n";
+        $output .= "Sitemap: " . home_url( '/?sitemap=news' ) . "\n";
     }
+    
     return $output;
 }
 add_filter( 'robots_txt', 'corporate_seo_pro_robots_txt', 10, 2 );
