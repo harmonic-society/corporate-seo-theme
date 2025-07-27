@@ -6,7 +6,65 @@
  * @package Corporate_SEO_Pro
  */
 
-get_header(); ?>
+get_header();
+
+// フィルター条件を取得
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+$args = array(
+    'post_type' => 'post',
+    'post_status' => 'publish',
+    'paged' => $paged,
+    'posts_per_page' => get_option( 'posts_per_page' ),
+);
+
+// 検索キーワード
+$search_query = get_search_query();
+if ( ! empty( $search_query ) ) {
+    $args['s'] = $search_query;
+}
+
+// タグフィルター
+if ( isset( $_GET['tags'] ) && ! empty( $_GET['tags'] ) ) {
+    $tags = explode( ',', sanitize_text_field( $_GET['tags'] ) );
+    $args['tag_slug__in'] = $tags;
+}
+
+// カテゴリーフィルター
+if ( isset( $_GET['category'] ) && ! empty( $_GET['category'] ) ) {
+    $category_ids = array_map( 'intval', $_GET['category'] );
+    $args['category__in'] = $category_ids;
+}
+
+// 期間フィルター
+if ( isset( $_GET['period'] ) && $_GET['period'] !== 'all' ) {
+    $date_query = array();
+    
+    switch ( $_GET['period'] ) {
+        case 'week':
+            $date_query[] = array(
+                'after' => '1 week ago',
+            );
+            break;
+        case 'month':
+            $date_query[] = array(
+                'after' => '1 month ago',
+            );
+            break;
+        case '3months':
+            $date_query[] = array(
+                'after' => '3 months ago',
+            );
+            break;
+    }
+    
+    if ( ! empty( $date_query ) ) {
+        $args['date_query'] = $date_query;
+    }
+}
+
+// カスタムクエリを実行
+$blog_query = new WP_Query( $args );
+?>
 
 <main id="main" class="site-main blog-archive-modern">
     
@@ -173,12 +231,11 @@ get_header(); ?>
                     </form>
                     
                     <!-- 検索結果数 -->
-                    <?php if ( is_search() || isset($_GET['category']) ) : ?>
+                    <?php if ( is_search() || isset($_GET['category']) || isset($_GET['tags']) || isset($_GET['period']) ) : ?>
                     <div class="search-results-info">
                         <span class="results-count">
                             <?php
-                            global $wp_query;
-                            echo number_format_i18n( $wp_query->found_posts ) . '件の記事';
+                            echo number_format_i18n( $blog_query->found_posts ) . '件の記事';
                             ?>
                         </span>
                         <?php if ( get_search_query() ) : ?>
@@ -195,7 +252,7 @@ get_header(); ?>
     <section class="blog-content-modern">
         <div class="container">
             
-            <?php if ( have_posts() ) : ?>
+            <?php if ( $blog_query->have_posts() ) : ?>
                 
                 <!-- ソートオプション -->
                 <div class="sort-options">
@@ -222,8 +279,8 @@ get_header(); ?>
                 <div class="blog-grid-modern" id="blogGrid">
                     <?php
                     $post_index = 0;
-                    while ( have_posts() ) :
-                        the_post();
+                    while ( $blog_query->have_posts() ) :
+                        $blog_query->the_post();
                         $post_index++;
                         
                         $article_class = 'blog-article';
@@ -320,15 +377,32 @@ get_header(); ?>
                 <!-- ページネーション -->
                 <div class="pagination-modern">
                     <?php
-                    the_posts_pagination( array(
-                        'mid_size'  => 2,
+                    $big = 999999999;
+                    
+                    // 現在のURLパラメータを保持
+                    $url_params = array();
+                    if ( ! empty( $_GET['s'] ) ) $url_params['s'] = $_GET['s'];
+                    if ( ! empty( $_GET['tags'] ) ) $url_params['tags'] = $_GET['tags'];
+                    if ( ! empty( $_GET['category'] ) ) $url_params['category'] = $_GET['category'];
+                    if ( ! empty( $_GET['period'] ) ) $url_params['period'] = $_GET['period'];
+                    
+                    echo paginate_links( array(
+                        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                        'format' => '?paged=%#%',
+                        'current' => max( 1, $paged ),
+                        'total' => $blog_query->max_num_pages,
+                        'mid_size' => 2,
                         'prev_text' => '<i class="fas fa-chevron-left"></i><span>前へ</span>',
                         'next_text' => '<span>次へ</span><i class="fas fa-chevron-right"></i>',
                         'before_page_number' => '<span class="page-label">',
-                        'after_page_number' => '</span>'
+                        'after_page_number' => '</span>',
+                        'type' => 'list',
+                        'add_args' => $url_params
                     ) );
                     ?>
                 </div>
+                
+                <?php wp_reset_postdata(); ?>
                 
             <?php else : ?>
                 

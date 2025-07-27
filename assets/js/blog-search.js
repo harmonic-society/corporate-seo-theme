@@ -309,11 +309,12 @@
             updateSearchButton();
         });
 
-        // Enterキーでの送信
+        // Enterキーでの送信を無効化
         searchInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                searchForm.submit();
+                // 明示的に検索ボタンをクリックしてもらう
+                console.log('検索を実行するには「検索する」ボタンをクリックしてください');
             }
         });
 
