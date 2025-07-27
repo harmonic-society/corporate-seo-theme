@@ -109,7 +109,9 @@
             }
         }, 300);
         
-        searchInput.addEventListener('input', handleSearchInput);
+        if (searchInput) {
+            searchInput.addEventListener('input', handleSearchInput);
+        }
         
         // クリック外でサジェストを隠す
         document.addEventListener('click', function(e) {
@@ -119,13 +121,17 @@
         });
         
         // タグクリック時の検索
-        searchSuggestions.addEventListener('click', function(e) {
-            if (e.target.classList.contains('suggestion-tag')) {
-                searchInput.value = e.target.textContent;
-                searchSuggestions.style.display = 'none';
-                searchInput.form.submit();
-            }
-        });
+        if (searchSuggestions) {
+            searchSuggestions.addEventListener('click', function(e) {
+                if (e.target.classList.contains('suggestion-tag')) {
+                    if (searchInput) {
+                        searchInput.value = e.target.textContent;
+                        searchInput.form.submit();
+                    }
+                    searchSuggestions.style.display = 'none';
+                }
+            });
+        }
     }
 
     /**

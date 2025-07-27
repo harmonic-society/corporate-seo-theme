@@ -8,12 +8,15 @@
     padding: 40px 0;
     background-color: var(--light-gray);
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 10;
 }
 
 .search-container {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
+    z-index: 20;
 }
 
 /* 検索フォーム */
@@ -92,6 +95,8 @@
     color: var(--text-color);
     transition: all 0.3s ease;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .filter-toggle:hover {
@@ -136,16 +141,23 @@
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    z-index: 100;
+    z-index: 1000;
     padding: 16px;
     opacity: 0;
     transform: translateY(-10px);
     transition: all 0.3s ease;
+    pointer-events: none;
+    display: none;
 }
 
 .search-suggestions:not(.hidden) {
+    pointer-events: auto;
+}
+
+.search-suggestions.show {
     opacity: 1;
     transform: translateY(0);
+    display: block;
 }
 
 .suggestions-header {
@@ -186,15 +198,22 @@
     background-color: white;
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    z-index: 200;
+    z-index: 2000;
     opacity: 0;
     transform: translateY(-20px) scale(0.95);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.filter-panel.hidden {
+    visibility: hidden;
 }
 
 .filter-panel:not(.hidden) {
     opacity: 1;
     transform: translateY(0) scale(1);
+    pointer-events: auto;
+    visibility: visible;
 }
 
 .filter-panel-inner {
@@ -372,6 +391,8 @@
     transition: all 0.3s ease;
     border: none;
     text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .apply-filters {
@@ -493,7 +514,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 10000;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -561,6 +582,9 @@
         width: 100%;
         justify-content: center;
         margin-top: 16px;
+        min-height: 48px;
+        font-size: 16px;
+        padding: 16px 24px;
     }
     
     .filter-panel {

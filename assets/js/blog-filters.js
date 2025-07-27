@@ -25,6 +25,7 @@
         initializeSortAndView();
         initializeAjaxFiltering();
         restoreFilterState();
+        initializeMobileOptimizations();
     });
 
     /**
@@ -45,7 +46,10 @@
         const searchParam = urlParams.get('s');
         if (searchParam) {
             filterState.search = searchParam;
-            document.querySelector('.search-input').value = searchParam;
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.value = searchParam;
+            }
         }
         
         const sortParam = urlParams.get('orderby');
@@ -66,6 +70,7 @@
         // フィルターパネルの表示/非表示
         filterToggle.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             
             const isOpen = !filterPanel.classList.contains('hidden');
             
@@ -240,6 +245,13 @@
         }
         
         // Ajax リクエスト
+        if (typeof corporate_seo_pro_ajax === 'undefined') {
+            // Ajax未対応の場合はフォールバック
+            submitFilterForm();
+            hideLoadingOverlay();
+            return;
+        }
+        
         const ajaxUrl = corporate_seo_pro_ajax.ajax_url;
         const formData = new FormData();
         formData.append('action', 'filter_blog_posts');
@@ -338,9 +350,15 @@
         
         // UIをリセット
         document.querySelectorAll('.filter-checkbox input').forEach(cb => cb.checked = false);
-        document.querySelector('.filter-radio input[value="all"]').checked = true;
-        document.querySelector('.search-input').value = '';
-        document.querySelector('#sortPosts').value = 'date';
+        
+        const allPeriodRadio = document.querySelector('.filter-radio input[value="all"]');
+        if (allPeriodRadio) allPeriodRadio.checked = true;
+        
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput) searchInput.value = '';
+        
+        const sortSelect = document.querySelector('#sortPosts');
+        if (sortSelect) sortSelect.value = 'date';
         
         // フィルターを適用
         applyFilters();
@@ -384,6 +402,7 @@
             // フィルター適用ボタンでフォーム送信
             const applyButton = document.querySelector('.apply-filters');
             if (applyButton) {
+                applyButton.removeEventListener('click', applyFilters);
                 applyButton.addEventListener('click', function() {
                     submitFilterForm();
                 });
@@ -480,5 +499,83 @@
             applyFilters();
         }
     });
+
+    /**
+     * モバイル最適化
+     */
+    function initializeMobileOptimizations() {
+        // タッチデバイスの検出
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        if (isTouchDevice) {
+            // フィルタートグルボタンのタッチイベント最適化
+            const filterToggle = document.querySelector('.filter-toggle');
+            if (filterToggle) {
+                filterToggle.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.click();
+                }, { passive: false });
+            }
+            
+            // 適用・クリアボタンのタッチイベント最適化
+            const applyButton = document.querySelector('.apply-filters');
+            const clearButton = document.querySelector('.clear-filters');
+            
+            if (applyButton) {
+                applyButton.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.click();
+                }, { passive: false });
+            }
+            
+            if (clearButton) {
+                clearButton.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.click();
+                }, { passive: false });
+            }
+            
+            // ビューオプションのタッチイベント最適化
+            const viewOptions = document.querySelectorAll('.view-option');
+            viewOptions.forEach(option => {
+                option.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.click();
+                }, { passive: false });
+            });
+        }
+        
+        // 検索入力フィールドのフォーカス問題を修正
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput) {
+            searchInput.addEventListener('focus', function() {
+                // モバイルでのスクロール位置を調整
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                }
+            });
+        }
+        
+        // フィルターパネルのモバイル用調整
+        const filterPanel = document.querySelector('.filter-panel');
+        if (filterPanel && window.innerWidth <= 768) {
+            // モバイルでパネルが開いた時にスクロールを無効化
+            const filterToggle = document.querySelector('.filter-toggle');
+            if (filterToggle) {
+                const originalToggleClick = filterToggle.onclick;
+                filterToggle.onclick = function(e) {
+                    if (originalToggleClick) originalToggleClick.call(this, e);
+                    
+                    if (!filterPanel.classList.contains('hidden')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                };
+            }
+        }
+    }
 
 })();

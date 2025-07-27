@@ -46,8 +46,17 @@
             // ローディング表示
             suggestionsList.innerHTML = '<div class="suggestion-item"><i class="fas fa-spinner fa-spin suggestion-icon"></i><span class="suggestion-text">検索中...</span></div>';
             suggestionsContainer.style.display = 'block';
+            suggestionsContainer.classList.remove('hidden');
+            setTimeout(() => {
+                suggestionsContainer.classList.add('show');
+            }, 10);
 
             // Ajax検索（WordPressのREST APIを使用）
+            if (typeof wp_vars === 'undefined' || !wp_vars.rest_url) {
+                suggestionsList.innerHTML = '<div class="suggestion-item"><i class="fas fa-info-circle suggestion-icon"></i><span class="suggestion-text">検索機能が利用できません</span></div>';
+                return;
+            }
+            
             fetch(`${wp_vars.rest_url}wp/v2/posts?search=${encodeURIComponent(query)}&per_page=5`)
                 .then(response => response.json())
                 .then(posts => {
@@ -85,7 +94,11 @@
 
         // 検索候補を隠す
         function hideSuggestions() {
-            suggestionsContainer.style.display = 'none';
+            suggestionsContainer.classList.remove('show');
+            suggestionsContainer.classList.add('hidden');
+            setTimeout(() => {
+                suggestionsContainer.style.display = 'none';
+            }, 300);
             currentSuggestions = [];
         }
 
@@ -109,6 +122,17 @@
             // iOSでの入力問題を回避
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                 this.style.fontSize = '16px';
+            }
+            
+            // 空の場合のみサジェストを表示
+            if (this.value === '' && suggestionsContainer) {
+                if (suggestionsContainer.style.display !== 'block') {
+                    suggestionsContainer.style.display = 'block';
+                    suggestionsContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        suggestionsContainer.classList.add('show');
+                    }, 10);
+                }
             }
             
             console.log('Search input focused');
