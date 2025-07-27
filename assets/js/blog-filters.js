@@ -264,9 +264,23 @@
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
-                updateBlogGrid(data.html);
-                updatePagination(data.pagination);
+            console.log('Ajax response:', data); // デバッグ用
+            
+            if (data && data.success && data.data) {
+                // WordPressのwp_send_json_successはdata.dataにコンテンツを格納
+                const responseData = data.data;
+                
+                if (responseData.html) {
+                    updateBlogGrid(responseData.html);
+                } else {
+                    console.error('No HTML data in response');
+                    updateBlogGrid('<div class="no-posts-found"><p>記事が見つかりませんでした。</p></div>');
+                }
+                
+                if (responseData.pagination) {
+                    updatePagination(responseData.pagination);
+                }
+                
                 updateURL(params);
                 
                 // フィルターパネルを閉じる
@@ -275,8 +289,18 @@
                 if (filterPanel && !filterPanel.classList.contains('hidden')) {
                     filterPanel.classList.add('hidden');
                     filterPanel.classList.remove('show');
-                    filterToggle.classList.remove('active');
+                    if (filterToggle) {
+                        filterToggle.classList.remove('active');
+                    }
                 }
+            } else if (data && data.success === false && data.data && data.data.message) {
+                // WordPressのwp_send_json_errorの場合
+                console.error('Filter error:', data.data.message);
+                updateBlogGrid(`<div class="no-posts-found"><p>${data.data.message}</p></div>`);
+            } else {
+                console.error('Invalid response data:', data);
+                // エラー時のフォールバック
+                updateBlogGrid('<div class="no-posts-found"><p>エラーが発生しました。ページを再読み込みしてください。</p></div>');
             }
             hideLoadingOverlay();
         })
@@ -284,8 +308,15 @@
             console.error('Filter error:', error);
             hideLoadingOverlay();
             
-            // フォールバック: 通常のページリロード
-            window.location.href = '?' + params.toString();
+            // エラーメッセージを表示
+            updateBlogGrid('<div class="no-posts-found"><p>通信エラーが発生しました。ページを再読み込みしてください。</p></div>');
+            
+            // 重大なエラーの場合は3秒後にページリロード
+            setTimeout(() => {
+                if (confirm('エラーが発生しました。ページを再読み込みしますか？')) {
+                    window.location.href = '?' + params.toString();
+                }
+            }, 3000);
         });
     }
 

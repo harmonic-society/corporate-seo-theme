@@ -15,11 +15,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 function corporate_seo_pro_filter_blog_posts() {
     // Nonceチェック
     if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'blog_filter_nonce' ) ) {
-        wp_die( 'Security check failed' );
+        wp_send_json_error( array(
+            'message' => 'セキュリティチェックに失敗しました。ページを再読み込みしてください。'
+        ) );
     }
     
     // フィルターデータの取得
-    $filters = isset( $_POST['filters'] ) ? json_decode( stripslashes( $_POST['filters'] ), true ) : array();
+    $filters = array();
+    if ( isset( $_POST['filters'] ) ) {
+        $filters = json_decode( stripslashes( $_POST['filters'] ), true );
+        if ( json_last_error() !== JSON_ERROR_NONE ) {
+            wp_send_json_error( array(
+                'message' => 'フィルターデータの解析に失敗しました。'
+            ) );
+        }
+    }
     
     // クエリ引数の構築
     $args = array(
@@ -148,7 +158,13 @@ function corporate_seo_pro_filter_blog_posts() {
                             <!-- 読了時間 -->
                             <span class="reading-time">
                                 <i class="far fa-clock"></i>
-                                <?php echo corporate_seo_get_reading_time(); ?>
+                                <?php 
+                                if ( function_exists( 'corporate_seo_get_reading_time' ) ) {
+                                    echo corporate_seo_get_reading_time();
+                                } else {
+                                    echo '3分';
+                                }
+                                ?>
                             </span>
                         </div>
                         
