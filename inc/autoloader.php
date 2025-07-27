@@ -33,6 +33,7 @@ function corporate_seo_pro_load_includes() {
         '/inc/acf-fields.php',         // ACF field registration
         '/inc/sticky-header-inline.php', // Sticky header inline CSS
         '/inc/blog-filters-ajax.php',   // Blog filters Ajax functionality
+        '/inc/analytics.php',           // Google Analytics 4 integration
     );
     
     // Load each file
