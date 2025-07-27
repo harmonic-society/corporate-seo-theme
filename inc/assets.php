@@ -321,6 +321,20 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             true 
         );
         
+        // Blog search functionality
+        wp_enqueue_script( 
+            'corporate-seo-pro-blog-search', 
+            get_template_directory_uri() . '/assets/js/blog-search.js', 
+            array(), 
+            $version, 
+            true 
+        );
+        
+        wp_localize_script( 'corporate-seo-pro-blog-search', 'wp_vars', array(
+            'rest_url' => esc_url_raw( rest_url() ),
+            'nonce' => wp_create_nonce( 'wp_rest' ),
+        ) );
+        
         // Blog filters
         wp_enqueue_script( 
             'corporate-seo-pro-blog-filters', 

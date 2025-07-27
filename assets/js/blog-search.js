@@ -27,6 +27,10 @@
             return;
         }
         
+        // デバッグ情報
+        console.log('Filter chips found:', filterChips.length);
+        console.log('Filter dropdowns found:', filterDropdowns.length);
+        
         // アクティブフィルターの管理
         let activeFilters = {
             tags: [],
@@ -35,30 +39,46 @@
         };
 
         // フィルターチップのクリックイベント
-        filterChips.forEach(chip => {
-            chip.addEventListener('click', function() {
-                const tag = this.getAttribute('data-tag');
-                
-                if (this.classList.contains('active')) {
-                    this.classList.remove('active');
-                    activeFilters.tags = activeFilters.tags.filter(t => t !== tag);
-                } else {
-                    this.classList.add('active');
-                    activeFilters.tags.push(tag);
-                }
-                
-                updateActiveFilters();
-                applyFilters();
+        if (filterChips.length > 0) {
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const tag = this.getAttribute('data-tag');
+                    console.log('Filter chip clicked:', tag);
+                    
+                    if (this.classList.contains('active')) {
+                        this.classList.remove('active');
+                        activeFilters.tags = activeFilters.tags.filter(t => t !== tag);
+                    } else {
+                        this.classList.add('active');
+                        activeFilters.tags.push(tag);
+                    }
+                    
+                    updateActiveFilters();
+                    applyFilters();
+                });
             });
-        });
+        } else {
+            console.log('No filter chips found on page');
+        }
 
         // フィルタードロップダウンの制御
-        filterDropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.filter-dropdown-toggle');
-            const menu = dropdown.querySelector('.filter-dropdown-menu');
-            
-            toggle.addEventListener('click', function(e) {
+        if (filterDropdowns.length > 0) {
+            filterDropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.filter-dropdown-toggle');
+                const menu = dropdown.querySelector('.filter-dropdown-menu');
+                
+                if (!toggle || !menu) {
+                    console.log('Dropdown elements not found');
+                    return;
+                }
+                
+                toggle.addEventListener('click', function(e) {
+                e.preventDefault();
                 e.stopPropagation();
+                console.log('Dropdown toggle clicked');
                 
                 // 他のドロップダウンを閉じる
                 filterDropdowns.forEach(other => {
@@ -95,6 +115,7 @@
                 });
             });
         });
+        }
 
         // アクティブフィルターの表示を更新
         function updateActiveFilters() {
