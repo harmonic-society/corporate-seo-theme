@@ -1,0 +1,182 @@
+/**
+ * About Hero Section - Visibility Fix
+ * 
+ * Ensures the 3つの調和 section content is always visible
+ */
+
+/* Force the about hero to use the primary gradient background */
+.page-template-page-about .about-hero {
+    background: linear-gradient(135deg, #e6f7f5 0%, #d4f1ed 100%) !important;
+    color: #1a2e2e !important;
+    overflow: visible !important; /* Ensure content is not clipped */
+}
+
+/* Ensure all text elements use dark colors for visibility */
+.page-template-page-about .hero-title,
+.page-template-page-about .hero-title * {
+    color: #1a2e2e !important;
+}
+
+.page-template-page-about .title-label {
+    color: #00867b !important;
+    opacity: 0.9 !important;
+}
+
+.page-template-page-about .title-main {
+    color: #1a2e2e !important;
+}
+
+.page-template-page-about .title-main .equals {
+    color: #10b981 !important;
+}
+
+.page-template-page-about .values-title {
+    color: #1a2e2e !important;
+}
+
+.page-template-page-about .values-title::after {
+    background: linear-gradient(90deg, transparent, #00867b, transparent) !important;
+}
+
+/* Fix value items visibility and animation issues */
+.page-template-page-about .value-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: none !important; /* Disable animation that might be causing issues */
+    transform: none !important; /* Reset any transform */
+}
+
+.page-template-page-about .value-circle {
+    background: #ffffff !important;
+    border: 3px solid #00867b !important;
+    box-shadow: 0 8px 24px rgba(0, 134, 123, 0.15) !important;
+    width: 200px !important;
+    height: 200px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+.page-template-page-about .value-icon {
+    color: #00867b !important;
+    font-size: 3rem !important;
+    display: block !important;
+}
+
+.page-template-page-about .value-icon i {
+    display: block !important;
+}
+
+.page-template-page-about .value-number {
+    background: #00867b !important;
+    color: #ffffff !important;
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    font-weight: 700 !important;
+}
+
+.page-template-page-about .value-title {
+    color: #1a2e2e !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    margin-top: 1.5rem !important;
+}
+
+/* Hover effects with proper contrast */
+.page-template-page-about .value-item:hover .value-circle {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 15px 40px rgba(0, 134, 123, 0.25) !important;
+    border-color: #005952 !important;
+}
+
+.page-template-page-about .value-item:hover .value-icon {
+    transform: scale(1.1) !important;
+    color: #005952 !important;
+}
+
+.page-template-page-about .value-item:hover .value-title {
+    color: #00867b !important;
+}
+
+/* Ensure the values grid is visible */
+.page-template-page-about .hero-values {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10 !important;
+    min-height: 400px !important; /* Ensure minimum height */
+}
+
+.page-template-page-about .values-grid {
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 3rem !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Remove any animation-related styles that might hide elements */
+.page-template-page-about .value-item,
+.page-template-page-about .value-item * {
+    animation: none !important;
+    animation-fill-mode: none !important;
+    animation-delay: 0s !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+/* Override any animation classes */
+.page-template-page-about .fade-in,
+.page-template-page-about .fade-in-up,
+.page-template-page-about .fade-in-down,
+.page-template-page-about .fadeInScale,
+.page-template-page-about .fadeInUp,
+.page-template-page-about .fadeInDown {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Wave styling to match the light background */
+.page-template-page-about .hero-wave path {
+    fill: #ffffff !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-template-page-about .values-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        max-width: 320px !important;
+    }
+    
+    .page-template-page-about .value-circle {
+        width: 160px !important;
+        height: 160px !important;
+    }
+    
+    .page-template-page-about .value-icon {
+        font-size: 2.5rem !important;
+    }
+    
+    .page-template-page-about .value-title {
+        font-size: 1.125rem !important;
+    }
+}

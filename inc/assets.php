@@ -361,11 +361,28 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             true 
         );
         
+        // About values visibility fix script
+        wp_enqueue_script( 
+            'corporate-seo-pro-about-values-fix', 
+            get_template_directory_uri() . '/assets/js/about-values-fix.js', 
+            array(), 
+            $version, 
+            true 
+        );
+        
         // About page hero styles
         wp_enqueue_style( 
             'corporate-seo-pro-about-hero', 
             get_template_directory_uri() . '/assets/css/pages/about-hero.css', 
             array( 'corporate-seo-pro-base' ), 
+            $version 
+        );
+        
+        // About page hero visibility fix
+        wp_enqueue_style( 
+            'corporate-seo-pro-about-hero-fix', 
+            get_template_directory_uri() . '/assets/css/pages/about-hero-fix.css', 
+            array( 'corporate-seo-pro-about-hero', 'corporate-seo-pro-style', 'corporate-seo-pro-color-scheme' ), 
             $version 
         );
     }
