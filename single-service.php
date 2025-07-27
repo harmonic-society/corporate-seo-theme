@@ -220,6 +220,96 @@ get_header(); ?>
         </section>
         <?php endif; // ACFが設定されていない場合は料金セクションを非表示 ?>
 
+        <!-- サービスの流れセクション -->
+        <?php 
+        $has_process = false;
+        if ( function_exists('get_field') && function_exists('have_rows') ) {
+            $has_process = have_rows('service_process');
+        }
+        
+        if ( $has_process ) : ?>
+        <section class="service-process">
+            <div class="container">
+                <h2 class="section-title text-center">
+                    <span class="title-en">Process</span>
+                    <span class="title-ja">サービスの流れ</span>
+                </h2>
+                
+                <div class="process-timeline">
+                    <?php 
+                    $step_count = 0;
+                    while ( have_rows('service_process') ) : the_row(); 
+                        $step_count++;
+                    ?>
+                        <div class="process-step">
+                            <div class="step-number">
+                                <span><?php echo str_pad($step_count, 2, '0', STR_PAD_LEFT); ?></span>
+                            </div>
+                            <div class="step-content">
+                                <h3 class="step-title">
+                                    <?php 
+                                    $title = get_sub_field('title');
+                                    echo $title ? esc_html( $title ) : 'ステップ ' . $step_count;
+                                    ?>
+                                </h3>
+                                <p class="step-description">
+                                    <?php 
+                                    $desc = get_sub_field('description');
+                                    echo $desc ? esc_html( $desc ) : '';
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
+
+        <!-- よくある質問セクション -->
+        <?php 
+        $has_faq = false;
+        if ( function_exists('get_field') && function_exists('have_rows') ) {
+            $has_faq = have_rows('service_faq');
+        }
+        
+        if ( $has_faq ) : ?>
+        <section class="service-faq">
+            <div class="container">
+                <h2 class="section-title text-center">
+                    <span class="title-en">FAQ</span>
+                    <span class="title-ja">よくある質問</span>
+                </h2>
+                
+                <div class="faq-list">
+                    <?php while ( have_rows('service_faq') ) : the_row(); ?>
+                        <div class="faq-item">
+                            <button class="faq-question" type="button" aria-expanded="false">
+                                <span class="question-text">
+                                    <?php 
+                                    $question = get_sub_field('question');
+                                    echo $question ? esc_html( $question ) : '質問';
+                                    ?>
+                                </span>
+                                <span class="question-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="answer-content">
+                                    <?php 
+                                    $answer = get_sub_field('answer');
+                                    echo $answer ? wp_kses_post( wpautop( $answer ) ) : '';
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
+
         <!-- お問い合わせCTA -->
         <section class="service-cta">
             <div class="container">

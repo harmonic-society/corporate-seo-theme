@@ -433,6 +433,15 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
                 $version, 
                 true 
             );
+            
+            // FAQ accordion script
+            wp_enqueue_script( 
+                'corporate-seo-pro-service-faq', 
+                get_template_directory_uri() . '/assets/js/service-faq.js', 
+                array(), 
+                $version, 
+                true 
+            );
         }
     }
     
