@@ -191,11 +191,11 @@
             });
         }
 
-        // フィルターを適用
+        // フィルターを適用（hiddenフィールドを更新するだけ）
         function applyFilters() {
-            // フォームにフィルター情報を追加
-            const hiddenInputs = searchForm.querySelectorAll('input[type="hidden"]');
-            hiddenInputs.forEach(input => input.remove());
+            // 既存のhiddenフィールドを削除
+            const existingHiddenInputs = searchForm.querySelectorAll('input[type="hidden"]:not([name="nonce"])');
+            existingHiddenInputs.forEach(input => input.remove());
             
             // タグフィルター
             if (activeFilters.tags.length > 0) {
@@ -224,8 +224,26 @@
                 searchForm.appendChild(periodInput);
             }
             
-            // Ajaxでフィルターを適用（オプション）
-            // searchForm.submit();
+            // 検索実行ボタンの表示状態を更新
+            updateSearchButton();
+        }
+        
+        // 検索実行ボタンの表示状態を更新
+        function updateSearchButton() {
+            const searchExecuteBtn = document.querySelector('.search-execute-btn');
+            if (!searchExecuteBtn) return;
+            
+            // フィルターが選択されているか、検索キーワードが入力されているかチェック
+            const hasFilters = activeFilters.tags.length > 0 || 
+                             activeFilters.categories.length > 0 || 
+                             activeFilters.period !== 'all' ||
+                             searchInput.value.trim() !== '';
+            
+            if (hasFilters) {
+                searchExecuteBtn.classList.add('has-filters');
+            } else {
+                searchExecuteBtn.classList.remove('has-filters');
+            }
         }
 
         // ドロップダウンを閉じる
@@ -285,6 +303,11 @@
         searchInput.addEventListener('blur', function() {
             this.parentElement.classList.remove('focused');
         });
+        
+        // 検索入力の変更を監視
+        searchInput.addEventListener('input', function() {
+            updateSearchButton();
+        });
 
         // Enterキーでの送信
         searchInput.addEventListener('keydown', function(e) {
@@ -338,6 +361,7 @@
         
         // 初期フィルターの表示を更新
         updateActiveFilters();
+        updateSearchButton();
     });
 
     // WordPressのREST APIエンドポイント設定

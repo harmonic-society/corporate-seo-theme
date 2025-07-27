@@ -90,6 +90,11 @@
 /* インラインフィルター */
 .inline-filters {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .filter-chips {
@@ -97,6 +102,7 @@
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
+    flex: 1;
 }
 
 /* フィルターチップ */
@@ -235,6 +241,10 @@
     border-left: 1px solid #e5e7eb;
 }
 
+.active-filters:empty {
+    display: none;
+}
+
 .active-filter-tag {
     display: inline-flex;
     align-items: center;
@@ -281,6 +291,56 @@
 
 .search-query {
     color: #6b7280;
+}
+
+/* 検索実行ボタン */
+.search-execute-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.search-execute-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.2);
+}
+
+.search-execute-btn:active {
+    transform: translateY(0);
+}
+
+.search-execute-btn i {
+    font-size: 14px;
+}
+
+/* フィルターが選択されているときの検索ボタン */
+.search-execute-btn.has-filters {
+    background-color: var(--primary-dark);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 134, 123, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 134, 123, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 134, 123, 0);
+    }
 }
 
 /* フィルターパネル */
@@ -718,6 +778,15 @@
         margin-top: 12px;
         padding-top: 12px;
         border-top: 1px solid #e5e7eb;
+    }
+    
+    .search-execute-btn {
+        width: 100%;
+        margin-top: 16px;
+        margin-left: 0;
+        justify-content: center;
+        padding: 14px 24px;
+        font-size: 16px;
     }
     
     .sort-options {

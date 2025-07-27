@@ -162,6 +162,12 @@ get_header(); ?>
                                 
                                 <!-- アクティブフィルター表示 -->
                                 <div class="active-filters"></div>
+                                
+                                <!-- 検索実行ボタン -->
+                                <button type="submit" class="search-execute-btn">
+                                    <i class="fas fa-search"></i>
+                                    <span>検索する</span>
+                                </button>
                             </div>
                         </div>
                     </form>
