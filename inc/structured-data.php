@@ -252,7 +252,8 @@ function corporate_seo_pro_faq_schema( $content ) {
                 );
             }
             
-            echo '<script type="application/ld+json">' . wp_json_encode( $faq_schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+            $faq_json = '<script type="application/ld+json">' . wp_json_encode( $faq_schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+            $content = $faq_json . $content;
         }
     }
     
