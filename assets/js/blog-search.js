@@ -10,12 +10,12 @@
         // 要素の取得
         const searchForm = document.querySelector('.blog-search-form');
         const searchInput = document.querySelector('.search-input');
-        const categoryFilters = document.querySelectorAll('.category-filter input');
+        const filterChips = document.querySelectorAll('.filter-chip');
+        const filterDropdowns = document.querySelectorAll('.filter-dropdown');
         const viewOptions = document.querySelectorAll('.view-option');
         const sortSelect = document.querySelector('.sort-select');
-        const suggestionsContainer = document.querySelector('.search-suggestions');
-        const suggestionsList = document.querySelector('.suggestions-list');
-        const newsSection = document.querySelector('.news-section');
+        const activeFiltersContainer = document.querySelector('.active-filters');
+        const blogGrid = document.querySelector('.blog-grid-modern');
 
         if (!searchForm) {
             console.log('Search form not found');
@@ -27,220 +27,296 @@
             return;
         }
         
-        // 検索入力フィールドの基本的な動作確認
-        console.log('Search input element:', searchInput);
-        console.log('Search input disabled:', searchInput.disabled);
-        console.log('Search input readonly:', searchInput.readOnly);
+        // アクティブフィルターの管理
+        let activeFilters = {
+            tags: [],
+            categories: [],
+            period: 'all'
+        };
 
-        // 検索候補の管理
-        let searchTimeout;
-        let currentSuggestions = [];
-
-        // 検索候補の表示
-        function showSuggestions(query) {
-            if (query.length < 2) {
-                hideSuggestions();
-                return;
-            }
-
-            // ローディング表示
-            suggestionsList.innerHTML = '<div class="suggestion-item"><i class="fas fa-spinner fa-spin suggestion-icon"></i><span class="suggestion-text">検索中...</span></div>';
-            suggestionsContainer.style.display = 'block';
-            suggestionsContainer.classList.remove('hidden');
-            setTimeout(() => {
-                suggestionsContainer.classList.add('show');
-            }, 10);
-
-            // Ajax検索（WordPressのREST APIを使用）
-            if (typeof wp_vars === 'undefined' || !wp_vars.rest_url) {
-                suggestionsList.innerHTML = '<div class="suggestion-item"><i class="fas fa-info-circle suggestion-icon"></i><span class="suggestion-text">検索機能が利用できません</span></div>';
-                return;
-            }
-            
-            fetch(`${wp_vars.rest_url}wp/v2/posts?search=${encodeURIComponent(query)}&per_page=5`)
-                .then(response => response.json())
-                .then(posts => {
-                    if (posts.length === 0) {
-                        suggestionsList.innerHTML = '<div class="suggestion-item"><i class="fas fa-info-circle suggestion-icon"></i><span class="suggestion-text">検索結果が見つかりませんでした</span></div>';
-                        return;
-                    }
-
-                    currentSuggestions = posts;
-                    suggestionsList.innerHTML = posts.map((post, index) => {
-                        const title = highlightMatch(post.title.rendered, query);
-                        return `
-                            <div class="suggestion-item" data-index="${index}">
-                                <i class="fas fa-file-alt suggestion-icon"></i>
-                                <span class="suggestion-text">${title}</span>
-                            </div>
-                        `;
-                    }).join('');
-
-                    // 候補アイテムのクリックイベント
-                    document.querySelectorAll('.suggestion-item').forEach(item => {
-                        item.addEventListener('click', function() {
-                            const index = this.dataset.index;
-                            if (currentSuggestions[index]) {
-                                window.location.href = currentSuggestions[index].link;
-                            }
-                        });
-                    });
-                })
-                .catch(error => {
-                    console.error('Search error:', error);
-                    suggestionsList.innerHTML = '<div class="suggestion-item"><i class="fas fa-exclamation-circle suggestion-icon"></i><span class="suggestion-text">エラーが発生しました</span></div>';
-                });
-        }
-
-        // 検索候補を隠す
-        function hideSuggestions() {
-            suggestionsContainer.classList.remove('show');
-            suggestionsContainer.classList.add('hidden');
-            setTimeout(() => {
-                suggestionsContainer.style.display = 'none';
-            }, 300);
-            currentSuggestions = [];
-        }
-
-        // マッチ部分をハイライト
-        function highlightMatch(text, query) {
-            const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
-            return text.replace(regex, '<strong>$1</strong>');
-        }
-
-        // 正規表現エスケープ
-        function escapeRegExp(string) {
-            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        }
-
-        // 検索入力のフォーカス処理
-        searchInput.addEventListener('focus', function(e) {
-            // 入力を確実にする
-            this.removeAttribute('readonly');
-            this.removeAttribute('disabled');
-            
-            // iOSでの入力問題を回避
-            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                this.style.fontSize = '16px';
-            }
-            
-            // 空の場合のみサジェストを表示
-            if (this.value === '' && suggestionsContainer) {
-                if (suggestionsContainer.style.display !== 'block') {
-                    suggestionsContainer.style.display = 'block';
-                    suggestionsContainer.classList.remove('hidden');
-                    setTimeout(() => {
-                        suggestionsContainer.classList.add('show');
-                    }, 10);
+        // フィルターチップのクリックイベント
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', function() {
+                const tag = this.getAttribute('data-tag');
+                
+                if (this.classList.contains('active')) {
+                    this.classList.remove('active');
+                    activeFilters.tags = activeFilters.tags.filter(t => t !== tag);
+                } else {
+                    this.classList.add('active');
+                    activeFilters.tags.push(tag);
                 }
+                
+                updateActiveFilters();
+                applyFilters();
+            });
+        });
+
+        // フィルタードロップダウンの制御
+        filterDropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.filter-dropdown-toggle');
+            const menu = dropdown.querySelector('.filter-dropdown-menu');
+            
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // 他のドロップダウンを閉じる
+                filterDropdowns.forEach(other => {
+                    if (other !== dropdown) {
+                        other.classList.remove('active');
+                        other.querySelector('.filter-dropdown-toggle').classList.remove('active');
+                    }
+                });
+                
+                // 現在のドロップダウンをトグル
+                dropdown.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+            
+            // チェックボックス/ラジオボタンの変更イベント
+            const inputs = menu.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (input.type === 'checkbox') {
+                        // カテゴリーフィルター
+                        const categoryId = parseInt(input.value);
+                        if (input.checked) {
+                            activeFilters.categories.push(categoryId);
+                        } else {
+                            activeFilters.categories = activeFilters.categories.filter(id => id !== categoryId);
+                        }
+                    } else if (input.type === 'radio') {
+                        // 期間フィルター
+                        activeFilters.period = input.value;
+                    }
+                    
+                    updateActiveFilters();
+                    applyFilters();
+                });
+            });
+        });
+
+        // アクティブフィルターの表示を更新
+        function updateActiveFilters() {
+            if (!activeFiltersContainer) return;
+            
+            activeFiltersContainer.innerHTML = '';
+            
+            // タグフィルター
+            activeFilters.tags.forEach(tag => {
+                const filterTag = document.createElement('div');
+                filterTag.className = 'active-filter-tag';
+                filterTag.innerHTML = `
+                    <i class="fas fa-hashtag"></i>
+                    <span>${tag}</span>
+                    <button type="button" data-type="tag" data-value="${tag}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                activeFiltersContainer.appendChild(filterTag);
+            });
+            
+            // カテゴリーフィルター
+            activeFilters.categories.forEach(categoryId => {
+                const categoryLabel = document.querySelector(`input[value="${categoryId}"]`)?.nextElementSibling?.textContent || 'Category';
+                const filterTag = document.createElement('div');
+                filterTag.className = 'active-filter-tag';
+                filterTag.innerHTML = `
+                    <i class="fas fa-folder"></i>
+                    <span>${categoryLabel}</span>
+                    <button type="button" data-type="category" data-value="${categoryId}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                activeFiltersContainer.appendChild(filterTag);
+            });
+            
+            // 期間フィルター
+            if (activeFilters.period !== 'all') {
+                const periodLabel = document.querySelector(`input[value="${activeFilters.period}"]`)?.nextElementSibling?.textContent || 'Period';
+                const filterTag = document.createElement('div');
+                filterTag.className = 'active-filter-tag';
+                filterTag.innerHTML = `
+                    <i class="fas fa-calendar"></i>
+                    <span>${periodLabel}</span>
+                    <button type="button" data-type="period" data-value="${activeFilters.period}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                activeFiltersContainer.appendChild(filterTag);
             }
             
-            console.log('Search input focused');
-        });
-        
-        // 入力フィールドのクリックイベント
-        searchInput.addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.focus();
-        });
-        
-        // 検索入力イベント
-        searchInput.addEventListener('input', function() {
-            clearTimeout(searchTimeout);
-            const query = this.value.trim();
-
-            searchTimeout = setTimeout(() => {
-                showSuggestions(query);
-            }, 300);
-        });
-
-        // フォーカス外れたら候補を隠す
-        document.addEventListener('click', function(e) {
-            if (!searchForm.contains(e.target)) {
-                hideSuggestions();
-            }
-        });
-
-        // カテゴリーフィルターの切り替え
-        categoryFilters.forEach(filter => {
-            filter.addEventListener('change', function() {
-                // アクティブクラスの更新
-                document.querySelectorAll('.category-filter').forEach(label => {
-                    label.classList.remove('active');
+            // 削除ボタンのイベントリスナー
+            activeFiltersContainer.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const type = this.getAttribute('data-type');
+                    const value = this.getAttribute('data-value');
+                    
+                    if (type === 'tag') {
+                        activeFilters.tags = activeFilters.tags.filter(t => t !== value);
+                        document.querySelector(`[data-tag="${value}"]`)?.classList.remove('active');
+                    } else if (type === 'category') {
+                        activeFilters.categories = activeFilters.categories.filter(id => id !== parseInt(value));
+                        const checkbox = document.querySelector(`input[value="${value}"]`);
+                        if (checkbox) checkbox.checked = false;
+                    } else if (type === 'period') {
+                        activeFilters.period = 'all';
+                        document.querySelector('input[value="all"]').checked = true;
+                    }
+                    
+                    updateActiveFilters();
+                    applyFilters();
                 });
-                this.closest('.category-filter').classList.add('active');
-
-                // フォームを送信
-                searchForm.submit();
             });
+        }
+
+        // フィルターを適用
+        function applyFilters() {
+            // フォームにフィルター情報を追加
+            const hiddenInputs = searchForm.querySelectorAll('input[type="hidden"]');
+            hiddenInputs.forEach(input => input.remove());
+            
+            // タグフィルター
+            if (activeFilters.tags.length > 0) {
+                const tagInput = document.createElement('input');
+                tagInput.type = 'hidden';
+                tagInput.name = 'tags';
+                tagInput.value = activeFilters.tags.join(',');
+                searchForm.appendChild(tagInput);
+            }
+            
+            // カテゴリーフィルター
+            activeFilters.categories.forEach(categoryId => {
+                const categoryInput = document.createElement('input');
+                categoryInput.type = 'hidden';
+                categoryInput.name = 'category[]';
+                categoryInput.value = categoryId;
+                searchForm.appendChild(categoryInput);
+            });
+            
+            // 期間フィルター
+            if (activeFilters.period !== 'all') {
+                const periodInput = document.createElement('input');
+                periodInput.type = 'hidden';
+                periodInput.name = 'period';
+                periodInput.value = activeFilters.period;
+                searchForm.appendChild(periodInput);
+            }
+            
+            // Ajaxでフィルターを適用（オプション）
+            // searchForm.submit();
+        }
+
+        // ドロップダウンを閉じる
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.filter-dropdown')) {
+                filterDropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                    dropdown.querySelector('.filter-dropdown-toggle').classList.remove('active');
+                });
+            }
         });
 
         // ビューオプションの切り替え
-        viewOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const viewType = this.dataset.view;
+        if (viewOptions) {
+            viewOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const viewType = this.dataset.view;
 
-                // アクティブクラスの更新
-                viewOptions.forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
+                    // アクティブクラスの更新
+                    viewOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
 
-                // ビューの切り替え
-                if (viewType === 'list') {
-                    newsSection.classList.add('list-view');
-                    localStorage.setItem('blogViewType', 'list');
-                } else {
-                    newsSection.classList.remove('list-view');
-                    localStorage.setItem('blogViewType', 'grid');
-                }
+                    // ビューの切り替え
+                    if (blogGrid) {
+                        if (viewType === 'list') {
+                            blogGrid.classList.add('list-view');
+                            localStorage.setItem('blogViewType', 'list');
+                        } else {
+                            blogGrid.classList.remove('list-view');
+                            localStorage.setItem('blogViewType', 'grid');
+                        }
+                    }
+                });
             });
-        });
 
-        // 保存されたビュータイプを復元
-        const savedViewType = localStorage.getItem('blogViewType');
-        if (savedViewType === 'list') {
-            newsSection.classList.add('list-view');
-            document.querySelector('[data-view="list"]').classList.add('active');
-            document.querySelector('[data-view="grid"]').classList.remove('active');
+            // 保存されたビュータイプを復元
+            const savedViewType = localStorage.getItem('blogViewType');
+            if (savedViewType === 'list' && blogGrid) {
+                blogGrid.classList.add('list-view');
+                document.querySelector('[data-view="list"]')?.classList.add('active');
+                document.querySelector('[data-view="grid"]')?.classList.remove('active');
+            }
         }
 
         // ソート変更時の処理
-        sortSelect.addEventListener('change', function() {
-            searchForm.submit();
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                searchForm.submit();
+            });
+        }
+
+        // 検索入力の最適化
+        searchInput.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
         });
 
-        // Enterキーでの送信を改善
+        searchInput.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+        });
+
+        // Enterキーでの送信
         searchInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
-                hideSuggestions();
+                e.preventDefault();
+                searchForm.submit();
             }
         });
 
         // ローディング状態の管理
         searchForm.addEventListener('submit', function() {
             this.classList.add('loading');
+            searchInput.blur();
         });
 
-        // URLパラメータからカテゴリーを選択
+        // URLパラメータから初期フィルターを設定
         const urlParams = new URLSearchParams(window.location.search);
-        const selectedCategory = urlParams.get('category_name');
-        if (selectedCategory) {
-            const categoryInput = document.querySelector(`input[name="category_name"][value="${selectedCategory}"]`);
-            if (categoryInput) {
-                categoryInput.checked = true;
-                categoryInput.closest('.category-filter').classList.add('active');
-                document.querySelector('.category-filter input[value=""]').closest('.category-filter').classList.remove('active');
+        
+        // カテゴリーパラメータ
+        const categoryParams = urlParams.getAll('category[]');
+        categoryParams.forEach(categoryId => {
+            const checkbox = document.querySelector(`input[value="${categoryId}"]`);
+            if (checkbox) {
+                checkbox.checked = true;
+                activeFilters.categories.push(parseInt(categoryId));
+            }
+        });
+        
+        // 期間パラメータ
+        const periodParam = urlParams.get('period');
+        if (periodParam) {
+            const radio = document.querySelector(`input[value="${periodParam}"]`);
+            if (radio) {
+                radio.checked = true;
+                activeFilters.period = periodParam;
             }
         }
-
-        // スムーススクロール
-        if (window.location.search) {
-            const resultsHeader = document.querySelector('.search-results-header');
-            if (resultsHeader) {
-                setTimeout(() => {
-                    resultsHeader.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
-            }
+        
+        // タグパラメータ
+        const tagsParam = urlParams.get('tags');
+        if (tagsParam) {
+            const tags = tagsParam.split(',');
+            tags.forEach(tag => {
+                const chip = document.querySelector(`[data-tag="${tag}"]`);
+                if (chip) {
+                    chip.classList.add('active');
+                    activeFilters.tags.push(tag);
+                }
+            });
         }
+        
+        // 初期フィルターの表示を更新
+        updateActiveFilters();
     });
 
     // WordPressのREST APIエンドポイント設定

@@ -76,89 +76,110 @@ get_header(); ?>
     <section class="blog-search-section">
         <div class="container">
             <div class="search-container">
-                <!-- 検索フォーム -->
-                <form class="blog-search-form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <div class="search-form-wrapper">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="search" 
-                               name="s" 
-                               class="search-input" 
-                               placeholder="記事を検索... (キーワード、カテゴリー、タグ)" 
-                               value="<?php echo get_search_query(); ?>"
-                               autocomplete="off">
-                        <button type="submit" class="search-submit">
-                            <span class="button-text">検索</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </form>
-                
-                <!-- 詳細フィルターボタン -->
-                <button class="filter-toggle" type="button">
-                    <i class="fas fa-filter"></i>
-                    <span>詳細フィルター</span>
-                </button>
-                
-                <!-- 検索サジェスト -->
-                <div class="search-suggestions hidden">
-                    <div class="suggestions-header">
-                        <span>人気の検索キーワード</span>
-                    </div>
-                    <div class="suggestions-list">
-                        <a href="?s=マーケティング" class="suggestion-item">マーケティング</a>
-                        <a href="?s=SEO" class="suggestion-item">SEO</a>
-                        <a href="?s=デザイン" class="suggestion-item">デザイン</a>
-                        <a href="?s=AI" class="suggestion-item">AI</a>
-                        <a href="?s=DX" class="suggestion-item">DX</a>
-                    </div>
-                </div>
-                
-                <!-- フィルターパネル -->
-                <div class="filter-panel hidden">
-                    <div class="filter-panel-inner">
-                        <div class="filter-group">
-                            <h4>カテゴリー</h4>
-                            <div class="filter-items">
-                                <?php
-                                $categories = get_categories();
-                                foreach ($categories as $category) :
-                                ?>
-                                    <label class="filter-checkbox">
-                                        <input type="checkbox" name="category" value="<?php echo $category->term_id; ?>">
-                                        <span><?php echo $category->name; ?></span>
-                                        <small>(<?php echo $category->count; ?>)</small>
-                                    </label>
-                                <?php endforeach; ?>
-                            </div>
+                <!-- 検索エリア -->
+                <div class="search-area">
+                    <form class="blog-search-form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                        <div class="search-input-group">
+                            <input type="search" 
+                                   name="s" 
+                                   class="search-input" 
+                                   placeholder="気になるキーワードを入力" 
+                                   value="<?php echo get_search_query(); ?>"
+                                   autocomplete="off">
+                            <button type="submit" class="search-submit" aria-label="検索">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
                         
-                        <div class="filter-group">
-                            <h4>期間</h4>
-                            <div class="filter-items">
-                                <label class="filter-radio">
-                                    <input type="radio" name="period" value="all" checked>
-                                    <span>すべて</span>
-                                </label>
-                                <label class="filter-radio">
-                                    <input type="radio" name="period" value="week">
-                                    <span>過去1週間</span>
-                                </label>
-                                <label class="filter-radio">
-                                    <input type="radio" name="period" value="month">
-                                    <span>過去1ヶ月</span>
-                                </label>
-                                <label class="filter-radio">
-                                    <input type="radio" name="period" value="year">
-                                    <span>過去1年</span>
-                                </label>
+                        <!-- インラインフィルター -->
+                        <div class="inline-filters">
+                            <div class="filter-chips">
+                                <!-- 人気タグ -->
+                                <button type="button" class="filter-chip" data-tag="マーケティング">
+                                    <i class="fas fa-hashtag"></i>
+                                    <span>マーケティング</span>
+                                </button>
+                                <button type="button" class="filter-chip" data-tag="SEO">
+                                    <i class="fas fa-hashtag"></i>
+                                    <span>SEO</span>
+                                </button>
+                                <button type="button" class="filter-chip" data-tag="デザイン">
+                                    <i class="fas fa-hashtag"></i>
+                                    <span>デザイン</span>
+                                </button>
+                                <button type="button" class="filter-chip" data-tag="AI">
+                                    <i class="fas fa-hashtag"></i>
+                                    <span>AI</span>
+                                </button>
+                                
+                                <!-- カテゴリードロップダウン -->
+                                <div class="filter-dropdown">
+                                    <button type="button" class="filter-dropdown-toggle">
+                                        <i class="fas fa-folder"></i>
+                                        <span>カテゴリー</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="filter-dropdown-menu">
+                                        <?php
+                                        $categories = get_categories();
+                                        foreach ($categories as $category) :
+                                        ?>
+                                            <label class="dropdown-item">
+                                                <input type="checkbox" name="category[]" value="<?php echo $category->term_id; ?>">
+                                                <span><?php echo $category->name; ?></span>
+                                                <span class="count"><?php echo $category->count; ?></span>
+                                            </label>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                
+                                <!-- 期間フィルター -->
+                                <div class="filter-dropdown">
+                                    <button type="button" class="filter-dropdown-toggle">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>期間</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="filter-dropdown-menu">
+                                        <label class="dropdown-item">
+                                            <input type="radio" name="period" value="all" checked>
+                                            <span>すべて</span>
+                                        </label>
+                                        <label class="dropdown-item">
+                                            <input type="radio" name="period" value="week">
+                                            <span>今週</span>
+                                        </label>
+                                        <label class="dropdown-item">
+                                            <input type="radio" name="period" value="month">
+                                            <span>今月</span>
+                                        </label>
+                                        <label class="dropdown-item">
+                                            <input type="radio" name="period" value="3months">
+                                            <span>3ヶ月以内</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- アクティブフィルター表示 -->
+                                <div class="active-filters"></div>
                             </div>
                         </div>
-                        
-                        <div class="filter-actions">
-                            <button type="button" class="apply-filters">フィルターを適用</button>
-                            <button type="button" class="clear-filters">クリア</button>
-                        </div>
+                    </form>
+                    
+                    <!-- 検索結果数 -->
+                    <?php if ( is_search() || isset($_GET['category']) ) : ?>
+                    <div class="search-results-info">
+                        <span class="results-count">
+                            <?php
+                            global $wp_query;
+                            echo number_format_i18n( $wp_query->found_posts ) . '件の記事';
+                            ?>
+                        </span>
+                        <?php if ( get_search_query() ) : ?>
+                        <span class="search-query">「<?php echo esc_html( get_search_query() ); ?>」の検索結果</span>
+                        <?php endif; ?>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
