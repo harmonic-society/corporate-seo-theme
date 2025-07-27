@@ -138,6 +138,16 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             array( 'corporate-seo-pro-base' ), 
             $version 
         );
+        
+        // Single service page styles
+        if ( is_singular( 'service' ) ) {
+            wp_enqueue_style( 
+                'corporate-seo-pro-single-service', 
+                get_template_directory_uri() . '/assets/css/pages/single-service.css', 
+                array( 'corporate-seo-pro-service' ), 
+                $version 
+            );
+        }
     }
     
     // All page templates
@@ -366,6 +376,17 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             $version, 
             true 
         );
+        
+        // Related services script for single service pages
+        if ( is_singular( 'service' ) ) {
+            wp_enqueue_script( 
+                'corporate-seo-pro-related-services', 
+                get_template_directory_uri() . '/assets/js/related-services.js', 
+                array( 'corporate-seo-pro-animation-utils' ), 
+                $version, 
+                true 
+            );
+        }
     }
     
     // Work pages

@@ -238,36 +238,204 @@ get_header(); ?>
             </div>
         </section>
 
-        <!-- 関連サービス -->
+        <!-- 関連サービス - 新しいUXデザイン -->
         <?php
-        $related_services = new WP_Query( array(
+        // 現在のサービスのカテゴリーを取得
+        $current_categories = wp_get_post_terms( get_the_ID(), 'service_category', array( 'fields' => 'ids' ) );
+        
+        // 関連サービスを取得（同じカテゴリーを優先）
+        $related_args = array(
             'post_type' => 'service',
-            'posts_per_page' => 3,
+            'posts_per_page' => 6,
             'post__not_in' => array( get_the_ID() ),
-            'orderby' => 'rand',
-        ) );
+            'orderby' => 'menu_order date',
+            'order' => 'DESC',
+        );
+        
+        if ( !empty( $current_categories ) ) {
+            $related_args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'service_category',
+                    'field' => 'term_id',
+                    'terms' => $current_categories,
+                ),
+            );
+        }
+        
+        $related_services = new WP_Query( $related_args );
         
         if ( $related_services->have_posts() ) : ?>
-        <section class="service-related">
+        <section class="service-related-modern">
+            <div class="related-bg-effect">
+                <div class="bg-gradient-effect"></div>
+                <div class="bg-pattern-dots"></div>
+            </div>
+            
             <div class="container">
-                <h2>関連サービス</h2>
-                <div class="service-grid">
-                    <?php while ( $related_services->have_posts() ) : $related_services->the_post(); ?>
-                        <article class="service-item">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php if ( has_post_thumbnail() ) : ?>
-                                    <div class="service-thumb">
-                                        <?php the_post_thumbnail( 'medium' ); ?>
+                <div class="related-header">
+                    <div class="section-badge">
+                        <i class="fas fa-link"></i>
+                        <span>Related Services</span>
+                    </div>
+                    <h2 class="related-title">
+                        <span class="title-main">おすすめの関連サービス</span>
+                        <span class="title-sub">あなたのビジネスに最適なソリューションをご提案</span>
+                    </h2>
+                    
+                    <!-- カテゴリーフィルター -->
+                    <?php 
+                    $all_categories = get_terms( array(
+                        'taxonomy' => 'service_category',
+                        'hide_empty' => true,
+                    ) );
+                    
+                    if ( !is_wp_error( $all_categories ) && !empty( $all_categories ) ) : ?>
+                    <div class="category-filter">
+                        <button class="filter-btn active" data-filter="all">
+                            <span>すべて</span>
+                        </button>
+                        <?php foreach ( $all_categories as $category ) : ?>
+                            <button class="filter-btn" data-filter="<?php echo esc_attr( $category->slug ); ?>">
+                                <span><?php echo esc_html( $category->name ); ?></span>
+                            </button>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="related-services-wrapper">
+                    <div class="services-carousel" id="related-services-carousel">
+                        <?php 
+                        $service_index = 0;
+                        while ( $related_services->have_posts() ) : $related_services->the_post(); 
+                            $service_index++;
+                            
+                            // カテゴリー取得
+                            $categories = wp_get_post_terms( get_the_ID(), 'service_category' );
+                            $category_classes = array();
+                            $category_names = array();
+                            
+                            if ( !is_wp_error( $categories ) && !empty( $categories ) ) {
+                                foreach ( $categories as $cat ) {
+                                    $category_classes[] = 'category-' . $cat->slug;
+                                    $category_names[] = $cat->name;
+                                }
+                            }
+                            
+                            // おすすめ度（ランダムまたはACFフィールドから）
+                            $is_recommended = ( $service_index <= 2 ) || ( rand(1, 10) > 7 );
+                            
+                            // 価格情報（ACFから取得、なければダミー）
+                            $price_range = '';
+                            if ( function_exists('get_field') ) {
+                                $price_range = get_field('service_price_range');
+                            }
+                            if ( empty( $price_range ) ) {
+                                $price_ranges = array( '¥50,000〜', '¥100,000〜', '¥200,000〜', 'お見積もり' );
+                                $price_range = $price_ranges[array_rand($price_ranges)];
+                            }
+                        ?>
+                        
+                        <article class="related-service-card <?php echo implode( ' ', $category_classes ); ?>" data-service-id="<?php the_ID(); ?>">
+                            <?php if ( $is_recommended ) : ?>
+                                <div class="recommended-badge">
+                                    <i class="fas fa-star"></i>
+                                    <span>おすすめ</span>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <a href="<?php the_permalink(); ?>" class="card-link">
+                                <div class="card-image-wrapper">
+                                    <?php if ( has_post_thumbnail() ) : ?>
+                                        <?php the_post_thumbnail( 'medium_large', array( 
+                                            'class' => 'card-image',
+                                            'loading' => 'lazy'
+                                        ) ); ?>
+                                    <?php else : ?>
+                                        <div class="card-image-placeholder">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <div class="card-overlay">
+                                        <span class="view-detail">
+                                            <i class="fas fa-arrow-right"></i>
+                                            詳細を見る
+                                        </span>
                                     </div>
-                                <?php endif; ?>
-                                <div class="service-info">
-                                    <h3><?php the_title(); ?></h3>
-                                    <p><?php echo wp_trim_words( get_the_excerpt(), 15 ); ?></p>
-                                    <span class="service-link">詳細を見る →</span>
+                                </div>
+                                
+                                <div class="card-content">
+                                    <?php if ( !empty( $category_names ) ) : ?>
+                                        <div class="card-categories">
+                                            <?php foreach ( $category_names as $cat_name ) : ?>
+                                                <span class="category-tag"><?php echo esc_html( $cat_name ); ?></span>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <h3 class="card-title"><?php the_title(); ?></h3>
+                                    
+                                    <p class="card-excerpt">
+                                        <?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?>
+                                    </p>
+                                    
+                                    <div class="card-meta">
+                                        <div class="meta-item">
+                                            <i class="fas fa-yen-sign"></i>
+                                            <span><?php echo esc_html( $price_range ); ?></span>
+                                        </div>
+                                        
+                                        <?php 
+                                        // 導入期間（ダミーデータ）
+                                        $durations = array( '最短1週間', '2週間〜', '1ヶ月〜', '要相談' );
+                                        $duration = $durations[array_rand($durations)];
+                                        ?>
+                                        <div class="meta-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span><?php echo esc_html( $duration ); ?></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-footer">
+                                        <span class="learn-more">
+                                            詳しく見る
+                                            <i class="fas fa-chevron-right"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </a>
                         </article>
-                    <?php endwhile; ?>
+                        
+                        <?php endwhile; ?>
+                    </div>
+                    
+                    <!-- カルーセルナビゲーション -->
+                    <div class="carousel-navigation">
+                        <button class="carousel-prev" aria-label="前のサービス">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-next" aria-label="次のサービス">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- プログレスインジケーター -->
+                    <div class="carousel-progress">
+                        <div class="progress-track">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- すべてのサービスを見るボタン -->
+                <div class="related-footer">
+                    <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="view-all-services">
+                        <span class="btn-text">すべてのサービスを見る</span>
+                        <span class="btn-icon">
+                            <i class="fas fa-th-large"></i>
+                        </span>
+                    </a>
                 </div>
             </div>
         </section>
