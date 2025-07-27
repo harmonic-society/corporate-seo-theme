@@ -223,26 +223,28 @@ get_header(); ?>
         <!-- お問い合わせセクション -->
         <section id="service-inquiry" class="service-inquiry">
             <div class="container">
-                <h2 class="section-title text-center">
-                    <span class="title-main">お問い合わせ・ご相談</span>
-                    <span class="title-sub">まずはお気軽にご相談ください</span>
-                </h2>
-                
-                <p class="inquiry-lead text-center">
-                    サービスに関するご質問やご相談は、下記フォームまたはお電話にてお気軽にお問い合わせください。
-                </p>
-                
-                <div class="inquiry-buttons-wrapper">
-                    <div class="inquiry-buttons">
-                        <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i>
-                            お問い合わせフォーム
-                        </a>
-                        
-                        <a href="tel:080-6946-4006" class="btn btn-secondary">
-                            <i class="fas fa-phone"></i>
-                            080-6946-4006
-                        </a>
+                <div class="service-inquiry-content">
+                    <h2 class="section-title text-center">
+                        <span class="title-main">お問い合わせ・ご相談</span>
+                        <span class="title-sub">まずはお気軽にご相談ください</span>
+                    </h2>
+                    
+                    <p class="inquiry-lead text-center">
+                        サービスに関するご質問やご相談は、下記フォームまたはお電話にてお気軽にお問い合わせください。
+                    </p>
+                    
+                    <div class="inquiry-buttons-wrapper">
+                        <div class="inquiry-buttons">
+                            <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn btn-primary">
+                                <i class="fas fa-envelope"></i>
+                                お問い合わせフォーム
+                            </a>
+                            
+                            <a href="tel:080-6946-4006" class="btn btn-secondary">
+                                <i class="fas fa-phone"></i>
+                                080-6946-4006
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

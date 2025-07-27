@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "post-file-edit": [
+      {
+        "description": "WordPress security check",
+        "pattern": "**/*.php",
+        "command": "grep -n 'echo \\|print' %FILE% | grep -v 'esc_\\|__(' | head -5 && echo '⚠️  Found unescaped output - use esc_html(), esc_url(), or esc_attr()' || echo '✅ Output appears to be properly escaped'",
+        "blocking": false
+      }
+    ],
+    "user-prompt-submit": [
+      {
+        "description": "Git reminder for session end",
+        "pattern": ".*(完了|終了|done|finished|それじゃ|じゃあ).*",
+        "command": "echo '💡 Session ending? Run: git add . && git commit -m \"fix/feat: description\" && git push'",
+        "blocking": false
+      }
+    ],
+    "pre-commit": [
+      {
+        "description": "WordPress standards reminder",
+        "command": "echo '✅ Checklist: 1) Output escaped? 2) Functions prefixed? 3) Text domain used?'",
+        "blocking": false
+      }
+    ]
+  }
+}

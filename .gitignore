@@ -49,6 +49,9 @@ desktop.ini
 *.sublime-project
 *.sublime-workspace
 
+# Claude Code
+.claude/
+
 # Logs
 logs
 *.log
