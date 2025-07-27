@@ -35,7 +35,7 @@
         let activeFilters = {
             tags: [],
             categories: [],
-            period: 'all'
+            period: ''  // 空文字列に初期化
         };
 
         // フィルターチップのクリックイベント
@@ -106,8 +106,8 @@
                             activeFilters.categories = activeFilters.categories.filter(id => id !== categoryId);
                         }
                     } else if (input.type === 'radio') {
-                        // 期間フィルター
-                        activeFilters.period = input.value;
+                        // 期間フィルター（'all'の場合は空文字列にする）
+                        activeFilters.period = input.value === 'all' ? '' : input.value;
                     }
                     
                     updateActiveFilters();
@@ -153,7 +153,7 @@
             });
             
             // 期間フィルター
-            if (activeFilters.period !== 'all') {
+            if (activeFilters.period && activeFilters.period !== '' && activeFilters.period !== 'all') {
                 const periodLabel = document.querySelector(`input[value="${activeFilters.period}"]`)?.nextElementSibling?.textContent || 'Period';
                 const filterTag = document.createElement('div');
                 filterTag.className = 'active-filter-tag';
@@ -181,8 +181,13 @@
                         const checkbox = document.querySelector(`input[value="${value}"]`);
                         if (checkbox) checkbox.checked = false;
                     } else if (type === 'period') {
-                        activeFilters.period = 'all';
-                        document.querySelector('input[value="all"]').checked = true;
+                        activeFilters.period = '';
+                        // すべてのラジオボタンの選択を解除
+                        const periodRadios = document.querySelectorAll('input[name="period"]');
+                        periodRadios.forEach(radio => radio.checked = false);
+                        // 'all'を選択
+                        const allRadio = document.querySelector('input[value="all"]');
+                        if (allRadio) allRadio.checked = true;
                     }
                     
                     updateActiveFilters();
@@ -216,8 +221,8 @@
                 searchForm.appendChild(categoryInput);
             });
             
-            // 期間フィルター（'all'の場合は送信しない）
-            if (activeFilters.period && activeFilters.period !== 'all') {
+            // 期間フィルター（空文字列または'all'の場合は送信しない）
+            if (activeFilters.period && activeFilters.period !== '' && activeFilters.period !== 'all') {
                 const periodInput = document.createElement('input');
                 periodInput.type = 'hidden';
                 periodInput.name = 'period';
@@ -237,7 +242,7 @@
             // フィルターが選択されているか、検索キーワードが入力されているかチェック
             const hasFilters = activeFilters.tags.length > 0 || 
                              activeFilters.categories.length > 0 || 
-                             activeFilters.period !== 'all' ||
+                             (activeFilters.period !== '' && activeFilters.period !== 'all') ||
                              searchInput.value.trim() !== '';
             
             if (hasFilters) {
@@ -347,7 +352,7 @@
         
         // 期間パラメータ
         const periodParam = urlParams.get('period');
-        if (periodParam) {
+        if (periodParam && periodParam !== 'all') {
             const radio = document.querySelector(`input[value="${periodParam}"]`);
             if (radio) {
                 radio.checked = true;

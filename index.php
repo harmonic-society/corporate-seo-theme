@@ -78,7 +78,19 @@ get_header(); ?>
             <div class="search-container">
                 <!-- 検索エリア -->
                 <div class="search-area">
-                    <form class="blog-search-form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <?php
+                    // ブログページのURLを取得
+                    $blog_url = '';
+                    if ( get_option( 'page_for_posts' ) ) {
+                        $blog_url = get_permalink( get_option( 'page_for_posts' ) );
+                    } elseif ( get_option( 'show_on_front' ) == 'posts' ) {
+                        $blog_url = home_url( '/' );
+                    } else {
+                        // フォールバック: 現在のページURLを使用
+                        $blog_url = get_pagenum_link();
+                    }
+                    ?>
+                    <form class="blog-search-form" method="get" action="<?php echo esc_url( $blog_url ); ?>">
                         <div class="search-input-group">
                             <input type="search" 
                                    name="s" 

@@ -34,8 +34,16 @@ function corporate_seo_pro_filter_blog_query( $query ) {
         return;
     }
     
-    // ブログページ（ホーム）、フロントページ、または投稿アーカイブページの場合
-    if ( $query->is_home() || ( $query->is_front_page() && get_option( 'show_on_front' ) == 'posts' ) ) {
+    // デバッグ情報
+    if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+        error_log( 'Pre get posts - is_home: ' . ( $query->is_home() ? 'true' : 'false' ) );
+        error_log( 'Pre get posts - is_front_page: ' . ( $query->is_front_page() ? 'true' : 'false' ) );
+        error_log( 'Pre get posts - is_search: ' . ( $query->is_search() ? 'true' : 'false' ) );
+        error_log( 'Current URL: ' . $_SERVER['REQUEST_URI'] );
+    }
+    
+    // ブログページの場合（固定ページをブログページとして設定している場合も含む）
+    if ( $query->is_home() && ! $query->is_front_page() ) {
         // 必ず投稿タイプを「post」に限定（サービスや実績を除外）
         $query->set( 'post_type', 'post' );
         
