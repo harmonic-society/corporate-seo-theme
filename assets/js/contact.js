@@ -195,54 +195,5 @@
         });
     });
 
-    // Initialize Google Maps (if API key is available)
-    window.initMap = function() {
-        const mapElement = document.getElementById('map');
-        if (mapElement) {
-            const harmonicSociety = { lat: 35.6587, lng: 140.0464 }; // 幕張本郷の座標
-            
-            const map = new google.maps.Map(mapElement, {
-                zoom: 16,
-                center: harmonicSociety,
-                styles: [
-                    {
-                        "featureType": "all",
-                        "elementType": "geometry",
-                        "stylers": [{"color": "#f5f5f5"}]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{"color": "#616161"}]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [{"color": "#f5f5f5"}]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [{"color": "#00867b"}, {"lightness": 40}]
-                    }
-                ]
-            });
-            
-            const marker = new google.maps.Marker({
-                position: harmonicSociety,
-                map: map,
-                title: 'Harmonic Society株式会社',
-                animation: google.maps.Animation.DROP
-            });
-            
-            const infoWindow = new google.maps.InfoWindow({
-                content: '<div style="padding: 10px;"><h4>Harmonic Society株式会社</h4><p>〒262-0033<br>千葉県千葉市花見川区幕張本郷3-31-8</p></div>'
-            });
-            
-            marker.addListener('click', function() {
-                infoWindow.open(map, marker);
-            });
-        }
-    };
 
 })();
