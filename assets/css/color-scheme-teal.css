@@ -259,23 +259,3 @@ textarea:focus {
     color: var(--color-text-inverse);
 }
 
-/* ==========================================================================
-   ダークモード対応
-   ========================================================================== */
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* テキストカラー */
-        --color-text-primary: #fafafa;
-        --color-text-secondary: #bdbdbd;
-        
-        /* 背景カラー */
-        --color-bg-primary: #121212;
-        --color-bg-secondary: #1e1e1e;
-        --color-bg-accent: #003d36;
-        
-        /* ユーティリティカラー */
-        --color-border: #424242;
-        --color-shadow: rgba(0, 0, 0, 0.3);
-        --color-overlay: rgba(0, 0, 0, 0.7);
-    }
-}

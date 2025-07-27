@@ -32,13 +32,6 @@
     transform: translateX(0);
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .mobile-menu {
-        background-color: var(--color-bg-primary, #1f2937);
-        color: var(--color-text-primary, #f9fafb);
-    }
-}
 
 /* ==========================================================================
    Mobile Menu Overlay
