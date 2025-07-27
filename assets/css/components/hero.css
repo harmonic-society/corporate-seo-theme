@@ -223,8 +223,9 @@
 .hero-description {
     font-size: 1.125rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.95);
     margin-bottom: var(--space-2xl);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Hero Modern Buttons */
