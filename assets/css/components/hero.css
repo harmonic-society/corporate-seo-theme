@@ -839,3 +839,16 @@
         opacity: 1;
     }
 }
+
+/* ==========================================================================
+   Specific Hero Description Styling Override
+   ========================================================================== */
+
+/* Ensure hero description is visible on dark backgrounds */
+.hero-section .hero-description,
+.hero-content .hero-description,
+.hero-content-modern .hero-description,
+.hero-modern .hero-description {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
