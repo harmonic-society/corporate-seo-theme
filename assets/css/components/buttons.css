@@ -59,7 +59,7 @@ button:disabled,
 .btn-primary {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    color: white;
+    color: var(--color-text-inverse, white);
 }
 
 .btn-primary:hover {
@@ -78,7 +78,7 @@ button:disabled,
 .btn-secondary {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
-    color: white;
+    color: var(--color-text-inverse, white);
 }
 
 .btn-secondary:hover {
@@ -96,7 +96,7 @@ button:disabled,
 
 .btn-outline:hover {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--color-text-inverse, white);
     transform: translateY(-2px);
 }
 
@@ -108,13 +108,13 @@ button:disabled,
 }
 
 .btn-ghost:hover {
-    background-color: rgba(0, 134, 123, 0.1);
+    background-color: var(--color-bg-accent, rgba(0, 134, 123, 0.1));
 }
 
 /* White Button */
 .btn-white {
-    background-color: white;
-    border-color: white;
+    background-color: var(--color-bg-primary, white);
+    border-color: var(--color-bg-primary, white);
     color: var(--primary-color);
 }
 
@@ -197,7 +197,7 @@ button:disabled,
     left: 50%;
     margin-left: -8px;
     margin-top: -8px;
-    border: 2px solid white;
+    border: 2px solid var(--color-text-inverse, white);
     border-radius: 50%;
     border-top-color: transparent;
     animation: button-loading-spinner 0.8s linear infinite;
@@ -278,7 +278,7 @@ button:disabled,
 
 .cta-button {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--color-text-inverse, white);
     padding: var(--space-md) var(--space-2xl);
     border-radius: var(--radius-full);
     font-weight: 600;
@@ -303,7 +303,7 @@ button:disabled,
 
 .cta-button-secondary:hover {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--color-text-inverse, white);
 }
 
 /* ==========================================================================
@@ -339,22 +339,22 @@ button:disabled,
 /* Social brand colors */
 .social-button-facebook:hover {
     background-color: #1877f2;
-    color: white;
+    color: var(--color-text-inverse, white);
 }
 
 .social-button-twitter:hover {
     background-color: #1da1f2;
-    color: white;
+    color: var(--color-text-inverse, white);
 }
 
 .social-button-linkedin:hover {
     background-color: #0077b5;
-    color: white;
+    color: var(--color-text-inverse, white);
 }
 
 .social-button-instagram:hover {
     background-color: #e4405f;
-    color: white;
+    color: var(--color-text-inverse, white);
 }
 
 /* ==========================================================================

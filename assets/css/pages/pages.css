@@ -11,7 +11,7 @@
     /* About Hero */
     .page-hero {
         background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-        color: white;
+        color: var(--color-text-inverse, white);
         min-height: 500px;
     }
     
@@ -60,7 +60,7 @@
         align-items: center;
         justify-content: center;
         background: var(--primary-color);
-        color: white;
+        color: var(--color-text-inverse, white);
         border-radius: var(--radius-full);
         font-size: 1.5rem;
     }

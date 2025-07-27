@@ -12,7 +12,7 @@
 .services-archive .page-hero {
     min-height: 400px;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-    color: white;
+    color: var(--color-text-inverse, white);
 }
 
 /* Grid Container */
@@ -73,7 +73,7 @@
     top: var(--space-md);
     left: var(--space-md);
     padding: var(--space-xs) var(--space-md);
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--color-bg-primary, rgba(255, 255, 255, 0.9));
     backdrop-filter: blur(10px);
     border-radius: var(--radius-full);
     font-size: 0.75rem;

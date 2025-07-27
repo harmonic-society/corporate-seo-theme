@@ -8,62 +8,49 @@
    CSS変数の定義
    ========================================================================== */
 :root {
-    /* プライマリカラー（ティール） */
+    /* ブランドカラー */
     --color-primary: #00867b;
-    --color-primary-light: #4db8ac;
-    --color-primary-lighter: #80ccc4;
-    --color-primary-lightest: #b3e0db;
-    --color-primary-dark: #00665c;
-    --color-primary-darker: #004d45;
+    --color-primary-light: #5eb3aa;
+    --color-primary-dark: #005952;
     
-    /* セカンダリカラー（補色のコーラル） */
-    --color-secondary: #ff6b6b;
-    --color-secondary-light: #ff8787;
-    --color-secondary-dark: #ee5a5a;
+    /* テキストカラー */
+    --color-text-primary: #212121;
+    --color-text-secondary: #616161;
+    --color-text-inverse: #ffffff;
     
-    /* アクセントカラー */
-    --color-accent: #ffd93d;
-    --color-accent-light: #ffe066;
-    --color-accent-dark: #f4c430;
+    /* 背景カラー */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f5f5f5;
+    --color-bg-accent: #e0f2f1;
     
-    /* グレースケール */
-    --color-text: #2c3e50;
-    --color-text-light: #5a6c7d;
-    --color-text-lighter: #95a5a6;
-    --color-heading: #1a252f;
+    /* ユーティリティカラー */
+    --color-border: #e0e0e0;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --color-overlay: rgba(0, 0, 0, 0.5);
     
-    /* 背景色 */
-    --color-bg: #ffffff;
-    --color-bg-light: #f8fafb;
-    --color-bg-gray: #ecf0f1;
-    --color-bg-dark: #00867b;
-    
-    /* ボーダー */
-    --color-border: #e1e8ed;
-    --color-border-light: #f0f3f5;
-    
-    /* その他 */
+    /* その他のカラー（既存のものを維持） */
     --color-success: #27ae60;
     --color-warning: #f39c12;
     --color-error: #e74c3c;
     --color-info: #3498db;
     
-    /* 影 */
-    --shadow-sm: 0 2px 4px rgba(0, 134, 123, 0.1);
-    --shadow-md: 0 4px 8px rgba(0, 134, 123, 0.15);
-    --shadow-lg: 0 8px 16px rgba(0, 134, 123, 0.2);
-    --shadow-xl: 0 12px 24px rgba(0, 134, 123, 0.25);
+    /* 影（統一されたshadow変数を使用） */
+    --shadow-sm: 0 2px 4px var(--color-shadow);
+    --shadow-md: 0 4px 8px var(--color-shadow);
+    --shadow-lg: 0 8px 16px var(--color-shadow);
+    --shadow-xl: 0 12px 24px var(--color-shadow);
 }
 
 /* ==========================================================================
    グローバルカラー適用
    ========================================================================== */
 body {
-    color: var(--color-text);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: var(--color-heading);
+    color: var(--color-text-primary);
 }
 
 a {
@@ -80,36 +67,38 @@ a:hover {
 .btn-primary,
 .wp-block-button__link {
     background-color: var(--color-primary) !important;
+    color: var(--color-text-inverse) !important;
     border-color: var(--color-primary) !important;
 }
 
 .btn-primary:hover,
 .wp-block-button__link:hover {
     background-color: var(--color-primary-dark) !important;
+    color: var(--color-text-inverse) !important;
     border-color: var(--color-primary-dark) !important;
 }
 
 .btn-secondary {
-    background-color: transparent !important;
+    background-color: var(--color-bg-primary) !important;
     color: var(--color-primary) !important;
     border: 2px solid var(--color-primary) !important;
 }
 
 .btn-secondary:hover {
     background-color: var(--color-primary) !important;
-    color: white !important;
+    color: var(--color-text-inverse) !important;
 }
 
 /* ==========================================================================
    ナビゲーション
    ========================================================================== */
 .site-header {
-    background-color: white;
+    background-color: var(--color-bg-primary);
     box-shadow: var(--shadow-sm);
 }
 
 .main-navigation a {
-    color: var(--color-text);
+    color: var(--color-text-primary);
 }
 
 .main-navigation a:hover {
@@ -118,11 +107,12 @@ a:hover {
 
 .nav-cta-button {
     background-color: var(--color-primary) !important;
-    color: white !important;
+    color: var(--color-text-inverse) !important;
 }
 
 .nav-cta-button:hover {
     background-color: var(--color-primary-dark) !important;
+    color: var(--color-text-inverse) !important;
 }
 
 /* ==========================================================================
@@ -133,28 +123,29 @@ a:hover {
 }
 
 .single-service .hero-actions .btn-primary {
-    background: white !important;
+    background: var(--color-bg-primary) !important;
     color: var(--color-primary) !important;
 }
 
 .single-service .hero-actions .btn-primary:hover {
-    background: var(--color-bg-light) !important;
+    background: var(--color-bg-secondary) !important;
+    color: var(--color-primary) !important;
 }
 
 .single-service .hero-actions .btn-secondary {
     background: transparent !important;
-    color: white !important;
-    border: 2px solid white !important;
+    color: var(--color-text-inverse) !important;
+    border: 2px solid var(--color-text-inverse) !important;
 }
 
 .single-service .hero-actions .btn-secondary:hover {
-    background: white !important;
+    background: var(--color-bg-primary) !important;
     color: var(--color-primary) !important;
 }
 
 /* 特徴セクション */
 .single-service .service-features {
-    background: var(--color-bg-light) !important;
+    background: var(--color-bg-secondary) !important;
 }
 
 .single-service .section-title .title-en {
@@ -202,7 +193,7 @@ a:hover {
 
 /* お問い合わせセクション */
 .single-service .service-inquiry {
-    background: var(--color-bg-light) !important;
+    background: var(--color-bg-secondary) !important;
 }
 
 .single-service .inquiry-buttons .btn-primary {
@@ -216,14 +207,14 @@ a:hover {
 }
 
 .single-service .inquiry-buttons .btn-secondary {
-    background: white !important;
+    background: var(--color-bg-primary) !important;
     color: var(--color-primary) !important;
     border-color: var(--color-primary) !important;
 }
 
 .single-service .inquiry-buttons .btn-secondary:hover {
     background: var(--color-primary) !important;
-    color: white !important;
+    color: var(--color-text-inverse) !important;
 }
 
 /* ==========================================================================
@@ -242,14 +233,14 @@ textarea:focus {
    ========================================================================== */
 .tag,
 .category-badge {
-    background: var(--color-primary-lightest) !important;
+    background: var(--color-bg-accent) !important;
     color: var(--color-primary-dark) !important;
 }
 
 .tag:hover,
 .category-badge:hover {
     background: var(--color-primary-light) !important;
-    color: white !important;
+    color: var(--color-text-inverse) !important;
 }
 
 /* プログレスバー */
@@ -260,10 +251,31 @@ textarea:focus {
 /* 選択時の背景色 */
 ::selection {
     background: var(--color-primary-light);
-    color: white;
+    color: var(--color-text-inverse);
 }
 
 ::-moz-selection {
     background: var(--color-primary-light);
-    color: white;
+    color: var(--color-text-inverse);
+}
+
+/* ==========================================================================
+   ダークモード対応
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* テキストカラー */
+        --color-text-primary: #fafafa;
+        --color-text-secondary: #bdbdbd;
+        
+        /* 背景カラー */
+        --color-bg-primary: #121212;
+        --color-bg-secondary: #1e1e1e;
+        --color-bg-accent: #003d36;
+        
+        /* ユーティリティカラー */
+        --color-border: #424242;
+        --color-shadow: rgba(0, 0, 0, 0.3);
+        --color-overlay: rgba(0, 0, 0, 0.7);
+    }
 }
