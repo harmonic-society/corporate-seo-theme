@@ -511,7 +511,7 @@
 
 .service-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -569,6 +569,16 @@
     color: #00867b;
     font-weight: 600;
     font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   タブレット対応
+   ========================================================================== */
+@media (max-width: 1024px) {
+    /* 関連サービス */
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* ==========================================================================
@@ -670,6 +680,7 @@
     .cta-buttons a {
         width: 100%;
         justify-content: center;
+        text-align: center;
     }
     
     /* 関連サービス */
