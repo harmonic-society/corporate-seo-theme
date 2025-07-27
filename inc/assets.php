@@ -150,6 +150,14 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             array( 'corporate-seo-pro-base' ), 
             $version 
         );
+        
+        // Blog filters CSS
+        wp_enqueue_style( 
+            'corporate-seo-pro-blog-filters', 
+            get_template_directory_uri() . '/assets/css/components/blog-filters.css', 
+            array( 'corporate-seo-pro-base' ), 
+            $version 
+        );
     }
 }
 
@@ -286,6 +294,21 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             $version, 
             true 
         );
+        
+        // Blog filters
+        wp_enqueue_script( 
+            'corporate-seo-pro-blog-filters', 
+            get_template_directory_uri() . '/assets/js/blog-filters.js', 
+            array(), 
+            $version, 
+            true 
+        );
+        
+        // Ajax用の変数をローカライズ
+        wp_localize_script( 'corporate-seo-pro-blog-filters', 'corporate_seo_pro_ajax', array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce' => wp_create_nonce( 'blog_filter_nonce' ),
+        ) );
     }
     
     // About page

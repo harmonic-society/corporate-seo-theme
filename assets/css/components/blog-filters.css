@@ -1,0 +1,619 @@
+/**
+ * ブログフィルタースタイル
+ * Corporate SEO Pro Theme
+ */
+
+/* 検索セクション */
+.blog-search-section {
+    padding: 40px 0;
+    background-color: var(--light-gray);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 検索フォーム */
+.blog-search-form {
+    margin-bottom: 20px;
+}
+
+.search-form-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-form-wrapper:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(0, 134, 123, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 24px;
+    color: #6b7280;
+    pointer-events: none;
+}
+
+.search-input {
+    flex: 1;
+    padding: 16px 24px 16px 56px;
+    border: none;
+    font-size: 16px;
+    background: transparent;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #9ca3af;
+}
+
+.search-submit {
+    padding: 16px 32px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.search-submit:hover {
+    background-color: var(--primary-dark);
+}
+
+.search-submit i {
+    font-size: 14px;
+}
+
+/* フィルタートグルボタン */
+.filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: white;
+    border: 2px solid var(--border-color);
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.filter-toggle:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.filter-toggle.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.filter-toggle i {
+    font-size: 14px;
+}
+
+/* フィルターカウントバッジ */
+.filter-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 検索サジェスト */
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding: 16px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.search-suggestions:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.suggestions-header {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.suggestions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.suggestion-item {
+    padding: 8px 16px;
+    background-color: var(--light-gray);
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.suggestion-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* フィルターパネル */
+.filter-panel {
+    position: absolute;
+    top: calc(100% + 20px);
+    left: 0;
+    right: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    z-index: 200;
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-panel:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.filter-panel-inner {
+    padding: 32px;
+}
+
+.filter-group {
+    margin-bottom: 32px;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-group h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-color);
+}
+
+.filter-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* チェックボックスのスタイル */
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.filter-checkbox:hover {
+    background-color: var(--light-gray);
+}
+
+.filter-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.filter-checkbox span {
+    position: relative;
+    padding-left: 28px;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.filter-checkbox span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.filter-checkbox span::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    font-size: 12px;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.filter-checkbox input[type="checkbox"]:checked + span::before {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.filter-checkbox input[type="checkbox"]:checked + span::after {
+    transform: translateY(-50%) scale(1);
+}
+
+.filter-checkbox small {
+    margin-left: 4px;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+/* ラジオボタンのスタイル */
+.filter-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.filter-radio:hover {
+    background-color: var(--light-gray);
+}
+
+.filter-radio input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.filter-radio span {
+    position: relative;
+    padding-left: 28px;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.filter-radio span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.filter-radio span::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.filter-radio input[type="radio"]:checked + span::before {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.filter-radio input[type="radio"]:checked + span::after {
+    transform: translateY(-50%) scale(1);
+}
+
+/* フィルターアクション */
+.filter-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.apply-filters,
+.clear-filters {
+    flex: 1;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-align: center;
+}
+
+.apply-filters {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.apply-filters:hover {
+    background-color: var(--primary-dark);
+}
+
+.clear-filters {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+}
+
+.clear-filters:hover {
+    background-color: var(--light-gray);
+}
+
+/* ソートオプション */
+.sort-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sort-label {
+    font-size: 14px;
+    color: #6b7280;
+    margin-right: 12px;
+}
+
+.sort-select {
+    padding: 8px 32px 8px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    appearance: none;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* ビューオプション */
+.view-options {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.view-option {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-option:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.view-option.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* リストビュー */
+.blog-grid-modern.list-view {
+    display: block;
+}
+
+.blog-grid-modern.list-view .blog-article {
+    display: flex;
+    margin-bottom: 24px;
+    max-width: 100%;
+}
+
+.blog-grid-modern.list-view .article-thumbnail {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.blog-grid-modern.list-view .article-content {
+    flex: 1;
+    padding: 24px;
+}
+
+/* ローディングオーバーレイ */
+.filter-loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.filter-loading-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading-spinner {
+    background-color: white;
+    padding: 32px 48px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.spinner-circle {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--light-gray);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner span {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .blog-search-section {
+        padding: 24px 0;
+    }
+    
+    .search-form-wrapper {
+        flex-direction: column;
+        border-radius: 12px;
+    }
+    
+    .search-input {
+        padding: 16px 24px 16px 56px;
+        width: 100%;
+    }
+    
+    .search-submit {
+        width: 100%;
+        justify-content: center;
+        padding: 16px;
+    }
+    
+    .filter-toggle {
+        width: 100%;
+        justify-content: center;
+        margin-top: 16px;
+    }
+    
+    .filter-panel {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: none;
+        border-radius: 24px 24px 0 0;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .filter-panel-inner {
+        padding: 24px;
+    }
+    
+    .filter-items {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .filter-checkbox,
+    .filter-radio {
+        width: 100%;
+    }
+    
+    .sort-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .view-options {
+        margin-left: 0;
+    }
+    
+    .blog-grid-modern.list-view .blog-article {
+        flex-direction: column;
+    }
+    
+    .blog-grid-modern.list-view .article-thumbnail {
+        width: 100%;
+    }
+}
+
+/* アニメーション改善 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
