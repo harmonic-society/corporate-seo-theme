@@ -8,6 +8,11 @@
 get_header(); ?>
 
 <main id="main" class="site-main single-post">
+    <!-- スクロールインジケーター -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-indicator-bar" id="scrollIndicatorBar"></div>
+    </div>
+    
     <?php while ( have_posts() ) : the_post(); ?>
         
         <!-- ヒーローセクション -->
@@ -69,29 +74,24 @@ get_header(); ?>
             <!-- 記事本文 -->
             <div class="entry-content-wrapper">
                 <div class="container">
-                    <div class="content-with-toc">
-                        <!-- 目次（モバイルでは上に表示） -->
-                        <aside class="toc-container" id="tocContainer">
-                            <div class="toc-wrapper">
-                                <div class="toc-header">
-                                    <h3 class="toc-title">
-                                        <i class="fas fa-list-ul"></i>
-                                        <span>目次</span>
-                                    </h3>
-                                    <button class="toc-toggle" id="tocToggle" aria-label="目次を開閉">
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                </div>
-                                <nav class="toc-content" id="tocContent">
-                                    <ul class="toc-list" id="tocList">
-                                        <!-- 動的に生成される -->
-                                    </ul>
-                                    <div class="toc-progress">
-                                        <div class="toc-progress-bar" id="tocProgressBar"></div>
-                                    </div>
-                                </nav>
+                    <div class="content-area">
+                        <!-- モバイル用目次 -->
+                        <div class="mobile-toc" id="mobileToc">
+                            <div class="toc-header" onclick="toggleMobileToc()">
+                                <h3 class="toc-title">
+                                    <i class="fas fa-list"></i>
+                                    目次
+                                </h3>
+                                <button class="mobile-toc-toggle">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
-                        </aside>
+                            <nav class="toc-nav">
+                                <ul class="toc-list" id="mobileTocList">
+                                    <!-- 動的に生成 -->
+                                </ul>
+                            </nav>
+                        </div>
                         
                         <!-- 記事本文 -->
                         <div class="entry-content">
@@ -125,6 +125,26 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
+            
+            <!-- 目次（固定サイドバー） -->
+            <aside class="article-toc" id="articleToc">
+                <div class="toc-inner">
+                    <div class="toc-header">
+                        <h3 class="toc-title">
+                            <i class="fas fa-list"></i>
+                            目次
+                        </h3>
+                    </div>
+                    <nav class="toc-nav">
+                        <ul class="toc-list" id="tocList">
+                            <!-- 動的に生成 -->
+                        </ul>
+                    </nav>
+                    <div class="toc-progress">
+                        <div class="toc-progress-bar" id="tocProgressBar"></div>
+                    </div>
+                </div>
+            </aside>
 
             <!-- CTAセクション -->
             <div class="blog-cta-section">

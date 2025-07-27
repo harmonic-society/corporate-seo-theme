@@ -293,6 +293,14 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             array( 'corporate-seo-pro-base' ), 
             $version 
         );
+        
+        // 記事詳細ページの目次レイアウト調整
+        wp_enqueue_style( 
+            'corporate-seo-pro-single-post-toc', 
+            get_template_directory_uri() . '/assets/css/pages/single-post-toc.css', 
+            array( 'corporate-seo-pro-toc' ), 
+            $version 
+        );
     }
     
     // Search page

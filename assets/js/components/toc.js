@@ -1,45 +1,73 @@
 /**
- * Table of Contents (目次) functionality
+ * 記事詳細ページの目次機能
+ * 圧倒的に優れたUXを提供する目次システム
  */
+
 (function() {
     'use strict';
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const tocList = document.getElementById('tocList');
-        const tocContainer = document.getElementById('tocContainer');
-        const tocToggle = document.getElementById('tocToggle');
-        const tocContent = document.getElementById('tocContent');
-        const tocProgressBar = document.getElementById('tocProgressBar');
-        const entryContent = document.querySelector('.entry-content');
-        
-        if (!tocList || !entryContent) return;
+    // DOM要素の取得
+    let tocList, mobileTocList, tocProgressBar, entryContent, articleToc;
+    let scrollIndicator, scrollIndicatorBar;
+    let headings = [];
+    let headingOffsets = [];
+    let currentActiveIndex = -1;
+    let isScrolling = false;
 
-        // 見出しを取得（h2のみ）
-        const headings = entryContent.querySelectorAll('h2');
+    /**
+     * 初期化
+     */
+    function init() {
+        // DOM要素の取得
+        tocList = document.getElementById('tocList');
+        mobileTocList = document.getElementById('mobileTocList');
+        tocProgressBar = document.getElementById('tocProgressBar');
+        entryContent = document.querySelector('.entry-content');
+        articleToc = document.getElementById('articleToc');
+        scrollIndicator = document.getElementById('scrollIndicator');
+        scrollIndicatorBar = document.getElementById('scrollIndicatorBar');
+
+        if (!entryContent) return;
+
+        // h2見出しを取得
+        headings = entryContent.querySelectorAll('h2');
         
         if (headings.length === 0) {
             // 見出しがない場合は目次を非表示
-            tocContainer.style.display = 'none';
+            if (articleToc) articleToc.style.display = 'none';
+            const mobileToc = document.getElementById('mobileToc');
+            if (mobileToc) mobileToc.style.display = 'none';
             return;
         }
 
-        // 見出しにIDを付与し、目次を生成
+        // 目次を生成
+        generateToc();
+        
+        // イベントリスナーを設定
+        setupEventListeners();
+        
+        // 初期状態を設定
+        updateActiveHeading();
+        updateProgressBar();
+    }
+
+    /**
+     * 目次を生成
+     */
+    function generateToc() {
         let tocHTML = '';
-        const headingOffsets = [];
         
         headings.forEach((heading, index) => {
             // IDがない場合は生成
             if (!heading.id) {
-                heading.id = 'heading-' + index;
+                heading.id = 'toc-heading-' + index;
             }
             
-            // 見出しテキストを取得（HTMLタグを除去）
+            // 見出しテキストを取得
             const headingText = heading.textContent.trim();
-            
-            // 番号付け
             const number = (index + 1) + '.';
             
-            // 目次アイテムを追加
+            // 目次アイテムを生成
             tocHTML += `
                 <li class="toc-item">
                     <a href="#${heading.id}" class="toc-link" data-index="${index}">
@@ -50,148 +78,234 @@
             `;
         });
         
-        tocList.innerHTML = tocHTML;
+        // デスクトップ用目次
+        if (tocList) {
+            tocList.innerHTML = tocHTML;
+        }
+        
+        // モバイル用目次
+        if (mobileTocList) {
+            mobileTocList.innerHTML = tocHTML;
+        }
+    }
 
+    /**
+     * イベントリスナーの設定
+     */
+    function setupEventListeners() {
         // スムーススクロール
-        const tocLinks = tocList.querySelectorAll('.toc-link');
-        tocLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const headerHeight = document.querySelector('.site-header').offsetHeight || 0;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', handleTocLinkClick);
+        });
+
+        // スクロールイベント
+        let scrollTimer;
+        window.addEventListener('scroll', () => {
+            isScrolling = true;
+            clearTimeout(scrollTimer);
+            
+            // スクロール終了を検知
+            scrollTimer = setTimeout(() => {
+                isScrolling = false;
+            }, 150);
+            
+            requestAnimationFrame(() => {
+                updateActiveHeading();
+                updateProgressBar();
+                checkTocVisibility();
             });
         });
 
-        // 現在の見出しをハイライト
-        let currentActiveIndex = -1;
+        // リサイズイベント
+        window.addEventListener('resize', debounce(() => {
+            updateHeadingOffsets();
+        }, 250));
+    }
+
+    /**
+     * 目次リンクのクリックハンドラー
+     */
+    function handleTocLinkClick(e) {
+        e.preventDefault();
         
-        function updateActiveHeading() {
-            const scrollPosition = window.pageYOffset;
-            const headerHeight = document.querySelector('.site-header').offsetHeight || 0;
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            const headerHeight = document.querySelector('.site-header')?.offsetHeight || 60;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
             
-            // 各見出しの位置を更新
-            headingOffsets.length = 0;
-            headings.forEach((heading) => {
-                headingOffsets.push(heading.offsetTop - headerHeight - 50);
+            // スムーススクロール
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
             
-            // 現在の位置に対応する見出しを探す
-            let activeIndex = -1;
-            for (let i = headingOffsets.length - 1; i >= 0; i--) {
-                if (scrollPosition >= headingOffsets[i]) {
-                    activeIndex = i;
-                    break;
-                }
-            }
-            
-            // アクティブな見出しが変わった場合のみ更新
-            if (activeIndex !== currentActiveIndex) {
-                // 前のアクティブ状態を削除
-                tocLinks.forEach(link => {
-                    link.classList.remove('active');
-                    link.parentElement.classList.remove('active');
-                });
-                
-                // 新しいアクティブ状態を設定
-                if (activeIndex >= 0) {
-                    const activeLink = tocList.querySelector(`[data-index="${activeIndex}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('active');
-                        activeLink.parentElement.classList.add('active');
-                    }
-                }
-                
-                currentActiveIndex = activeIndex;
-            }
-            
-            // プログレスバーの更新
-            updateProgressBar();
-        }
-
-        // プログレスバーの更新
-        function updateProgressBar() {
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-            
-            if (tocProgressBar) {
-                tocProgressBar.style.width = scrollPercent + '%';
+            // モバイル目次を閉じる
+            const mobileToc = document.getElementById('mobileToc');
+            if (mobileToc && window.innerWidth < 1400) {
+                mobileToc.classList.add('collapsed');
             }
         }
+    }
 
-        // スクロールイベント（パフォーマンス最適化）
-        let ticking = false;
-        function requestTick() {
-            if (!ticking) {
-                window.requestAnimationFrame(updateActiveHeading);
-                ticking = true;
-                setTimeout(() => { ticking = false; }, 100);
+    /**
+     * アクティブな見出しを更新
+     */
+    function updateActiveHeading() {
+        const scrollPosition = window.pageYOffset;
+        const headerHeight = document.querySelector('.site-header')?.offsetHeight || 60;
+        
+        // 各見出しの位置を更新
+        updateHeadingOffsets();
+        
+        // 現在の位置に対応する見出しを探す
+        let activeIndex = -1;
+        
+        // ビューポートの中央を基準にする
+        const viewportMiddle = scrollPosition + window.innerHeight / 3;
+        
+        for (let i = headingOffsets.length - 1; i >= 0; i--) {
+            if (viewportMiddle >= headingOffsets[i]) {
+                activeIndex = i;
+                break;
             }
         }
         
-        window.addEventListener('scroll', requestTick);
-        updateActiveHeading(); // 初期状態を設定
+        // 最後のセクションの特別処理
+        if (scrollPosition + window.innerHeight >= document.documentElement.scrollHeight - 50) {
+            activeIndex = headingOffsets.length - 1;
+        }
+        
+        // アクティブな見出しが変わった場合のみ更新
+        if (activeIndex !== currentActiveIndex) {
+            updateActiveTocItem(activeIndex);
+            currentActiveIndex = activeIndex;
+        }
+    }
 
-        // 目次の開閉
-        if (tocToggle) {
-            tocToggle.addEventListener('click', function() {
-                const isOpen = tocContainer.classList.contains('toc-collapsed');
-                const isMobile = window.innerWidth <= 768;
+    /**
+     * 見出しのオフセット位置を更新
+     */
+    function updateHeadingOffsets() {
+        const headerHeight = document.querySelector('.site-header')?.offsetHeight || 60;
+        headingOffsets = [];
+        
+        headings.forEach(heading => {
+            const rect = heading.getBoundingClientRect();
+            const offsetTop = rect.top + window.pageYOffset;
+            headingOffsets.push(offsetTop - headerHeight - 50);
+        });
+    }
+
+    /**
+     * アクティブな目次アイテムを更新
+     */
+    function updateActiveTocItem(activeIndex) {
+        // すべてのリンクから active クラスを削除
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // 新しいアクティブ状態を設定
+        if (activeIndex >= 0) {
+            document.querySelectorAll(`[data-index="${activeIndex}"]`).forEach(link => {
+                link.classList.add('active');
                 
-                if (isOpen) {
-                    tocContainer.classList.remove('toc-collapsed');
-                    this.innerHTML = '<i class="fas fa-chevron-down"></i>';
-                    if (isMobile) {
-                        localStorage.setItem('tocStateMobile', 'open');
-                    } else {
-                        localStorage.setItem('tocState', 'open');
-                    }
-                } else {
-                    tocContainer.classList.add('toc-collapsed');
-                    this.innerHTML = '<i class="fas fa-chevron-up"></i>';
-                    if (isMobile) {
-                        localStorage.setItem('tocStateMobile', 'collapsed');
-                    } else {
-                        localStorage.setItem('tocState', 'collapsed');
+                // デスクトップ目次でアクティブアイテムを表示領域に保つ
+                if (window.innerWidth >= 1400 && !isScrolling) {
+                    const tocNav = link.closest('.toc-nav');
+                    if (tocNav) {
+                        const linkRect = link.getBoundingClientRect();
+                        const navRect = tocNav.getBoundingClientRect();
+                        
+                        if (linkRect.top < navRect.top + 20 || linkRect.bottom > navRect.bottom - 20) {
+                            link.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }
                     }
                 }
             });
-            
-            // 保存された状態を復元（PCのみ）
-            if (window.innerWidth > 768) {
-                const savedState = localStorage.getItem('tocState');
-                if (savedState === 'collapsed') {
-                    tocContainer.classList.add('toc-collapsed');
-                    tocToggle.innerHTML = '<i class="fas fa-chevron-up"></i>';
-                }
-            }
         }
+    }
 
-        // モバイルでの目次表示設定
-        function setMobileTocState() {
-            if (window.innerWidth <= 768) {
-                // モバイルでは初期状態で表示（ユーザーが折りたたむことは可能）
-                const savedState = localStorage.getItem('tocStateMobile');
-                if (savedState === 'collapsed') {
-                    tocContainer.classList.add('toc-collapsed');
-                    if (tocToggle) {
-                        tocToggle.innerHTML = '<i class="fas fa-chevron-up"></i>';
-                    }
-                }
-            }
+    /**
+     * プログレスバーを更新
+     */
+    function updateProgressBar() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+        
+        // 目次内のプログレスバー
+        if (tocProgressBar) {
+            tocProgressBar.style.width = Math.min(scrollPercent, 100) + '%';
         }
         
-        setMobileTocState();
-    });
+        // 画面上部のスクロールインジケーター
+        if (scrollIndicatorBar) {
+            scrollIndicatorBar.style.width = Math.min(scrollPercent, 100) + '%';
+            
+            // スクロールしたら表示
+            if (scrollIndicator && scrollTop > 100) {
+                scrollIndicator.classList.add('visible');
+            } else if (scrollIndicator) {
+                scrollIndicator.classList.remove('visible');
+            }
+        }
+    }
+
+    /**
+     * 目次の表示/非表示を制御
+     */
+    function checkTocVisibility() {
+        if (!articleToc || window.innerWidth < 1400) return;
+        
+        const scrollTop = window.pageYOffset;
+        const entryContentRect = entryContent.getBoundingClientRect();
+        const entryContentBottom = entryContentRect.bottom + scrollTop;
+        
+        // 記事の終わりを過ぎたら目次を非表示
+        if (scrollTop > entryContentBottom - window.innerHeight) {
+            articleToc.classList.add('hidden');
+        } else {
+            articleToc.classList.remove('hidden');
+        }
+    }
+
+    /**
+     * デバウンス関数
+     */
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    /**
+     * モバイル目次の開閉
+     */
+    window.toggleMobileToc = function() {
+        const mobileToc = document.getElementById('mobileToc');
+        if (mobileToc) {
+            mobileToc.classList.toggle('collapsed');
+        }
+    };
+
+    // DOMContentLoaded で初期化
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
 })();
