@@ -1,0 +1,414 @@
+/* Enhanced Features Section - 選ばれる理由セクション改善版 */
+
+.features-section {
+    padding: 6rem 0;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 背景パターン */
+.features-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 134, 123, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(20, 184, 166, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* 幾何学的パターン */
+.features-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(16, 185, 129, 0.01) 35px, rgba(16, 185, 129, 0.01) 70px);
+    pointer-events: none;
+}
+
+/* セクションヘッダー改善 */
+.features-section .section-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 4rem;
+}
+
+.features-section .section-label {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(0, 134, 123, 0.1));
+    border-radius: 30px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.features-section .section-title {
+    font-size: 3rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    position: relative;
+    display: inline-block;
+}
+
+/* グリッドレイアウト改善 */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* フィーチャーアイテム - カードスタイル */
+.feature-item {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(229, 231, 235, 0.6);
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.02),
+        0 10px 40px -10px rgba(16, 185, 129, 0.1);
+    overflow: hidden;
+}
+
+/* カードの背景グラデーション */
+.feature-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+/* ホバー効果 */
+.feature-item:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 
+        0 20px 40px -15px rgba(16, 185, 129, 0.3),
+        0 0 0 1px rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.feature-item:hover::before {
+    opacity: 1;
+}
+
+/* 改善された円形デザイン */
+.feature-circle {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+/* グラデーション背景 */
+.feature-item[data-feature="1"] .feature-circle {
+    background: linear-gradient(135deg, #10b981, #14b8a6);
+    box-shadow: 
+        0 10px 30px -10px rgba(16, 185, 129, 0.5),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item[data-feature="2"] .feature-circle {
+    background: linear-gradient(135deg, #00867b, #10b981);
+    box-shadow: 
+        0 10px 30px -10px rgba(0, 134, 123, 0.5),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item[data-feature="3"] .feature-circle {
+    background: linear-gradient(135deg, #14b8a6, #059669);
+    box-shadow: 
+        0 10px 30px -10px rgba(20, 184, 166, 0.5),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 回転する装飾リング */
+.feature-circle::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+    animation: rotateRing 8s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-item:hover .feature-circle::before {
+    opacity: 1;
+}
+
+/* パルスエフェクト */
+.feature-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: pulse 2s ease-out infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-item:hover .feature-circle::after {
+    opacity: 1;
+}
+
+/* 数字スタイル改善 */
+.feature-number {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 45px;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    box-shadow: 
+        0 5px 15px -5px rgba(0, 0, 0, 0.2),
+        0 0 0 3px rgba(16, 185, 129, 0.1);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover .feature-number {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 
+        0 8px 20px -5px rgba(16, 185, 129, 0.4),
+        0 0 0 5px rgba(16, 185, 129, 0.2);
+}
+
+/* アイコンスタイル改善 */
+.feature-circle i {
+    font-size: 3rem;
+    color: white;
+    z-index: 1;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+}
+
+.feature-item:hover .feature-circle i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+}
+
+/* コンテンツ部分改善 */
+.feature-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+    line-height: 1.3;
+}
+
+.feature-item:hover .feature-title {
+    color: var(--primary-color);
+}
+
+.feature-description {
+    color: #6b7280;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.feature-item:hover .feature-description {
+    color: #4b5563;
+}
+
+/* アニメーション定義 */
+@keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* スクロールアニメーション */
+.feature-item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.1s; }
+.feature-item:nth-child(2) { animation-delay: 0.2s; }
+.feature-item:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* タブレット対応 */
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+    
+    .features-section .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .features-section {
+        padding: 4rem 0;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .feature-item {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .feature-circle {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .feature-circle i {
+        font-size: 2.5rem;
+    }
+    
+    .feature-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .feature-title {
+        font-size: 1.3rem;
+    }
+    
+    .feature-description {
+        font-size: 0.95rem;
+    }
+    
+    .features-section .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* スモールモバイル対応 */
+@media (max-width: 480px) {
+    .features-section {
+        padding: 3rem 0;
+    }
+    
+    .feature-item {
+        padding: 2rem 1rem;
+    }
+    
+    .feature-circle {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .feature-circle i {
+        font-size: 2rem;
+    }
+    
+    .feature-title {
+        font-size: 1.2rem;
+    }
+    
+    .feature-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* ダークモード対応（オプション） */
+@media (prefers-color-scheme: dark) {
+    .features-section {
+        background: #1a1a1a;
+    }
+    
+    .feature-item {
+        background: #2a2a2a;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .feature-number {
+        background: #333;
+        color: #10b981;
+    }
+    
+    .feature-title {
+        color: #ffffff;
+    }
+    
+    .feature-description {
+        color: #a0a0a0;
+    }
+}
