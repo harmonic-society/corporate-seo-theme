@@ -220,32 +220,20 @@ get_header(); ?>
         </section>
         <?php endif; // ACFが設定されていない場合は料金セクションを非表示 ?>
 
-        <!-- お問い合わせセクション -->
-        <section id="service-inquiry" class="service-inquiry">
+        <!-- お問い合わせCTA -->
+        <section class="service-cta">
             <div class="container">
-                <div class="service-inquiry-content">
-                    <h2 class="section-title text-center">
-                        <span class="title-main">お問い合わせ・ご相談</span>
-                        <span class="title-sub">まずはお気軽にご相談ください</span>
-                    </h2>
-                    
-                    <p class="inquiry-lead text-center">
-                        サービスに関するご質問やご相談は、下記フォームまたはお電話にてお気軽にお問い合わせください。
-                    </p>
-                    
-                    <div class="inquiry-buttons-wrapper">
-                        <div class="inquiry-buttons">
-                            <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn btn-primary">
-                                <i class="fas fa-envelope"></i>
-                                お問い合わせフォーム
-                            </a>
-                            
-                            <a href="tel:080-6946-4006" class="btn btn-secondary">
-                                <i class="fas fa-phone"></i>
-                                080-6946-4006
-                            </a>
-                        </div>
-                    </div>
+                <h2>まずはお気軽にご相談ください</h2>
+                <p>サービスに関するご質問やご相談は、下記フォームまたはお電話にてお気軽にお問い合わせください。</p>
+                <div class="cta-buttons">
+                    <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        お問い合わせフォーム
+                    </a>
+                    <a href="tel:080-6946-4006" class="btn-secondary">
+                        <i class="fas fa-phone"></i>
+                        080-6946-4006
+                    </a>
                 </div>
             </div>
         </section>
@@ -260,22 +248,27 @@ get_header(); ?>
         ) );
         
         if ( $related_services->have_posts() ) : ?>
-        <section class="related-services">
+        <section class="service-related">
             <div class="container">
-                <h2 class="section-title text-center">
-                    <span class="title-en">Related Services</span>
-                    <span class="title-ja">関連サービス</span>
-                </h2>
-                
-                <?php
-                // グリッドコンポーネントを使用
-                set_query_var( 'grid_query', $related_services );
-                get_template_part( 'template-parts/content-grid', null, array(
-                    'post_type' => 'service',
-                    'columns' => 3,
-                    'show_pagination' => false,
-                ) );
-                ?>
+                <h2>関連サービス</h2>
+                <div class="service-grid">
+                    <?php while ( $related_services->have_posts() ) : $related_services->the_post(); ?>
+                        <article class="service-item">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php if ( has_post_thumbnail() ) : ?>
+                                    <div class="service-thumb">
+                                        <?php the_post_thumbnail( 'medium' ); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="service-info">
+                                    <h3><?php the_title(); ?></h3>
+                                    <p><?php echo wp_trim_words( get_the_excerpt(), 15 ); ?></p>
+                                    <span class="service-link">詳細を見る →</span>
+                                </div>
+                            </a>
+                        </article>
+                    <?php endwhile; ?>
+                </div>
             </div>
         </section>
         <?php endif; wp_reset_postdata(); ?>
