@@ -1,95 +1,95 @@
-# Claude プロジェクトガイドライン
+# Claude Project Guidelines
 
-## プロジェクト概要
+## Project Overview
 
-WordPress テーマ「Corporate SEO Pro」 - SEO最適化、パフォーマンス、日本市場サポートに特化した企業向けWordPressテーマ
+WordPress Theme "Corporate SEO Pro" - A corporate WordPress theme specialized in SEO optimization, performance, and Japanese market support
 
-## ブランドアイデンティティ
+## Brand Identity
 
-### ブランドカラー
-- **プライマリカラー**: `#00867b` - すべてのプロジェクトでこの色を基調として使用すること
-- **セカンダリカラー**: `#10b981` - アクセントとして使用
-- ブランドカラーの派生色は、プライマリカラーの明度・彩度を調整して作成する
-- 例：
-  - ライト: `rgba(0, 134, 123, 0.1)` (10% opacity)
-  - ミディアム: `rgba(0, 134, 123, 0.5)` (50% opacity)
-  - ダーク: `#006b61` (darker shade)
+### Brand Colors
+- **Primary Color**: `#00867b` - Use this color as the base throughout all projects
+- **Secondary Color**: `#10b981` - Use as accent color
+- Derived brand colors should be created by adjusting the brightness and saturation of the primary color
+- Examples:
+  - Light: `rgba(0, 134, 123, 0.1)` (10% opacity)
+  - Medium: `rgba(0, 134, 123, 0.5)` (50% opacity)
+  - Dark: `#006b61` (darker shade)
 
-## コーディング規約
+## Coding Standards
 
-### WordPress テーマ開発規約
+### WordPress Theme Development Standards
 
-1. **命名規則**
-   - PHPファイル: kebab-case (例: `theme-setup.php`)
-   - PHP関数: snake_case with prefix (例: `corporate_seo_pro_setup()`)
-   - CSS クラス: kebab-case (例: `service-grid-item`)
-   - JavaScript関数: camelCase (例: `handleMobileMenu()`)
-   - 定数: UPPER_SNAKE_CASE (例: `CORPORATE_SEO_PRO_VERSION`)
+1. **Naming Conventions**
+   - PHP files: kebab-case (e.g., `theme-setup.php`)
+   - PHP functions: snake_case with prefix (e.g., `corporate_seo_pro_setup()`)
+   - CSS classes: kebab-case (e.g., `service-grid-item`)
+   - JavaScript functions: camelCase (e.g., `handleMobileMenu()`)
+   - Constants: UPPER_SNAKE_CASE (e.g., `CORPORATE_SEO_PRO_VERSION`)
 
-2. **WordPress コーディング標準**
-   - WordPress Coding Standards に準拠
-   - プレフィックスの使用: `corporate_seo_pro_`
-   - テキストドメイン: `corporate-seo-pro`
+2. **WordPress Coding Standards**
+   - Follow WordPress Coding Standards
+   - Use prefix: `corporate_seo_pro_`
+   - Text domain: `corporate-seo-pro`
 
-3. **エスケープとサニタイズ**
+3. **Escaping and Sanitization**
    ```php
-   // 出力時は必ずエスケープ
+   // Always escape output
    echo esc_html( $title );
    echo esc_url( $link );
    echo esc_attr( $attribute );
    
-   // 入力値のサニタイズ
+   // Sanitize input values
    $clean_data = sanitize_text_field( $_POST['data'] );
    ```
 
-### ファイル構造の整理
+### File Structure Organization
 
 ```
 corporate-seo-theme/
 ├── assets/
 │   ├── css/
-│   │   ├── base/              # 基本スタイル
-│   │   │   ├── base.css       # リセット・基本設定
-│   │   │   ├── typography.css # タイポグラフィ
-│   │   │   └── responsive.css # レスポンシブ設定
-│   │   ├── components/        # コンポーネント別CSS
+│   │   ├── base/              # Base styles
+│   │   │   ├── base.css       # Reset and base settings
+│   │   │   ├── typography.css # Typography
+│   │   │   └── responsive.css # Responsive settings
+│   │   ├── components/        # Component-specific CSS
 │   │   │   ├── navigation.css
 │   │   │   ├── buttons.css
 │   │   │   ├── forms.css
 │   │   │   ├── hero.css
 │   │   │   └── mobile-menu.css
-│   │   ├── layouts/          # レイアウト関連
-│   │   ├── pages/            # ページ固有のスタイル
+│   │   ├── layouts/          # Layout related
+│   │   ├── pages/            # Page-specific styles
 │   │   │   ├── pages.css
 │   │   │   └── single-service.css
-│   │   ├── utilities/        # ユーティリティクラス
+│   │   ├── utilities/        # Utility classes
 │   │   │   └── utilities.css
-│   │   └── color-scheme-teal.css  # カラースキーム
+│   │   └── color-scheme-teal.css  # Color scheme
 │   ├── js/
-│   │   ├── utils/            # ユーティリティ関数
+│   │   ├── utils/            # Utility functions
 │   │   │   ├── animation-utils.js
 │   │   │   └── tablet-detection.js
-│   │   ├── navigation.js     # ナビゲーション
-│   │   ├── mobile-menu.js    # モバイルメニュー
-│   │   └── theme.js          # メインJavaScript
-│   └── images/              # 画像ファイル
-├── inc/                     # PHP機能ファイル
-│   ├── theme-setup.php      # テーマ初期設定
-│   ├── assets.php           # CSS/JS読み込み
-│   ├── post-types.php       # カスタム投稿タイプ
-│   ├── customizer.php       # カスタマイザー設定
-│   ├── seo-functions.php    # SEO関連機能
-│   ├── structured-data.php  # 構造化データ
-│   └── template-functions.php # テンプレート関数
-├── template-parts/          # 再利用可能なテンプレート
-│   ├── content-*.php        # コンテンツ表示
-│   ├── hero-*.php           # ヒーローセクション
-│   └── service-*.php        # サービス関連
-├── languages/               # 翻訳ファイル
-├── acf-json/               # ACF設定ファイル
-├── functions.php           # メイン機能ファイル
-├── style.css              # テーマ情報・基本スタイル
-└── テンプレートファイル各種
+│   │   ├── navigation.js     # Navigation
+│   │   ├── mobile-menu.js    # Mobile menu
+│   │   └── theme.js          # Main JavaScript
+│   └── images/              # Image files
+├── inc/                     # PHP function files
+│   ├── theme-setup.php      # Theme initial setup
+│   ├── assets.php           # CSS/JS loading
+│   ├── post-types.php       # Custom post types
+│   ├── customizer.php       # Customizer settings
+│   ├── seo-functions.php    # SEO related functions
+│   ├── structured-data.php  # Structured data
+│   └── template-functions.php # Template functions
+├── template-parts/          # Reusable templates
+│   ├── content-*.php        # Content display
+│   ├── hero-*.php           # Hero sections
+│   └── service-*.php        # Service related
+├── languages/               # Translation files
+├── acf-json/               # ACF configuration files
+├── functions.php           # Main functions file
+├── style.css              # Theme info and base styles
+└── Template files
     ├── index.php
     ├── front-page.php
     ├── page.php
@@ -98,26 +98,26 @@ corporate-seo-theme/
     └── 404.php
 ```
 
-### CSSの記述ルール
+### CSS Writing Rules
 
 ```css
-/* WordPressテーマ用CSS記述例 */
+/* WordPress theme CSS example */
 .service-grid-item {
-  /* レイアウト */
+  /* Layout */
   display: flex;
   flex-direction: column;
   
-  /* サイズ */
+  /* Sizing */
   width: 100%;
   padding: 2rem;
   margin-bottom: 2rem;
   
-  /* 視覚的スタイル */
+  /* Visual styles */
   background-color: #ffffff;
   border: 1px solid rgba(0, 134, 123, 0.1);
   border-radius: 8px;
   
-  /* 効果 */
+  /* Effects */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -128,12 +128,12 @@ corporate-seo-theme/
 }
 ```
 
-### PHPテンプレートの記述例
+### PHP Template Example
 
 ```php
 <?php
 /**
- * サービス一覧テンプレート
+ * Service archive template
  *
  * @package Corporate_SEO_Pro
  */
@@ -164,64 +164,64 @@ get_sidebar();
 get_footer();
 ```
 
-## スタイリングのベストプラクティス
+## Styling Best Practices
 
-### CSS変数の活用
+### CSS Variables Usage
 
 ```css
-/* style.css または base.css */
+/* style.css or base.css */
 :root {
-  /* ブランドカラー */
+  /* Brand colors */
   --primary-color: #00867b;
   --primary-light: rgba(0, 134, 123, 0.1);
   --primary-dark: #006b61;
   --secondary-color: #10b981;
   
-  /* テキストカラー */
+  /* Text colors */
   --text-color: #1f2937;
   --text-light: #6b7280;
   --text-white: #ffffff;
   
-  /* 背景色 */
+  /* Background colors */
   --bg-white: #ffffff;
   --bg-light: #f9fafb;
   --bg-dark: #1f2937;
   
-  /* スペーシング */
+  /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   
-  /* フォント */
+  /* Fonts */
   --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
   --font-heading: "Noto Sans JP", sans-serif;
   
-  /* その他 */
+  /* Others */
   --border-radius: 8px;
   --transition: all 0.3s ease;
 }
 ```
 
-### レスポンシブデザイン
+### Responsive Design
 
 ```css
-/* モバイルファースト approach */
+/* Mobile-first approach */
 .service-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
 }
 
-/* タブレット */
+/* Tablet */
 @media (min-width: 768px) {
   .service-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* デスクトップ */
+/* Desktop */
 @media (min-width: 1024px) {
   .service-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -229,17 +229,17 @@ get_footer();
 }
 ```
 
-## ACF (Advanced Custom Fields) の使用
+## ACF (Advanced Custom Fields) Usage
 
 ```php
-// フィールドの存在確認と出力
+// Check field existence and output
 <?php if( get_field('service_features') ): ?>
     <div class="service-features">
         <?php the_field('service_features'); ?>
     </div>
 <?php endif; ?>
 
-// リピーターフィールド
+// Repeater fields
 <?php if( have_rows('pricing_plans') ): ?>
     <div class="pricing-plans">
         <?php while( have_rows('pricing_plans') ): the_row(); ?>
@@ -252,130 +252,130 @@ get_footer();
 <?php endif; ?>
 ```
 
-## パフォーマンス最適化
+## Performance Optimization
 
-1. **アセットの最適化**
-   - CSS/JSの適切な読み込み順序
-   - 不要なファイルの除外
-   - 条件付き読み込みの実装
+1. **Asset Optimization**
+   - Proper CSS/JS loading order
+   - Exclude unnecessary files
+   - Implement conditional loading
 
-2. **画像の最適化**
+2. **Image Optimization**
    ```php
-   // 適切な画像サイズの登録
+   // Register appropriate image sizes
    add_image_size( 'service-thumbnail', 400, 300, true );
    add_image_size( 'service-featured', 800, 600, true );
    
-   // 遅延読み込み
+   // Lazy loading
    <img src="<?php echo esc_url( $image_url ); ?>" 
         loading="lazy" 
         alt="<?php echo esc_attr( $image_alt ); ?>">
    ```
 
-3. **キャッシュの活用**
-   - トランジェントAPIの使用
-   - オブジェクトキャッシュの実装
+3. **Cache Usage**
+   - Use Transients API
+   - Implement object caching
 
-## SEO最適化
+## SEO Optimization
 
-1. **構造化データ**
-   - Schema.org マークアップの実装
-   - パンくずリストの構造化データ
-   - 記事・サービスの構造化データ
+1. **Structured Data**
+   - Schema.org markup implementation
+   - Breadcrumb structured data
+   - Article and service structured data
 
-2. **メタタグ管理**
+2. **Meta Tag Management**
    ```php
-   // OGP・Twitterカード
+   // OGP and Twitter Cards
    <meta property="og:title" content="<?php echo esc_attr( $title ); ?>">
    <meta property="og:description" content="<?php echo esc_attr( $description ); ?>">
    <meta property="og:image" content="<?php echo esc_url( $image ); ?>">
    ```
 
-3. **適切な見出し構造**
-   - h1は1ページに1つ
-   - 階層的な見出し構造
-   - キーワードの適切な配置
+3. **Proper Heading Structure**
+   - One h1 per page
+   - Hierarchical heading structure
+   - Proper keyword placement
 
-## チェックリスト
+## Checklist
 
-WordPress テーマ開発時は以下の項目を確認してください：
+When developing WordPress themes, check the following items:
 
-- [ ] ブランドカラー #00867b が適切に使用されているか
-- [ ] WordPress Coding Standards に準拠しているか
-- [ ] すべての出力がエスケープされているか
-- [ ] 翻訳関数が適切に使用されているか
-- [ ] レスポンシブデザインが実装されているか
-- [ ] アクセシビリティが考慮されているか
-- [ ] パフォーマンスが最適化されているか
-- [ ] SEO対策が実装されているか
-- [ ] セキュリティが考慮されているか
+- [ ] Brand color #00867b is properly used
+- [ ] Follows WordPress Coding Standards
+- [ ] All output is escaped
+- [ ] Translation functions are properly used
+- [ ] Responsive design is implemented
+- [ ] Accessibility is considered
+- [ ] Performance is optimized
+- [ ] SEO measures are implemented
+- [ ] Security is considered
 
-## Git 操作ルール
+## Git Operation Rules
 
-### 作業終了時の必須手順
+### Required Steps at End of Work Session
 
-**すべての作業セッションの終了時には、必ず以下のGit操作を実行すること：**
+**At the end of every work session, always execute the following Git operations:**
 
 ```bash
-# 1. 変更内容の確認
+# 1. Check changes
 git status
 
-# 2. すべての変更をステージング
+# 2. Stage all changes
 git add .
 
-# 3. 意味のあるコミットメッセージで記録
-git commit -m "feat: サービス一覧ページのレイアウト改善"
+# 3. Commit with meaningful message
+git commit -m "feat: Improve service archive page layout"
 
-# 4. リモートリポジトリへプッシュ
+# 4. Push to remote repository
 git push origin main
 ```
 
-### コミットメッセージの規約
+### Commit Message Convention
 
 ```
 <type>: <subject>
 
-<body>（任意）
+<body> (optional)
 
-<footer>（任意）
+<footer> (optional)
 ```
 
-**タイプの種類：**
-- `feat:` 新機能の追加
-- `fix:` バグ修正
-- `style:` CSSやデザインの変更
-- `refactor:` リファクタリング
-- `perf:` パフォーマンス改善
-- `docs:` ドキュメントの変更
-- `chore:` ビルドプロセスやツールの変更
-- `test:` テストの追加・修正
+**Types:**
+- `feat:` Add new feature
+- `fix:` Bug fix
+- `style:` CSS or design changes
+- `refactor:` Refactoring
+- `perf:` Performance improvements
+- `docs:` Documentation changes
+- `chore:` Build process or tool changes
+- `test:` Add or modify tests
 
-**良い例：**
+**Good examples:**
 ```bash
-git commit -m "feat: モバイルメニューのアニメーション追加"
-git commit -m "fix: タブレット表示時のレイアウト崩れを修正"
-git commit -m "style: ブランドカラー#00867bへの統一"
+git commit -m "feat: Add mobile menu animation"
+git commit -m "fix: Fix tablet layout issues"
+git commit -m "style: Unify brand color to #00867b"
 ```
 
-## 開発ツール
+## Development Tools
 
-### 推奨開発環境
+### Recommended Development Environment
 - Local by Flywheel
 - MAMP/XAMPP
 - Docker + WordPress
 
-### 推奨エディタ拡張
+### Recommended Editor Extensions
 - PHP Intelephense
 - WordPress Snippets
 - ACF Snippets
 - phpcs (WordPress Coding Standards)
 
-### デバッグツール
+### Debug Tools
 ```php
-// wp-config.php での設定
+// Settings in wp-config.php
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 define( 'WP_DEBUG_DISPLAY', false );
 define( 'SCRIPT_DEBUG', true );
 ```
 
-これらのガイドラインに従うことで、保守性が高く、パフォーマンスに優れたWordPressテーマを開発できます。
+By following these guidelines, you can develop maintainable and high-performance WordPress themes.
