@@ -10,9 +10,9 @@
     ],
     "user-prompt-submit": [
       {
-        "description": "Git reminder for session end",
-        "pattern": ".*(完了|終了|done|finished|それじゃ|じゃあ).*",
-        "command": "echo '💡 Session ending? Run: git add . && git commit -m \"fix/feat: description\" && git push'",
+        "description": "Git workflow reminder",
+        "pattern": ".*(git commit and push|完了|終了|done|finished).*",
+        "command": "echo '📋 Git操作が必要な場合は、適切なコミットメッセージと共に実行します'",
         "blocking": false
       }
     ],

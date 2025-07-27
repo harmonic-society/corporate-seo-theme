@@ -437,8 +437,6 @@
 .service-inquiry {
     padding: 80px 0;
     background: var(--color-bg-light);
-    display: flex;
-    justify-content: center;
 }
 
 .service-inquiry .container {
@@ -449,24 +447,29 @@
     padding-right: var(--container-padding);
 }
 
-.section-title .title-main {
+.service-inquiry .section-title {
+    margin-bottom: 2rem;
+}
+
+.service-inquiry .section-title .title-main {
+    display: block;
     font-size: 2rem;
     font-weight: 700;
     color: var(--color-text);
     margin-bottom: 0.5rem;
 }
 
-.section-title .title-sub {
+.service-inquiry .section-title .title-sub {
+    display: block;
     font-size: 1rem;
     color: var(--color-text-light);
 }
 
 .inquiry-lead {
     max-width: 600px;
-    margin: 0 auto 3rem;
+    margin: 2rem auto 3rem;
     color: var(--color-text-light);
     line-height: 1.8;
-    width: 100%;
 }
 
 .service-inquiry-content {
@@ -474,8 +477,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .inquiry-buttons-wrapper {
@@ -539,6 +541,10 @@
     background: white;
 }
 
+.related-services .section-title {
+    margin-bottom: 3rem;
+}
+
 /* Content grid styles */
 .content-grid {
     display: grid;
@@ -574,6 +580,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: all 0.3s ease;
+    height: 100%;
 }
 
 .service-card:hover {
@@ -590,7 +597,7 @@
 .service-card-image {
     position: relative;
     width: 100%;
-    aspect-ratio: 16/10;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -733,6 +740,11 @@
         flex-direction: column;
         width: 100%;
         max-width: 100%;
+    }
+    
+    /* サービスカード画像調整 */
+    .service-card-image {
+        height: 150px;
     }
     
     .inquiry-buttons .btn {
