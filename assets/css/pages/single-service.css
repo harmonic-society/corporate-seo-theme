@@ -437,6 +437,8 @@
 .service-inquiry {
     padding: 80px 0;
     background: var(--color-bg-light);
+    display: flex;
+    justify-content: center;
 }
 
 .service-inquiry .container {
@@ -464,6 +466,13 @@
     margin: 0 auto 3rem;
     color: var(--color-text-light);
     line-height: 1.8;
+    width: 100%;
+}
+
+.inquiry-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .inquiry-buttons {
@@ -475,6 +484,7 @@
     margin: 0 auto;
     width: 100%;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 .inquiry-buttons .btn {
@@ -598,6 +608,10 @@
     }
     
     /* お問い合わせセクション */
+    .inquiry-buttons-wrapper {
+        width: 100%;
+    }
+    
     .inquiry-buttons {
         flex-direction: column;
         width: 100%;
