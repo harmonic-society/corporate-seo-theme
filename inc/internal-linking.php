@@ -27,7 +27,7 @@ function corporate_seo_pro_related_posts( $post_id = null, $args = array() ) {
     $args = wp_parse_args( $args, $defaults );
     
     // 関連記事の取得
-    $related_posts = corporate_seo_pro_get_related_posts( $post_id, $args );
+    $related_posts = corporate_seo_pro_get_related_posts_extended( $post_id, $args );
     
     if ( empty( $related_posts ) ) {
         return '';
@@ -51,9 +51,9 @@ function corporate_seo_pro_related_posts( $post_id = null, $args = array() ) {
 }
 
 /**
- * 関連記事を取得
+ * 関連記事を取得（拡張版）
  */
-function corporate_seo_pro_get_related_posts( $post_id, $args ) {
+function corporate_seo_pro_get_related_posts_extended( $post_id, $args ) {
     $post = get_post( $post_id );
     
     if ( ! $post ) {
