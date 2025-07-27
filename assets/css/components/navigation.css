@@ -172,6 +172,7 @@
     transform: translateY(-10px);
     transition: all var(--transition-base);
     z-index: var(--z-dropdown);
+    display: block;
 }
 
 .primary-menu li:hover > .sub-menu,
@@ -183,6 +184,8 @@
 
 .sub-menu li {
     margin: 0;
+    display: block;
+    width: 100%;
 }
 
 .sub-menu a {
