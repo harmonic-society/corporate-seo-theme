@@ -14,8 +14,8 @@
         
         if (!tocList || !entryContent) return;
 
-        // 見出しを取得（h2のみ）
-        const headings = entryContent.querySelectorAll('h2');
+        // 見出しを取得（h2とh3）
+        const headings = entryContent.querySelectorAll('h2, h3');
         
         if (headings.length === 0) {
             // 見出しがない場合は目次を非表示
@@ -26,6 +26,8 @@
         // 見出しにIDを付与し、目次を生成
         let tocHTML = '';
         const headingOffsets = [];
+        let h2Count = 0;
+        let h3Count = 0;
         
         headings.forEach((heading, index) => {
             // IDがない場合は生成
@@ -36,11 +38,26 @@
             // 見出しテキストを取得（HTMLタグを除去）
             const headingText = heading.textContent.trim();
             
-            // 目次アイテムを追加（h2のみなのでレベルクラスは不要）
+            // 見出しレベルを判定
+            const level = heading.tagName.toLowerCase();
+            const levelClass = level === 'h3' ? 'toc-item-sub' : '';
+            
+            // 番号付け
+            let number = '';
+            if (level === 'h2') {
+                h2Count++;
+                h3Count = 0;
+                number = h2Count + '.';
+            } else if (level === 'h3') {
+                h3Count++;
+                number = h2Count + '.' + h3Count;
+            }
+            
+            // 目次アイテムを追加
             tocHTML += `
-                <li class="toc-item">
+                <li class="toc-item ${levelClass}">
                     <a href="#${heading.id}" class="toc-link" data-index="${index}">
-                        <span class="toc-number">${index + 1}.</span>
+                        <span class="toc-number">${number}</span>
                         <span class="toc-text">${headingText}</span>
                     </a>
                 </li>

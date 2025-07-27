@@ -267,6 +267,14 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             $version, 
             true 
         );
+        
+        // TOCのスタイルを追加
+        wp_enqueue_style( 
+            'corporate-seo-pro-toc', 
+            get_template_directory_uri() . '/assets/css/components/toc.css', 
+            array( 'corporate-seo-pro-base' ), 
+            $version 
+        );
     }
     
     // Search page
