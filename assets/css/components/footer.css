@@ -61,7 +61,7 @@
 }
 
 .footer-widget a {
-    color: var(--color-text-inverse, white);
+    color: var(--color-text-inverse, --primary-color);
     opacity: 0.8;
     text-decoration: none;
     transition: opacity var(--transition-base);
