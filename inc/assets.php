@@ -360,6 +360,14 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             $version, 
             true 
         );
+        
+        // About page hero styles
+        wp_enqueue_style( 
+            'corporate-seo-pro-about-hero', 
+            get_template_directory_uri() . '/assets/css/pages/about-hero.css', 
+            array( 'corporate-seo-pro-base' ), 
+            $version 
+        );
     }
     
     // Contact page

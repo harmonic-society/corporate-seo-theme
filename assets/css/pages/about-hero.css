@@ -1,0 +1,348 @@
+/**
+ * About Page Hero Section
+ * 
+ * Enhanced design for the 3つの調和 section
+ */
+
+/* ==========================================================================
+   About Hero Section
+   ========================================================================== */
+.about-hero {
+    position: relative;
+    padding: 100px 0 140px;
+    background: linear-gradient(135deg, #00867b 0%, #005952 100%);
+    overflow: hidden;
+}
+
+/* Animated background pattern */
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+}
+
+.about-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Title */
+.hero-title {
+    text-align: center;
+    margin-bottom: 80px;
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.title-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.title-main {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.title-main .equals {
+    color: #10b981;
+    font-weight: 300;
+    margin: 0 0.5rem;
+}
+
+/* Values Section */
+.hero-values {
+    text-align: center;
+    position: relative;
+}
+
+.values-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4rem;
+    position: relative;
+    display: inline-block;
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.values-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #10b981, transparent);
+    border-radius: 2px;
+}
+
+/* Values Grid */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Value Items */
+.value-item {
+    position: relative;
+    text-align: center;
+    animation: fadeInScale 0.8s ease-out backwards;
+}
+
+.value-item[data-value="1"] { animation-delay: 0.4s; }
+.value-item[data-value="2"] { animation-delay: 0.6s; }
+.value-item[data-value="3"] { animation-delay: 0.8s; }
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Value Circle - Enhanced Design */
+.value-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.value-circle::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #10b981, transparent, #00867b);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.value-circle::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: pulseGlow 2s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* Value Icon */
+.value-icon {
+    font-size: 3rem;
+    color: #ffffff;
+    transition: transform 0.4s ease;
+    z-index: 2;
+}
+
+/* Value Number */
+.value-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Value Title */
+.value-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+/* Hover Effects */
+.value-item:hover .value-circle {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.value-item:hover .value-circle::before {
+    opacity: 1;
+    animation: rotateGradient 3s linear infinite;
+}
+
+.value-item:hover .value-circle::after {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.value-item:hover .value-icon {
+    transform: scale(1.1) rotateY(360deg);
+}
+
+.value-item:hover .value-title {
+    transform: translateY(-5px);
+}
+
+@keyframes rotateGradient {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Hero Wave */
+.hero-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    overflow: hidden;
+}
+
+.hero-wave svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-wave path {
+    animation: waveMotion 10s ease-in-out infinite;
+}
+
+@keyframes waveMotion {
+    0%, 100% { d: path("M0,60 C320,10 640,110 960,60 C1280,10 1440,60 1440,60 L1440,200 L0,200 Z"); }
+    50% { d: path("M0,100 C320,20 640,180 960,100 C1280,20 1440,100 1440,100 L1440,200 L0,200 Z"); }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .values-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    
+    .value-circle {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .value-icon {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 80px 0 100px;
+    }
+    
+    .title-main {
+        font-size: 2rem;
+    }
+    
+    .values-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        max-width: 320px;
+    }
+    
+    .value-circle {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .value-title {
+        font-size: 1.125rem;
+    }
+    
+    /* Disable complex animations on mobile */
+    .value-circle::before,
+    .value-circle::after {
+        display: none;
+    }
+    
+    .value-item:hover .value-circle {
+        transform: translateY(-5px);
+    }
+}
