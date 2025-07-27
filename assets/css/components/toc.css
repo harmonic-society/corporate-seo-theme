@@ -5,17 +5,16 @@
 /* 目次コンテナ */
 .toc-container {
     position: sticky;
-    top: 100px; /* JavaScriptで動的に設定されるが、フォールバックとして */
+    top: 80px; /* ヘッダーの高さ + 余白 */
     height: fit-content;
-    max-height: calc(100vh - 120px); /* JavaScriptで動的に設定されるが、フォールバックとして */
+    max-height: calc(100vh - 100px); /* 画面の高さからヘッダーと余白を引く */
     overflow-y: auto;
     margin-bottom: 2rem;
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    will-change: top, max-height; /* パフォーマンス最適化 */
+    transition: box-shadow 0.3s ease;
 }
 
 /* スクロールバーのカスタマイズ */
@@ -111,34 +110,6 @@
 .toc-item {
     margin: 0;
     padding: 0;
-}
-
-/* h3のサブアイテム */
-.toc-item-sub .toc-link {
-    padding-left: 2rem;
-}
-
-.toc-item-sub .toc-number {
-    font-size: 0.8125rem;
-    color: #b5b5b5;
-}
-
-.toc-item-sub .toc-text {
-    font-size: 0.875rem;
-}
-
-/* h4のサブサブアイテム */
-.toc-item-sub-sub .toc-link {
-    padding-left: 3rem;
-}
-
-.toc-item-sub-sub .toc-number {
-    font-size: 0.75rem;
-    color: #c5c5c5;
-}
-
-.toc-item-sub-sub .toc-text {
-    font-size: 0.8125rem;
 }
 
 /* 目次リンク */

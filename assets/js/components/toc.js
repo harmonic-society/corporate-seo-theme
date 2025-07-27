@@ -14,8 +14,8 @@
         
         if (!tocList || !entryContent) return;
 
-        // 見出しを取得（h2、h3、h4）
-        const headings = entryContent.querySelectorAll('h2, h3, h4');
+        // 見出しを取得（h2のみ）
+        const headings = entryContent.querySelectorAll('h2');
         
         if (headings.length === 0) {
             // 見出しがない場合は目次を非表示
@@ -26,10 +26,6 @@
         // 見出しにIDを付与し、目次を生成
         let tocHTML = '';
         const headingOffsets = [];
-        let h2Count = 0;
-        let h3Count = 0;
-        
-        let h4Count = 0;
         
         headings.forEach((heading, index) => {
             // IDがない場合は生成
@@ -40,34 +36,12 @@
             // 見出しテキストを取得（HTMLタグを除去）
             const headingText = heading.textContent.trim();
             
-            // 見出しレベルを判定
-            const level = heading.tagName.toLowerCase();
-            let levelClass = '';
-            if (level === 'h3') {
-                levelClass = 'toc-item-sub';
-            } else if (level === 'h4') {
-                levelClass = 'toc-item-sub-sub';
-            }
-            
             // 番号付け
-            let number = '';
-            if (level === 'h2') {
-                h2Count++;
-                h3Count = 0;
-                h4Count = 0;
-                number = h2Count + '.';
-            } else if (level === 'h3') {
-                h3Count++;
-                h4Count = 0;
-                number = h2Count + '.' + h3Count;
-            } else if (level === 'h4') {
-                h4Count++;
-                number = h2Count + '.' + h3Count + '.' + h4Count;
-            }
+            const number = (index + 1) + '.';
             
             // 目次アイテムを追加
             tocHTML += `
-                <li class="toc-item ${levelClass}">
+                <li class="toc-item">
                     <a href="#${heading.id}" class="toc-link" data-index="${index}">
                         <span class="toc-number">${number}</span>
                         <span class="toc-text">${headingText}</span>
@@ -203,39 +177,6 @@
                 }
             }
         }
-
-        // スティッキー目次の位置調整
-        function adjustTocPosition() {
-            if (window.innerWidth <= 1200) {
-                // モバイル・タブレットでは相対位置
-                tocContainer.style.position = 'relative';
-                tocContainer.style.top = 'auto';
-                tocContainer.style.maxHeight = 'none'; // モバイルでは高さ制限なし
-            } else {
-                // PCではstickyを維持し、ヘッダー高さに応じてtopを調整
-                const header = document.querySelector('.site-header');
-                if (header) {
-                    const headerHeight = header.offsetHeight;
-                    const additionalOffset = 20; // 追加の余白
-                    tocContainer.style.position = 'sticky';
-                    tocContainer.style.top = (headerHeight + additionalOffset) + 'px';
-                    
-                    // max-heightも動的に調整
-                    const maxHeight = window.innerHeight - headerHeight - additionalOffset - 20;
-                    tocContainer.style.maxHeight = maxHeight + 'px';
-                }
-            }
-        }
-        
-        // 初期設定とリサイズ・スクロール時の調整
-        window.addEventListener('resize', adjustTocPosition);
-        window.addEventListener('scroll', function() {
-            // スクロール時にヘッダーの高さが変わる場合の対応
-            if (window.innerWidth > 1200) {
-                requestAnimationFrame(adjustTocPosition);
-            }
-        });
-        adjustTocPosition(); // 初期状態を設定
 
         // モバイルでの目次表示設定
         function setMobileTocState() {
