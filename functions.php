@@ -52,3 +52,33 @@ require_once CORPORATE_SEO_PRO_DIR . '/inc/autoloader.php';
  */
 
 // Add any theme-specific custom functions here if needed
+
+/**
+ * ACF Configuration
+ */
+// Set ACF JSON save point
+add_filter('acf/settings/save_json', 'corporate_seo_pro_acf_json_save_point');
+function corporate_seo_pro_acf_json_save_point( $path ) {
+    $path = get_stylesheet_directory() . '/acf-json';
+    return $path;
+}
+
+// Set ACF JSON load point
+add_filter('acf/settings/load_json', 'corporate_seo_pro_acf_json_load_point');
+function corporate_seo_pro_acf_json_load_point( $paths ) {
+    unset($paths[0]);
+    $paths[] = get_stylesheet_directory() . '/acf-json';
+    return $paths;
+}
+
+// Check if ACF is active and show notice if not
+add_action('admin_notices', 'corporate_seo_pro_acf_notice');
+function corporate_seo_pro_acf_notice() {
+    if ( ! function_exists('get_field') && current_user_can('manage_options') ) {
+        ?>
+        <div class="notice notice-warning is-dismissible">
+            <p><?php _e('Corporate SEO Pro テーマは Advanced Custom Fields Pro プラグインが必要です。プラグインをインストール・有効化してください。', 'corporate-seo-pro'); ?></p>
+        </div>
+        <?php
+    }
+}

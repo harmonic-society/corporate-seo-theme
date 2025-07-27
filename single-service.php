@@ -222,6 +222,15 @@ get_header(); ?>
 
         <!-- サービスの流れセクション -->
         <?php 
+        // デバッグ: ACFの状態を確認
+        if ( defined('WP_DEBUG') && WP_DEBUG ) {
+            echo '<!-- Debug: ACF Functions - get_field: ' . (function_exists('get_field') ? 'Yes' : 'No') . ', have_rows: ' . (function_exists('have_rows') ? 'Yes' : 'No') . ' -->';
+            if ( function_exists('get_field') ) {
+                $process_data = get_field('service_process');
+                echo '<!-- Debug: service_process data: ' . ($process_data ? 'Found (' . count($process_data) . ' items)' : 'Not found') . ' -->';
+            }
+        }
+        
         $has_process = false;
         if ( function_exists('get_field') && function_exists('have_rows') ) {
             $has_process = have_rows('service_process');
@@ -264,10 +273,32 @@ get_header(); ?>
                 </div>
             </div>
         </section>
+        <?php else : ?>
+            <!-- デバッグ: サービスの流れが表示されない場合 -->
+            <?php if ( current_user_can('manage_options') ) : ?>
+                <section class="service-process-debug" style="background-color: #f0f0f0; padding: 20px; margin: 20px 0;">
+                    <div class="container">
+                        <p style="color: #666;">
+                            <strong>管理者向けデバッグ情報:</strong><br>
+                            「サービスの流れ」セクションが表示されていません。<br>
+                            WordPressの管理画面でこのサービスを編集し、「サービスの流れ」にデータを追加してください。<br>
+                            ACF Pro がインストール・有効化されていることを確認してください。
+                        </p>
+                    </div>
+                </section>
+            <?php endif; ?>
         <?php endif; ?>
 
         <!-- よくある質問セクション -->
         <?php 
+        // デバッグ: FAQフィールドの状態を確認
+        if ( defined('WP_DEBUG') && WP_DEBUG ) {
+            if ( function_exists('get_field') ) {
+                $faq_data = get_field('service_faq');
+                echo '<!-- Debug: service_faq data: ' . ($faq_data ? 'Found (' . count($faq_data) . ' items)' : 'Not found') . ' -->';
+            }
+        }
+        
         $has_faq = false;
         if ( function_exists('get_field') && function_exists('have_rows') ) {
             $has_faq = have_rows('service_faq');
@@ -308,6 +339,20 @@ get_header(); ?>
                 </div>
             </div>
         </section>
+        <?php else : ?>
+            <!-- デバッグ: FAQが表示されない場合 -->
+            <?php if ( current_user_can('manage_options') ) : ?>
+                <section class="service-faq-debug" style="background-color: #f0f0f0; padding: 20px; margin: 20px 0;">
+                    <div class="container">
+                        <p style="color: #666;">
+                            <strong>管理者向けデバッグ情報:</strong><br>
+                            「よくある質問」セクションが表示されていません。<br>
+                            WordPressの管理画面でこのサービスを編集し、「よくある質問（FAQ）」にデータを追加してください。<br>
+                            ACF Pro がインストール・有効化されていることを確認してください。
+                        </p>
+                    </div>
+                </section>
+            <?php endif; ?>
         <?php endif; ?>
 
         <!-- お問い合わせCTA -->
