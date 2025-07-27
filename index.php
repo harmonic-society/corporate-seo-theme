@@ -95,22 +95,25 @@ get_header(); ?>
                         <div class="inline-filters">
                             <div class="filter-chips">
                                 <!-- 人気タグ -->
-                                <button type="button" class="filter-chip" data-tag="マーケティング">
-                                    <i class="fas fa-hashtag"></i>
-                                    <span>マーケティング</span>
-                                </button>
-                                <button type="button" class="filter-chip" data-tag="SEO">
-                                    <i class="fas fa-hashtag"></i>
-                                    <span>SEO</span>
-                                </button>
-                                <button type="button" class="filter-chip" data-tag="デザイン">
-                                    <i class="fas fa-hashtag"></i>
-                                    <span>デザイン</span>
-                                </button>
-                                <button type="button" class="filter-chip" data-tag="AI">
-                                    <i class="fas fa-hashtag"></i>
-                                    <span>AI</span>
-                                </button>
+                                <?php
+                                // 実際のタグを取得
+                                $popular_tags = get_tags( array(
+                                    'orderby' => 'count',
+                                    'order' => 'DESC',
+                                    'number' => 4,
+                                ) );
+                                
+                                if ( $popular_tags ) :
+                                    foreach ( $popular_tags as $tag ) :
+                                ?>
+                                    <button type="button" class="filter-chip" data-tag="<?php echo esc_attr( $tag->slug ); ?>">
+                                        <i class="fas fa-hashtag"></i>
+                                        <span><?php echo esc_html( $tag->name ); ?></span>
+                                    </button>
+                                <?php 
+                                    endforeach;
+                                endif;
+                                ?>
                                 
                                 <!-- カテゴリードロップダウン -->
                                 <div class="filter-dropdown">

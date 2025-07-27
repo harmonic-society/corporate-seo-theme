@@ -204,6 +204,7 @@
                 tagInput.name = 'tags';
                 tagInput.value = activeFilters.tags.join(',');
                 searchForm.appendChild(tagInput);
+                console.log('Tag filter applied:', tagInput.value);
             }
             
             // カテゴリーフィルター
@@ -215,8 +216,8 @@
                 searchForm.appendChild(categoryInput);
             });
             
-            // 期間フィルター
-            if (activeFilters.period !== 'all') {
+            // 期間フィルター（'all'の場合は送信しない）
+            if (activeFilters.period && activeFilters.period !== 'all') {
                 const periodInput = document.createElement('input');
                 periodInput.type = 'hidden';
                 periodInput.name = 'period';
@@ -319,7 +320,14 @@
         });
 
         // ローディング状態の管理
-        searchForm.addEventListener('submit', function() {
+        searchForm.addEventListener('submit', function(e) {
+            // 空の検索フィールドは送信しない
+            if (searchInput.value.trim() === '') {
+                searchInput.removeAttribute('name');
+            } else {
+                searchInput.setAttribute('name', 's');
+            }
+            
             this.classList.add('loading');
             searchInput.blur();
         });
