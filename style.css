@@ -3498,8 +3498,9 @@ span.menu-text {
 /* フッター */
 .site-footer {
     position: relative;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
-    color: white;
+    background: #00867b !important;
+    background: linear-gradient(135deg, #006b61 0%, #00867b 100%) !important;
+    color: white !important;
     padding: 0;
     margin-top: 5rem;
     overflow: hidden;
@@ -3602,6 +3603,7 @@ span.menu-text {
 .footer-widget {
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 .footer-info {
@@ -3659,7 +3661,7 @@ span.menu-text {
 .footer-description {
     font-size: 1rem;
     line-height: 1.7;
-    opacity: 0.9;
+    color: rgba(255,255,255,0.9) !important;
     margin-bottom: 1.5rem;
 }
 
@@ -3720,6 +3722,10 @@ span.menu-text {
     gap: 0.75rem;
 }
 
+.footer-menu a {
+    color: rgba(255,255,255,0.9) !important;
+}
+
 .footer-menu li {
     margin: 0;
 }
@@ -3765,7 +3771,7 @@ span.menu-text {
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.75rem;
-    color: white;
+    color: white !important;
 }
 
 @media (max-width: 768px) {
