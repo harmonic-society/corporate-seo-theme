@@ -6,65 +6,7 @@
  * @package Corporate_SEO_Pro
  */
 
-get_header();
-
-// フィルター条件を取得
-$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-$args = array(
-    'post_type' => 'post',
-    'post_status' => 'publish',
-    'paged' => $paged,
-    'posts_per_page' => get_option( 'posts_per_page' ),
-);
-
-// 検索キーワード
-$search_query = get_search_query();
-if ( ! empty( $search_query ) ) {
-    $args['s'] = $search_query;
-}
-
-// タグフィルター
-if ( isset( $_GET['tags'] ) && ! empty( $_GET['tags'] ) ) {
-    $tags = explode( ',', sanitize_text_field( $_GET['tags'] ) );
-    $args['tag_slug__in'] = $tags;
-}
-
-// カテゴリーフィルター
-if ( isset( $_GET['category'] ) && ! empty( $_GET['category'] ) ) {
-    $category_ids = array_map( 'intval', $_GET['category'] );
-    $args['category__in'] = $category_ids;
-}
-
-// 期間フィルター
-if ( isset( $_GET['period'] ) && $_GET['period'] !== 'all' ) {
-    $date_query = array();
-    
-    switch ( $_GET['period'] ) {
-        case 'week':
-            $date_query[] = array(
-                'after' => '1 week ago',
-            );
-            break;
-        case 'month':
-            $date_query[] = array(
-                'after' => '1 month ago',
-            );
-            break;
-        case '3months':
-            $date_query[] = array(
-                'after' => '3 months ago',
-            );
-            break;
-    }
-    
-    if ( ! empty( $date_query ) ) {
-        $args['date_query'] = $date_query;
-    }
-}
-
-// カスタムクエリを実行
-$blog_query = new WP_Query( $args );
-?>
+get_header(); ?>
 
 <main id="main" class="site-main blog-archive-modern">
     
@@ -142,7 +84,7 @@ $blog_query = new WP_Query( $args );
                                    name="s" 
                                    class="search-input" 
                                    placeholder="気になるキーワードを入力" 
-                                   value="<?php echo get_search_query(); ?>"
+                                   value="<?php echo isset($_GET['s']) ? esc_attr($_GET['s']) : ''; ?>"
                                    autocomplete="off">
                             <button type="submit" class="search-submit" aria-label="検索">
                                 <i class="fas fa-search"></i>
@@ -231,15 +173,16 @@ $blog_query = new WP_Query( $args );
                     </form>
                     
                     <!-- 検索結果数 -->
-                    <?php if ( is_search() || isset($_GET['category']) || isset($_GET['tags']) || isset($_GET['period']) ) : ?>
+                    <?php if ( isset($_GET['s']) || isset($_GET['category']) || isset($_GET['tags']) || isset($_GET['period']) ) : ?>
                     <div class="search-results-info">
                         <span class="results-count">
                             <?php
-                            echo number_format_i18n( $blog_query->found_posts ) . '件の記事';
+                            global $wp_query;
+                            echo number_format_i18n( $wp_query->found_posts ) . '件の記事';
                             ?>
                         </span>
-                        <?php if ( get_search_query() ) : ?>
-                        <span class="search-query">「<?php echo esc_html( get_search_query() ); ?>」の検索結果</span>
+                        <?php if ( isset($_GET['s']) && !empty($_GET['s']) ) : ?>
+                        <span class="search-query">「<?php echo esc_html( $_GET['s'] ); ?>」の検索結果</span>
                         <?php endif; ?>
                     </div>
                     <?php endif; ?>
@@ -252,7 +195,7 @@ $blog_query = new WP_Query( $args );
     <section class="blog-content-modern">
         <div class="container">
             
-            <?php if ( $blog_query->have_posts() ) : ?>
+            <?php if ( have_posts() ) : ?>
                 
                 <!-- ソートオプション -->
                 <div class="sort-options">
@@ -279,8 +222,8 @@ $blog_query = new WP_Query( $args );
                 <div class="blog-grid-modern" id="blogGrid">
                     <?php
                     $post_index = 0;
-                    while ( $blog_query->have_posts() ) :
-                        $blog_query->the_post();
+                    while ( have_posts() ) :
+                        the_post();
                         $post_index++;
                         
                         $article_class = 'blog-article';
@@ -377,8 +320,6 @@ $blog_query = new WP_Query( $args );
                 <!-- ページネーション -->
                 <div class="pagination-modern">
                     <?php
-                    $big = 999999999;
-                    
                     // 現在のURLパラメータを保持
                     $url_params = array();
                     if ( ! empty( $_GET['s'] ) ) $url_params['s'] = $_GET['s'];
@@ -386,23 +327,16 @@ $blog_query = new WP_Query( $args );
                     if ( ! empty( $_GET['category'] ) ) $url_params['category'] = $_GET['category'];
                     if ( ! empty( $_GET['period'] ) ) $url_params['period'] = $_GET['period'];
                     
-                    echo paginate_links( array(
-                        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-                        'format' => '?paged=%#%',
-                        'current' => max( 1, $paged ),
-                        'total' => $blog_query->max_num_pages,
-                        'mid_size' => 2,
+                    the_posts_pagination( array(
+                        'mid_size'  => 2,
                         'prev_text' => '<i class="fas fa-chevron-left"></i><span>前へ</span>',
                         'next_text' => '<span>次へ</span><i class="fas fa-chevron-right"></i>',
                         'before_page_number' => '<span class="page-label">',
                         'after_page_number' => '</span>',
-                        'type' => 'list',
                         'add_args' => $url_params
                     ) );
                     ?>
                 </div>
-                
-                <?php wp_reset_postdata(); ?>
                 
             <?php else : ?>
                 
