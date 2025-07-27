@@ -2,7 +2,7 @@
 
 .features-section {
     padding: 6rem 0;
-    background: #ffffff;
+    background: #f9fafb;
     position: relative;
     overflow: hidden;
 }
@@ -16,9 +16,9 @@
     right: 0;
     bottom: 0;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0, 134, 123, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(20, 184, 166, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 134, 123, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(20, 184, 166, 0.02) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -31,7 +31,7 @@
     right: 0;
     bottom: 0;
     background-image: 
-        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(16, 185, 129, 0.01) 35px, rgba(16, 185, 129, 0.01) 70px);
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(16, 185, 129, 0.008) 35px, rgba(16, 185, 129, 0.008) 70px);
     pointer-events: none;
 }
 
@@ -123,6 +123,8 @@
 .feature-circle {
     width: 140px;
     height: 140px;
+    min-width: 140px;
+    min-height: 140px;
     margin: 0 auto 2rem;
     border-radius: 50%;
     position: relative;
@@ -130,6 +132,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.5s ease;
+    flex-shrink: 0;
 }
 
 /* グラデーション背景 */
@@ -334,6 +337,8 @@
     .feature-circle {
         width: 120px;
         height: 120px;
+        min-width: 120px;
+        min-height: 120px;
     }
     
     .feature-circle i {
@@ -372,6 +377,8 @@
     .feature-circle {
         width: 100px;
         height: 100px;
+        min-width: 100px;
+        min-height: 100px;
         margin-bottom: 1.5rem;
     }
     
