@@ -83,8 +83,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // スティッキーヘッダーのスクロール処理
+    function initStickyHeader() {
+        if (!header) return;
+        
+        let lastScrollTop = 0;
+        const headerHeight = header.offsetHeight;
+        
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // スクロール時にscrolledクラスを追加
+            if (scrollTop > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // 下スクロール時にヘッダーを隠す、上スクロール時に表示
+            if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
+                // 下スクロール
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // 上スクロール
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+        
+        // スクロールイベントの最適化
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick);
+    }
+
     // Initialize all navigation utilities
     initSmoothScroll();
     initLazyLoading();
     initFadeInAnimations();
+    initStickyHeader();
 });

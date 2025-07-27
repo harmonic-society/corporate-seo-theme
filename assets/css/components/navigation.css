@@ -15,8 +15,9 @@
     background-color: var(--bg-color);
     box-shadow: var(--shadow-sm);
     z-index: var(--z-sticky);
-    transition: all var(--transition-base);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), height var(--transition-base);
     height: var(--header-height);
+    transform: translateY(0);
 }
 
 .site-header.scrolled {
@@ -58,8 +59,10 @@
 
 .site-logo img {
     height: 50px;
+    max-height: 50px;
     width: auto;
     display: block;
+    object-fit: contain;
 }
 
 .site-title {
@@ -464,8 +467,16 @@
         height: var(--header-height-mobile);
     }
     
+    .site-logo {
+        max-width: 180px;
+    }
+    
     .site-logo img {
         height: 40px;
+        max-height: 40px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
     }
     
     .site-title {
