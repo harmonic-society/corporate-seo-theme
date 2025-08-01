@@ -290,6 +290,11 @@ function corporate_seo_pro_url_exists( $url ) {
  * 既存のリンクとHTMLタグを保護
  */
 function corporate_seo_pro_protect_existing_links( $content ) {
+    // プレーンテキストのURLを保護
+    $content = preg_replace_callback( '/https?:\/\/[^\s<>]+/i', function( $matches ) {
+        return '<!--URL' . base64_encode( $matches[0] ) . 'URL-->';
+    }, $content );
+    
     // リンクタグを一時的に置換
     $content = preg_replace_callback( '/<a[^>]*>.*?<\/a>/is', function( $matches ) {
         return '<!--LINK' . base64_encode( $matches[0] ) . 'LINK-->';
@@ -307,6 +312,11 @@ function corporate_seo_pro_protect_existing_links( $content ) {
  * 保護したコンテンツを復元
  */
 function corporate_seo_pro_restore_protected_content( $content ) {
+    // プレーンテキストのURLを復元
+    $content = preg_replace_callback( '/<!--URL(.+?)URL-->/is', function( $matches ) {
+        return base64_decode( $matches[1] );
+    }, $content );
+    
     // リンクタグを復元
     $content = preg_replace_callback( '/<!--LINK(.+?)LINK-->/is', function( $matches ) {
         return base64_decode( $matches[1] );
