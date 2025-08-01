@@ -401,28 +401,6 @@ get_header(); ?>
         </div>
     </section>
     
-    <!-- ニュースレター登録セクション -->
-    <section class="newsletter-section">
-        <div class="container">
-            <div class="newsletter-wrapper">
-                <div class="newsletter-content">
-                    <div class="newsletter-icon">
-                        <i class="fas fa-envelope-open-text"></i>
-                    </div>
-                    <h3>最新情報をメールでお届け</h3>
-                    <p>ビジネスに役立つ情報を定期的に配信します</p>
-                </div>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="メールアドレスを入力" required>
-                    <button type="submit">
-                        <span>登録する</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-    
 </main>
 
 <?php get_footer(); ?>
