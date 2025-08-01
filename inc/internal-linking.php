@@ -188,6 +188,11 @@ function corporate_seo_pro_auto_internal_links( $content ) {
         return $content;
     }
     
+    // ニュースリリースでは自動内部リンクを無効化
+    if ( is_singular( 'news' ) ) {
+        return $content;
+    }
+    
     // キーワードとリンクのマッピング
     $keywords = corporate_seo_pro_get_keyword_links();
     
