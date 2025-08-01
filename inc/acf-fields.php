@@ -279,6 +279,97 @@ function corporate_seo_pro_register_acf_fields() {
         'description' => 'Harmonic Societyのサービス詳細ページで使用するカスタムフィールド',
         'show_in_rest' => 1,
     ));
+
+    // ニュースリリース詳細情報フィールドグループ
+    acf_add_local_field_group(array(
+        'key' => 'group_news_fields',
+        'title' => 'ニュースリリース詳細情報',
+        'fields' => array(
+            // OGP画像
+            array(
+                'key' => 'field_news_ogp_image',
+                'label' => 'OGP画像',
+                'name' => 'news_ogp_image',
+                'type' => 'image',
+                'instructions' => 'SNSでシェアされる際に表示される画像を設定してください。推奨サイズ：1200x630px',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'min_width' => '',
+                'min_height' => '',
+                'min_size' => '',
+                'max_width' => '',
+                'max_height' => '',
+                'max_size' => '',
+                'mime_types' => 'jpg,jpeg,png',
+            ),
+            // OGPタイトル（オプション）
+            array(
+                'key' => 'field_news_ogp_title',
+                'label' => 'OGPタイトル',
+                'name' => 'news_ogp_title',
+                'type' => 'text',
+                'instructions' => 'SNS用のタイトルを個別に設定する場合に入力してください（空欄の場合は投稿タイトルが使用されます）',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => 60,
+            ),
+            // OGP説明文（オプション）
+            array(
+                'key' => 'field_news_ogp_description',
+                'label' => 'OGP説明文',
+                'name' => 'news_ogp_description',
+                'type' => 'textarea',
+                'instructions' => 'SNS用の説明文を個別に設定する場合に入力してください（空欄の場合は自動生成されます）',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => 160,
+                'rows' => 3,
+                'new_lines' => '',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'news',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => 'ニュースリリースのSNSシェア用設定',
+        'show_in_rest' => 1,
+    ));
 }
 add_action('acf/init', 'corporate_seo_pro_register_acf_fields');
 

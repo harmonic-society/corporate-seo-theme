@@ -17,6 +17,11 @@ function corporate_seo_pro_meta_tags() {
     
     // メタディスクリプション
     $description = '';
+    $og_title = '';
+    $og_description = '';
+    $og_image_url = '';
+    $news_ogp_image = array();
+    
     if ( is_singular() ) {
         $description = get_post_meta( $post->ID, '_corporate_seo_meta_description', true );
         if ( empty( $description ) ) {
@@ -34,18 +39,59 @@ function corporate_seo_pro_meta_tags() {
     
     // OGPタグ
     if ( is_singular() ) {
-        echo '<meta property="og:title" content="' . esc_attr( get_the_title() ) . '">' . "\n";
+        // OGPタイトル（ニュースリリースの場合はカスタムタイトルを確認）
+        $og_title = get_the_title();
+        if ( is_singular( 'news' ) && function_exists( 'get_field' ) ) {
+            $custom_og_title = get_field( 'news_ogp_title' );
+            if ( ! empty( $custom_og_title ) ) {
+                $og_title = $custom_og_title;
+            }
+        }
+        echo '<meta property="og:title" content="' . esc_attr( $og_title ) . '">' . "\n";
         echo '<meta property="og:type" content="article">' . "\n";
         echo '<meta property="og:url" content="' . esc_url( get_permalink() ) . '">' . "\n";
         
-        if ( has_post_thumbnail() ) {
-            $thumbnail_id = get_post_thumbnail_id();
-            $thumbnail_url = wp_get_attachment_image_src( $thumbnail_id, 'large' );
-            echo '<meta property="og:image" content="' . esc_url( $thumbnail_url[0] ) . '">' . "\n";
+        // OGP画像
+        $og_image_url = '';
+        if ( is_singular( 'news' ) && function_exists( 'get_field' ) ) {
+            $news_ogp_image = get_field( 'news_ogp_image' );
+            if ( ! empty( $news_ogp_image ) && is_array( $news_ogp_image ) ) {
+                $og_image_url = $news_ogp_image['url'];
+            }
         }
         
-        if ( ! empty( $description ) ) {
-            echo '<meta property="og:description" content="' . esc_attr( $description ) . '">' . "\n";
+        // カスタムOGP画像がない場合はアイキャッチ画像を使用
+        if ( empty( $og_image_url ) && has_post_thumbnail() ) {
+            $thumbnail_id = get_post_thumbnail_id();
+            $thumbnail_url = wp_get_attachment_image_src( $thumbnail_id, 'large' );
+            $og_image_url = $thumbnail_url[0];
+        }
+        
+        if ( ! empty( $og_image_url ) ) {
+            echo '<meta property="og:image" content="' . esc_url( $og_image_url ) . '">' . "\n";
+            
+            // 画像の幅と高さも出力
+            if ( is_singular( 'news' ) && ! empty( $news_ogp_image ) && is_array( $news_ogp_image ) ) {
+                if ( ! empty( $news_ogp_image['width'] ) ) {
+                    echo '<meta property="og:image:width" content="' . esc_attr( $news_ogp_image['width'] ) . '">' . "\n";
+                }
+                if ( ! empty( $news_ogp_image['height'] ) ) {
+                    echo '<meta property="og:image:height" content="' . esc_attr( $news_ogp_image['height'] ) . '">' . "\n";
+                }
+            }
+        }
+        
+        // OGP説明文（ニュースリリースの場合はカスタム説明文を確認）
+        $og_description = $description;
+        if ( is_singular( 'news' ) && function_exists( 'get_field' ) ) {
+            $custom_og_description = get_field( 'news_ogp_description' );
+            if ( ! empty( $custom_og_description ) ) {
+                $og_description = $custom_og_description;
+            }
+        }
+        
+        if ( ! empty( $og_description ) ) {
+            echo '<meta property="og:description" content="' . esc_attr( $og_description ) . '">' . "\n";
         }
     }
     
@@ -56,6 +102,19 @@ function corporate_seo_pro_meta_tags() {
     echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
     if ( get_theme_mod( 'twitter_username' ) ) {
         echo '<meta name="twitter:site" content="@' . esc_attr( get_theme_mod( 'twitter_username' ) ) . '">' . "\n";
+    }
+    
+    // Twitter Card用のメタタグも追加
+    if ( is_singular() ) {
+        if ( ! empty( $og_title ) ) {
+            echo '<meta name="twitter:title" content="' . esc_attr( $og_title ) . '">' . "\n";
+        }
+        if ( ! empty( $og_description ) ) {
+            echo '<meta name="twitter:description" content="' . esc_attr( $og_description ) . '">' . "\n";
+        }
+        if ( ! empty( $og_image_url ) ) {
+            echo '<meta name="twitter:image" content="' . esc_url( $og_image_url ) . '">' . "\n";
+        }
     }
     
     // Canonical URL
