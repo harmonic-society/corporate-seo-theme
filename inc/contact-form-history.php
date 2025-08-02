@@ -396,9 +396,9 @@ class Corporate_SEO_Pro_Contact_History {
     public function add_export_submenu() {
         add_submenu_page(
             'edit.php?post_type=contact_history',
-            'エクスポート',
-            'エクスポート',
-            'export',
+            'CSVエクスポート',
+            'CSVエクスポート',
+            'manage_options',
             'contact-history-export',
             array( $this, 'render_export_page' )
         );
