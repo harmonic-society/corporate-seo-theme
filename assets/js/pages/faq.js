@@ -31,6 +31,9 @@
         
         // URLパラメータからカテゴリーを取得
         handleUrlParameters();
+        
+        // モバイル向けの改善
+        setupMobileEnhancements();
     });
 
     /**
@@ -355,6 +358,79 @@
     }
 
     /**
+     * モバイル向けの改善
+     */
+    function setupMobileEnhancements() {
+        // モバイルデバイスの検出
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            // カテゴリータブのスクロール位置を中央に
+            const activeTab = document.querySelector('.category-tab.active');
+            const tabsContainer = document.querySelector('.category-tabs');
+            
+            if (activeTab && tabsContainer) {
+                const scrollLeft = activeTab.offsetLeft - (tabsContainer.offsetWidth - activeTab.offsetWidth) / 2;
+                tabsContainer.scrollLeft = scrollLeft;
+            }
+            
+            // スワイプヒントの追加
+            const categoriesSection = document.querySelector('.faq-categories');
+            if (categoriesSection && tabsContainer.scrollWidth > tabsContainer.offsetWidth) {
+                categoriesSection.classList.add('has-scroll');
+                
+                // スクロール状態の監視
+                tabsContainer.addEventListener('scroll', function() {
+                    const isAtStart = this.scrollLeft <= 10;
+                    const isAtEnd = this.scrollLeft >= this.scrollWidth - this.offsetWidth - 10;
+                    
+                    categoriesSection.classList.toggle('at-start', isAtStart);
+                    categoriesSection.classList.toggle('at-end', isAtEnd);
+                });
+                
+                // 初期状態のチェック
+                tabsContainer.dispatchEvent(new Event('scroll'));
+            }
+            
+            // タッチイベントの最適化
+            let touchStartX = 0;
+            let scrollStartX = 0;
+            
+            tabsContainer.addEventListener('touchstart', function(e) {
+                touchStartX = e.touches[0].clientX;
+                scrollStartX = this.scrollLeft;
+            }, { passive: true });
+            
+            tabsContainer.addEventListener('touchmove', function(e) {
+                const touchDeltaX = touchStartX - e.touches[0].clientX;
+                this.scrollLeft = scrollStartX + touchDeltaX;
+            }, { passive: true });
+            
+            // クリックによる自動スクロール
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // タブをビューポートの中央に配置
+                    const scrollLeft = this.offsetLeft - (tabsContainer.offsetWidth - this.offsetWidth) / 2;
+                    tabsContainer.scrollTo({
+                        left: scrollLeft,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+        
+        // ビューポートの高さ調整（モバイルブラウザ対応）
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        setViewportHeight();
+        window.addEventListener('resize', setViewportHeight);
+        window.addEventListener('orientationchange', setViewportHeight);
+    }
+
+    /**
      * FAQ構造化データの生成（SEO対策）
      */
     function generateStructuredData() {
@@ -417,6 +493,80 @@
         
         .faq-question[aria-expanded="true"] + .faq-answer {
             opacity: 1;
+        }
+        
+        /* Mobile Scroll Indicators */
+        @media (max-width: 768px) {
+            .faq-categories {
+                position: relative;
+                overflow: visible;
+            }
+            
+            .faq-categories::before,
+            .faq-categories::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                color: white;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                z-index: 10;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+            
+            .faq-categories.has-scroll:not(.at-start)::before {
+                content: '‹';
+                left: 0;
+                display: flex;
+            }
+            
+            .faq-categories.has-scroll:not(.at-end)::after {
+                content: '›';
+                right: 0;
+                display: flex;
+            }
+            
+            /* Smooth scroll behavior for mobile */
+            .category-tabs {
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Active tab highlight on mobile */
+            .category-tab.active {
+                box-shadow: 0 2px 8px rgba(0, 134, 123, 0.3);
+            }
+            
+            /* Improve touch targets */
+            .faq-question {
+                min-height: 48px;
+                cursor: pointer;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* Prevent text selection on FAQ toggle */
+            .faq-question:active {
+                background-color: rgba(0, 134, 123, 0.05);
+            }
+            
+            /* Container padding adjustments */
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Fix viewport height for mobile browsers */
+            .faq-hero {
+                min-height: calc(var(--vh, 1vh) * 100);
+            }
         }
     `;
     document.head.appendChild(style);
