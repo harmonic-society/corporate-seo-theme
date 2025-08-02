@@ -82,7 +82,13 @@ get_header(); ?>
                     
                     <?php 
                     // Contact Form 7のフォームを表示
-                    echo do_shortcode('[contact-form-7 id="4f2cf0f" title="お問い合わせフォーム"]');
+                    // 問題が解決するまで一時的にシンプルフォームを使用
+                    if (shortcode_exists('simple_contact_form')) {
+                        echo do_shortcode('[simple_contact_form]');
+                    } else {
+                        // Contact Form 7がある場合
+                        echo do_shortcode('[contact-form-7 id="4f2cf0f" title="お問い合わせフォーム"]');
+                    }
                     ?>
                 </div>
                 

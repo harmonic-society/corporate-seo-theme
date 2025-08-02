@@ -25,6 +25,7 @@ if (is_admin() && defined('WPCF7_VERSION')) {
     require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-emergency-fix.php';
     require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-direct-fix.php';
     require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-force-fix.php';
+    require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-template-fix.php';
 }
 
 /**
@@ -34,6 +35,11 @@ if (is_admin() && defined('WPCF7_VERSION')) {
  * making the functions.php file cleaner and more maintainable
  */
 require_once CORPORATE_SEO_PRO_DIR . '/inc/autoloader.php';
+
+/**
+ * シンプルコンタクトフォームを読み込み（CF7の代替）
+ */
+require_once CORPORATE_SEO_PRO_DIR . '/inc/simple-contact-form.php';
 
 /**
  * Theme initialization
