@@ -415,6 +415,15 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             true 
         );
         
+        // CF7 Fix Script
+        wp_enqueue_script( 
+            'corporate-seo-pro-cf7-fix', 
+            get_template_directory_uri() . '/assets/js/features/cf7-fix.js', 
+            array( 'jquery' ), 
+            $version, 
+            true 
+        );
+        
         // Development環境でのみCF7デバッグスクリプトを読み込む
         if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
             wp_enqueue_script( 

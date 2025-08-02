@@ -168,3 +168,30 @@ function corporate_seo_pro_cf7_redirect_script() {
     </script>
     <?php
 }
+
+/**
+ * Contact Form 7 REST API認証の修正
+ */
+add_filter( 'wpcf7_verify_nonce', '__return_true' );
+
+// REST API for logged out users
+add_filter( 'rest_authentication_errors', function( $result ) {
+    if ( ! empty( $result ) ) {
+        return $result;
+    }
+    
+    // Contact Form 7のエンドポイントの場合は認証をスキップ
+    if ( strpos( $_SERVER['REQUEST_URI'], 'contact-form-7/v1' ) !== false ) {
+        return true;
+    }
+    
+    return $result;
+}, 100 );
+
+// Allow Contact Form 7 submission for non-logged in users
+add_filter( 'wpcf7_spam', function( $spam ) {
+    if ( ! is_user_logged_in() ) {
+        return false;
+    }
+    return $spam;
+}, 10, 1 );

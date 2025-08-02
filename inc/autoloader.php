@@ -38,6 +38,7 @@ function corporate_seo_pro_load_includes() {
         '/inc/sticky-header-inline.php', // Sticky header inline CSS
         '/inc/blog-filters-ajax.php',   // Blog filters Ajax functionality
         '/inc/analytics.php',           // Google Analytics 4 integration
+        '/inc/cf7-fixes.php',           // Contact Form 7 fixes and enhancements
     );
     
     // Load each file
