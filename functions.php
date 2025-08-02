@@ -19,16 +19,6 @@ define( 'CORPORATE_SEO_PRO_DIR', get_template_directory() );
 define( 'CORPORATE_SEO_PRO_URI', get_template_directory_uri() );
 
 /**
- * Contact Form 7の緊急修正を読み込み
- */
-if (is_admin() && defined('WPCF7_VERSION')) {
-    require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-emergency-fix.php';
-    require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-direct-fix.php';
-    require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-force-fix.php';
-    require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-template-fix.php';
-}
-
-/**
  * Load theme includes via autoloader
  * 
  * This autoloader manages all theme functionality includes
@@ -37,9 +27,9 @@ if (is_admin() && defined('WPCF7_VERSION')) {
 require_once CORPORATE_SEO_PRO_DIR . '/inc/autoloader.php';
 
 /**
- * シンプルコンタクトフォームを読み込み（CF7の代替）
+ * カスタムコンタクトフォームを読み込み
  */
-require_once CORPORATE_SEO_PRO_DIR . '/inc/simple-contact-form.php';
+require_once CORPORATE_SEO_PRO_DIR . '/inc/contact-form.php';
 
 /**
  * Theme initialization
@@ -137,117 +127,6 @@ function corporate_seo_pro_handle_contact_form() {
     wp_redirect( $redirect_url );
     exit;
 }
-
-/**
- * Contact Form 7の不正な設定を修正（緊急対応）
- */
-add_filter('wpcf7_contact_form_properties', function($properties, $contact_form) {
-    // additional_settingsが文字列であることを確認
-    if (isset($properties['additional_settings']) && is_string($properties['additional_settings'])) {
-        // skip_mail: on_sent_okの行を削除
-        $properties['additional_settings'] = preg_replace(
-            '/skip_mail:\s*on_sent_ok\s*\n?/i', 
-            '', 
-            $properties['additional_settings']
-        );
-    }
-    
-    // messagesプロパティの修正（エラーの原因）
-    if (isset($properties['messages']) && is_string($properties['messages'])) {
-        // 文字列の場合は配列に変換
-        $properties['messages'] = array();
-    }
-    
-    return $properties;
-}, 1, 2); // 優先度を1に変更して早期に処理
-
-/**
- * Contact Form 7のメッセージ設定を修正
- */
-add_filter('wpcf7_messages', function($messages) {
-    // メッセージが配列でない場合は修正
-    if (!is_array($messages)) {
-        $messages = array(
-            'mail_sent_ok' => 'ありがとうございます。メッセージは送信されました。',
-            'mail_sent_ng' => 'メッセージの送信に失敗しました。後でまたお試しください。',
-            'validation_error' => '入力内容に問題があります。確認して再度お試しください。',
-            'spam' => 'メッセージの送信に失敗しました。後でまたお試しください。',
-            'accept_terms' => '承諾が必要です。',
-            'invalid_required' => '必須項目です。',
-            'invalid_too_long' => '入力された文字列が長すぎます。',
-            'invalid_too_short' => '入力された文字列が短すぎます。',
-        );
-    }
-    return $messages;
-}, 1);
-
-/**
- * Contact Form 7 送信後のリダイレクト処理
- */
-add_action( 'wp_footer', 'corporate_seo_pro_cf7_redirect_script' );
-function corporate_seo_pro_cf7_redirect_script() {
-    // Contact pageのみで実行
-    if ( ! is_page_template( 'page-contact.php' ) ) {
-        return;
-    }
-    
-    // Contact Form 7が有効な場合のみ
-    if ( ! function_exists( 'wpcf7' ) ) {
-        return;
-    }
-    ?>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 重複防止用のフラグ
-        let isRedirecting = false;
-        let mailSentCount = 0;
-        
-        // Contact Form 7のイベントリスナー
-        document.addEventListener('wpcf7mailsent', function(event) {
-            mailSentCount++;
-            console.log('CF7 mailsent event fired. Count:', mailSentCount);
-            
-            // 既にリダイレクト中の場合は処理をスキップ
-            if (isRedirecting) {
-                console.warn('CF7: Already redirecting, skipping duplicate mailsent event');
-                return;
-            }
-            
-            // リダイレクトフラグを設定
-            isRedirecting = true;
-            
-            // thanksページへリダイレクト
-            console.log('CF7: Redirecting to thanks page...');
-            window.location.href = '<?php echo esc_url( home_url( '/thanks/' ) ); ?>';
-        }, false);
-        
-        // フォーム送信エラー時のハンドリング
-        document.addEventListener('wpcf7invalid', function(event) {
-            console.log('Validation failed:', event.detail);
-            isRedirecting = false;
-        }, false);
-        
-        document.addEventListener('wpcf7spam', function(event) {
-            console.log('Spam detected:', event.detail);
-            isRedirecting = false;
-        }, false);
-        
-        document.addEventListener('wpcf7mailfailed', function(event) {
-            console.log('Mail sending failed:', event.detail);
-            alert('送信に失敗しました。もう一度お試しください。');
-            isRedirecting = false;
-        }, false);
-        
-        // デバッグ用：フォーム送信イベント
-        document.addEventListener('wpcf7submit', function(event) {
-            console.log('Form submitted:', event.detail);
-        }, false);
-    });
-    </script>
-    <?php
-}
-
-// Contact Form 7 REST API fixes are now handled in inc/cf7-fixes.php
 
 /**
  * Completely disable all submenus
