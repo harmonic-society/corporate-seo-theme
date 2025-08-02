@@ -399,6 +399,7 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     
     // Contact page
     if ( is_page_template( 'page-contact.php' ) ) {
+        // メインのcontact form script
         wp_enqueue_script( 
             'corporate-seo-pro-contact', 
             get_template_directory_uri() . '/assets/js/pages/contact-new.js', 
@@ -407,11 +408,30 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             true 
         );
         
-        // Contact form Ajax
-        wp_localize_script( 'corporate-seo-pro-contact', 'contact_ajax', array(
+        // フォールバックスクリプト（PageSpeed Module対応）
+        wp_enqueue_script( 
+            'corporate-seo-pro-contact-fallback', 
+            get_template_directory_uri() . '/assets/js/pages/contact-fallback.js', 
+            array(), 
+            $version, 
+            true 
+        );
+        
+        // Contact form Ajax - 両方のスクリプトにlocalize
+        $ajax_data = array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'nonce' => wp_create_nonce( 'contact_form_nonce' ),
-        ) );
+            'nonce' => wp_create_nonce( 'contact_form_submit' ), // contact_form.phpと一致させる
+        );
+        
+        wp_localize_script( 'corporate-seo-pro-contact', 'contact_ajax', $ajax_data );
+        wp_localize_script( 'corporate-seo-pro-contact-fallback', 'contact_ajax', $ajax_data );
+        
+        // インラインスクリプトでもAjax URLを設定（フォールバック用）
+        wp_add_inline_script( 
+            'corporate-seo-pro-contact-fallback', 
+            'window.contact_ajax = ' . json_encode( $ajax_data ) . ';',
+            'before'
+        );
     }
     
     // Thanks page

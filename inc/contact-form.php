@@ -388,8 +388,13 @@ class Corporate_SEO_Pro_Contact_Form {
      * Ajax送信の処理
      */
     public function handle_ajax_submit() {
+        // デバッグログ
+        error_log( 'Contact form Ajax handler called' );
+        error_log( 'POST data: ' . print_r( $_POST, true ) );
+        
         // Nonceチェック
         if ( ! isset( $_POST['contact_nonce'] ) || ! wp_verify_nonce( $_POST['contact_nonce'], 'contact_form_submit' ) ) {
+            error_log( 'Nonce verification failed' );
             wp_send_json_error( array( 'message' => 'セキュリティエラーが発生しました。' ) );
         }
         

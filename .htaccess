@@ -1,0 +1,16 @@
+# PageSpeed Module設定
+<IfModule pagespeed_module>
+    # JavaScriptファイルの最適化を無効化（デバッグ用）
+    # ModPagespeedDisableFilters rewrite_javascript
+    
+    # 特定のファイルを除外
+    ModPagespeedDisallow "*/contact-new.js"
+    ModPagespeedDisallow "*/contact-fallback.js"
+    ModPagespeedDisallow "*/mobile-menu.js"
+</IfModule>
+
+# CSP（Content Security Policy）の調整
+<IfModule mod_headers.c>
+    # CSPヘッダーを一時的に緩和（デバッグ用）
+    # Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;"
+</IfModule>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form Test</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, textarea, select { width: 100%; padding: 8px; }
+        button { background: #00867b; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        button:disabled { opacity: 0.5; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Contact Form Test</h1>
+    
+    <form id="test-form" method="post">
+        <input type="hidden" name="action" value="submit_contact_form">
+        <input type="hidden" name="contact_nonce" value="test_nonce">
+        
+        <div class="form-group">
+            <label>お名前 *</label>
+            <input type="text" name="your_name" required>
+        </div>
+        
+        <div class="form-group">
+            <label>メールアドレス *</label>
+            <input type="email" name="your_email" required>
+        </div>
+        
+        <div class="form-group">
+            <label>お問い合わせ種別 *</label>
+            <select name="inquiry_type" required>
+                <option value="">選択してください</option>
+                <option value="サービスについて">サービスについて</option>
+                <option value="その他">その他</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>メッセージ *</label>
+            <textarea name="your_message" rows="5" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="privacy_policy" required>
+                プライバシーポリシーに同意する *
+            </label>
+        </div>
+        
+        <button type="submit" id="submit-btn">送信</button>
+        
+        <div id="result"></div>
+    </form>
+
+    <script>
+    document.getElementById('test-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('submit-btn');
+        const result = document.getElementById('result');
+        
+        btn.disabled = true;
+        btn.textContent = '送信中...';
+        result.innerHTML = '';
+        
+        const formData = new FormData(this);
+        
+        // Ajax URLを動的に設定
+        const ajaxUrl = window.location.origin + '/wp-admin/admin-ajax.php';
+        
+        fetch(ajaxUrl, {
+            method: 'POST',
+            body: formData,
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response data:', data);
+            if (data.success) {
+                result.innerHTML = '<p class="success">送信成功！</p>';
+                // 実際の実装では /thanks/ にリダイレクト
+                setTimeout(() => {
+                    alert('本番では /thanks/ ページにリダイレクトします');
+                }, 1000);
+            } else {
+                result.innerHTML = '<p class="error">エラー: ' + (data.data.message || '不明なエラー') + '</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            result.innerHTML = '<p class="error">通信エラー: ' + error.message + '</p>';
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.textContent = '送信';
+        });
+    });
+    </script>
+</body>
+</html>
