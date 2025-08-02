@@ -45,6 +45,27 @@ function corporate_seo_pro_gtm_body_code() {
 add_action( 'wp_body_open', 'corporate_seo_pro_gtm_body_code', 1 );
 
 /**
+ * Add GA4 tracking code to head
+ */
+function corporate_seo_pro_ga4_tracking_code() {
+    // Only output if not in admin area and tracking is enabled
+    if ( ! is_admin() && ! is_customize_preview() && corporate_seo_pro_should_track() ) {
+        ?>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1Y0ZRNF8XN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-1Y0ZRNF8XN');
+        </script>
+        <?php
+    }
+}
+add_action( 'wp_head', 'corporate_seo_pro_ga4_tracking_code', 2 );
+
+/**
  * Add GTM settings to customizer
  */
 function corporate_seo_pro_gtm_customizer( $wp_customize ) {
