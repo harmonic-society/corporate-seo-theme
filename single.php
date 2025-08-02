@@ -93,6 +93,12 @@ get_header(); ?>
                             </nav>
                         </div>
                         
+                        <!-- 目次に戻るボタン（モバイル用） -->
+                        <button class="back-to-toc" id="backToToc" onclick="scrollToToc()">
+                            <i class="fas fa-list"></i>
+                            <span>目次へ</span>
+                        </button>
+                        
                         <!-- 記事本文 -->
                         <div class="entry-content">
                             <?php

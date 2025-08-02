@@ -8,7 +8,7 @@
 
     // DOM要素の取得
     let tocList, mobileTocList, tocProgressBar, entryContent, articleToc;
-    let scrollIndicator, scrollIndicatorBar;
+    let scrollIndicator, scrollIndicatorBar, backToTocButton, mobileToc;
     let headings = [];
     let headingOffsets = [];
     let currentActiveIndex = -1;
@@ -26,11 +26,13 @@
         articleToc = document.getElementById('articleToc');
         scrollIndicator = document.getElementById('scrollIndicator');
         scrollIndicatorBar = document.getElementById('scrollIndicatorBar');
+        backToTocButton = document.getElementById('backToToc');
+        mobileToc = document.getElementById('mobileToc');
 
         if (!entryContent) return;
 
-        // h2見出しを取得
-        headings = entryContent.querySelectorAll('h2');
+        // h2とh3見出しを取得
+        headings = entryContent.querySelectorAll('h2, h3');
         
         if (headings.length === 0) {
             // 見出しがない場合は目次を非表示
@@ -56,6 +58,8 @@
      */
     function generateToc() {
         let tocHTML = '';
+        let h2Count = 0;
+        let h3Count = 0;
         
         headings.forEach((heading, index) => {
             // IDがない場合は生成
@@ -65,11 +69,21 @@
             
             // 見出しテキストを取得
             const headingText = heading.textContent.trim();
-            const number = (index + 1) + '.';
+            const isH3 = heading.tagName.toLowerCase() === 'h3';
+            let number;
+            
+            if (isH3) {
+                h3Count++;
+                number = h2Count + '.' + h3Count;
+            } else {
+                h2Count++;
+                h3Count = 0; // H2が来たらH3のカウントをリセット
+                number = h2Count + '.';
+            }
             
             // 目次アイテムを生成
             tocHTML += `
-                <li class="toc-item">
+                <li class="toc-item ${isH3 ? 'toc-item-h3' : 'toc-item-h2'}">
                     <a href="#${heading.id}" class="toc-link" data-index="${index}">
                         <span class="toc-number">${number}</span>
                         <span class="toc-text">${headingText}</span>
@@ -113,6 +127,7 @@
                 updateActiveHeading();
                 updateProgressBar();
                 checkTocVisibility();
+                updateBackToTocButton();
             });
         });
 
@@ -292,6 +307,30 @@
     }
 
     /**
+     * 「目次に戻る」ボタンの表示/非表示を更新
+     */
+    function updateBackToTocButton() {
+        if (!backToTocButton || !mobileToc || window.innerWidth >= 768) {
+            // デスクトップでは非表示
+            if (backToTocButton) {
+                backToTocButton.classList.remove('visible');
+            }
+            return;
+        }
+        
+        // モバイル目次の位置を取得
+        const mobileTocRect = mobileToc.getBoundingClientRect();
+        const scrollTop = window.pageYOffset;
+        
+        // 目次が画面外にある場合にボタンを表示
+        if (mobileTocRect.bottom < 0 && scrollTop > 300) {
+            backToTocButton.classList.add('visible');
+        } else {
+            backToTocButton.classList.remove('visible');
+        }
+    }
+
+    /**
      * モバイル目次の開閉
      */
     window.toggleMobileToc = function() {
@@ -299,6 +338,25 @@
         if (mobileToc) {
             mobileToc.classList.toggle('collapsed');
         }
+    };
+
+    /**
+     * 目次までスクロール
+     */
+    window.scrollToToc = function() {
+        if (!mobileToc) return;
+        
+        const headerHeight = document.querySelector('.site-header')?.offsetHeight || 60;
+        const targetPosition = mobileToc.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+        
+        // 目次を開く
+        mobileToc.classList.remove('collapsed');
+        
+        // スムーススクロール
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
     };
 
     // DOMContentLoaded で初期化
