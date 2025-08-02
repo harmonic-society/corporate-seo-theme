@@ -8,29 +8,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.site-header');
     if (!header) return;
 
-    // Force sticky positioning on all devices
-    const ensureStickyHeader = () => {
-        // Check if header has sticky position
+    // Force fixed positioning on all devices
+    const ensureFixedHeader = () => {
+        // Check if header has fixed position
         const computedStyle = window.getComputedStyle(header);
         const position = computedStyle.getPropertyValue('position');
         
-        if (position !== 'sticky' && position !== '-webkit-sticky') {
-            console.warn('Header not sticky, forcing sticky position');
-            header.style.position = 'sticky';
-            header.style.position = '-webkit-sticky';
+        if (position !== 'fixed') {
+            console.warn('Header not fixed, forcing fixed position');
+            header.style.position = 'fixed';
             header.style.top = '0';
-            header.style.zIndex = '1000';
+            header.style.left = '0';
+            header.style.right = '0';
+            header.style.width = '100%';
+            header.style.zIndex = '1100';
         }
     };
 
     // Initial check
-    ensureStickyHeader();
+    ensureFixedHeader();
 
     // Check on resize (for responsive changes)
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(ensureStickyHeader, 250);
+        resizeTimer = setTimeout(ensureFixedHeader, 250);
     });
 
     // Ensure proper spacing for iOS devices

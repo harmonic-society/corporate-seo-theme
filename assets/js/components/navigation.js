@@ -100,14 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 header.classList.remove('scrolled');
             }
             
-            // 下スクロール時にヘッダーを隠す、上スクロール時に表示
-            if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
-                // 下スクロール
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                // 上スクロール
-                header.style.transform = 'translateY(0)';
-            }
+            // ヘッダーは常に表示（固定ヘッダーのため）
+            // transform処理は削除
             
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         }
