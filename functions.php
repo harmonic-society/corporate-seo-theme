@@ -24,6 +24,7 @@ define( 'CORPORATE_SEO_PRO_URI', get_template_directory_uri() );
 if (is_admin() && defined('WPCF7_VERSION')) {
     require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-emergency-fix.php';
     require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-direct-fix.php';
+    require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-force-fix.php';
 }
 
 /**
