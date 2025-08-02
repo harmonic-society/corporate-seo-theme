@@ -399,6 +399,13 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     
     // Contact page
     if ( is_page_template( 'page-contact.php' ) ) {
+        // Forms override CSS (チェックボックス表示修正)
+        wp_enqueue_style( 
+            'corporate-seo-pro-forms-override', 
+            get_template_directory_uri() . '/assets/css/forms-override.css', 
+            array( 'corporate-seo-pro-forms' ), 
+            $version 
+        );
         // メインのcontact form script
         wp_enqueue_script( 
             'corporate-seo-pro-contact', 

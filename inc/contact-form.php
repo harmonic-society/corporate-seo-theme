@@ -288,6 +288,10 @@ class Corporate_SEO_Pro_Contact_Form {
         /* チェックボックス */
         .form-checkbox {
             margin-bottom: 2rem;
+            background-color: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #e5e7eb;
         }
         
         .checkbox-label {
@@ -303,6 +307,12 @@ class Corporate_SEO_Pro_Contact_Form {
             margin-top: 0.125rem;
             margin-right: 0.5rem;
             cursor: pointer;
+            -webkit-appearance: checkbox;
+            -moz-appearance: checkbox;
+            appearance: checkbox;
+            opacity: 1 !important;
+            position: relative !important;
+            visibility: visible !important;
         }
         
         .checkbox-text {

@@ -192,7 +192,7 @@
                 case 'required':
                     if (field.type === 'checkbox') {
                         if (!field.checked) {
-                            errorMessage = 'この項目は必須です。';
+                            errorMessage = 'プライバシーポリシーに同意してください。';
                             isValid = false;
                         }
                     } else if (!value) {

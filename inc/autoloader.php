@@ -41,6 +41,7 @@ function corporate_seo_pro_load_includes() {
         '/inc/contact-form.php',        // Custom contact form
         '/inc/contact-form-history.php', // Contact form history management
         '/inc/pagespeed-hints.php',     // PageSpeed Module hints
+        '/inc/checkbox-debug.php',      // Checkbox debug helper (temporary)
     );
     
     // Load each file
