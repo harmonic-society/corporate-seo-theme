@@ -40,6 +40,7 @@ function corporate_seo_pro_load_includes() {
         '/inc/analytics.php',           // Google Analytics 4 integration
         '/inc/contact-form.php',        // Custom contact form
         '/inc/contact-form-history.php', // Contact form history management
+        '/inc/pagespeed-hints.php',     // PageSpeed Module hints
     );
     
     // Load each file
