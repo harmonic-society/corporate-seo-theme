@@ -128,16 +128,43 @@ function corporate_seo_pro_handle_contact_form() {
  */
 add_action( 'wp_footer', 'corporate_seo_pro_cf7_redirect_script' );
 function corporate_seo_pro_cf7_redirect_script() {
+    // Contact pageのみで実行
+    if ( ! is_page_template( 'page-contact.php' ) ) {
+        return;
+    }
+    
     // Contact Form 7が有効な場合のみ
     if ( ! function_exists( 'wpcf7' ) ) {
         return;
     }
     ?>
     <script>
-    document.addEventListener( 'wpcf7mailsent', function( event ) {
-        // thanksページへリダイレクト
-        location = '<?php echo esc_url( home_url( '/thanks/' ) ); ?>';
-    }, false );
+    document.addEventListener('DOMContentLoaded', function() {
+        // Contact Form 7のイベントリスナー
+        document.addEventListener('wpcf7mailsent', function(event) {
+            // thanksページへリダイレクト
+            window.location.href = '<?php echo esc_url( home_url( '/thanks/' ) ); ?>';
+        }, false);
+        
+        // フォーム送信エラー時のハンドリング
+        document.addEventListener('wpcf7invalid', function(event) {
+            console.log('Validation failed:', event.detail);
+        }, false);
+        
+        document.addEventListener('wpcf7spam', function(event) {
+            console.log('Spam detected:', event.detail);
+        }, false);
+        
+        document.addEventListener('wpcf7mailfailed', function(event) {
+            console.log('Mail sending failed:', event.detail);
+            alert('送信に失敗しました。もう一度お試しください。');
+        }, false);
+        
+        // デバッグ用：フォーム送信イベント
+        document.addEventListener('wpcf7submit', function(event) {
+            console.log('Form submitted:', event.detail);
+        }, false);
+    });
     </script>
     <?php
 }

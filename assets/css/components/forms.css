@@ -536,6 +536,160 @@ input[type="range"]::-moz-range-thumb {
     color: var(--primary-color);
 }
 
+/* Contact Form 7 Specific Styles */
+.wpcf7-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.wpcf7-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.wpcf7-form .form-group .required {
+    color: #ef4444;
+    margin-left: 0.25rem;
+}
+
+.wpcf7-form .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.wpcf7-form .form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 134, 123, 0.1);
+}
+
+.wpcf7-form select.form-control {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.wpcf7-form textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Submit Button Styles */
+.wpcf7-form .form-submit {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.wpcf7-form .wpcf7-submit {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.875rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.wpcf7-form .wpcf7-submit:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 134, 123, 0.3);
+}
+
+.wpcf7-form .wpcf7-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Ajax Loader */
+.wpcf7 .ajax-loader {
+    visibility: hidden;
+    display: inline-block;
+    background-image: url("data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 10px;
+    width: 16px;
+    height: 16px;
+}
+
+.wpcf7.sending .ajax-loader {
+    visibility: visible;
+}
+
+/* Validation Errors */
+.wpcf7-not-valid {
+    border-color: #ef4444 !important;
+}
+
+.wpcf7-not-valid-tip {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* Response Messages */
+.wpcf7-response-output {
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    animation: slideInDown 0.3s ease-out;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wpcf7-mail-sent-ok {
+    background-color: #d1fae5;
+    border: 1px solid #10b981;
+    color: #065f46;
+}
+
+.wpcf7-mail-sent-ng,
+.wpcf7-aborted {
+    background-color: #fee2e2;
+    border: 1px solid #ef4444;
+    color: #991b1b;
+}
+
+.wpcf7-spam-blocked {
+    background-color: #fef3c7;
+    border: 1px solid #f59e0b;
+    color: #92400e;
+}
+
+.wpcf7-validation-errors,
+.wpcf7-acceptance-missing {
+    background-color: #ede9fe;
+    border: 1px solid #8b5cf6;
+    color: #5b21b6;
+}
+
 /* ==========================================================================
    Responsive Forms
    ========================================================================== */

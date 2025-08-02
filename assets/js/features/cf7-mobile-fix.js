@@ -9,8 +9,6 @@
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
                      window.innerWidth <= 768;
 
-    if (!isMobile) return;
-
     // DOM Ready
     document.addEventListener('DOMContentLoaded', function() {
         // Contact Form 7のセレクトボックスを取得

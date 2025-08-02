@@ -414,6 +414,17 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             $version, 
             true 
         );
+        
+        // Development環境でのみCF7デバッグスクリプトを読み込む
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+            wp_enqueue_script( 
+                'corporate-seo-pro-cf7-debug', 
+                get_template_directory_uri() . '/assets/js/features/cf7-debug.js', 
+                array(), 
+                $version, 
+                true 
+            );
+        }
     }
     
     // Thanks page
