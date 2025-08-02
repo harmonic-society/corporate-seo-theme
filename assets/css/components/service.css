@@ -1108,18 +1108,3 @@
     }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    .service-archive-item .service-features {
-        border-top-color: rgba(16, 185, 129, 0.2);
-    }
-    
-    .service-archive-item .feature-list li {
-        color: rgba(255, 255, 255, 0.9) !important;
-    }
-    
-    .service-archive-item .feature-list.feature-list-alt li {
-        background: linear-gradient(to right, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
-        color: rgba(255, 255, 255, 0.9) !important;
-    }
-}
