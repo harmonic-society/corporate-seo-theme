@@ -1,37 +1,19 @@
 /**
- * Contact Form Fallback JavaScript
- * PageSpeed Module対応版
+ * Contact Form JavaScript
+ * Ajax送信とリアルタイムバリデーション
  */
 (function() {
     'use strict';
-
-    console.log('Contact form fallback script loaded');
-
-    // グローバルにcontact_ajaxオブジェクトが定義されていない場合のフォールバック
-    if (typeof contact_ajax === 'undefined') {
-        window.contact_ajax = {
-            ajax_url: '/wp-admin/admin-ajax.php',
-            nonce: ''
-        };
-    }
 
     // DOM要素
     let form, submitButton, messageArea;
     let isSubmitting = false;
 
-    // 初期化（jQueryを使わない版）
-    function init() {
-        console.log('Initializing contact form...');
-        
+    // 初期化
+    document.addEventListener('DOMContentLoaded', function() {
         form = document.getElementById('custom-contact-form');
-        if (!form) {
-            console.error('Contact form not found!');
-            // フォームが見つからない場合、少し待ってから再試行
-            setTimeout(init, 100);
-            return;
-        }
-        
-        console.log('Form found:', form);
+        if (!form) return;
+
         submitButton = document.getElementById('submit-button');
         messageArea = form.querySelector('.form-messages');
 
@@ -40,7 +22,10 @@
         
         // 文字数カウンターの初期化
         initCharacterCounter();
-    }
+        
+        // ヒーローアニメーションなど既存の機能を維持
+        initExistingFeatures();
+    });
 
     /**
      * イベントリスナーの設定
@@ -48,15 +33,16 @@
     function setupEventListeners() {
         // フォーム送信
         form.addEventListener('submit', handleFormSubmit);
-        console.log('Form submit listener attached');
 
         // リアルタイムバリデーション
         const inputs = form.querySelectorAll('.form-control');
         inputs.forEach(input => {
+            // フォーカスアウト時のバリデーション
             input.addEventListener('blur', function() {
                 validateField(this);
             });
 
+            // 入力時のバリデーション（エラー状態の場合のみ）
             input.addEventListener('input', function() {
                 if (this.classList.contains('error')) {
                     validateField(this);
@@ -74,17 +60,13 @@
     }
 
     /**
-     * フォーム送信処理（非同期を使わない版）
+     * フォーム送信処理
      */
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
         e.preventDefault();
-        console.log('Form submit triggered');
 
         // 重複送信防止
-        if (isSubmitting) {
-            console.log('Already submitting');
-            return;
-        }
+        if (isSubmitting) return;
 
         // 全フィールドのバリデーション
         const isValid = validateForm();
@@ -96,56 +78,57 @@
         isSubmitting = true;
         setSubmitButtonState('loading');
 
-        // FormDataの作成
-        const formData = new FormData(form);
+        try {
+            // FormDataの作成
+            const formData = new FormData(form);
+            
+            // Ajax送信
+            const response = await fetch(contact_ajax.ajax_url, {
+                method: 'POST',
+                body: formData,
+                credentials: 'same-origin'
+            });
 
-        // XMLHttpRequestを使用（fetchの代わり）
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', contact_ajax.ajax_url || '/wp-admin/admin-ajax.php');
-        
-        xhr.onload = function() {
-            console.log('XHR Response:', xhr.responseText);
-            try {
-                const data = JSON.parse(xhr.responseText);
+            const data = await response.json();
+
+            if (data.success) {
+                // 成功時の処理
+                showMessage('お問い合わせを受け付けました。確認画面へ移動します...', 'success');
                 
-                if (data.success) {
-                    showMessage('お問い合わせを受け付けました。確認画面へ移動します...', 'success');
-                    
-                    // thanksページへリダイレクト
-                    setTimeout(function() {
-                        window.location.href = data.data.redirect || '/thanks/';
-                    }, 1000);
-                } else {
-                    // エラー処理
-                    if (data.data && data.data.errors) {
-                        Object.keys(data.data.errors).forEach(function(fieldName) {
-                            const field = form.querySelector('[name="' + fieldName + '"]');
-                            if (field) {
-                                showFieldError(field, data.data.errors[fieldName]);
-                            }
-                        });
-                    }
-                    
-                    showMessage(data.data.message || '送信に失敗しました。入力内容を確認してください。', 'error');
-                    setSubmitButtonState('default');
-                    isSubmitting = false;
+                // GAイベントの送信（もしGAが設定されていれば）
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'contact_form_submit', {
+                        'event_category': 'engagement',
+                        'event_label': formData.get('inquiry_type')
+                    });
                 }
-            } catch (error) {
-                console.error('JSON parse error:', error);
-                showMessage('通信エラーが発生しました。時間をおいて再度お試しください。', 'error');
+
+                // thanksページへリダイレクト
+                setTimeout(() => {
+                    window.location.href = data.data.redirect || '/thanks/';
+                }, 1000);
+            } else {
+                // エラー時の処理
+                if (data.data && data.data.errors) {
+                    // フィールドごとのエラー表示
+                    Object.keys(data.data.errors).forEach(fieldName => {
+                        const field = form.querySelector(`[name="${fieldName}"]`);
+                        if (field) {
+                            showFieldError(field, data.data.errors[fieldName]);
+                        }
+                    });
+                }
+                
+                showMessage(data.data.message || '送信に失敗しました。入力内容を確認してください。', 'error');
                 setSubmitButtonState('default');
                 isSubmitting = false;
             }
-        };
-
-        xhr.onerror = function() {
-            console.error('XHR error');
+        } catch (error) {
+            console.error('Form submission error:', error);
             showMessage('通信エラーが発生しました。時間をおいて再度お試しください。', 'error');
             setSubmitButtonState('default');
             isSubmitting = false;
-        };
-
-        xhr.send(formData);
+        }
     }
 
     /**
@@ -155,7 +138,7 @@
         let isValid = true;
         const inputs = form.querySelectorAll('.form-control, input[type="checkbox"]');
         
-        inputs.forEach(function(input) {
+        inputs.forEach(input => {
             if (!validateField(input)) {
                 isValid = false;
             }
@@ -177,11 +160,8 @@
         let errorMessage = '';
 
         // 各ルールをチェック
-        for (let i = 0; i < rules.length; i++) {
-            const rule = rules[i];
-            const ruleParts = rule.split(':');
-            const ruleName = ruleParts[0];
-            const ruleValue = ruleParts[1];
+        for (const rule of rules) {
+            const [ruleName, ruleValue] = rule.split(':');
 
             switch (ruleName) {
                 case 'required':
@@ -214,14 +194,14 @@
 
                 case 'min':
                     if (value && value.length < parseInt(ruleValue)) {
-                        errorMessage = ruleValue + '文字以上で入力してください。';
+                        errorMessage = `${ruleValue}文字以上で入力してください。`;
                         isValid = false;
                     }
                     break;
 
                 case 'max':
                     if (value && value.length > parseInt(ruleValue)) {
-                        errorMessage = ruleValue + '文字以内で入力してください。';
+                        errorMessage = `${ruleValue}文字以内で入力してください。`;
                         isValid = false;
                     }
                     break;
@@ -277,7 +257,7 @@
         
         // 一定時間後に非表示（エラー以外）
         if (type !== 'error') {
-            setTimeout(function() {
+            setTimeout(() => {
                 messageArea.classList.remove('show');
             }, 5000);
         }
@@ -339,12 +319,69 @@
         });
     }
 
-    // DOMContentLoadedまたは即座に実行
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        // すでに読み込まれている場合
-        init();
+    /**
+     * 既存機能の初期化（hero animations等）
+     */
+    function initExistingFeatures() {
+        // Count Up Animation
+        const countElements = document.querySelectorAll('.contact-hero .count-up');
+        if (countElements.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const target = parseInt(element.dataset.target);
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            element.textContent = Math.floor(current);
+                        }, 16);
+                        
+                        observer.unobserve(element);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            countElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const isOpen = this.getAttribute('aria-expanded') === 'true';
+                
+                // Close all other questions
+                faqQuestions.forEach(q => {
+                    if (q !== this) {
+                        q.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                // Toggle current question
+                this.setAttribute('aria-expanded', !isOpen);
+            });
+        });
+
+        // Smooth Scroll
+        const scrollPrompt = document.querySelector('.scroll-prompt');
+        if (scrollPrompt) {
+            scrollPrompt.addEventListener('click', function() {
+                const contactMain = document.querySelector('.contact-main');
+                if (contactMain) {
+                    contactMain.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }
     }
 
 })();
