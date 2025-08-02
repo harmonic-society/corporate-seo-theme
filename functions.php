@@ -170,3 +170,44 @@ function corporate_seo_pro_cf7_redirect_script() {
 }
 
 // Contact Form 7 REST API fixes are now handled in inc/cf7-fixes.php
+
+/**
+ * Completely disable all submenus
+ * サブメニューを完全に無効化
+ */
+// Remove all submenu items from the menu
+add_filter( 'wp_nav_menu_objects', function( $items ) {
+    foreach ( $items as $key => $item ) {
+        if ( $item->menu_item_parent != 0 ) {
+            unset( $items[$key] );
+        }
+    }
+    return $items;
+}, 999 );
+
+// Remove menu-item-has-children class
+add_filter( 'nav_menu_css_class', function( $classes, $item ) {
+    $classes = array_diff( $classes, array( 'menu-item-has-children' ) );
+    return $classes;
+}, 999, 2 );
+
+// Force depth to 1 (no submenus)
+add_filter( 'wp_nav_menu_args', function( $args ) {
+    $args['depth'] = 1;
+    return $args;
+}, 999 );
+
+// Remove submenu from admin
+add_action( 'admin_head', function() {
+    ?>
+    <style>
+        #menu-to-edit .menu-item-depth-1,
+        #menu-to-edit .menu-item-depth-2,
+        #menu-to-edit .menu-item-depth-3,
+        #menu-to-edit .menu-item-depth-4,
+        #menu-to-edit .menu-item-depth-5 {
+            display: none !important;
+        }
+    </style>
+    <?php
+} );

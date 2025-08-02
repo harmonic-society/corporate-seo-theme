@@ -12,6 +12,33 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
     
     <?php wp_head(); ?>
+    
+    <!-- Force disable all submenus -->
+    <style>
+        .sub-menu,
+        .primary-menu .sub-menu,
+        .main-navigation .sub-menu,
+        .menu .sub-menu,
+        .nav-menu .sub-menu,
+        ul.sub-menu,
+        li .sub-menu,
+        .menu-item .sub-menu {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            position: absolute !important;
+            left: -99999px !important;
+            top: -99999px !important;
+            pointer-events: none !important;
+            max-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+    </style>
 </head>
 
 <body <?php body_class(); ?>>
