@@ -64,3 +64,61 @@ function corporate_seo_pro_acf_notice() {
         <?php
     }
 }
+
+/**
+ * フォールバックフォームの処理
+ */
+add_action( 'admin_post_corporate_seo_pro_contact_form', 'corporate_seo_pro_handle_contact_form' );
+add_action( 'admin_post_nopriv_corporate_seo_pro_contact_form', 'corporate_seo_pro_handle_contact_form' );
+
+function corporate_seo_pro_handle_contact_form() {
+    // Nonceチェック
+    if ( ! isset( $_POST['contact_form_nonce'] ) || ! wp_verify_nonce( $_POST['contact_form_nonce'], 'corporate_seo_pro_contact_form' ) ) {
+        wp_die( 'セキュリティチェックに失敗しました。' );
+    }
+    
+    // データの取得とサニタイズ
+    $name    = sanitize_text_field( $_POST['contact_name'] );
+    $email   = sanitize_email( $_POST['contact_email'] );
+    $phone   = sanitize_text_field( $_POST['contact_phone'] );
+    $subject = sanitize_text_field( $_POST['contact_subject'] );
+    $message = sanitize_textarea_field( $_POST['contact_message'] );
+    
+    // メール送信先の取得
+    $to = get_option( 'admin_email' );
+    
+    // メールヘッダー
+    $headers = array(
+        'From: ' . $name . ' <' . $email . '>',
+        'Reply-To: ' . $email,
+        'Content-Type: text/plain; charset=UTF-8'
+    );
+    
+    // メール本文
+    $body = "お名前: " . $name . "\n";
+    $body .= "メールアドレス: " . $email . "\n";
+    if ( ! empty( $phone ) ) {
+        $body .= "電話番号: " . $phone . "\n";
+    }
+    $body .= "件名: " . $subject . "\n\n";
+    $body .= "お問い合わせ内容:\n" . $message;
+    
+    // メール送信
+    $sent = wp_mail( $to, '[お問い合わせ] ' . $subject, $body, $headers );
+    
+    // リダイレクト先のURL
+    $redirect_url = wp_get_referer() ? wp_get_referer() : home_url();
+    
+    if ( $sent ) {
+        // 成功時のメッセージをセッションに保存（または一時的なオプションとして保存）
+        set_transient( 'contact_form_message_' . session_id(), '送信が完了しました。お問い合わせありがとうございます。', 60 );
+        $redirect_url = add_query_arg( 'contact_sent', 'success', $redirect_url );
+    } else {
+        // エラー時のメッセージ
+        set_transient( 'contact_form_message_' . session_id(), '送信に失敗しました。もう一度お試しください。', 60 );
+        $redirect_url = add_query_arg( 'contact_sent', 'error', $redirect_url );
+    }
+    
+    wp_redirect( $redirect_url );
+    exit;
+}

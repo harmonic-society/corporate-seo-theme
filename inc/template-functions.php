@@ -223,3 +223,45 @@ function get_contact_page_url() {
     // デフォルトとしてホームURLを返す
     return home_url('/contact/');
 }
+
+/**
+ * フォールバック用のお問い合わせフォーム
+ * Contact Form 7が利用できない場合に使用
+ */
+function corporate_seo_pro_fallback_contact_form() {
+    ?>
+    <form class="contact-form fallback-form" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+        <input type="hidden" name="action" value="corporate_seo_pro_contact_form">
+        <?php wp_nonce_field( 'corporate_seo_pro_contact_form', 'contact_form_nonce' ); ?>
+        
+        <div class="form-group">
+            <label for="contact-name">お名前 <span class="required">*</span></label>
+            <input type="text" id="contact-name" name="contact_name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="contact-email">メールアドレス <span class="required">*</span></label>
+            <input type="email" id="contact-email" name="contact_email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="contact-phone">電話番号</label>
+            <input type="tel" id="contact-phone" name="contact_phone">
+        </div>
+        
+        <div class="form-group">
+            <label for="contact-subject">件名 <span class="required">*</span></label>
+            <input type="text" id="contact-subject" name="contact_subject" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="contact-message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="contact-message" name="contact_message" rows="8" required></textarea>
+        </div>
+        
+        <div class="form-submit">
+            <button type="submit" class="wpcf7-submit">送信する</button>
+        </div>
+    </form>
+    <?php
+}

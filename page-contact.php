@@ -81,18 +81,9 @@ get_header(); ?>
                     </div>
                     
                     <?php 
-                    // Contact Form 7のショートコードを使用
-                    // 管理画面でContact Form 7を作成し、以下のショートコードを置き換えてください
-                    echo do_shortcode('[contact-form-7 id="YOUR_FORM_ID" title="お問い合わせフォーム"]');
+                    // Contact Form 7のフォームを表示
+                    echo do_shortcode('[contact-form-7 id="4f2cf0f" title="お問い合わせフォーム"]');
                     ?>
-                    
-                    <!-- Contact Form 7が未インストールの場合の代替フォーム -->
-                    <?php if ( ! shortcode_exists( 'contact-form-7' ) ) : ?>
-                        <div class="cf7-notice">
-                            <p>Contact Form 7プラグインをインストールして、フォームを作成してください。</p>
-                            <p>作成後、このページのショートコードIDを更新してください。</p>
-                        </div>
-                    <?php endif; ?>
                 </div>
                 
                 <!-- 右側：コンタクト情報 -->

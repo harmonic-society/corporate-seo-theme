@@ -512,6 +512,30 @@ input[type="range"]::-moz-range-thumb {
     color: var(--error-color);
 }
 
+/* Admin Notice Styles */
+.admin-notice {
+    background-color: #fff3cd;
+    border: 1px solid #ffecb5;
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    color: #856404;
+}
+
+.admin-notice p {
+    margin: 0.5rem 0;
+}
+
+.admin-notice a {
+    color: #533f03;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.admin-notice a:hover {
+    color: var(--primary-color);
+}
+
 /* ==========================================================================
    Responsive Forms
    ========================================================================== */
