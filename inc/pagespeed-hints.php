@@ -88,14 +88,15 @@ add_action( 'wp_head', 'corporate_seo_pro_preload_critical_styles', 2 );
 
 /**
  * robots.txtにPageSpeed用の指示を追加
+ * (seo-functions.phpの既存関数にフックを追加)
  */
-function corporate_seo_pro_robots_txt( $output, $public ) {
+function corporate_seo_pro_pagespeed_robots_txt( $output, $public ) {
     if ( $public ) {
-        $output .= "\n# PageSpeed Module\n";
+        $output .= "\n# PageSpeed Module Instructions\n";
         $output .= "User-agent: *\n";
         $output .= "Disallow: /*?PageSpeed=*\n";
         $output .= "Disallow: /*?ModPagespeed=*\n";
     }
     return $output;
 }
-add_filter( 'robots_txt', 'corporate_seo_pro_robots_txt', 10, 2 );
+add_filter( 'robots_txt', 'corporate_seo_pro_pagespeed_robots_txt', 20, 2 ); // 優先度を20に設定
