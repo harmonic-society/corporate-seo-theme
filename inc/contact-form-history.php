@@ -606,7 +606,7 @@ class Corporate_SEO_Pro_Contact_History {
 }
 
 // インスタンス化
-new Corporate_SEO_Pro_Contact_History();
+$corporate_seo_pro_contact_history = new Corporate_SEO_Pro_Contact_History();
 
 // ステータス保存のフック
-add_action( 'save_post_contact_history', array( new Corporate_SEO_Pro_Contact_History(), 'save_status' ) );
+add_action( 'save_post_contact_history', array( $corporate_seo_pro_contact_history, 'save_status' ) );
