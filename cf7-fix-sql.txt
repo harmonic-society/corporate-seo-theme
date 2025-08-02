@@ -1,0 +1,33 @@
+-- Contact Form 7 エラー修正用SQL
+-- phpMyAdminまたはデータベース管理ツールで実行してください
+
+-- 1. 問題のあるフォームを確認
+SELECT ID, post_title, post_content 
+FROM wp_posts 
+WHERE post_type = 'wpcf7_contact_form' 
+AND post_status = 'publish';
+
+-- 2. メッセージメタデータを削除（エラーの原因）
+DELETE FROM wp_postmeta 
+WHERE meta_key = '_messages' 
+AND post_id IN (
+    SELECT ID FROM wp_posts 
+    WHERE post_type = 'wpcf7_contact_form'
+);
+
+-- 3. 特定のフォームIDのデータを確認（4f2cf0fまたは実際のID）
+-- ※ 実際のIDに置き換えてください
+SELECT * FROM wp_posts WHERE ID = [フォームID];
+
+-- 4. 問題のあるシリアライズデータを手動で修正する場合
+-- まず現在のデータをバックアップ
+-- その後、以下のようなUPDATE文を実行
+/*
+UPDATE wp_posts 
+SET post_content = 'a:5:{s:4:"form";s:XXX:"[フォームコンテンツ]";s:4:"mail";a:XXX:{...};s:9:"mail_2";a:XXX:{...};s:8:"messages";a:23:{s:12:"mail_sent_ok";s:71:"ありがとうございます。メッセージは送信されました。";s:12:"mail_sent_ng";s:93:"メッセージの送信に失敗しました。後でまたお試しください。";...};s:18:"additional_settings";s:0:"";}' 
+WHERE ID = [フォームID] 
+AND post_type = 'wpcf7_contact_form';
+*/
+
+-- 5. オプションテーブルから修正フラグをリセット（再実行する場合）
+DELETE FROM wp_options WHERE option_name = 'cf7_messages_fix_applied_v2';
