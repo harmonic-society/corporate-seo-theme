@@ -994,6 +994,14 @@
     transition: all 0.3s ease;
 }
 
+/* Force text color on all possible parent containers */
+.service-info .feature-list li,
+.service-card .feature-list li,
+.service-archive-item .service-info .feature-list li,
+.service-archive-item .service-card .feature-list li {
+    color: #1f2937 !important;
+}
+
 /* Feature Icon */
 .service-archive-item .feature-list li::before {
     content: '';

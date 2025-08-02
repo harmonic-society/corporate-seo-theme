@@ -13,7 +13,7 @@
     
     <?php wp_head(); ?>
     
-    <!-- Force disable all submenus -->
+    <!-- Force disable all submenus and fix text colors -->
     <style>
         .sub-menu,
         .primary-menu .sub-menu,
@@ -37,6 +37,14 @@
             padding: 0 !important;
             border: none !important;
             box-shadow: none !important;
+        }
+        
+        /* Force service feature list text to be dark */
+        .service-features .feature-list li,
+        .service-archive-item .feature-list li,
+        .service-card .feature-list li,
+        .feature-list li {
+            color: #1f2937 !important;
         }
     </style>
 </head>

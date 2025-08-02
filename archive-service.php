@@ -84,7 +84,7 @@ get_header(); ?>
                                                         $icon = isset($feature_icons[$feature_count]) ? $feature_icons[$feature_count] : 'fa-check';
                                                         $feature_count++;
                                                     ?>
-                                                        <li data-feature-icon="<?php echo esc_attr($icon); ?>">
+                                                        <li data-feature-icon="<?php echo esc_attr($icon); ?>" style="color: #1f2937 !important;">
                                                             <?php echo esc_html( $feature_text ); ?>
                                                         </li>
                                                     <?php endforeach; ?>
@@ -92,9 +92,9 @@ get_header(); ?>
                                             <?php else : ?>
                                                 <!-- フォールバック：デフォルトの特徴を表示 -->
                                                 <ul class="feature-list">
-                                                    <li data-feature-icon="fa-check-circle">高品質なサービス提供</li>
-                                                    <li data-feature-icon="fa-star">豊富な実績と経験</li>
-                                                    <li data-feature-icon="fa-rocket">迅速な対応と柔軟性</li>
+                                                    <li data-feature-icon="fa-check-circle" style="color: #1f2937 !important;">高品質なサービス提供</li>
+                                                    <li data-feature-icon="fa-star" style="color: #1f2937 !important;">豊富な実績と経験</li>
+                                                    <li data-feature-icon="fa-rocket" style="color: #1f2937 !important;">迅速な対応と柔軟性</li>
                                                 </ul>
                                             <?php endif; ?>
                                         </div>
