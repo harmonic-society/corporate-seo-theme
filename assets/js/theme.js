@@ -119,13 +119,6 @@
                     header.classList.remove('scrolled');
                 }
                 
-                // Hide/show header on scroll
-                if (scrollTop > lastScrollTop && scrollTop > 100) {
-                    header.style.transform = 'translateY(-100%)';
-                } else {
-                    header.style.transform = 'translateY(0)';
-                }
-                
                 lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             }, 50);
         });
