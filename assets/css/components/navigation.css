@@ -8,13 +8,15 @@
    Site Header
    ========================================================================== */
 .site-header {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     background-color: var(--bg-color);
     box-shadow: var(--shadow-sm);
     z-index: var(--z-sticky);
-    transition: box-shadow var(--transition-base), height var(--transition-base);
+    transition: box-shadow var(--transition-base), background-color var(--transition-base);
     height: var(--header-height);
 }
 
@@ -492,15 +494,18 @@
     top: 32px;
 }
 
+.admin-bar body {
+    padding-top: calc(var(--header-height) + 32px);
+}
+
 @media (max-width: 782px) {
     .admin-bar .site-header {
         top: 46px;
     }
-}
-
-/* Ensure z-index is high enough to stay above content */
-.site-header {
-    z-index: 1020;
+    
+    .admin-bar body {
+        padding-top: calc(var(--header-height-mobile) + 46px);
+    }
 }
 
 /* ==========================================================================

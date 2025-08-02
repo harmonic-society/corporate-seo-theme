@@ -62,6 +62,7 @@ main {
 /* Typography - Mobile First */
 body {
     font-size: 14px;
+    padding-top: var(--header-height-mobile);
 }
 
 h1, .h1 {
@@ -221,6 +222,7 @@ section {
     /* Typography enhancements */
     body {
         font-size: 16px;
+        padding-top: var(--header-height-mobile);
     }
     
     p {
@@ -282,6 +284,11 @@ section {
         max-width: 960px;
         padding-left: var(--space-xl);
         padding-right: var(--space-xl);
+    }
+    
+    /* Body - Desktop header height */
+    body {
+        padding-top: var(--header-height);
     }
     
     /* Grid enhancements */
