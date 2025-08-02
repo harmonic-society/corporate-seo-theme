@@ -104,6 +104,8 @@
 
 .primary-menu > li {
     position: relative;
+    /* Prevent hover area expansion */
+    display: inline-block;
 }
 
 .primary-menu > li > a {
@@ -178,16 +180,16 @@
     transition: all var(--transition-base);
     z-index: var(--z-dropdown);
     display: block;
+    pointer-events: none; /* Prevent hover on invisible submenu */
 }
 
-/* Show submenu only when hovering the parent link or when submenu itself is hovered */
-.primary-menu > li > a:hover + .sub-menu,
+/* JavaScript will control hover behavior, but keep focus states for accessibility */
 .primary-menu > li > a:focus + .sub-menu,
-.primary-menu .sub-menu:hover,
 .primary-menu li:focus-within > .sub-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
 .sub-menu li {
