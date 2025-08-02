@@ -45,7 +45,7 @@ function corporate_seo_pro_ga4_customizer( $wp_customize ) {
     
     // GA4 Measurement ID
     $wp_customize->add_setting( 'ga4_measurement_id', array(
-        'default'           => 'G-DWENPTLE20',
+        'default'           => 'G-JRL78F8LX3',
         'sanitize_callback' => 'sanitize_text_field',
         'transport'         => 'postMessage',
     ) );
