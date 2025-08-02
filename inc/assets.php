@@ -454,6 +454,24 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
         );
     }
     
+    // FAQ page
+    if ( is_page_template( 'page-faq.php' ) ) {
+        wp_enqueue_style( 
+            'corporate-seo-pro-faq', 
+            get_template_directory_uri() . '/assets/css/pages/page-faq.css', 
+            array( 'corporate-seo-pro-base' ), 
+            $version 
+        );
+        
+        wp_enqueue_script( 
+            'corporate-seo-pro-faq', 
+            get_template_directory_uri() . '/assets/js/pages/faq.js', 
+            array(), 
+            $version, 
+            true 
+        );
+    }
+    
     // Service pages
     if ( is_singular( 'service' ) || is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
         wp_enqueue_script( 
