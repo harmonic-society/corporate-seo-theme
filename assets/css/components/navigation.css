@@ -180,7 +180,10 @@
     display: block;
 }
 
-.primary-menu li:hover > .sub-menu,
+/* Show submenu only when hovering the parent link or when submenu itself is hovered */
+.primary-menu > li > a:hover + .sub-menu,
+.primary-menu > li > a:focus + .sub-menu,
+.primary-menu .sub-menu:hover,
 .primary-menu li:focus-within > .sub-menu {
     opacity: 1;
     visibility: visible;
