@@ -20,7 +20,7 @@
 <div id="page" class="site">
     <a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'コンテンツへスキップ', 'corporate-seo-pro' ); ?></a>
 
-    <header id="masthead" class="site-header">
+    <header id="masthead" class="site-header" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 99999 !important; height: 80px !important; background-color: #ffffff !important; box-shadow: 0 2px 10px rgba(0, 134, 123, 0.1) !important;">
         <div class="header-container">
             <div class="site-branding">
                 <?php if ( has_custom_logo() ) : ?>
@@ -148,5 +148,34 @@
         <!-- モバイルメニューオーバーレイ -->
         <div class="mobile-menu-overlay" aria-hidden="true"></div>
     </header>
+
+    <!-- ヘッダー分のスペーサー -->
+    <div class="header-spacer" style="height: 80px; width: 100%;"></div>
+    <style>
+        @media (max-width: 768px) {
+            .site-header {
+                height: 60px !important;
+            }
+            .header-spacer {
+                height: 60px !important;
+            }
+        }
+        @media (max-width: 782px) {
+            .admin-bar .site-header {
+                top: 46px !important;
+            }
+            .admin-bar .header-spacer {
+                height: 106px !important;
+            }
+        }
+        @media (min-width: 783px) {
+            .admin-bar .site-header {
+                top: 32px !important;
+            }
+            .admin-bar .header-spacer {
+                height: 112px !important;
+            }
+        }
+    </style>
 
     <div id="content" class="site-content">

@@ -14,12 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function corporate_seo_pro_scripts() {
     $theme_version = wp_get_theme()->get( 'Version' );
+    // Add timestamp to force cache refresh
+    $version_with_time = $theme_version . '.' . time();
     
     // CSS files
-    corporate_seo_pro_enqueue_styles( $theme_version );
+    corporate_seo_pro_enqueue_styles( $version_with_time );
     
     // JavaScript files
-    corporate_seo_pro_enqueue_scripts( $theme_version );
+    corporate_seo_pro_enqueue_scripts( $version_with_time );
     
     // External libraries
     corporate_seo_pro_enqueue_libraries();

@@ -642,14 +642,7 @@ span.menu-text {
         padding: 0 15px;
     }
     
-    .site-header {
-        height: 60px;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 1100;
-    }
+    /* Removed conflicting header styles - now using inline styles in header.php */
     
     .site-branding {
         flex: 1;
