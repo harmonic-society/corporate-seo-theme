@@ -73,7 +73,7 @@
 /* Service Card */
 .service-card {
     position: relative;
-    background: var(--bg-color);
+    background: #ffffff; /* Ensure white background */
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     overflow: hidden;
@@ -141,7 +141,7 @@
 .service-archive-item .service-description {
     font-size: 0.95rem;
     line-height: 1.7;
-    color: var(--text-light);
+    color: #6b7280; /* Ensure gray text */
     margin-bottom: 1.5rem;
     flex: 1;
 }
@@ -987,7 +987,7 @@
 .service-archive-item .feature-list li {
     position: relative;
     padding-left: 2.25rem;
-    color: var(--text-color);
+    color: #1f2937 !important; /* Dark gray text for visibility */
     font-size: 0.9375rem;
     line-height: 1.6;
     font-weight: 500;
@@ -1077,6 +1077,7 @@
     padding: 0.75rem 1rem 0.75rem 2.5rem;
     border-radius: 0.5rem;
     border-left: 3px solid var(--primary-color);
+    color: #1f2937 !important; /* Ensure text is dark */
 }
 
 /* Mobile Responsiveness */
@@ -1114,10 +1115,11 @@
     }
     
     .service-archive-item .feature-list li {
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255, 255, 255, 0.9) !important;
     }
     
     .service-archive-item .feature-list.feature-list-alt li {
         background: linear-gradient(to right, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+        color: rgba(255, 255, 255, 0.9) !important;
     }
 }
