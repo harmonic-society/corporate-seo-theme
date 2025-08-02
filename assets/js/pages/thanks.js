@@ -16,8 +16,6 @@
         // パララックス効果
         initParallaxEffect();
         
-        // ソーシャルリンクのアニメーション
-        animateSocialLinks();
         
         // コンテンツカードのアニメーション
         observeContentCards();
@@ -125,37 +123,6 @@
         window.addEventListener('scroll', requestTick);
     }
 
-    /**
-     * ソーシャルリンクのアニメーション
-     */
-    function animateSocialLinks() {
-        const socialLinks = document.querySelectorAll('.social-link');
-        
-        socialLinks.forEach((link, index) => {
-            link.style.animationDelay = `${index * 0.1}s`;
-            link.classList.add('fade-in-up');
-            
-            // ホバー時のリップル効果
-            link.addEventListener('mouseenter', function(e) {
-                const ripple = document.createElement('span');
-                ripple.className = 'social-ripple';
-                this.appendChild(ripple);
-                
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-    }
 
     /**
      * コンテンツカードの遅延表示アニメーション
@@ -296,27 +263,6 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        /* Social Ripple */
-        .social-link {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .social-ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(0);
-            animation: social-ripple 0.6s ease-out;
-        }
-        
-        @keyframes social-ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
         }
         
         /* Observe Fade */

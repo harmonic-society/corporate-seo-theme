@@ -226,28 +226,6 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- ソーシャルシェア -->
-    <section class="social-share">
-        <div class="container">
-            <h3>Harmonic Societyをフォロー</h3>
-            <p>最新情報やお役立ち情報を配信しています</p>
-            <div class="social-links">
-                <a href="#" class="social-link twitter" aria-label="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-link facebook" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="social-link linkedin" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="#" class="social-link line" aria-label="LINE">
-                    <i class="fab fa-line"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- ホームへ戻るボタン -->
     <div class="back-to-home">
         <a href="<?php echo home_url(); ?>" class="btn-primary btn-large">
