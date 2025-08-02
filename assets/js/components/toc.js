@@ -51,6 +51,7 @@
         // 初期状態を設定
         updateActiveHeading();
         updateProgressBar();
+        checkTocScrollable();
     }
 
     /**
@@ -101,6 +102,11 @@
         if (mobileTocList) {
             mobileTocList.innerHTML = tocHTML;
         }
+        
+        // 目次生成後にスクロール可能状態をチェック
+        setTimeout(() => {
+            checkTocScrollable();
+        }, 100);
     }
 
     /**
@@ -134,7 +140,16 @@
         // リサイズイベント
         window.addEventListener('resize', debounce(() => {
             updateHeadingOffsets();
+            checkTocScrollable();
         }, 250));
+
+        // 目次のスクロールイベント
+        if (tocList && tocList.parentElement) {
+            const tocNav = tocList.parentElement;
+            tocNav.addEventListener('scroll', () => {
+                checkTocScrollable();
+            });
+        }
     }
 
     /**
@@ -304,6 +319,40 @@
             clearTimeout(timeout);
             timeout = setTimeout(later, wait);
         };
+    }
+
+    /**
+     * 目次のスクロール可能状態をチェック
+     */
+    function checkTocScrollable() {
+        if (!tocList || window.innerWidth < 1400) return;
+        
+        const tocNav = tocList.parentElement;
+        if (!tocNav) return;
+        
+        const scrollTop = tocNav.scrollTop;
+        const scrollHeight = tocNav.scrollHeight;
+        const clientHeight = tocNav.clientHeight;
+        
+        // スクロール可能かチェック
+        if (scrollHeight > clientHeight) {
+            // 上部にスクロール可能
+            if (scrollTop > 10) {
+                tocNav.classList.add('scrollable-top');
+            } else {
+                tocNav.classList.remove('scrollable-top');
+            }
+            
+            // 下部にスクロール可能
+            if (scrollTop < scrollHeight - clientHeight - 10) {
+                tocNav.classList.add('scrollable-bottom');
+            } else {
+                tocNav.classList.remove('scrollable-bottom');
+            }
+        } else {
+            // スクロール不要な場合
+            tocNav.classList.remove('scrollable-top', 'scrollable-bottom');
+        }
     }
 
     /**
