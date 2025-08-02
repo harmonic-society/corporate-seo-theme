@@ -19,6 +19,13 @@ define( 'CORPORATE_SEO_PRO_DIR', get_template_directory() );
 define( 'CORPORATE_SEO_PRO_URI', get_template_directory_uri() );
 
 /**
+ * Contact Form 7の緊急修正を読み込み
+ */
+if (is_admin() && defined('WPCF7_VERSION')) {
+    require_once CORPORATE_SEO_PRO_DIR . '/inc/cf7-emergency-fix.php';
+}
+
+/**
  * Load theme includes via autoloader
  * 
  * This autoloader manages all theme functionality includes
@@ -127,7 +134,8 @@ function corporate_seo_pro_handle_contact_form() {
  * Contact Form 7の不正な設定を修正（緊急対応）
  */
 add_filter('wpcf7_contact_form_properties', function($properties, $contact_form) {
-    if (isset($properties['additional_settings'])) {
+    // additional_settingsが文字列であることを確認
+    if (isset($properties['additional_settings']) && is_string($properties['additional_settings'])) {
         // skip_mail: on_sent_okの行を削除
         $properties['additional_settings'] = preg_replace(
             '/skip_mail:\s*on_sent_ok\s*\n?/i', 
@@ -135,8 +143,35 @@ add_filter('wpcf7_contact_form_properties', function($properties, $contact_form)
             $properties['additional_settings']
         );
     }
+    
+    // messagesプロパティの修正（エラーの原因）
+    if (isset($properties['messages']) && is_string($properties['messages'])) {
+        // 文字列の場合は配列に変換
+        $properties['messages'] = array();
+    }
+    
     return $properties;
-}, 10, 2);
+}, 1, 2); // 優先度を1に変更して早期に処理
+
+/**
+ * Contact Form 7のメッセージ設定を修正
+ */
+add_filter('wpcf7_messages', function($messages) {
+    // メッセージが配列でない場合は修正
+    if (!is_array($messages)) {
+        $messages = array(
+            'mail_sent_ok' => 'ありがとうございます。メッセージは送信されました。',
+            'mail_sent_ng' => 'メッセージの送信に失敗しました。後でまたお試しください。',
+            'validation_error' => '入力内容に問題があります。確認して再度お試しください。',
+            'spam' => 'メッセージの送信に失敗しました。後でまたお試しください。',
+            'accept_terms' => '承諾が必要です。',
+            'invalid_required' => '必須項目です。',
+            'invalid_too_long' => '入力された文字列が長すぎます。',
+            'invalid_too_short' => '入力された文字列が短すぎます。',
+        );
+    }
+    return $messages;
+}, 1);
 
 /**
  * Contact Form 7 送信後のリダイレクト処理
