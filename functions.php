@@ -122,3 +122,22 @@ function corporate_seo_pro_handle_contact_form() {
     wp_redirect( $redirect_url );
     exit;
 }
+
+/**
+ * Contact Form 7 送信後のリダイレクト処理
+ */
+add_action( 'wp_footer', 'corporate_seo_pro_cf7_redirect_script' );
+function corporate_seo_pro_cf7_redirect_script() {
+    // Contact Form 7が有効な場合のみ
+    if ( ! function_exists( 'wpcf7' ) ) {
+        return;
+    }
+    ?>
+    <script>
+    document.addEventListener( 'wpcf7mailsent', function( event ) {
+        // thanksページへリダイレクト
+        location = '<?php echo esc_url( home_url( '/thanks/' ) ); ?>';
+    }, false );
+    </script>
+    <?php
+}
