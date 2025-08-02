@@ -274,7 +274,8 @@
     margin-bottom: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
 }
 
 .faq-item:hover {
@@ -321,8 +322,9 @@
 }
 
 .faq-question[aria-expanded="true"] + .faq-answer {
-    max-height: 1000px;
+    max-height: 2000px;
     padding: 0 1.5rem 1.5rem;
+    overflow: visible;
 }
 
 .faq-answer p {
@@ -344,7 +346,9 @@
 
 .faq-answer li {
     margin-bottom: 0.5rem;
-    line-height: 1.6;
+    line-height: 1.8;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .faq-answer strong {

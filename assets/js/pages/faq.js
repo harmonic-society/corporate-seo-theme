@@ -245,7 +245,15 @@
                     answer.style.maxHeight = '0';
                 } else {
                     this.setAttribute('aria-expanded', 'true');
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    // コンテンツの実際の高さを計算して設定
+                    answer.style.maxHeight = 'none';
+                    const scrollHeight = answer.scrollHeight;
+                    answer.style.maxHeight = '0';
+                    
+                    // 次のフレームで高さを設定（アニメーションのため）
+                    requestAnimationFrame(() => {
+                        answer.style.maxHeight = scrollHeight + 'px';
+                    });
                 }
             });
         });
