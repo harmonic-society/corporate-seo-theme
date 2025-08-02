@@ -69,7 +69,10 @@ get_header(); ?>
                                             $features = get_field('service_features');
                                             if ( $features && is_array($features) ) : ?>
                                                 <ul class="feature-list">
-                                                    <?php foreach ( array_slice($features, 0, 3) as $feature ) : 
+                                                    <?php 
+                                                    $feature_icons = ['fa-check-circle', 'fa-star', 'fa-rocket'];
+                                                    $feature_count = 0;
+                                                    foreach ( array_slice($features, 0, 3) as $feature ) : 
                                                         // ACFのリピーターフィールドの場合
                                                         if ( is_array($feature) && isset($feature['title']) ) {
                                                             $feature_text = $feature['title'];
@@ -78,9 +81,20 @@ get_header(); ?>
                                                         } else {
                                                             continue;
                                                         }
+                                                        $icon = isset($feature_icons[$feature_count]) ? $feature_icons[$feature_count] : 'fa-check';
+                                                        $feature_count++;
                                                     ?>
-                                                        <li><?php echo esc_html( $feature_text ); ?></li>
+                                                        <li data-feature-icon="<?php echo esc_attr($icon); ?>">
+                                                            <?php echo esc_html( $feature_text ); ?>
+                                                        </li>
                                                     <?php endforeach; ?>
+                                                </ul>
+                                            <?php else : ?>
+                                                <!-- フォールバック：デフォルトの特徴を表示 -->
+                                                <ul class="feature-list">
+                                                    <li data-feature-icon="fa-check-circle">高品質なサービス提供</li>
+                                                    <li data-feature-icon="fa-star">豊富な実績と経験</li>
+                                                    <li data-feature-icon="fa-rocket">迅速な対応と柔軟性</li>
                                                 </ul>
                                             <?php endif; ?>
                                         </div>

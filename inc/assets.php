@@ -482,6 +482,17 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             true 
         );
         
+        // Service features enhancement for archive pages
+        if ( is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
+            wp_enqueue_script( 
+                'corporate-seo-pro-service-features', 
+                get_template_directory_uri() . '/assets/js/service-features.js', 
+                array(), 
+                $version, 
+                true 
+            );
+        }
+        
         // Related services script for single service pages
         if ( is_singular( 'service' ) ) {
             wp_enqueue_script( 

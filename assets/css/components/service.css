@@ -9,10 +9,50 @@
    ========================================================================== */
 
 /* Archive Hero */
-.services-archive .page-hero {
+.services-archive .page-hero,
+.service-archive-page .service-archive-header {
     min-height: 400px;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: var(--color-text-inverse, white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Service Archive Grid */
+.service-archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 3rem 0;
+}
+
+/* Service Archive Item */
+.service-archive-item {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.service-archive-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.service-archive-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.service-archive-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Grid Container */
@@ -34,18 +74,146 @@
 .service-card {
     position: relative;
     background: var(--bg-color);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     overflow: hidden;
-    transition: all var(--transition-base);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     height: 100%;
+    border: 1px solid rgba(0, 134, 123, 0.1);
 }
 
 .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 134, 123, 0.2);
+    border-color: rgba(0, 134, 123, 0.3);
+}
+
+/* Service Card Elements for Archive */
+.service-archive-item .service-card {
+    position: relative;
+    height: 100%;
+}
+
+/* Service Number Badge */
+.service-archive-item .service-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, #00867b 0%, #10b981 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.3);
+    z-index: 10;
+}
+
+/* Service Info Section */
+.service-archive-item .service-info {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Service Name */
+.service-archive-item .service-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.service-card:hover .service-name {
+    color: var(--primary-color);
+}
+
+/* Service Description */
+.service-archive-item .service-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+/* Service Actions */
+.service-archive-item .service-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+/* Service Link Button */
+.service-archive-item .service-link {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #00867b 0%, #10b981 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-archive-item .service-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.service-archive-item .service-link:hover::before {
+    left: 100%;
+}
+
+.service-archive-item .service-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 134, 123, 0.3);
+}
+
+/* Service Inquiry Button */
+.service-archive-item .service-inquiry {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.25rem;
+    background: transparent;
+    color: var(--primary-color);
+    text-decoration: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.service-archive-item .service-inquiry:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 134, 123, 0.2);
 }
 
 /* Card Image */
@@ -638,6 +806,16 @@
     .service-features-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    /* Service Archive Responsive */
+    .service-archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .service-archive-item .service-name {
+        font-size: 1.375rem;
+    }
 }
 
 /* Mobile */
@@ -650,6 +828,36 @@
     
     .service-card-content {
         padding: var(--space-md);
+    }
+    
+    /* Service Archive Mobile */
+    .service-archive-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 2rem 0;
+    }
+    
+    .service-archive-item .service-info {
+        padding: 1.5rem;
+    }
+    
+    .service-archive-item .service-name {
+        font-size: 1.25rem;
+    }
+    
+    .service-archive-item .service-description {
+        font-size: 0.875rem;
+    }
+    
+    .service-archive-item .service-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .service-archive-item .service-link,
+    .service-archive-item .service-inquiry {
+        width: 100%;
+        text-align: center;
     }
     
     /* Single Service */
@@ -752,4 +960,164 @@
     width: 100%;
     height: auto;
     border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   Service Archive Feature List - Enhanced Design
+   ========================================================================== */
+
+/* Service Features Container in Archive */
+.service-archive-item .service-features {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 134, 123, 0.1);
+}
+
+/* Feature List Styling */
+.service-archive-item .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+/* Individual Feature Item */
+.service-archive-item .feature-list li {
+    position: relative;
+    padding-left: 2.25rem;
+    color: var(--text-color);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Feature Icon */
+.service-archive-item .feature-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.125rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: linear-gradient(135deg, #00867b 0%, #10b981 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 134, 123, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Checkmark Icon */
+.service-archive-item .feature-list li::after {
+    content: '✓';
+    position: absolute;
+    left: 0.375rem;
+    top: 0.25rem;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Hover Effect */
+.service-archive-item:hover .feature-list li {
+    padding-left: 2.5rem;
+}
+
+.service-archive-item:hover .feature-list li::before {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.3);
+}
+
+/* Different Icons for Each Feature (1st, 2nd, 3rd) */
+.service-archive-item .feature-list li:nth-child(1)::before {
+    background: linear-gradient(135deg, #00867b 0%, #00a693 100%);
+}
+
+.service-archive-item .feature-list li:nth-child(1)::after {
+    content: '◆';
+    left: 0.5rem;
+    top: 0.3rem;
+    font-size: 0.625rem;
+}
+
+.service-archive-item .feature-list li:nth-child(2)::before {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+}
+
+.service-archive-item .feature-list li:nth-child(2)::after {
+    content: '★';
+    left: 0.425rem;
+    top: 0.275rem;
+    font-size: 0.7rem;
+}
+
+.service-archive-item .feature-list li:nth-child(3)::before {
+    background: linear-gradient(135deg, #006b61 0%, #00867b 100%);
+}
+
+.service-archive-item .feature-list li:nth-child(3)::after {
+    content: '▶';
+    left: 0.5rem;
+    top: 0.35rem;
+    font-size: 0.5rem;
+}
+
+/* Alternative Design with Background */
+.service-archive-item .feature-list.feature-list-alt {
+    gap: 0.625rem;
+}
+
+.service-archive-item .feature-list.feature-list-alt li {
+    background: linear-gradient(to right, rgba(0, 134, 123, 0.05) 0%, transparent 100%);
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .service-archive-item .service-features {
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+    }
+    
+    .service-archive-item .feature-list {
+        gap: 0.75rem;
+    }
+    
+    .service-archive-item .feature-list li {
+        font-size: 0.875rem;
+        padding-left: 2rem;
+    }
+    
+    .service-archive-item .feature-list li::before {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+    
+    .service-archive-item .feature-list li::after {
+        left: 0.3125rem;
+        top: 0.1875rem;
+        font-size: 0.625rem;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .service-archive-item .service-features {
+        border-top-color: rgba(16, 185, 129, 0.2);
+    }
+    
+    .service-archive-item .feature-list li {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .service-archive-item .feature-list.feature-list-alt li {
+        background: linear-gradient(to right, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+    }
 }
