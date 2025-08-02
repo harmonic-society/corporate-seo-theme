@@ -124,6 +124,21 @@ function corporate_seo_pro_handle_contact_form() {
 }
 
 /**
+ * Contact Form 7の不正な設定を修正（緊急対応）
+ */
+add_filter('wpcf7_contact_form_properties', function($properties, $contact_form) {
+    if (isset($properties['additional_settings'])) {
+        // skip_mail: on_sent_okの行を削除
+        $properties['additional_settings'] = preg_replace(
+            '/skip_mail:\s*on_sent_ok\s*\n?/i', 
+            '', 
+            $properties['additional_settings']
+        );
+    }
+    return $properties;
+}, 10, 2);
+
+/**
  * Contact Form 7 送信後のリダイレクト処理
  */
 add_action( 'wp_footer', 'corporate_seo_pro_cf7_redirect_script' );
@@ -140,24 +155,44 @@ function corporate_seo_pro_cf7_redirect_script() {
     ?>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // 重複防止用のフラグ
+        let isRedirecting = false;
+        let mailSentCount = 0;
+        
         // Contact Form 7のイベントリスナー
         document.addEventListener('wpcf7mailsent', function(event) {
+            mailSentCount++;
+            console.log('CF7 mailsent event fired. Count:', mailSentCount);
+            
+            // 既にリダイレクト中の場合は処理をスキップ
+            if (isRedirecting) {
+                console.warn('CF7: Already redirecting, skipping duplicate mailsent event');
+                return;
+            }
+            
+            // リダイレクトフラグを設定
+            isRedirecting = true;
+            
             // thanksページへリダイレクト
+            console.log('CF7: Redirecting to thanks page...');
             window.location.href = '<?php echo esc_url( home_url( '/thanks/' ) ); ?>';
         }, false);
         
         // フォーム送信エラー時のハンドリング
         document.addEventListener('wpcf7invalid', function(event) {
             console.log('Validation failed:', event.detail);
+            isRedirecting = false;
         }, false);
         
         document.addEventListener('wpcf7spam', function(event) {
             console.log('Spam detected:', event.detail);
+            isRedirecting = false;
         }, false);
         
         document.addEventListener('wpcf7mailfailed', function(event) {
             console.log('Mail sending failed:', event.detail);
             alert('送信に失敗しました。もう一度お試しください。');
+            isRedirecting = false;
         }, false);
         
         // デバッグ用：フォーム送信イベント
