@@ -80,7 +80,8 @@
                 console.log('CF7 Fix: Form data:', new FormData(this));
             }, true);
             
-            // wpcf7submit イベントを手動でトリガーするヘルパー関数
+            // wpcf7submit イベントを手動でトリガーするヘルパー関数（重複送信の原因となる可能性があるため無効化）
+            /*
             window.triggerCF7Submit = function() {
                 const event = new CustomEvent('wpcf7submit', {
                     detail: {
@@ -94,6 +95,7 @@
                 document.dispatchEvent(event);
                 console.log('CF7 Fix: Manually triggered wpcf7submit event');
             };
+            */
         });
         
         // AJAX設定の確認
@@ -147,7 +149,8 @@
             });
         });
         
-        // フォールバック送信処理
+        // フォールバック送信処理（重複送信の原因となる可能性があるため無効化）
+        /*
         window.submitCF7Fallback = function() {
             const form = document.querySelector('.wpcf7 form');
             if (!form) {
@@ -178,6 +181,7 @@
                 console.error('CF7 Fix: Fallback submission error:', error);
             });
         };
+        */
     });
     
 })();
