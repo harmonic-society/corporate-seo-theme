@@ -375,7 +375,7 @@ get_header(); ?>
                             <p>Harmonic Society株式会社は2023年3月に設立された、AI技術とデジタルマーケティングを融合させたソリューションを提供する会社です。「分断された世界に調和をもたらす」をビジョンに掲げ、テクノロジーと人間性の調和を目指しています。</p>
                             <ul>
                                 <li><strong>設立:</strong> 2023年3月3日</li>
-                                <li><strong>代表:</strong> 諸田 健人</li>
+                                <li><strong>代表:</strong> 師田 賢人（もろた けんと）</li>
                                 <li><strong>所在地:</strong> 千葉県千葉市花見川区幕張本郷3-31-8</li>
                                 <li><strong>資本金:</strong> 100万円</li>
                             </ul>
