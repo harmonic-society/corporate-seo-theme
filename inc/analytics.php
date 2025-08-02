@@ -1,6 +1,6 @@
 <?php
 /**
- * Google Analytics (GA4) Integration
+ * Google Tag Manager Integration
  * 
  * @package Corporate_SEO_Pro
  */
@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Add Google Tag Manager code to head
  */
 function corporate_seo_pro_gtm_head_code() {
-    // Only output if not in admin area
-    if ( ! is_admin() && ! is_customize_preview() ) {
+    // Only output if not in admin area and tracking is enabled
+    if ( ! is_admin() && ! is_customize_preview() && corporate_seo_pro_should_track() ) {
         ?>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -32,8 +32,8 @@ add_action( 'wp_head', 'corporate_seo_pro_gtm_head_code', 1 );
  * Add Google Tag Manager noscript code after opening body tag
  */
 function corporate_seo_pro_gtm_body_code() {
-    // Only output if not in admin area
-    if ( ! is_admin() && ! is_customize_preview() ) {
+    // Only output if not in admin area and tracking is enabled
+    if ( ! is_admin() && ! is_customize_preview() && corporate_seo_pro_should_track() ) {
         ?>
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TC49SZ59"
@@ -45,69 +45,31 @@ function corporate_seo_pro_gtm_body_code() {
 add_action( 'wp_body_open', 'corporate_seo_pro_gtm_body_code', 1 );
 
 /**
- * Add GA4 tracking code to head (for backwards compatibility)
+ * Add GTM settings to customizer
  */
-function corporate_seo_pro_ga4_tracking_code() {
-    // Get GA4 measurement ID from customizer
-    $ga4_id = get_theme_mod( 'ga4_measurement_id', '' );
-    
-    // Only output if ID is set and not in admin area
-    if ( ! empty( $ga4_id ) && ! is_admin() && ! is_customize_preview() ) {
-        ?>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $ga4_id ); ?>"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '<?php echo esc_js( $ga4_id ); ?>');
-        </script>
-        <?php
-    }
-}
-add_action( 'wp_head', 'corporate_seo_pro_ga4_tracking_code', 2 );
-
-/**
- * Add GA4 settings to customizer
- */
-function corporate_seo_pro_ga4_customizer( $wp_customize ) {
-    // GA4 Section
-    $wp_customize->add_section( 'ga4_settings', array(
-        'title'    => __( 'Google Analytics 4', 'corporate-seo-pro' ),
+function corporate_seo_pro_gtm_customizer( $wp_customize ) {
+    // GTM Section
+    $wp_customize->add_section( 'gtm_settings', array(
+        'title'    => __( 'Google Tag Manager', 'corporate-seo-pro' ),
         'priority' => 160,
-        'description' => __( 'Google Analytics 4の測定IDを設定します。', 'corporate-seo-pro' ),
-    ) );
-    
-    // GA4 Measurement ID
-    $wp_customize->add_setting( 'ga4_measurement_id', array(
-        'default'           => 'G-JRL78F8LX3',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'postMessage',
-    ) );
-    
-    $wp_customize->add_control( 'ga4_measurement_id', array(
-        'label'       => __( 'GA4測定ID', 'corporate-seo-pro' ),
-        'description' => __( 'Google Analytics 4の測定ID（G-XXXXXXXXXX形式）を入力してください。', 'corporate-seo-pro' ),
-        'section'     => 'ga4_settings',
-        'type'        => 'text',
-        'placeholder' => 'G-XXXXXXXXXX',
+        'description' => __( 'Google Tag Managerの設定', 'corporate-seo-pro' ),
     ) );
     
     // Enable/Disable tracking for logged in users
-    $wp_customize->add_setting( 'ga4_disable_logged_in', array(
+    $wp_customize->add_setting( 'gtm_disable_logged_in', array(
         'default'           => true,
         'sanitize_callback' => 'corporate_seo_pro_sanitize_checkbox',
         'transport'         => 'postMessage',
     ) );
     
-    $wp_customize->add_control( 'ga4_disable_logged_in', array(
+    $wp_customize->add_control( 'gtm_disable_logged_in', array(
         'label'       => __( 'ログインユーザーのトラッキングを無効化', 'corporate-seo-pro' ),
         'description' => __( '管理者やログインユーザーのアクセスをトラッキングから除外します。', 'corporate-seo-pro' ),
-        'section'     => 'ga4_settings',
+        'section'     => 'gtm_settings',
         'type'        => 'checkbox',
     ) );
 }
-add_action( 'customize_register', 'corporate_seo_pro_ga4_customizer' );
+add_action( 'customize_register', 'corporate_seo_pro_gtm_customizer' );
 
 /**
  * Sanitize checkbox
@@ -121,7 +83,7 @@ function corporate_seo_pro_sanitize_checkbox( $input ) {
  */
 function corporate_seo_pro_should_track() {
     // Check if tracking is disabled for logged in users
-    $disable_logged_in = get_theme_mod( 'ga4_disable_logged_in', true );
+    $disable_logged_in = get_theme_mod( 'gtm_disable_logged_in', true );
     
     if ( $disable_logged_in && is_user_logged_in() ) {
         return false;
@@ -130,63 +92,4 @@ function corporate_seo_pro_should_track() {
     return true;
 }
 
-/**
- * Modify GA4 and GTM output based on user status
- */
-function corporate_seo_pro_conditional_tracking() {
-    if ( ! corporate_seo_pro_should_track() ) {
-        remove_action( 'wp_head', 'corporate_seo_pro_ga4_tracking_code', 2 );
-        remove_action( 'wp_head', 'corporate_seo_pro_gtm_head_code', 1 );
-        remove_action( 'wp_body_open', 'corporate_seo_pro_gtm_body_code', 1 );
-    }
-}
-add_action( 'init', 'corporate_seo_pro_conditional_tracking' );
 
-/**
- * Add custom events tracking (optional)
- */
-function corporate_seo_pro_ga4_custom_events() {
-    $ga4_id = get_theme_mod( 'ga4_measurement_id', '' );
-    
-    if ( ! empty( $ga4_id ) && ! is_admin() && corporate_seo_pro_should_track() ) {
-        ?>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Track contact form submissions
-            const contactForms = document.querySelectorAll('.wpcf7-form');
-            contactForms.forEach(function(form) {
-                form.addEventListener('wpcf7mailsent', function(event) {
-                    gtag('event', 'contact_form_submit', {
-                        'event_category': 'engagement',
-                        'event_label': 'Contact Form'
-                    });
-                });
-            });
-            
-            // Track phone number clicks
-            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-            phoneLinks.forEach(function(link) {
-                link.addEventListener('click', function() {
-                    gtag('event', 'phone_click', {
-                        'event_category': 'engagement',
-                        'event_label': link.getAttribute('href')
-                    });
-                });
-            });
-            
-            // Track external link clicks
-            const externalLinks = document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.hostname + '"])');
-            externalLinks.forEach(function(link) {
-                link.addEventListener('click', function() {
-                    gtag('event', 'external_link_click', {
-                        'event_category': 'outbound',
-                        'event_label': link.getAttribute('href')
-                    });
-                });
-            });
-        });
-        </script>
-        <?php
-    }
-}
-add_action( 'wp_footer', 'corporate_seo_pro_ga4_custom_events' );
