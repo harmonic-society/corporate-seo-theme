@@ -33,9 +33,6 @@ class Corporate_SEO_Pro_Contact_History {
         // 検索機能の拡張
         add_filter( 'pre_get_posts', array( $this, 'extend_admin_search' ) );
         
-        // 一括操作
-        add_filter( 'bulk_actions-edit-contact_history', array( $this, 'register_bulk_actions' ) );
-        add_filter( 'handle_bulk_actions-edit-contact_history', array( $this, 'handle_bulk_actions' ), 10, 3 );
         
         // CSVエクスポート
         add_action( 'admin_init', array( $this, 'handle_csv_export' ) );
