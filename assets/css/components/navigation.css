@@ -161,57 +161,13 @@
 }
 
 /* ==========================================================================
-   Dropdown Menu
+   Dropdown Menu - DISABLED
    ========================================================================== */
 .primary-menu .sub-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--bg-color);
-    min-width: 200px;
-    box-shadow: var(--shadow-lg);
-    border-radius: var(--radius-md);
-    padding: var(--space-sm) 0;
-    list-style: none;
-    margin: 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all var(--transition-base);
-    z-index: var(--z-dropdown);
-    display: block;
-    pointer-events: none; /* Prevent hover on invisible submenu */
+    display: none !important; /* サブメニューを完全に非表示 */
 }
 
-/* JavaScript will control hover behavior, but keep focus states for accessibility */
-.primary-menu > li > a:focus + .sub-menu,
-.primary-menu li:focus-within > .sub-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.sub-menu li {
-    margin: 0;
-    display: block;
-    width: 100%;
-}
-
-.sub-menu a {
-    display: block;
-    padding: var(--space-sm) var(--space-lg);
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: all var(--transition-base);
-}
-
-.sub-menu a:hover,
-.sub-menu a:focus {
-    background-color: var(--light-gray);
-    color: var(--primary-color);
-}
+/* サブメニュー関連のスタイルは無効化 */
 
 /* ==========================================================================
    CTA Button
@@ -408,16 +364,9 @@
     color: var(--primary-color);
 }
 
-/* Mobile Sub-menu */
+/* Mobile Sub-menu - DISABLED */
 .mobile-menu .sub-menu {
-    list-style: none;
-    margin: var(--space-sm) 0 0 var(--space-lg);
-    padding: 0;
-}
-
-.mobile-menu .sub-menu a {
-    font-size: 1rem;
-    font-weight: 400;
+    display: none !important;
 }
 
 /* Mobile CTA */

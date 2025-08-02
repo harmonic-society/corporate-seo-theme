@@ -121,64 +121,11 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('scroll', requestTick);
     }
 
-    // サブメニューのホバー制御
-    function initSubmenuControl() {
-        const menuItems = document.querySelectorAll('.primary-menu > li');
-        
-        menuItems.forEach(item => {
-            const link = item.querySelector('> a');
-            const submenu = item.querySelector('.sub-menu');
-            
-            if (submenu) {
-                let hoverTimeout;
-                
-                // リンクにマウスが入った時
-                link.addEventListener('mouseenter', function() {
-                    clearTimeout(hoverTimeout);
-                    submenu.style.opacity = '1';
-                    submenu.style.visibility = 'visible';
-                    submenu.style.transform = 'translateY(0)';
-                    submenu.style.pointerEvents = 'auto';
-                });
-                
-                // リンクからマウスが出た時
-                link.addEventListener('mouseleave', function(e) {
-                    // サブメニューに移動する場合は閉じない
-                    const relatedTarget = e.relatedTarget;
-                    if (relatedTarget && submenu.contains(relatedTarget)) {
-                        return;
-                    }
-                    
-                    hoverTimeout = setTimeout(() => {
-                        submenu.style.opacity = '0';
-                        submenu.style.visibility = 'hidden';
-                        submenu.style.transform = 'translateY(-10px)';
-                        submenu.style.pointerEvents = 'none';
-                    }, 100);
-                });
-                
-                // サブメニューにマウスが入った時
-                submenu.addEventListener('mouseenter', function() {
-                    clearTimeout(hoverTimeout);
-                });
-                
-                // サブメニューからマウスが出た時
-                submenu.addEventListener('mouseleave', function() {
-                    hoverTimeout = setTimeout(() => {
-                        submenu.style.opacity = '0';
-                        submenu.style.visibility = 'hidden';
-                        submenu.style.transform = 'translateY(-10px)';
-                        submenu.style.pointerEvents = 'none';
-                    }, 100);
-                });
-            }
-        });
-    }
+    // サブメニューは無効化されています
 
     // Initialize all navigation utilities
     initSmoothScroll();
     initLazyLoading();
     initFadeInAnimations();
     initStickyHeader();
-    initSubmenuControl();
 });
