@@ -106,23 +106,3 @@ function corporate_seo_pro_mce_external_plugins( $plugins ) {
 }
 add_filter( 'mce_external_plugins', 'corporate_seo_pro_mce_external_plugins' );
 
-/**
- * デバッグ：保存されたコンテンツを確認
- */
-function corporate_seo_pro_check_saved_content( $post_id ) {
-    if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-        $post = get_post( $post_id );
-        if ( $post && in_array( $post->post_type, array( 'post', 'page' ) ) ) {
-            error_log( '=== Saved Content Check ===' );
-            error_log( 'Post ID: ' . $post_id );
-            error_log( 'Has URLs in content: ' . ( preg_match( '/https?:\/\//', $post->post_content ) ? 'Yes' : 'No' ) );
-            
-            // URLを抽出して表示
-            preg_match_all( '/https?:\/\/[^\s<>"]+/i', $post->post_content, $matches );
-            if ( ! empty( $matches[0] ) ) {
-                error_log( 'Found URLs: ' . print_r( $matches[0], true ) );
-            }
-        }
-    }
-}
-add_action( 'save_post', 'corporate_seo_pro_check_saved_content', 999 );

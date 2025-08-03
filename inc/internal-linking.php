@@ -222,7 +222,8 @@ function corporate_seo_pro_auto_internal_links( $content ) {
     
     return $content;
 }
-add_filter( 'the_content', 'corporate_seo_pro_auto_internal_links', 20 );
+// 一時的に無効化 - URLエンコーディング問題の修正のため
+// add_filter( 'the_content', 'corporate_seo_pro_auto_internal_links', 20 );
 
 /**
  * キーワードとリンクのマッピング取得

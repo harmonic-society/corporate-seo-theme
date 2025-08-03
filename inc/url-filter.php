@@ -28,38 +28,6 @@ function corporate_seo_pro_allow_post_urls() {
 add_action( 'after_switch_theme', 'corporate_seo_pro_allow_post_urls' );
 
 /**
- * コンテンツ内のURLを保護
- */
-function corporate_seo_pro_protect_urls_in_content( $content ) {
-    // URLパターンを一時的に保護
-    $content = preg_replace_callback(
-        '/(https?:\/\/[^\s<>"]+)/i',
-        function( $matches ) {
-            return '<!--url:' . base64_encode( $matches[1] ) . '-->';
-        },
-        $content
-    );
-    
-    return $content;
-}
-
-/**
- * 保護したURLを復元
- */
-function corporate_seo_pro_restore_urls_in_content( $content ) {
-    // 保護したURLを復元
-    $content = preg_replace_callback(
-        '/<!--url:([^-]+)-->/i',
-        function( $matches ) {
-            return base64_decode( $matches[1] );
-        },
-        $content
-    );
-    
-    return $content;
-}
-
-/**
  * プレーンテキストのURLを自動的にクリック可能なリンクに変換
  */
 function corporate_seo_pro_make_urls_clickable( $content ) {
@@ -80,9 +48,7 @@ function corporate_seo_pro_make_urls_clickable( $content ) {
     return $content;
 }
 
-// the_contentフィルターに追加（優先度9：早めに実行してURLを保護）
-add_filter( 'the_content', 'corporate_seo_pro_protect_urls_in_content', 5 );
-add_filter( 'the_content', 'corporate_seo_pro_restore_urls_in_content', 8 );
+// the_contentフィルターに追加（優先度10：デフォルト）
 add_filter( 'the_content', 'corporate_seo_pro_make_urls_clickable', 10 );
 
 /**
