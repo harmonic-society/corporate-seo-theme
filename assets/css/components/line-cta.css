@@ -1,16 +1,16 @@
 /* LINE公式アカウント CTA */
 .line-cta-section {
-    margin: 4rem 0;
-    padding: 0 1rem;
+    margin: 4rem 0 2rem;
+    padding: 40px 1rem 0;
 }
 
 .line-cta-wrapper {
     position: relative;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 40px auto 0;
     background: linear-gradient(135deg, #00867b 0%, #10b981 100%);
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 10px 40px rgba(0, 134, 123, 0.25);
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
@@ -23,6 +23,7 @@
     bottom: 0;
     overflow: hidden;
     pointer-events: none;
+    border-radius: 20px;
 }
 
 .line-pattern {
@@ -93,7 +94,6 @@
     height: 100%;
     border-radius: 20%;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    background: #ffffff;
 }
 
 .line-cta-catchphrase {
@@ -302,8 +302,18 @@
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
+    .line-cta-wrapper {
+        margin: 50px auto 0;
+    }
+    
     .line-cta-content {
-        padding: 2.5rem 1.5rem;
+        padding: 3.5rem 1.5rem 2.5rem;
+    }
+    
+    .line-logo {
+        width: 70px;
+        height: 70px;
+        top: -35px;
     }
     
     .line-cta-catchphrase {
@@ -337,19 +347,18 @@
 }
 
 @media (max-width: 480px) {
+    .line-cta-wrapper {
+        margin: 40px auto 0;
+    }
+    
     .line-cta-content {
-        padding: 2rem 1rem;
+        padding: 3rem 1rem 2rem;
     }
     
     .line-logo {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .line-logo img,
-    .line-logo svg {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
+        top: -30px;
     }
     
     .line-cta-catchphrase {
