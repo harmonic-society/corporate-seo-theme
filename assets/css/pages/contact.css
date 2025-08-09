@@ -101,11 +101,6 @@
     box-shadow: 0 10px 30px rgba(0, 134, 123, 0.3);
 }
 
-/* LINE CTA配置調整 */
-.contact-line-cta {
-    margin: 4rem auto;
-    max-width: 900px;
-}
 
 /* 既存の.contact-wrapperスタイルを無効化 */
 .contact-wrapper {
@@ -131,9 +126,5 @@
     
     .contact-form-single .form-subtitle {
         font-size: 1rem;
-    }
-    
-    .contact-line-cta {
-        margin: 3rem auto;
     }
 }

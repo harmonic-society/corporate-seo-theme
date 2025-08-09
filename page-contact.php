@@ -83,10 +83,42 @@ get_header(); ?>
                 echo do_shortcode('[custom_contact_form]');
                 ?>
             </div>
-            
-            <!-- LINE CTA -->
-            <div class="contact-line-cta">
-                <?php get_template_part( 'template-parts/line-cta' ); ?>
+        </div>
+    </section>
+    
+    <!-- LINE CTAセクション -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">LINEで気軽にご相談ください</h2>
+                <p class="cta-text">
+                    まずはLINE公式アカウントを友だち追加して、<br>
+                    お気軽にご相談ください
+                </p>
+                <div class="cta-features">
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>AI活用事例を配信</span>
+                    </div>
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>無料相談受付中</span>
+                    </div>
+                    <div class="cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>1対1で気軽に相談</span>
+                    </div>
+                </div>
+                <div class="cta-button-wrapper" style="text-align: center; margin-top: 2rem;">
+                    <a href="https://lin.ee/mQTrmxJ" 
+                       class="btn btn-primary btn-lg" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2.5rem; background-color: #06C755; color: white; text-decoration: none; border-radius: 50px; font-weight: bold;">
+                        <i class="fab fa-line" style="font-size: 1.3rem;"></i>
+                        <span>LINE友だち追加はこちら</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
