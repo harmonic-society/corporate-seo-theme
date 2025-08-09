@@ -15,16 +15,16 @@
                 <div class="line-icon-bg"></div>
             </div>
             
+            <!-- LINEロゴ -->
+            <div class="line-logo">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/LINE_Brand_icon.png' ); ?>" 
+                     alt="LINE" 
+                     width="80" 
+                     height="80">
+            </div>
+            
             <!-- コンテンツ -->
             <div class="line-cta-content">
-                <!-- LINEロゴ -->
-                <div class="line-logo">
-                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/LINE_Brand_icon.png' ); ?>" 
-                         alt="LINE" 
-                         width="80" 
-                         height="80">
-                </div>
-                
                 <!-- キャッチコピー -->
                 <div class="line-cta-catchphrase">
                     ＼AI活用で最短2週間Webリリース／

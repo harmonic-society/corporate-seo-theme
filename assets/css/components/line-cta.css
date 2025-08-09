@@ -72,60 +72,43 @@
 
 .line-cta-content {
     position: relative;
-    padding: 3rem 2.5rem;
+    padding: 4rem 2.5rem 3rem;
     text-align: center;
     color: #ffffff;
     z-index: 1;
 }
 
 .line-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 80px;
     height: 80px;
-    margin: 0 auto 1.5rem;
-    animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+    z-index: 2;
 }
 
 .line-logo img {
     width: 100%;
     height: 100%;
     border-radius: 20%;
-    box-shadow: 0 4px 15px rgba(6, 199, 85, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
 }
 
 .line-cta-catchphrase {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     line-height: 1.4;
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
     border-radius: 50px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.6rem 2rem;
     display: inline-block;
     backdrop-filter: blur(10px);
-    animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.02);
-    }
-}
 
 .line-cta-main-message {
     font-size: 1.15rem;
