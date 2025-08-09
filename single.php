@@ -152,59 +152,8 @@ get_header(); ?>
                 </div>
             </aside>
 
-            <!-- CTAセクション -->
-            <div class="blog-cta-section">
-                <div class="container-narrow">
-                    <div class="blog-cta-wrapper">
-                        <div class="blog-cta-bg">
-                            <div class="cta-gradient-1"></div>
-                            <div class="cta-gradient-2"></div>
-                            <div class="cta-pattern"></div>
-                        </div>
-                        
-                        <div class="blog-cta-content">
-                            <div class="cta-icon">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            
-                            <h3 class="cta-title">
-                                ビジネスの成長をサポートします
-                            </h3>
-                            
-                            <p class="cta-description">
-                                Harmonic Societyは、最新のテクノロジーとクリエイティブな発想で、<br class="pc-only">
-                                お客様のビジネス課題を解決します。
-                            </p>
-                            
-                            <div class="cta-features">
-                                <div class="cta-feature">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>豊富な実績と経験</span>
-                                </div>
-                                <div class="cta-feature">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>最新技術への対応</span>
-                                </div>
-                                <div class="cta-feature">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>親身なサポート体制</span>
-                                </div>
-                            </div>
-                            
-                            <div class="cta-buttons">
-                                <a href="<?php echo esc_url( get_contact_page_url() ); ?>" class="cta-button primary">
-                                    <span>無料相談を申し込む</span>
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-                                <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="cta-button secondary">
-                                    <span>サービスを見る</span>
-                                    <i class="fas fa-chevron-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- LINE CTAセクション -->
+            <?php get_template_part( 'template-parts/line-cta' ); ?>
 
             <!-- シェアボタン -->
             <?php if ( get_theme_mod( 'show_share_buttons', true ) ) : ?>

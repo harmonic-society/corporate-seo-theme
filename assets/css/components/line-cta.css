@@ -1,0 +1,420 @@
+/* LINE公式アカウント CTA */
+.line-cta-section {
+    margin: 4rem 0;
+    padding: 0 1rem;
+}
+
+.line-cta-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #06C755 0%, #00B900 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(6, 199, 85, 0.2);
+}
+
+.line-cta-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.line-pattern {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.03) 10px,
+        rgba(255, 255, 255, 0.03) 20px
+    );
+    animation: linePatternMove 60s linear infinite;
+}
+
+@keyframes linePatternMove {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.line-icon-bg {
+    position: absolute;
+    right: -50px;
+    bottom: -50px;
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+
+.line-icon-bg::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+}
+
+.line-cta-content {
+    position: relative;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    color: #ffffff;
+    z-index: 1;
+}
+
+.line-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.line-logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.line-logo svg {
+    width: 60px;
+    height: 60px;
+    fill: #06C755;
+}
+
+.line-cta-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.line-cta-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+.line-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.line-benefit {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.line-benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 0.75rem;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.line-benefit-icon i {
+    font-size: 16px;
+}
+
+.line-benefit-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.line-cta-button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.line-add-friend-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: #ffffff;
+    color: #06C755;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.line-add-friend-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(6, 199, 85, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.line-add-friend-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    color: #06C755;
+}
+
+.line-add-friend-btn:hover::before {
+    left: 100%;
+}
+
+.line-add-friend-btn i {
+    font-size: 1.3rem;
+}
+
+.line-qr-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.line-qr-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.line-disclaimer {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* QRコードモーダル */
+.line-qr-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.line-qr-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.line-qr-modal-content {
+    position: relative;
+    max-width: 400px;
+    width: 90%;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.line-qr-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.line-qr-close:hover {
+    background: #e5e7eb;
+    transform: rotate(90deg);
+}
+
+.line-qr-modal-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.line-qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 1.5rem auto;
+    padding: 1rem;
+    background: #ffffff;
+    border: 2px solid #06C755;
+    border-radius: 15px;
+}
+
+.line-qr-code img {
+    width: 100%;
+    height: 100%;
+}
+
+.line-qr-instruction {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .line-cta-content {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .line-cta-title {
+        font-size: 1.5rem;
+    }
+    
+    .line-cta-subtitle {
+        font-size: 1rem;
+    }
+    
+    .line-benefits {
+        grid-template-columns: 1fr;
+    }
+    
+    .line-add-friend-btn {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .line-qr-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .line-cta-button-wrapper {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .line-cta-content {
+        padding: 2rem 1rem;
+    }
+    
+    .line-logo {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .line-logo img,
+    .line-logo svg {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .line-cta-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    .line-qr-modal-content {
+        background: #1f2937;
+    }
+    
+    .line-qr-modal-title {
+        color: #ffffff;
+    }
+    
+    .line-qr-instruction {
+        color: #9ca3af;
+    }
+    
+    .line-qr-close {
+        background: #374151;
+    }
+    
+    .line-qr-close:hover {
+        background: #4b5563;
+    }
+}

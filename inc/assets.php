@@ -178,6 +178,16 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             array( 'corporate-seo-pro-base' ), 
             $version 
         );
+        
+        // LINE CTA CSS for single posts
+        if ( is_single() ) {
+            wp_enqueue_style( 
+                'corporate-seo-pro-line-cta', 
+                get_template_directory_uri() . '/assets/css/components/line-cta.css', 
+                array( 'corporate-seo-pro-base' ), 
+                $version 
+            );
+        }
     }
 }
 

@@ -497,7 +497,25 @@
 /* ==========================================================================
    Responsive Utilities
    ========================================================================== */
+   
+/* Display utilities for responsive design */
+.sp-only {
+    display: none;
+}
+
+.pc-only {
+    display: block;
+}
+
 @media (max-width: 768px) {
+    .sp-only {
+        display: block;
+    }
+    
+    .pc-only {
+        display: none;
+    }
+    
     .u-hidden-mobile {
         display: none;
     }
