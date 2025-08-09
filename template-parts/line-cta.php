@@ -94,8 +94,8 @@
         <h4 class="line-qr-modal-title">QRコードで友だち追加</h4>
         
         <div class="line-qr-code">
-            <!-- QRコード画像を生成または事前に用意 -->
-            <img src="https://qr-official.line.me/gs/M_mQTrmxJ_GW.png" 
+            <!-- QRコード画像 -->
+            <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/line-qr-code.png' ); ?>" 
                  alt="LINE友だち追加QRコード" 
                  loading="lazy">
         </div>
