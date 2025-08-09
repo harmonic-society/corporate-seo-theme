@@ -1,0 +1,139 @@
+/* Contact Page - One Column Layout */
+
+/* ワンカラムフォームレイアウト */
+.contact-form-single {
+    max-width: 720px;
+    margin: 0 auto 4rem;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+    .contact-form-single {
+        padding: 2rem 1.5rem;
+        margin: 0 auto 3rem;
+    }
+}
+
+/* フォームヘッダー */
+.contact-form-single .form-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-form-single .form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.75rem;
+}
+
+.contact-form-single .form-subtitle {
+    font-size: 1.1rem;
+    color: #6b7280;
+}
+
+/* フォームスタイル調整 */
+.contact-form-single form {
+    width: 100%;
+}
+
+.contact-form-single .form-group {
+    margin-bottom: 1.75rem;
+}
+
+.contact-form-single label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form-single input[type="text"],
+.contact-form-single input[type="email"],
+.contact-form-single input[type="tel"],
+.contact-form-single textarea,
+.contact-form-single select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-form-single input:focus,
+.contact-form-single textarea:focus,
+.contact-form-single select:focus {
+    outline: none;
+    border-color: #00867b;
+    box-shadow: 0 0 0 3px rgba(0, 134, 123, 0.1);
+}
+
+.contact-form-single textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* 送信ボタン */
+.contact-form-single .submit-button,
+.contact-form-single input[type="submit"],
+.contact-form-single button[type="submit"] {
+    width: 100%;
+    padding: 1.125rem 2.5rem;
+    background: linear-gradient(135deg, #00867b 0%, #10b981 100%);
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+.contact-form-single .submit-button:hover,
+.contact-form-single input[type="submit"]:hover,
+.contact-form-single button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 134, 123, 0.3);
+}
+
+/* LINE CTA配置調整 */
+.contact-line-cta {
+    margin: 4rem auto;
+    max-width: 900px;
+}
+
+/* 既存の.contact-wrapperスタイルを無効化 */
+.contact-wrapper {
+    display: block;
+    grid-template-columns: none;
+    gap: 0;
+}
+
+/* 右側エリアを非表示 */
+.contact-info-area {
+    display: none;
+}
+
+/* モバイル対応 */
+@media (max-width: 480px) {
+    .contact-form-single {
+        padding: 1.5rem 1rem;
+    }
+    
+    .contact-form-single .form-title {
+        font-size: 1.5rem;
+    }
+    
+    .contact-form-single .form-subtitle {
+        font-size: 1rem;
+    }
+    
+    .contact-line-cta {
+        margin: 3rem auto;
+    }
+}

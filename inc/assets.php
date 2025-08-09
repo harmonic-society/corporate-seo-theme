@@ -160,6 +160,16 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             array( 'corporate-seo-pro-base' ), 
             $version 
         );
+        
+        // Contact page specific styles
+        if ( is_page_template( 'page-contact.php' ) || is_page( 'contact' ) ) {
+            wp_enqueue_style( 
+                'corporate-seo-pro-contact', 
+                get_template_directory_uri() . '/assets/css/pages/contact.css', 
+                array( 'corporate-seo-pro-pages' ), 
+                $version 
+            );
+        }
     }
     
     // News/Blog components
