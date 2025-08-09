@@ -1,9 +1,49 @@
 /* Contact Page - One Column Layout */
 
+/* LINE CTAをヒーローセクションとして配置 */
+.contact-hero-line {
+    padding: 100px 0 60px;
+    background: linear-gradient(135deg, #5aa897 0%, #4d9585 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-hero-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.02) 10px,
+        rgba(255, 255, 255, 0.02) 20px
+    );
+    pointer-events: none;
+}
+
+/* ヒーローセクション内のLINE CTAスタイル調整 */
+.contact-hero-line .line-cta-section {
+    margin: 0;
+    padding: 0;
+}
+
+.contact-hero-line .line-cta-wrapper {
+    margin-top: 0;
+    max-width: 900px;
+}
+
 /* ワンカラムフォームレイアウト */
+.contact-main {
+    padding: 60px 0;
+}
+
 .contact-form-single {
     max-width: 720px;
-    margin: 0 auto 4rem;
+    margin: 0 auto;
     background: #ffffff;
     border-radius: 16px;
     padding: 3rem;
@@ -11,9 +51,12 @@
 }
 
 @media (max-width: 768px) {
+    .contact-main {
+        padding: 40px 0;
+    }
+    
     .contact-form-single {
         padding: 2rem 1.5rem;
-        margin: 0 auto 3rem;
     }
 }
 
@@ -114,8 +157,18 @@
     display: none;
 }
 
-/* モバイル対応 */
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .contact-hero-line {
+        padding: 80px 0 40px;
+    }
+}
+
 @media (max-width: 480px) {
+    .contact-hero-line {
+        padding: 60px 0 30px;
+    }
+    
     .contact-form-single {
         padding: 1.5rem 1rem;
     }
