@@ -11,8 +11,39 @@ get_header(); ?>
 <main id="main" class="site-main contact-page">
     
     <!-- LINE CTAヒーローセクション -->
-    <section class="contact-hero-line">
-        <?php get_template_part( 'template-parts/line-cta' ); ?>
+    <section class="contact-hero-cta">
+        <div class="container">
+            <div class="hero-cta-content">
+                <h1 class="hero-cta-title">LINEで気軽にご相談ください</h1>
+                <p class="hero-cta-text">
+                    まずはLINE公式アカウントを友だち追加して、<br>
+                    お気軽にご相談ください
+                </p>
+                <div class="hero-cta-features">
+                    <div class="hero-cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>AI活用事例を配信</span>
+                    </div>
+                    <div class="hero-cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>無料相談受付中</span>
+                    </div>
+                    <div class="hero-cta-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>1対1で気軽に相談</span>
+                    </div>
+                </div>
+                <div class="hero-cta-button-wrapper">
+                    <a href="https://lin.ee/mQTrmxJ" 
+                       class="hero-cta-button" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <i class="fab fa-line"></i>
+                        <span>LINE友だち追加はこちら</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- コンタクトメインセクション -->

@@ -1,14 +1,14 @@
 /* Contact Page - One Column Layout */
 
-/* LINE CTAをヒーローセクションとして配置 */
-.contact-hero-line {
-    padding: 100px 0 60px;
+/* LINE CTAヒーローセクション */
+.contact-hero-cta {
+    padding: 100px 0 80px;
     background: linear-gradient(135deg, #5aa897 0%, #4d9585 100%);
     position: relative;
     overflow: hidden;
 }
 
-.contact-hero-line::before {
+.contact-hero-cta::before {
     content: '';
     position: absolute;
     top: 0;
@@ -25,15 +25,86 @@
     pointer-events: none;
 }
 
-/* ヒーローセクション内のLINE CTAスタイル調整 */
-.contact-hero-line .line-cta-section {
-    margin: 0;
-    padding: 0;
+.hero-cta-content {
+    position: relative;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 1;
 }
 
-.contact-hero-line .line-cta-wrapper {
-    margin-top: 0;
-    max-width: 900px;
+.hero-cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.hero-cta-text {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+.hero-cta-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.hero-cta-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+}
+
+.hero-cta-feature i {
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.hero-cta-feature span {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.hero-cta-button-wrapper {
+    text-align: center;
+}
+
+.hero-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 3rem;
+    background-color: #06C755;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 10px 30px rgba(6, 199, 85, 0.3);
+    transition: all 0.3s ease;
+}
+
+.hero-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(6, 199, 85, 0.4);
+    background-color: #05B04D;
+    color: #ffffff;
+}
+
+.hero-cta-button i {
+    font-size: 1.5rem;
 }
 
 /* ワンカラムフォームレイアウト */
@@ -50,15 +121,6 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
-@media (max-width: 768px) {
-    .contact-main {
-        padding: 40px 0;
-    }
-    
-    .contact-form-single {
-        padding: 2rem 1.5rem;
-    }
-}
 
 /* フォームヘッダー */
 .contact-form-single .form-header {
@@ -159,14 +221,68 @@
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
-    .contact-hero-line {
-        padding: 80px 0 40px;
+    .contact-hero-cta {
+        padding: 80px 0 60px;
+    }
+    
+    .hero-cta-title {
+        font-size: 2rem;
+    }
+    
+    .hero-cta-text {
+        font-size: 1.1rem;
+    }
+    
+    .hero-cta-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .hero-cta-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .contact-main {
+        padding: 40px 0;
+    }
+    
+    .contact-form-single {
+        padding: 2rem 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .contact-hero-line {
-        padding: 60px 0 30px;
+    .contact-hero-cta {
+        padding: 60px 20px 40px;
+    }
+    
+    .hero-cta-title {
+        font-size: 1.75rem;
+    }
+    
+    .hero-cta-text {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-cta-features {
+        margin-bottom: 2rem;
+    }
+    
+    .hero-cta-feature {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-cta-button {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .contact-main {
+        padding: 30px 0;
     }
     
     .contact-form-single {
