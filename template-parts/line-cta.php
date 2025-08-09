@@ -24,39 +24,21 @@
                     </svg>
                 </div>
                 
-                <!-- タイトル -->
-                <h3 class="line-cta-title">
-                    LINE公式アカウントで<br class="sp-only">
-                    最新情報をお届け！
-                </h3>
+                <!-- キャッチコピー -->
+                <div class="line-cta-catchphrase">
+                    ＼AI活用で最短2週間Webリリース／
+                </div>
                 
-                <!-- サブタイトル -->
-                <p class="line-cta-subtitle">
-                    友だち登録で限定コンテンツや<br class="sp-only">
-                    お得な情報を配信中
+                <!-- メインメッセージ -->
+                <p class="line-cta-main-message">
+                    LINEでは、AI駆動のWeb制作・開発の最新事例や、<br class="pc-only">
+                    コスト削減ノウハウを配信中。
                 </p>
                 
-                <!-- ベネフィット -->
-                <div class="line-benefits">
-                    <div class="line-benefit">
-                        <div class="line-benefit-icon">
-                            <i class="fas fa-gift"></i>
-                        </div>
-                        <span class="line-benefit-text">友だち限定特典あり</span>
-                    </div>
-                    <div class="line-benefit">
-                        <div class="line-benefit-icon">
-                            <i class="fas fa-bell"></i>
-                        </div>
-                        <span class="line-benefit-text">最新情報をいち早くお届け</span>
-                    </div>
-                    <div class="line-benefit">
-                        <div class="line-benefit-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <span class="line-benefit-text">1対1でお気軽に相談</span>
-                    </div>
-                </div>
+                <!-- サブメッセージ -->
+                <p class="line-cta-sub-message">
+                    登録後は無料相談で、貴社に合う開発プランをご提案します。
+                </p>
                 
                 <!-- CTAボタン -->
                 <div class="line-cta-button-wrapper">
@@ -64,8 +46,8 @@
                        class="line-add-friend-btn" 
                        target="_blank" 
                        rel="noopener noreferrer">
-                        <i class="fab fa-line"></i>
-                        <span>友だち追加する</span>
+                        <span class="btn-emoji">👉</span>
+                        <span>今すぐ登録して事例を見る</span>
                     </a>
                     
                     <button class="line-qr-button" onclick="openLineQRModal()">
@@ -73,12 +55,6 @@
                         <span>QRコード表示</span>
                     </button>
                 </div>
-                
-                <!-- 注意書き -->
-                <p class="line-disclaimer">
-                    ※ LINEアプリが起動します<br class="sp-only">
-                    ※ いつでも配信停止できます
-                </p>
             </div>
         </div>
     </div>
