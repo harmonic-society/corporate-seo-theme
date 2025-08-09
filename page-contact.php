@@ -86,49 +86,10 @@ get_header(); ?>
                     ?>
                 </div>
                 
-                <!-- 右側：コンタクト情報 -->
+                <!-- 右側：LINE CTA -->
                 <div class="contact-info-area">
-                    <div class="info-card">
-                        <h3 class="info-title">直接のお問い合わせ</h3>
-                        
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="info-content">
-                                <span class="info-label">お電話でのお問い合わせ</span>
-                                <a href="tel:08069464006" class="info-link phone-link">
-                                    <span class="phone-number">080-6946-4006</span>
-                                    <span class="phone-hours">平日 9:00-18:00</span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="info-content">
-                                <span class="info-label">メールでのお問い合わせ</span>
-                                <a href="mailto:koushiki@harmonic-society.co.jp" class="info-link">
-                                    koushiki@harmonic-society.co.jp
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="info-content">
-                                <span class="info-label">オフィス所在地</span>
-                                <address class="info-address">
-                                    〒262-0033<br>
-                                    千葉県千葉市花見川区幕張本郷3-31-8
-                                </address>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- LINE公式アカウントCTA -->
+                    <?php get_template_part( 'template-parts/line-cta' ); ?>
                     
                     <!-- FAQ -->
                     <div class="faq-card">
@@ -170,28 +131,38 @@ get_header(); ?>
     </section>
     
     
-    <!-- CTAセクション -->
+    <!-- LINE CTAセクション -->
     <section class="contact-cta">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">まずは気軽にご相談ください</h2>
+                <h2 class="cta-title">LINEで気軽にご相談ください</h2>
                 <p class="cta-text">
-                    あなたのビジネスの課題を、<br>
-                    私たちと一緒に解決していきましょう
+                    まずはLINE公式アカウントを友だち追加して、<br>
+                    お気軽にご相談ください
                 </p>
                 <div class="cta-features">
                     <div class="cta-feature">
                         <i class="fas fa-check-circle"></i>
-                        <span>初回相談無料</span>
+                        <span>AI活用事例を配信</span>
                     </div>
                     <div class="cta-feature">
                         <i class="fas fa-check-circle"></i>
-                        <span>24時間以内返信</span>
+                        <span>無料相談受付中</span>
                     </div>
                     <div class="cta-feature">
                         <i class="fas fa-check-circle"></i>
-                        <span>全国対応可能</span>
+                        <span>1対1で気軽に相談</span>
                     </div>
+                </div>
+                <div class="cta-button-wrapper" style="text-align: center; margin-top: 2rem;">
+                    <a href="https://lin.ee/mQTrmxJ" 
+                       class="btn btn-primary btn-lg" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2.5rem; background-color: #06C755; color: white; text-decoration: none; border-radius: 50px; font-weight: bold;">
+                        <i class="fab fa-line" style="font-size: 1.3rem;"></i>
+                        <span>LINE友だち追加はこちら</span>
+                    </a>
                 </div>
             </div>
         </div>
