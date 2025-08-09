@@ -100,11 +100,6 @@
 .line-logo img {
     width: 100%;
     height: 100%;
-}
-
-.line-logo svg {
-    width: 100%;
-    height: 100%;
     border-radius: 20%;
     box-shadow: 0 4px 15px rgba(6, 199, 85, 0.3);
 }
