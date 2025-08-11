@@ -46,6 +46,89 @@
         .feature-list li {
             color: #1f2937 !important;
         }
+        
+        /* LINE友達登録ボタンのスタイル */
+        .nav-cta-button {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            padding: 10px 20px !important;
+            background-color: #06C755 !important;
+            color: white !important;
+            border-radius: 8px !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+            border: none !important;
+            box-shadow: 0 2px 8px rgba(6, 199, 85, 0.25) !important;
+            white-space: nowrap !important;
+            height: 40px !important;
+            line-height: 1 !important;
+        }
+        
+        .nav-cta-button:hover {
+            background-color: #00B900 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(6, 199, 85, 0.35) !important;
+            color: white !important;
+        }
+        
+        .nav-cta-button .cta-text {
+            color: white !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            line-height: 1 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        .nav-cta-button .cta-icon {
+            font-size: 18px !important;
+            color: white !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 1 !important;
+        }
+        
+        /* モバイルメニューのLINEボタン */
+        .mobile-menu-actions .btn.btn-primary {
+            background-color: #06C755 !important;
+            border-color: #06C755 !important;
+            color: white !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .mobile-menu-actions .btn.btn-primary:hover {
+            background-color: #00B900 !important;
+            border-color: #00B900 !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        .mobile-menu-actions .btn.btn-primary i {
+            font-size: 20px !important;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-cta-button {
+                padding: 8px 16px !important;
+                font-size: 13px !important;
+                height: 36px !important;
+            }
+            
+            .nav-cta-button .cta-icon {
+                font-size: 16px !important;
+            }
+        }
     </style>
 </head>
 
