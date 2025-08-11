@@ -107,12 +107,11 @@
                     
                     <div class="nav-cta">
                         <?php
-                        $contact_page = get_page_by_path( 'contact' );
-                        $contact_url = $contact_page ? get_permalink( $contact_page ) : '#contact';
+                        $line_url = 'https://lin.ee/NySum53';
                         ?>
-                        <a href="<?php echo esc_url( $contact_url ); ?>" class="nav-cta-button">
-                            <span class="cta-text"><?php esc_html_e( 'お問い合わせ', 'corporate-seo-pro' ); ?></span>
-                            <span class="cta-icon"><i class="fas fa-arrow-right"></i></span>
+                        <a href="<?php echo esc_url( $line_url ); ?>" class="nav-cta-button" target="_blank" rel="noopener noreferrer">
+                            <span class="cta-text"><?php esc_html_e( 'LINE友達登録', 'corporate-seo-pro' ); ?></span>
+                            <span class="cta-icon"><i class="fab fa-line"></i></span>
                         </a>
                     </div>
                 </div>
@@ -157,8 +156,8 @@
                 
                 <!-- モバイルメニューアクション -->
                 <div class="mobile-menu-actions">
-                    <a href="<?php echo esc_url( $contact_url ); ?>" class="btn btn-primary">
-                        <span><?php esc_html_e( 'お問い合わせ', 'corporate-seo-pro' ); ?></span>
+                    <a href="<?php echo esc_url( 'https://lin.ee/NySum53' ); ?>" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <span><i class="fab fa-line"></i> <?php esc_html_e( 'LINE友達登録', 'corporate-seo-pro' ); ?></span>
                     </a>
                 </div>
                 
