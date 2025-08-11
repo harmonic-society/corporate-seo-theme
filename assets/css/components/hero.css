@@ -123,7 +123,7 @@
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
     overflow: hidden;
     margin-top: 0;
-    padding-top: var(--header-height);
+    padding-top: 0;
 }
 
 .hero-modern::before {

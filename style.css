@@ -818,8 +818,14 @@ span.menu-text {
 }
 
 /* Remove top padding on front page */
-.home .site-main {
+.home .site-main,
+.front-page-main {
     padding-top: 0;
+}
+
+/* Ensure hero is positioned right under fixed header */
+.front-page-main .hero-modern:first-child {
+    margin-top: var(--header-height);
 }
 
 /* ヒーローセクション - Harmonic Society Style - Moved to hero-section.css */

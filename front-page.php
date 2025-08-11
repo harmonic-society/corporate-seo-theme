@@ -7,7 +7,7 @@
 
 get_header(); ?>
 
-<main id="main" class="site-main">
+<main id="main" class="site-main front-page-main">
     
     <!-- Modern Hero Section -->
     <?php if ( get_theme_mod( 'show_hero_section', true ) ) : ?>
