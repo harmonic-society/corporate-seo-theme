@@ -52,7 +52,7 @@
                         </svg>
                     </a>
                     
-                    <a href="/work" class="hero-btn-secondary">
+                    <a href="/works" class="hero-btn-secondary">
                         <span>制作事例を見る</span>
                     </a>
                 </div>
