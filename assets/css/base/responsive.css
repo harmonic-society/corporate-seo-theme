@@ -62,7 +62,7 @@ main {
 /* Typography - Mobile First */
 body {
     font-size: 14px;
-    padding-top: var(--header-height-mobile);
+    padding-top: 0;
 }
 
 h1, .h1 {
@@ -222,7 +222,7 @@ section {
     /* Typography enhancements */
     body {
         font-size: 16px;
-        padding-top: var(--header-height-mobile);
+        padding-top: 0;
     }
     
     p {
@@ -286,9 +286,9 @@ section {
         padding-right: var(--space-xl);
     }
     
-    /* Body - Desktop header height */
+    /* Body - No padding top for non-fixed header */
     body {
-        padding-top: var(--header-height);
+        padding-top: 0;
     }
     
     /* Grid enhancements */
