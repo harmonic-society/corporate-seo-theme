@@ -197,6 +197,59 @@
 }
 
 /* ==========================================================================
+   LINE CTA Button in Navigation
+   ========================================================================== */
+.nav-cta {
+    margin-left: var(--space-lg);
+}
+
+.nav-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background-color: #06C755;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 2px 8px rgba(6, 199, 85, 0.25);
+    white-space: nowrap;
+    height: 40px;
+    line-height: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-cta-button:hover {
+    background-color: #00B900;
+    box-shadow: 0 2px 8px rgba(6, 199, 85, 0.35);
+    color: white;
+}
+
+.nav-cta-button .cta-text,
+.nav-cta-button .cta-icon {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-cta-button .cta-text {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-cta-button .cta-icon {
+    font-size: 18px;
+    color: white;
+}
+
+/* ==========================================================================
    Mobile Menu Toggle
    ========================================================================== */
 .mobile-menu-toggle {

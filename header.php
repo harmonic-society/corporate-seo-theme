@@ -52,7 +52,7 @@
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
-            gap: 8px !important;
+            gap: 6px !important;
             padding: 10px 20px !important;
             background-color: #06C755 !important;
             color: white !important;
@@ -60,39 +60,40 @@
             font-size: 14px !important;
             font-weight: 600 !important;
             text-decoration: none !important;
-            transition: all 0.3s ease !important;
             border: none !important;
             box-shadow: 0 2px 8px rgba(6, 199, 85, 0.25) !important;
             white-space: nowrap !important;
             height: 40px !important;
-            line-height: 1 !important;
+            line-height: 20px !important;
+            transition: background-color 0.2s ease !important;
         }
         
         .nav-cta-button:hover {
             background-color: #00B900 !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 4px 12px rgba(6, 199, 85, 0.35) !important;
+            box-shadow: 0 2px 8px rgba(6, 199, 85, 0.35) !important;
             color: white !important;
+            transform: none !important;
         }
         
         .nav-cta-button .cta-text {
             color: white !important;
             font-size: 14px !important;
             font-weight: 600 !important;
-            line-height: 1 !important;
+            line-height: 20px !important;
             margin: 0 !important;
             padding: 0 !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
         }
         
         .nav-cta-button .cta-icon {
             font-size: 18px !important;
             color: white !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
             margin: 0 !important;
             padding: 0 !important;
-            line-height: 1 !important;
+            line-height: 20px !important;
         }
         
         /* モバイルメニューのLINEボタン */
@@ -105,13 +106,13 @@
             justify-content: center !important;
             gap: 8px !important;
             font-weight: 600 !important;
-            transition: all 0.3s ease !important;
+            transition: background-color 0.2s ease !important;
         }
         
         .mobile-menu-actions .btn.btn-primary:hover {
             background-color: #00B900 !important;
             border-color: #00B900 !important;
-            transform: translateY(-2px) !important;
+            transform: none !important;
         }
         
         .mobile-menu-actions .btn.btn-primary i {
