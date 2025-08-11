@@ -159,6 +159,258 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- スマホフッターバー（LINE友達登録CTA） -->
+    <div id="mobile-footer-bar" class="mobile-footer-bar">
+        <button class="mobile-footer-close" aria-label="閉じる">×</button>
+        <a href="https://lin.ee/NySum53" target="_blank" rel="noopener noreferrer" class="mobile-footer-link">
+            <div class="mobile-footer-content">
+                <div class="line-icon-wrapper">
+                    <i class="fab fa-line"></i>
+                    <span class="pulse-ring"></span>
+                </div>
+                <div class="mobile-footer-text">
+                    <span class="mobile-footer-title">今すぐLINE友達登録</span>
+                    <span class="mobile-footer-subtitle">限定特典プレゼント中！</span>
+                </div>
+                <div class="mobile-footer-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- スマホフッターバーのCSS -->
+    <style>
+        /* スマホフッターバー */
+        .mobile-footer-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #06C755 0%, #00B900 100%);
+            box-shadow: 0 -4px 20px rgba(6, 199, 85, 0.3);
+            z-index: 9998;
+            animation: slideUp 0.5s ease-out;
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-footer-bar.hidden {
+            transform: translateY(100%);
+        }
+        
+        /* 閉じるボタン */
+        .mobile-footer-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-footer-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        /* リンク全体 */
+        .mobile-footer-link {
+            display: block;
+            text-decoration: none;
+            padding: 12px 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mobile-footer-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        /* コンテンツ */
+        .mobile-footer-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        /* LINEアイコン */
+        .line-icon-wrapper {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .line-icon-wrapper i {
+            font-size: 28px;
+            color: #06C755;
+        }
+        
+        /* パルスアニメーション */
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        /* テキスト部分 */
+        .mobile-footer-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .mobile-footer-title {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        
+        .mobile-footer-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
+            line-height: 1.2;
+            animation: blink 2s infinite;
+        }
+        
+        /* 矢印 */
+        .mobile-footer-arrow {
+            color: white;
+            font-size: 20px;
+            animation: arrowMove 1.5s ease-in-out infinite;
+        }
+        
+        /* アニメーション定義 */
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes shimmer {
+            to {
+                left: 100%;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0.9;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes arrowMove {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+        
+        /* モバイルのみ表示 */
+        @media (max-width: 768px) {
+            .mobile-footer-bar {
+                display: block;
+            }
+            
+            /* ページトップボタンの位置調整 */
+            .mobile-footer-bar:not(.hidden) ~ .scroll-to-top {
+                bottom: 90px;
+            }
+        }
+        
+        /* タブレット以上は非表示 */
+        @media (min-width: 769px) {
+            .mobile-footer-bar {
+                display: none !important;
+            }
+        }
+    </style>
+
+    <!-- スマホフッターバーのJavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const footerBar = document.getElementById('mobile-footer-bar');
+            const closeBtn = document.querySelector('.mobile-footer-close');
+            
+            if (footerBar && closeBtn) {
+                // 閉じるボタンのクリックイベント
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    footerBar.classList.add('hidden');
+                    
+                    // Cookieに保存（1日間）
+                    const date = new Date();
+                    date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+                    document.cookie = "mobileFooterHidden=true; expires=" + date.toUTCString() + "; path=/";
+                });
+                
+                // Cookieをチェック
+                if (document.cookie.includes('mobileFooterHidden=true')) {
+                    footerBar.classList.add('hidden');
+                }
+                
+                // 3秒後に自動で表示（初回のみ）
+                if (!footerBar.classList.contains('hidden')) {
+                    setTimeout(function() {
+                        footerBar.style.animation = 'slideUp 0.5s ease-out';
+                    }, 3000);
+                }
+            }
+        });
+    </script>
+
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
