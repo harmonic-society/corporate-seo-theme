@@ -52,8 +52,8 @@
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
-            gap: 6px !important;
-            padding: 10px 20px !important;
+            gap: 8px !important;
+            padding: 0 20px !important;
             background-color: #06C755 !important;
             color: white !important;
             border-radius: 8px !important;
@@ -64,8 +64,9 @@
             box-shadow: 0 2px 8px rgba(6, 199, 85, 0.25) !important;
             white-space: nowrap !important;
             height: 40px !important;
-            line-height: 20px !important;
+            line-height: 40px !important;
             transition: background-color 0.2s ease !important;
+            transform: none !important;
         }
         
         .nav-cta-button:hover {
@@ -75,25 +76,14 @@
             transform: none !important;
         }
         
-        .nav-cta-button .cta-text {
-            color: white !important;
-            font-size: 14px !important;
-            font-weight: 600 !important;
-            line-height: 20px !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            display: inline-block !important;
-            vertical-align: middle !important;
-        }
-        
-        .nav-cta-button .cta-icon {
+        .nav-cta-button i {
             font-size: 18px !important;
             color: white !important;
-            display: inline-block !important;
-            vertical-align: middle !important;
             margin: 0 !important;
             padding: 0 !important;
-            line-height: 20px !important;
+            line-height: inherit !important;
+            vertical-align: middle !important;
+            display: inline-block !important;
         }
         
         /* モバイルメニューのLINEボタン */
@@ -101,12 +91,18 @@
             background-color: #06C755 !important;
             border-color: #06C755 !important;
             color: white !important;
-            display: flex !important;
+            display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
             gap: 8px !important;
             font-weight: 600 !important;
             transition: background-color 0.2s ease !important;
+            transform: none !important;
+            padding: 10px 20px !important;
+            border-radius: 8px !important;
+            text-decoration: none !important;
+            font-size: 14px !important;
+            line-height: 20px !important;
         }
         
         .mobile-menu-actions .btn.btn-primary:hover {
@@ -116,17 +112,20 @@
         }
         
         .mobile-menu-actions .btn.btn-primary i {
-            font-size: 20px !important;
+            font-size: 18px !important;
+            vertical-align: middle !important;
+            line-height: inherit !important;
         }
         
         @media (max-width: 768px) {
             .nav-cta-button {
-                padding: 8px 16px !important;
+                padding: 0 16px !important;
                 font-size: 13px !important;
                 height: 36px !important;
+                line-height: 36px !important;
             }
             
-            .nav-cta-button .cta-icon {
+            .nav-cta-button i {
                 font-size: 16px !important;
             }
         }
@@ -194,8 +193,8 @@
                         $line_url = 'https://lin.ee/NySum53';
                         ?>
                         <a href="<?php echo esc_url( $line_url ); ?>" class="nav-cta-button" target="_blank" rel="noopener noreferrer">
-                            <span class="cta-text"><?php esc_html_e( 'LINE友達登録', 'corporate-seo-pro' ); ?></span>
-                            <span class="cta-icon"><i class="fab fa-line"></i></span>
+                            <i class="fab fa-line"></i>
+                            <?php esc_html_e( 'LINE友達登録', 'corporate-seo-pro' ); ?>
                         </a>
                     </div>
                 </div>
@@ -241,7 +240,8 @@
                 <!-- モバイルメニューアクション -->
                 <div class="mobile-menu-actions">
                     <a href="<?php echo esc_url( 'https://lin.ee/NySum53' ); ?>" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                        <span><i class="fab fa-line"></i> <?php esc_html_e( 'LINE友達登録', 'corporate-seo-pro' ); ?></span>
+                        <i class="fab fa-line"></i>
+                        <?php esc_html_e( 'LINE友達登録', 'corporate-seo-pro' ); ?>
                     </a>
                 </div>
                 
