@@ -117,12 +117,12 @@
 /* Hero Modern Section (used in template-parts/hero-modern.php) */
 .hero-modern {
     position: relative;
-    min-height: calc(100vh - var(--header-height));
+    min-height: 100vh;
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
     overflow: hidden;
-    margin-top: 0;
+    margin-top: var(--header-height);
 }
 
 .hero-modern::before {

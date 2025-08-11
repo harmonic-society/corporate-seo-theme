@@ -817,6 +817,11 @@ span.menu-text {
     padding: 4rem 0;
 }
 
+/* Remove top padding on front page */
+.home .site-main {
+    padding-top: 0;
+}
+
 /* ヒーローセクション - Harmonic Society Style - Moved to hero-section.css */
 /* .hero-section {
     position: relative;
