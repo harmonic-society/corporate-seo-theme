@@ -31,22 +31,21 @@
         <div class="hero-content-inner">
             <!-- テキストセクション -->
             <div class="hero-text-section">
-                <div class="hero-subtitle">AI × ビジネス変革</div>
+                <div class="hero-subtitle">AI活用 × 集客設計 × Web制作</div>
                 
                 <h1 class="hero-title-modern">
-                    あなたらしさは<br>
-                    <span class="hero-title-gradient">資産だ</span>
+                    つくるだけで終わらせない。<br>
+                    <span class="hero-title-gradient">成果まで一緒に。</span>
                 </h1>
                 
                 <p class="hero-description">
-                    AIと生きる時代に、人間の創造性と個性が最大の競争力になる。
-                    Harmonic Societyは、テクノロジーと人間性の調和を通じて、
-                    新しいビジネスの形を創造します。
+                    LP制作、LINE運用、広告設計までワンストップ。<br>
+                    AI活用で、最短距離の集客を実現します。
                 </p>
                 
                 <div class="hero-cta-group">
                     <a href="/contact" class="hero-btn-primary">
-                        <span>無料相談はこちら</span>
+                        <span>無料相談してみる</span>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M7 13L10 10L7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M10 10H3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -54,7 +53,7 @@
                     </a>
                     
                     <a href="/services" class="hero-btn-secondary">
-                        <span>サービスを見る</span>
+                        <span>制作事例を見る</span>
                     </a>
                 </div>
             </div>
