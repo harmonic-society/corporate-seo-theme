@@ -43,11 +43,11 @@ get_header(); ?>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number" data-count="98">0</span>
-                        <span class="stat-label">顧客満足度</span>
+                        <span class="stat-label">%顧客満足度</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-count="50">0</span>
-                        <span class="stat-label">受賞歴</span>
+                        <span class="stat-number" data-count="95">0</span>
+                        <span class="stat-label">%リピート率</span>
                     </div>
                 </div>
             </div>
