@@ -537,6 +537,15 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
+    
+    // GA4 Event Tracking - Load on all pages
+    wp_enqueue_script( 
+        'corporate-seo-pro-ga4-events', 
+        get_template_directory_uri() . '/assets/js/ga4-events.js', 
+        array(), 
+        $version, 
+        true 
+    );
 }
 
 /**
