@@ -49,9 +49,16 @@ get_header(); ?>
             <div class="ceo-content">
                 <div class="ceo-image-wrapper">
                     <div class="ceo-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
+                        <?php
+                        $ceo_image = get_theme_mod( 'ceo_profile_image' );
+                        if ( $ceo_image ) :
+                            ?>
+                            <img src="<?php echo esc_url( $ceo_image ); ?>" alt="代表取締役 師田 賢人" class="ceo-photo">
+                        <?php else : ?>
+                            <div class="image-placeholder">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div class="ceo-info">
                         <p class="ceo-role">代表取締役</p>

@@ -352,13 +352,27 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
         'title'    => __( '会社情報', 'corporate-seo-pro' ),
         'priority' => 40,
     ) );
-    
+
+    // 代表プロフィール写真（Aboutページ用）
+    $wp_customize->add_setting( 'ceo_profile_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'ceo_profile_image', array(
+        'label'       => __( '代表プロフィール写真', 'corporate-seo-pro' ),
+        'description' => __( 'Aboutページの代表メッセージセクションに表示される写真（推奨: 600x600px以上の正方形）', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_company',
+        'settings'    => 'ceo_profile_image',
+        'priority'    => 5,
+    ) ) );
+
     // 会社名
     $wp_customize->add_setting( 'company_name', array(
         'default'           => '',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
-    
+
     $wp_customize->add_control( 'company_name', array(
         'label'   => __( '会社名', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_company',
