@@ -17,75 +17,172 @@ get_header(); ?>
             </div>
         </div>
         
-        <!-- サービスヒーローセクション -->
-        <section class="service-hero">
-            <div class="hero-bg-effect">
-                <div class="bg-gradient-1"></div>
-                <div class="bg-gradient-2"></div>
-                <div class="bg-pattern"></div>
+        <!-- サービスヒーローセクション - Dynamic & Cinematic -->
+        <section class="service-hero-dynamic">
+            <div class="hero-background-layers">
+                <!-- Background Image Layer -->
                 <?php if ( has_post_thumbnail() ) : ?>
-                    <div class="hero-image-overlay">
+                    <div class="hero-image-layer">
                         <?php the_post_thumbnail( 'full', array( 'class' => 'hero-bg-image' ) ); ?>
+                        <div class="hero-image-overlay"></div>
                     </div>
                 <?php endif; ?>
+
+                <!-- Animated Gradient Layers -->
+                <div class="gradient-layer gradient-1"></div>
+                <div class="gradient-layer gradient-2"></div>
+                <div class="gradient-layer gradient-3"></div>
+
+                <!-- Geometric Shapes -->
+                <div class="hero-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+
+                <!-- Floating Particles -->
+                <div class="hero-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
             </div>
-            
+
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="service-title">
+                <div class="hero-content-modern">
+                    <!-- Service Badge -->
+                    <div class="service-badge-tag">
+                        <i class="fas fa-star"></i>
+                        <span>Premium Service</span>
+                    </div>
+
+                    <h1 class="service-title-dynamic">
+                        <span class="title-decorator"></span>
                         <span class="title-main"><?php the_title(); ?></span>
                         <?php if ( function_exists('get_field') && get_field('service_subtitle') ) : ?>
                             <span class="title-sub"><?php the_field('service_subtitle'); ?></span>
                         <?php endif; ?>
                     </h1>
-                    
-                    <!-- メタ情報コンポーネント -->
-                    <?php get_template_part( 'template-parts/post-meta', null, array( 'type' => 'service' ) ); ?>
-                    
-                    <div class="hero-actions">
-                        <a href="#service-inquiry" class="btn-primary smooth-scroll">
-                            <span class="btn-text">お問い合わせ</span>
-                            <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+
+                    <div class="hero-description">
+                        <?php
+                        $excerpt = get_the_excerpt();
+                        if ( $excerpt ) {
+                            echo '<p>' . esc_html( wp_trim_words( $excerpt, 30, '...' ) ) . '</p>';
+                        }
+                        ?>
+                    </div>
+
+                    <div class="hero-actions-modern">
+                        <a href="#service-inquiry" class="btn-hero-primary smooth-scroll">
+                            <span class="btn-bg-effect"></span>
+                            <span class="btn-content">
+                                <span class="btn-text">お問い合わせ</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
                         </a>
-                        
-                        <a href="#service-features" class="btn-secondary smooth-scroll">
-                            <span class="btn-text">詳細を見る</span>
-                            <span class="btn-icon"><i class="fas fa-chevron-down"></i></span>
+
+                        <a href="#service-features" class="btn-hero-secondary smooth-scroll">
+                            <span class="btn-content">
+                                <span class="btn-text">詳細を見る</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
                         </a>
                     </div>
+
+                    <!-- Key Features Preview -->
+                    <?php if ( function_exists('get_field') && function_exists('have_rows') && have_rows('service_features') ) : ?>
+                        <div class="hero-quick-features">
+                            <?php
+                            $feature_count = 0;
+                            while ( have_rows('service_features') && $feature_count < 3 ) : the_row();
+                                $feature_count++;
+                                $icon = get_sub_field('icon') ? get_sub_field('icon') : 'fas fa-check-circle';
+                                $title = get_sub_field('title') ? get_sub_field('title') : 'Feature';
+                            ?>
+                                <div class="quick-feature-item">
+                                    <i class="<?php echo esc_attr( $icon ); ?>"></i>
+                                    <span><?php echo esc_html( $title ); ?></span>
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
-            
-            <div class="hero-scroll-indicator">
-                <span class="scroll-text">Scroll</span>
-                <span class="scroll-line"></span>
+
+            <div class="hero-wave-divider">
+                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                    <path d="M0,40 Q360,100 720,60 T1440,40 L1440,120 L0,120 Z" fill="#ffffff"></path>
+                </svg>
             </div>
         </section>
 
-        <!-- サービス概要セクション -->
-        <section class="service-overview">
+        <!-- サービス概要セクション - Enhanced -->
+        <section class="service-overview-modern">
             <div class="container">
-                <div class="overview-grid">
-                    <div class="overview-content">
-                        <h2 class="section-title">
-                            <span class="title-en">Overview</span>
-                            <span class="title-ja">サービス概要</span>
-                        </h2>
-                        
-                        <div class="service-lead">
+                <div class="overview-layout">
+                    <div class="overview-content-area">
+                        <div class="section-header-modern">
+                            <div class="section-badge-small">
+                                <span>Overview</span>
+                            </div>
+                            <h2 class="section-title-modern">
+                                <span class="title-ja">サービス概要</span>
+                                <span class="title-decorator-line"></span>
+                            </h2>
+                        </div>
+
+                        <div class="service-lead-text">
                             <?php the_excerpt(); ?>
                         </div>
-                        
-                        <div class="service-description">
+
+                        <div class="service-description-styled">
                             <?php the_content(); ?>
                         </div>
+
+                        <!-- Value Propositions -->
+                        <div class="value-props">
+                            <div class="value-prop-item">
+                                <div class="prop-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="prop-text">
+                                    <h4>迅速な対応</h4>
+                                    <p>スピーディーな導入サポート</p>
+                                </div>
+                            </div>
+                            <div class="value-prop-item">
+                                <div class="prop-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="prop-text">
+                                    <h4>安心のサポート</h4>
+                                    <p>導入後も手厚いフォロー</p>
+                                </div>
+                            </div>
+                            <div class="value-prop-item">
+                                <div class="prop-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="prop-text">
+                                    <h4>確実な成果</h4>
+                                    <p>データドリブンな改善提案</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
+
                     <?php if ( has_post_thumbnail() ) : ?>
-                        <div class="overview-visual">
-                            <div class="visual-container">
-                                <?php the_post_thumbnail( 'large', array( 'class' => 'service-image' ) ); ?>
-                                <div class="visual-decoration"></div>
+                        <div class="overview-visual-area">
+                            <div class="visual-frame">
+                                <div class="frame-decoration frame-top"></div>
+                                <div class="frame-decoration frame-bottom"></div>
+                                <div class="visual-image-container">
+                                    <?php the_post_thumbnail( 'large', array( 'class' => 'service-visual-image' ) ); ?>
+                                </div>
+                                <div class="visual-gradient-overlay"></div>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -101,37 +198,42 @@ get_header(); ?>
         }
         
         if ( $has_features ) : ?>
-        <section id="service-features" class="service-features">
+        <section id="service-features" class="service-features-modern">
+            <div class="features-bg-pattern"></div>
             <div class="container">
-                <h2 class="section-title text-center">
-                    <span class="title-en">Features</span>
-                    <span class="title-ja">サービスの特徴</span>
-                </h2>
-                
-                <div class="features-grid">
-                    <?php while ( have_rows('service_features') ) : the_row(); ?>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <?php 
-                                $icon = get_sub_field('icon');
-                                if ( $icon ) : ?>
+                <div class="section-header-centered">
+                    <div class="section-badge-large">
+                        <i class="fas fa-gem"></i>
+                        <span>Features</span>
+                    </div>
+                    <h2 class="section-title-large">
+                        <span class="title-ja">サービスの特徴</span>
+                        <span class="title-accent">このサービスが選ばれる理由</span>
+                    </h2>
+                </div>
+
+                <div class="features-showcase">
+                    <?php
+                    $feature_index = 0;
+                    while ( have_rows('service_features') ) : the_row();
+                        $feature_index++;
+                        $icon = get_sub_field('icon') ? get_sub_field('icon') : 'fas fa-check-circle';
+                        $title = get_sub_field('title') ? get_sub_field('title') : 'Feature';
+                        $desc = get_sub_field('description') ? get_sub_field('description') : '';
+                    ?>
+                        <div class="feature-card-modern" data-feature="<?php echo $feature_index; ?>">
+                            <div class="feature-number"><?php echo sprintf( '%02d', $feature_index ); ?></div>
+                            <div class="feature-icon-modern">
+                                <div class="icon-circle">
                                     <i class="<?php echo esc_attr( $icon ); ?>"></i>
-                                <?php else : ?>
-                                    <i class="fas fa-check-circle"></i>
-                                <?php endif; ?>
+                                </div>
+                                <div class="icon-glow"></div>
                             </div>
-                            <h3 class="feature-title">
-                                <?php 
-                                $title = get_sub_field('title');
-                                echo $title ? esc_html( $title ) : 'Feature';
-                                ?>
-                            </h3>
-                            <p class="feature-description">
-                                <?php 
-                                $desc = get_sub_field('description');
-                                echo $desc ? esc_html( $desc ) : '';
-                                ?>
-                            </p>
+                            <div class="feature-content">
+                                <h3 class="feature-title-modern"><?php echo esc_html( $title ); ?></h3>
+                                <p class="feature-description-modern"><?php echo esc_html( $desc ); ?></p>
+                            </div>
+                            <div class="feature-hover-effect"></div>
                         </div>
                     <?php endwhile; ?>
                 </div>
@@ -150,69 +252,82 @@ get_header(); ?>
         }
         
         if ( $has_plans ) : ?>
-        <section class="service-pricing">
+        <section class="service-pricing-modern">
+            <div class="pricing-background">
+                <div class="pricing-gradient"></div>
+            </div>
             <div class="container">
-                <h2 class="section-title text-center">
-                    <span class="title-en">Pricing</span>
-                    <span class="title-ja">料金プラン</span>
-                </h2>
-                
-                <div class="pricing-grid">
-                    <?php while ( have_rows('service_plans') ) : the_row(); ?>
-                        <div class="pricing-card <?php echo get_sub_field('recommended') ? 'recommended' : ''; ?>">
-                            <?php if ( get_sub_field('recommended') ) : ?>
-                                <div class="recommended-badge">おすすめ</div>
+                <div class="section-header-centered">
+                    <div class="section-badge-large">
+                        <i class="fas fa-tags"></i>
+                        <span>Pricing</span>
+                    </div>
+                    <h2 class="section-title-large">
+                        <span class="title-ja">料金プラン</span>
+                        <span class="title-accent">最適なプランをお選びください</span>
+                    </h2>
+                </div>
+
+                <div class="pricing-cards-wrapper">
+                    <?php
+                    $plan_index = 0;
+                    while ( have_rows('service_plans') ) : the_row();
+                        $plan_index++;
+                        $is_recommended = get_sub_field('recommended');
+                        $name = get_sub_field('name') ? get_sub_field('name') : 'プラン';
+                        $price = get_sub_field('price');
+                        $price_number = preg_replace('/[^0-9,]/', '', $price);
+                        $price_unit = '';
+                        if ( strpos($price, '〜') !== false ) {
+                            $price_unit = '〜';
+                        } elseif ( strpos($price, '/月') !== false ) {
+                            $price_unit = '/月';
+                        }
+                    ?>
+                        <div class="pricing-card-modern <?php echo $is_recommended ? 'is-recommended' : ''; ?>" data-plan="<?php echo $plan_index; ?>">
+                            <?php if ( $is_recommended ) : ?>
+                                <div class="recommended-badge-modern">
+                                    <i class="fas fa-crown"></i>
+                                    <span>おすすめ</span>
+                                </div>
                             <?php endif; ?>
-                            
-                            <h3 class="plan-name">
-                                <?php 
-                                $name = get_sub_field('name');
-                                echo $name ? esc_html( $name ) : 'プラン';
-                                ?>
-                            </h3>
-                            <div class="plan-price">
-                                <?php 
-                                $price = get_sub_field('price');
-                                // Extract number from price string (e.g., "¥100,000〜" -> "100,000")
-                                $price_number = preg_replace('/[^0-9,]/', '', $price);
-                                $price_unit = '';
-                                if ( strpos($price, '〜') !== false ) {
-                                    $price_unit = '〜';
-                                } elseif ( strpos($price, '/月') !== false ) {
-                                    $price_unit = '/月';
-                                }
-                                ?>
-                                <span class="price-currency">¥</span>
-                                <span class="price-amount">
-                                    <?php echo $price_number ? esc_html( $price_number ) : '0'; ?>
-                                </span>
-                                <span class="price-unit">
-                                    <?php echo esc_html( $price_unit ); ?>
-                                </span>
+
+                            <div class="plan-header">
+                                <h3 class="plan-name-modern"><?php echo esc_html( $name ); ?></h3>
+                                <div class="plan-price-modern">
+                                    <span class="price-currency-modern">¥</span>
+                                    <span class="price-amount-modern"><?php echo $price_number ? esc_html( $price_number ) : '0'; ?></span>
+                                    <span class="price-unit-modern"><?php echo esc_html( $price_unit ); ?></span>
+                                </div>
                             </div>
-                            
-                            <?php 
+
+                            <?php
                             $features = get_sub_field('features');
-                            if ( $features ) : 
-                                // Convert line breaks to array
+                            if ( $features ) :
                                 $features_array = array_filter(array_map('trim', explode("\n", strip_tags($features))));
                                 if ( !empty($features_array) ) :
                             ?>
-                                <ul class="plan-features">
+                                <ul class="plan-features-modern">
                                     <?php foreach ( $features_array as $feature ) : ?>
                                         <li>
-                                            <i class="fas fa-check"></i>
-                                            <?php echo esc_html( $feature ); ?>
+                                            <div class="feature-check">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                            <span><?php echo esc_html( $feature ); ?></span>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
-                            <?php 
+                            <?php
                                 endif;
                             endif; ?>
-                            
-                            <a href="#service-inquiry" class="plan-cta smooth-scroll">
-                                このプランで相談する
+
+                            <a href="#service-inquiry" class="plan-cta-modern smooth-scroll">
+                                <span class="cta-bg"></span>
+                                <span class="cta-text">このプランで相談する</span>
+                                <i class="fas fa-arrow-right"></i>
                             </a>
+
+                            <div class="plan-decoration"></div>
                         </div>
                     <?php endwhile; ?>
                 </div>
@@ -237,36 +352,48 @@ get_header(); ?>
         }
         
         if ( $has_process ) : ?>
-        <section class="service-process">
+        <section class="service-process-modern">
+            <div class="process-bg">
+                <div class="process-pattern"></div>
+            </div>
             <div class="container">
-                <h2 class="section-title text-center">
-                    <span class="title-en">Process</span>
-                    <span class="title-ja">サービスの流れ</span>
-                </h2>
-                
-                <div class="process-timeline">
-                    <?php 
+                <div class="section-header-centered">
+                    <div class="section-badge-large">
+                        <i class="fas fa-route"></i>
+                        <span>Process</span>
+                    </div>
+                    <h2 class="section-title-large">
+                        <span class="title-ja">サービスの流れ</span>
+                        <span class="title-accent">ご契約からサービス開始まで</span>
+                    </h2>
+                </div>
+
+                <div class="process-flow">
+                    <?php
                     $step_count = 0;
-                    while ( have_rows('service_process') ) : the_row(); 
+                    $total_steps = 0;
+                    while ( have_rows('service_process') ) { the_row(); $total_steps++; }
+
+                    while ( have_rows('service_process') ) : the_row();
                         $step_count++;
+                        $title = get_sub_field('title') ? get_sub_field('title') : 'ステップ ' . $step_count;
+                        $desc = get_sub_field('description') ? get_sub_field('description') : '';
+                        $is_last = ($step_count === $total_steps);
                     ?>
-                        <div class="process-step">
-                            <div class="step-number">
-                                <span><?php echo str_pad($step_count, 2, '0', STR_PAD_LEFT); ?></span>
+                        <div class="process-step-modern" data-step="<?php echo $step_count; ?>">
+                            <div class="step-connector" <?php if ($is_last) echo 'style="display:none;"'; ?>></div>
+                            <div class="step-badge">
+                                <div class="badge-circle">
+                                    <span class="badge-number">STEP <?php echo $step_count; ?></span>
+                                </div>
+                                <div class="badge-glow"></div>
                             </div>
-                            <div class="step-content">
-                                <h3 class="step-title">
-                                    <?php 
-                                    $title = get_sub_field('title');
-                                    echo $title ? esc_html( $title ) : 'ステップ ' . $step_count;
-                                    ?>
-                                </h3>
-                                <p class="step-description">
-                                    <?php 
-                                    $desc = get_sub_field('description');
-                                    echo $desc ? esc_html( $desc ) : '';
-                                    ?>
-                                </p>
+                            <div class="step-card">
+                                <h3 class="step-title-modern"><?php echo esc_html( $title ); ?></h3>
+                                <p class="step-description-modern"><?php echo esc_html( $desc ); ?></p>
+                                <div class="step-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
                             </div>
                         </div>
                     <?php endwhile; ?>
@@ -305,33 +432,43 @@ get_header(); ?>
         }
         
         if ( $has_faq ) : ?>
-        <section class="service-faq">
+        <section class="service-faq-modern">
             <div class="container">
-                <h2 class="section-title text-center">
-                    <span class="title-en">FAQ</span>
-                    <span class="title-ja">よくある質問</span>
-                </h2>
-                
-                <div class="faq-list">
-                    <?php while ( have_rows('service_faq') ) : the_row(); ?>
-                        <div class="faq-item">
-                            <button class="faq-question" type="button" aria-expanded="false">
-                                <span class="question-text">
-                                    <?php 
-                                    $question = get_sub_field('question');
-                                    echo $question ? esc_html( $question ) : '質問';
-                                    ?>
-                                </span>
-                                <span class="question-icon">
-                                    <i class="fas fa-chevron-down"></i>
+                <div class="section-header-centered">
+                    <div class="section-badge-large">
+                        <i class="fas fa-question-circle"></i>
+                        <span>FAQ</span>
+                    </div>
+                    <h2 class="section-title-large">
+                        <span class="title-ja">よくある質問</span>
+                        <span class="title-accent">お客様からよくいただく質問</span>
+                    </h2>
+                </div>
+
+                <div class="faq-accordion">
+                    <?php
+                    $faq_index = 0;
+                    while ( have_rows('service_faq') ) : the_row();
+                        $faq_index++;
+                        $question = get_sub_field('question') ? get_sub_field('question') : '質問';
+                        $answer = get_sub_field('answer') ? get_sub_field('answer') : '';
+                    ?>
+                        <div class="faq-item-modern" data-faq="<?php echo $faq_index; ?>">
+                            <button class="faq-question-modern" type="button" aria-expanded="false">
+                                <div class="question-left">
+                                    <span class="question-badge">Q<?php echo $faq_index; ?></span>
+                                    <span class="question-text-modern"><?php echo esc_html( $question ); ?></span>
+                                </div>
+                                <span class="question-toggle">
+                                    <i class="fas fa-plus"></i>
                                 </span>
                             </button>
-                            <div class="faq-answer">
-                                <div class="answer-content">
-                                    <?php 
-                                    $answer = get_sub_field('answer');
-                                    echo $answer ? wp_kses_post( wpautop( $answer ) ) : '';
-                                    ?>
+                            <div class="faq-answer-modern">
+                                <div class="answer-wrapper">
+                                    <span class="answer-badge">A</span>
+                                    <div class="answer-content-modern">
+                                        <?php echo wp_kses_post( wpautop( $answer ) ); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

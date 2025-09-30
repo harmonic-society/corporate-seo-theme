@@ -148,6 +148,14 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             array( 'corporate-seo-pro-service' ),
             $version
         );
+
+        // Modern single service styles
+        wp_enqueue_style(
+            'corporate-seo-pro-single-service-modern',
+            get_template_directory_uri() . '/assets/css/pages/single-service-modern.css',
+            array( 'corporate-seo-pro-single-service' ),
+            $version
+        );
     }
     
     // All page templates
@@ -472,7 +480,18 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     
     // Service pages
     if ( is_singular( 'service' ) || is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
-        wp_enqueue_script( 
+        // Modern single service JavaScript
+        if ( is_singular( 'service' ) ) {
+            wp_enqueue_script(
+                'corporate-seo-pro-single-service-modern',
+                get_template_directory_uri() . '/assets/js/pages/single-service-modern.js',
+                array(),
+                $version,
+                true
+            );
+        }
+
+        wp_enqueue_script(
             'corporate-seo-pro-service', 
             get_template_directory_uri() . '/assets/js/pages/single-service.js', 
             array(), 
