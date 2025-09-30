@@ -265,27 +265,91 @@ add_filter( 'the_content', 'corporate_seo_pro_faq_schema' );
  * ローカルビジネスの構造化データ
  */
 function corporate_seo_pro_local_business_schema() {
-    if ( ! is_front_page() || ! get_theme_mod( 'enable_local_business_schema' ) ) {
+    if ( ! is_front_page() ) {
         return;
     }
-    
+
     $schema = array(
         '@context' => 'https://schema.org',
-        '@type' => get_theme_mod( 'business_type', 'LocalBusiness' ),
+        '@type' => 'ProfessionalService',
         'name' => get_bloginfo( 'name' ),
         'url' => home_url( '/' ),
+        'description' => get_bloginfo( 'description' ),
+        'areaServed' => array(
+            array(
+                '@type' => 'City',
+                'name' => '千葉市',
+                'containedInPlace' => array(
+                    '@type' => 'AdministrativeArea',
+                    'name' => '千葉県'
+                )
+            ),
+            array(
+                '@type' => 'AdministrativeArea',
+                'name' => '千葉県'
+            )
+        ),
+        'serviceType' => array(
+            'ホームページ制作',
+            'Webサイト制作',
+            'SEO対策',
+            'Webマーケティング'
+        ),
+        'knowsAbout' => array(
+            'ホームページ制作',
+            'Webデザイン',
+            'WordPress開発',
+            'SEO対策',
+            'レスポンシブデザイン'
+        ),
+        'address' => array(
+            '@type' => 'PostalAddress',
+            'addressLocality' => '千葉市',
+            'addressRegion' => '千葉県',
+            'addressCountry' => 'JP'
+        )
     );
-    
+
+    // ロゴ
+    if ( has_custom_logo() ) {
+        $custom_logo_id = get_theme_mod( 'custom_logo' );
+        $logo = wp_get_attachment_image_src( $custom_logo_id, 'full' );
+        $schema['logo'] = array(
+            '@type' => 'ImageObject',
+            'url' => $logo[0],
+            'width' => $logo[1],
+            'height' => $logo[2],
+        );
+    }
+
+    // 連絡先情報
+    if ( get_theme_mod( 'company_phone' ) || get_theme_mod( 'company_email' ) ) {
+        $schema['contactPoint'] = array(
+            '@type' => 'ContactPoint',
+            'contactType' => 'customer service',
+            'areaServed' => 'JP',
+            'availableLanguage' => 'Japanese'
+        );
+
+        if ( get_theme_mod( 'company_phone' ) ) {
+            $schema['contactPoint']['telephone'] = get_theme_mod( 'company_phone' );
+        }
+
+        if ( get_theme_mod( 'company_email' ) ) {
+            $schema['contactPoint']['email'] = get_theme_mod( 'company_email' );
+        }
+    }
+
     // 営業時間
     if ( get_theme_mod( 'business_hours' ) ) {
         $schema['openingHours'] = explode( ',', get_theme_mod( 'business_hours' ) );
     }
-    
+
     // 価格帯
     if ( get_theme_mod( 'price_range' ) ) {
         $schema['priceRange'] = get_theme_mod( 'price_range' );
     }
-    
+
     echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
 }
 add_action( 'wp_head', 'corporate_seo_pro_local_business_schema' );
@@ -306,11 +370,11 @@ function corporate_seo_pro_breadcrumb_schema() {
     
     $position = 1;
     
-    // ホーム
+    // ホーム（地域情報を含む）
     $schema['itemListElement'][] = array(
         '@type' => 'ListItem',
         'position' => $position,
-        'name' => get_bloginfo( 'name' ),
+        'name' => get_bloginfo( 'name' ) . ' | 千葉県千葉市',
         'item' => home_url( '/' ),
     );
     $position++;

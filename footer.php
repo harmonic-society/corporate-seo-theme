@@ -18,7 +18,23 @@
                         <p class="footer-description">
                             <?php echo get_theme_mod( 'footer_description', get_bloginfo( 'description' ) ); ?>
                         </p>
-                        
+
+                        <!-- 所在地情報 -->
+                        <div class="footer-location" itemscope itemtype="https://schema.org/Organization">
+                            <meta itemprop="name" content="<?php bloginfo( 'name' ); ?>">
+                            <div class="footer-address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>
+                                    <span itemprop="addressRegion">千葉県</span><span itemprop="addressLocality">千葉市</span>
+                                </span>
+                            </div>
+                            <?php if ( get_theme_mod( 'company_address' ) ) : ?>
+                                <div class="footer-full-address">
+                                    <span itemprop="streetAddress"><?php echo esc_html( get_theme_mod( 'company_address' ) ); ?></span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
                         <!-- ソーシャルリンク -->
                         <?php if ( has_nav_menu( 'social' ) ) : ?>
                             <div class="footer-social">
@@ -136,10 +152,10 @@
             <div class="container">
                 <div class="footer-bottom-content">
                     <p class="copyright">
-                        &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>. 
+                        &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?> | 千葉県千葉市のホームページ制作.
                         <?php esc_html_e( 'All rights reserved.', 'corporate-seo-pro' ); ?>
                     </p>
-                    
+
                     <div class="footer-bottom-links">
                         <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>">
                             <?php esc_html_e( 'プライバシーポリシー', 'corporate-seo-pro' ); ?>

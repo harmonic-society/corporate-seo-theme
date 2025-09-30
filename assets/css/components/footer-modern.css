@@ -99,6 +99,37 @@
     z-index: 2;
 }
 
+/* Footer Location Styles */
+.footer-location {
+    margin: 20px 0;
+    padding: 16px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-address {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.footer-address i {
+    color: var(--primary-color, #00867b);
+    font-size: 16px;
+    min-width: 20px;
+}
+
+.footer-full-address {
+    padding-left: 30px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
 /* ==========================================================================
    Footer Widgets
    ========================================================================== */

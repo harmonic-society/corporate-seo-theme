@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function corporate_seo_pro_meta_tags() {
     global $post;
-    
+
     // メタディスクリプション
     $description = '';
     $og_title = '';
     $og_description = '';
     $og_image_url = '';
     $news_ogp_image = array();
-    
+
     if ( is_singular() ) {
         $description = get_post_meta( $post->ID, '_corporate_seo_meta_description', true );
         if ( empty( $description ) ) {
@@ -31,10 +31,21 @@ function corporate_seo_pro_meta_tags() {
         $description = term_description();
     } elseif ( is_home() || is_front_page() ) {
         $description = get_bloginfo( 'description' );
+        if ( empty( $description ) ) {
+            $description = '千葉県千葉市のホームページ制作会社。SEO対策、レスポンシブデザイン、WordPress開発に強みを持つWeb制作サービスを提供しています。';
+        }
     }
-    
+
     if ( ! empty( $description ) ) {
         echo '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
+    }
+
+    // 地域キーワード
+    if ( is_home() || is_front_page() ) {
+        echo '<meta name="keywords" content="ホームページ制作,千葉市,千葉県,Web制作,SEO対策,WordPress,レスポンシブデザイン,Webマーケティング">' . "\n";
+        echo '<meta name="geo.region" content="JP-12">' . "\n";
+        echo '<meta name="geo.placename" content="千葉市">' . "\n";
+        echo '<meta property="og:locale" content="ja_JP">' . "\n";
     }
     
     // OGPタグ
@@ -323,25 +334,34 @@ add_filter( 'wp_get_attachment_image_attributes', 'corporate_seo_pro_auto_image_
  */
 function corporate_seo_pro_document_title_parts( $title ) {
     if ( is_home() || is_front_page() ) {
-        unset( $title['tagline'] );
+        $site_name = get_bloginfo( 'name' );
+        $site_description = get_bloginfo( 'description' );
+
+        // トップページのタイトルに地域情報を含める
+        $title['title'] = $site_name;
+        if ( ! empty( $site_description ) ) {
+            $title['tagline'] = $site_description . ' | 千葉県千葉市';
+        } else {
+            $title['tagline'] = '千葉県千葉市のホームページ制作';
+        }
     }
-    
+
     if ( is_category() ) {
         $title['title'] = single_cat_title( '', false ) . ' | カテゴリー';
     }
-    
+
     if ( is_tag() ) {
         $title['title'] = single_tag_title( '', false ) . ' | タグ';
     }
-    
+
     if ( is_search() ) {
         $title['title'] = '「' . get_search_query() . '」の検索結果';
     }
-    
+
     if ( is_404() ) {
         $title['title'] = '404 ページが見つかりません';
     }
-    
+
     return $title;
 }
 add_filter( 'document_title_parts', 'corporate_seo_pro_document_title_parts' );
