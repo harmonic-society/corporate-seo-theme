@@ -174,9 +174,10 @@ get_header(); ?>
     <?php endif; ?>
     
     <?php if ( get_theme_mod( 'show_services_section', true ) ) : ?>
-        <section class="services-section">
+        <section class="services-section services-modern">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header centered">
+                    <span class="section-label"><?php esc_html_e( 'Our Services', 'corporate-seo-pro' ); ?></span>
                     <h2 class="section-title"><?php echo esc_html( get_theme_mod( 'services_title', __( 'サービス', 'corporate-seo-pro' ) ) ); ?></h2>
                     <p class="section-description"><?php echo esc_html( get_theme_mod( 'services_description', __( '私たちは幅広いサービスを提供しています', 'corporate-seo-pro' ) ) ); ?></p>
                 </div>
@@ -190,44 +191,46 @@ get_header(); ?>
                 ) );
 
                 if ( $services_query->have_posts() ) : ?>
-                    <div class="services-list">
-                        <?php 
+                    <div class="services-grid-modern">
+                        <?php
                         $service_count = 0;
-                        while ( $services_query->have_posts() ) : 
-                            $services_query->the_post(); 
+                        while ( $services_query->have_posts() ) :
+                            $services_query->the_post();
                             $service_count++;
-                            $is_even = ($service_count % 2 == 0);
                         ?>
-                            <article class="service-item <?php echo $is_even ? 'service-item-reverse' : ''; ?>">
-                                <div class="service-image">
-                                    <a href="<?php the_permalink(); ?>">
+                            <article class="service-card-modern" data-service="<?php echo $service_count; ?>">
+                                <a href="<?php the_permalink(); ?>" class="service-card-link">
+                                    <div class="service-card-icon">
                                         <?php if ( has_post_thumbnail() ) : ?>
-                                            <?php the_post_thumbnail( 'corporate-featured', array( 'loading' => 'lazy' ) ); ?>
+                                            <?php the_post_thumbnail( 'thumbnail', array( 'loading' => 'lazy' ) ); ?>
                                         <?php else : ?>
-                                            <div class="service-placeholder-image">
-                                                <i class="fas fa-cog"></i>
-                                                <span class="placeholder-text">Service</span>
-                                            </div>
+                                            <i class="fas fa-layer-group"></i>
                                         <?php endif; ?>
-                                    </a>
-                                </div>
-                                <div class="service-content">
-                                    <h3 class="service-title">
-                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    </h3>
-                                    <div class="service-excerpt">
-                                        <?php the_excerpt(); ?>
                                     </div>
-                                    <div class="service-meta">
-                                        <a href="<?php the_permalink(); ?>" class="btn btn-primary">
-                                            <?php esc_html_e( '詳細を見る', 'corporate-seo-pro' ); ?>
-                                            <span aria-hidden="true">→</span>
-                                        </a>
+
+                                    <div class="service-card-content">
+                                        <div class="service-card-number"><?php echo str_pad($service_count, 2, '0', STR_PAD_LEFT); ?></div>
+                                        <h3 class="service-card-title"><?php the_title(); ?></h3>
+                                        <p class="service-card-excerpt"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
                                     </div>
-                                </div>
+
+                                    <div class="service-card-arrow">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+
+                                    <div class="service-card-hover"></div>
+                                </a>
                             </article>
                         <?php endwhile; ?>
                     </div>
+
+                    <div class="services-cta">
+                        <a href="<?php echo esc_url( get_post_type_archive_link( 'service' ) ); ?>" class="btn btn-outline-large">
+                            <?php esc_html_e( 'すべてのサービスを見る', 'corporate-seo-pro' ); ?>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
                     <?php wp_reset_postdata(); ?>
                 <?php endif; ?>
             </div>
