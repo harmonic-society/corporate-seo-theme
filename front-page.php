@@ -328,29 +328,66 @@ get_header(); ?>
     <?php endif; ?>
 
     <?php if ( get_theme_mod( 'show_features_section', true ) ) : ?>
-        <section class="features-section">
+        <section class="features-section-modern">
+            <div class="features-bg-layers">
+                <div class="bg-gradient-orb orb-1"></div>
+                <div class="bg-gradient-orb orb-2"></div>
+                <div class="bg-pattern-grid"></div>
+            </div>
+
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label"><?php esc_html_e( 'Why Choose Us', 'corporate-seo-pro' ); ?></span>
-                    <h2 class="section-title"><?php echo esc_html( get_theme_mod( 'features_title', __( '選ばれる理由', 'corporate-seo-pro' ) ) ); ?></h2>
+                <div class="section-header-premium">
+                    <div class="header-badge">
+                        <i class="fas fa-crown"></i>
+                        <span><?php esc_html_e( 'Why Choose Us', 'corporate-seo-pro' ); ?></span>
+                    </div>
+                    <h2 class="section-title-premium">
+                        <span class="title-main"><?php echo esc_html( get_theme_mod( 'features_title', __( '選ばれる理由', 'corporate-seo-pro' ) ) ); ?></span>
+                        <span class="title-decorator"></span>
+                    </h2>
                     <?php if ( get_theme_mod( 'features_description' ) ) : ?>
-                        <p class="section-description"><?php echo esc_html( get_theme_mod( 'features_description' ) ); ?></p>
+                        <p class="section-description-premium"><?php echo esc_html( get_theme_mod( 'features_description' ) ); ?></p>
                     <?php endif; ?>
                 </div>
-                <div class="features-grid">
+
+                <div class="features-showcase-grid">
                     <?php for ( $i = 1; $i <= 3; $i++ ) : ?>
                         <?php if ( get_theme_mod( 'feature_' . $i . '_title' ) ) : ?>
-                            <div class="feature-item" data-feature="<?php echo $i; ?>">
-                                <div class="feature-circle">
-                                    <div class="feature-number"><?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?></div>
-                                    <?php if ( get_theme_mod( 'feature_' . $i . '_icon' ) ) : ?>
-                                        <i class="<?php echo esc_attr( get_theme_mod( 'feature_' . $i . '_icon' ) ); ?>"></i>
-                                    <?php endif; ?>
+                            <div class="feature-card-premium" data-feature="<?php echo $i; ?>">
+                                <div class="card-backdrop"></div>
+                                <div class="card-glow"></div>
+
+                                <div class="feature-badge-number">
+                                    <span><?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?></span>
                                 </div>
-                                <div class="feature-content">
-                                    <h3 class="feature-title"><?php echo esc_html( get_theme_mod( 'feature_' . $i . '_title' ) ); ?></h3>
-                                    <p class="feature-description"><?php echo esc_html( get_theme_mod( 'feature_' . $i . '_description' ) ); ?></p>
+
+                                <div class="feature-icon-container">
+                                    <div class="icon-wrapper">
+                                        <?php if ( get_theme_mod( 'feature_' . $i . '_icon' ) ) : ?>
+                                            <i class="<?php echo esc_attr( get_theme_mod( 'feature_' . $i . '_icon' ) ); ?>"></i>
+                                        <?php else : ?>
+                                            <i class="fas fa-star"></i>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="icon-glow-effect"></div>
                                 </div>
+
+                                <div class="feature-content-modern">
+                                    <h3 class="feature-title-premium">
+                                        <?php echo esc_html( get_theme_mod( 'feature_' . $i . '_title' ) ); ?>
+                                    </h3>
+                                    <p class="feature-description-premium">
+                                        <?php echo esc_html( get_theme_mod( 'feature_' . $i . '_description' ) ); ?>
+                                    </p>
+                                </div>
+
+                                <div class="feature-footer">
+                                    <span class="feature-arrow">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+
+                                <div class="card-shimmer"></div>
                             </div>
                         <?php endif; ?>
                     <?php endfor; ?>

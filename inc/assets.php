@@ -125,12 +125,22 @@ function corporate_seo_pro_enqueue_styles( $version ) {
     );
     
     // Enhanced Features Section - Load last to override other styles
-    wp_enqueue_style( 
-        'corporate-seo-pro-features-enhanced', 
-        get_template_directory_uri() . '/assets/css/features-section-enhanced.css', 
-        array( 'corporate-seo-pro-style', 'corporate-seo-pro-color-scheme' ), 
-        $version 
+    wp_enqueue_style(
+        'corporate-seo-pro-features-enhanced',
+        get_template_directory_uri() . '/assets/css/features-section-enhanced.css',
+        array( 'corporate-seo-pro-style', 'corporate-seo-pro-color-scheme' ),
+        $version
     );
+
+    // Modern Features Section (Front page only)
+    if ( is_front_page() ) {
+        wp_enqueue_style(
+            'corporate-seo-pro-features-modern',
+            get_template_directory_uri() . '/assets/css/features-section-modern.css',
+            array( 'corporate-seo-pro-features-enhanced' ),
+            $version
+        );
+    }
     
     // Page-specific styles (loaded conditionally)
     corporate_seo_pro_enqueue_conditional_styles( $version );
