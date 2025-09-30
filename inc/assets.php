@@ -94,13 +94,21 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version 
     );
     
-    wp_enqueue_style( 
-        'corporate-seo-pro-footer', 
-        get_template_directory_uri() . '/assets/css/components/footer.css', 
-        array( 'corporate-seo-pro-base' ), 
-        $version 
+    wp_enqueue_style(
+        'corporate-seo-pro-footer',
+        get_template_directory_uri() . '/assets/css/components/footer.css',
+        array( 'corporate-seo-pro-base' ),
+        $version
     );
-    
+
+    // Modern footer styles
+    wp_enqueue_style(
+        'corporate-seo-pro-footer-modern',
+        get_template_directory_uri() . '/assets/css/components/footer-modern.css',
+        array( 'corporate-seo-pro-footer' ),
+        $version
+    );
+
     wp_enqueue_style(
         'corporate-seo-pro-mobile-menu',
         get_template_directory_uri() . '/assets/css/components/mobile-menu.css',
