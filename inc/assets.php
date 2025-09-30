@@ -101,19 +101,27 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version 
     );
     
-    wp_enqueue_style( 
-        'corporate-seo-pro-mobile-menu', 
-        get_template_directory_uri() . '/assets/css/components/mobile-menu.css', 
-        array( 'corporate-seo-pro-navigation' ), 
-        $version 
+    wp_enqueue_style(
+        'corporate-seo-pro-mobile-menu',
+        get_template_directory_uri() . '/assets/css/components/mobile-menu.css',
+        array( 'corporate-seo-pro-navigation' ),
+        $version
     );
-    
+
+    // Service component (used on front page and service pages)
+    wp_enqueue_style(
+        'corporate-seo-pro-service',
+        get_template_directory_uri() . '/assets/css/components/service.css',
+        array( 'corporate-seo-pro-base' ),
+        $version
+    );
+
     // Color scheme
-    wp_enqueue_style( 
-        'corporate-seo-pro-color-scheme', 
-        get_template_directory_uri() . '/assets/css/color-scheme-teal.css', 
-        array( 'corporate-seo-pro-base' ), 
-        $version 
+    wp_enqueue_style(
+        'corporate-seo-pro-color-scheme',
+        get_template_directory_uri() . '/assets/css/color-scheme-teal.css',
+        array( 'corporate-seo-pro-base' ),
+        $version
     );
     
     // Enhanced Features Section - Load last to override other styles
@@ -132,24 +140,14 @@ function corporate_seo_pro_enqueue_styles( $version ) {
  * 条件付きスタイルの読み込み
  */
 function corporate_seo_pro_enqueue_conditional_styles( $version ) {
-    // Service pages
-    if ( is_singular( 'service' ) || is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
-        wp_enqueue_style( 
-            'corporate-seo-pro-service', 
-            get_template_directory_uri() . '/assets/css/components/service.css', 
-            array( 'corporate-seo-pro-base' ), 
-            $version 
+    // Service pages (service.css is already loaded globally, just load single service styles)
+    if ( is_singular( 'service' ) ) {
+        wp_enqueue_style(
+            'corporate-seo-pro-single-service',
+            get_template_directory_uri() . '/assets/css/pages/single-service.css',
+            array( 'corporate-seo-pro-service' ),
+            $version
         );
-        
-        // Single service page styles
-        if ( is_singular( 'service' ) ) {
-            wp_enqueue_style( 
-                'corporate-seo-pro-single-service', 
-                get_template_directory_uri() . '/assets/css/pages/single-service.css', 
-                array( 'corporate-seo-pro-service' ), 
-                $version 
-            );
-        }
     }
     
     // All page templates
