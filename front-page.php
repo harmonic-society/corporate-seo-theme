@@ -172,7 +172,10 @@ get_header(); ?>
     </section>
     */ ?>
     <?php endif; ?>
-    
+
+    <!-- Chiba Subscription Banner -->
+    <?php get_template_part( 'template-parts/chiba-subscription-banner' ); ?>
+
     <?php if ( get_theme_mod( 'show_services_section', true ) ) : ?>
         <section class="services-section services-modern">
             <div class="container">

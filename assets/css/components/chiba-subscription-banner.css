@@ -1,0 +1,307 @@
+/**
+ * Chiba Subscription Banner Styles
+ *
+ * @package Corporate_SEO_Pro
+ */
+
+.chiba-subscription-banner {
+  width: 100%;
+  margin: 3rem 0;
+  padding: 0 1rem;
+}
+
+.chiba-banner-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(0, 134, 123, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 2px solid #00867b;
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 134, 123, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.chiba-banner-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 50px rgba(0, 134, 123, 0.25);
+}
+
+.chiba-banner-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Header Section */
+.chiba-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.chiba-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.chiba-banner-region {
+  display: inline-flex;
+  align-items: center;
+  background: #00867b;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+}
+
+/* Title */
+.chiba-banner-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.4;
+}
+
+/* Price Section */
+.chiba-banner-price-section {
+  margin-bottom: 2rem;
+}
+
+.chiba-banner-price-main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.chiba-banner-currency {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #00867b;
+}
+
+.chiba-banner-amount {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #00867b;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.chiba-banner-tax {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #00867b;
+}
+
+.chiba-banner-tax small {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* Features */
+.chiba-banner-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chiba-banner-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.chiba-banner-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #00867b;
+  flex-shrink: 0;
+}
+
+/* CTA Section */
+.chiba-banner-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.chiba-banner-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #00867b 0%, #10b981 100%);
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 134, 123, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.chiba-banner-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.chiba-banner-button:hover::before {
+  left: 100%;
+}
+
+.chiba-banner-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 134, 123, 0.4);
+}
+
+.chiba-banner-button:active {
+  transform: translateY(0);
+}
+
+.chiba-banner-arrow {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.chiba-banner-button:hover .chiba-banner-arrow {
+  transform: translateX(4px);
+}
+
+.chiba-banner-note {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Visual Decoration */
+.chiba-banner-visual {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.chiba-banner-decoration {
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 134, 123, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-50%) translateX(-20px);
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .chiba-subscription-banner {
+    margin: 4rem 0;
+  }
+
+  .chiba-banner-container {
+    padding: 3rem;
+  }
+
+  .chiba-banner-title {
+    font-size: 2.25rem;
+  }
+
+  .chiba-banner-amount {
+    font-size: 4.5rem;
+  }
+
+  .chiba-banner-features {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .chiba-banner-cta {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .chiba-banner-container {
+    grid-template-columns: 2fr 1fr;
+    padding: 3.5rem 4rem;
+  }
+
+  .chiba-banner-title {
+    font-size: 2.5rem;
+  }
+
+  .chiba-banner-amount {
+    font-size: 5rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .chiba-subscription-banner {
+    page-break-inside: avoid;
+  }
+
+  .chiba-banner-button::before,
+  .chiba-banner-decoration {
+    display: none;
+  }
+}

@@ -38,6 +38,11 @@ get_header(); ?>
         </div>
     </header>
 
+    <!-- Chiba Subscription Banner -->
+    <div class="container">
+        <?php get_template_part( 'template-parts/chiba-subscription-banner' ); ?>
+    </div>
+
     <!-- Services Grid Section -->
     <section class="services-showcase">
         <div class="container">

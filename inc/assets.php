@@ -116,6 +116,14 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version
     );
 
+    // Chiba Subscription Banner
+    wp_enqueue_style(
+        'corporate-seo-pro-chiba-banner',
+        get_template_directory_uri() . '/assets/css/components/chiba-subscription-banner.css',
+        array( 'corporate-seo-pro-base' ),
+        $version
+    );
+
     // Service component (used on front page and service pages)
     wp_enqueue_style(
         'corporate-seo-pro-service',

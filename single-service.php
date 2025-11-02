@@ -190,8 +190,27 @@ get_header(); ?>
             </div>
         </section>
 
+        <!-- Chiba Subscription Banner (ホームページ制作サービスのみ表示) -->
+        <?php
+        // ホームページ制作サービスかどうかを判定
+        $post_slug = get_post_field( 'post_name', get_the_ID() );
+        $post_title = get_the_title();
+        $is_homepage_service = (
+            strpos($post_slug, 'homepage') !== false ||
+            strpos($post_slug, 'website') !== false ||
+            strpos($post_title, 'ホームページ') !== false ||
+            strpos($post_title, 'Webサイト') !== false
+        );
+
+        if ( $is_homepage_service ) :
+        ?>
+            <div class="container">
+                <?php get_template_part( 'template-parts/chiba-subscription-banner' ); ?>
+            </div>
+        <?php endif; ?>
+
         <!-- サービスの特徴セクション -->
-        <?php 
+        <?php
         $has_features = false;
         if ( function_exists('get_field') && function_exists('have_rows') ) {
             $has_features = have_rows('service_features');
