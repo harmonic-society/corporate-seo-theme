@@ -221,13 +221,13 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             $version 
         );
         
-        // LINE CTA CSS for single posts
+        // Homepage Subscription CTA CSS for single posts
         if ( is_single() ) {
-            wp_enqueue_style( 
-                'corporate-seo-pro-line-cta', 
-                get_template_directory_uri() . '/assets/css/components/line-cta.css', 
-                array( 'corporate-seo-pro-base' ), 
-                $version 
+            wp_enqueue_style(
+                'corporate-seo-pro-homepage-subscription-cta',
+                get_template_directory_uri() . '/assets/css/components/homepage-subscription-cta.css',
+                array( 'corporate-seo-pro-base' ),
+                $version
             );
         }
     }

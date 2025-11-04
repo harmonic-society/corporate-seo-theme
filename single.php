@@ -152,8 +152,8 @@ get_header(); ?>
                 </div>
             </aside>
 
-            <!-- LINE CTAセクション -->
-            <?php get_template_part( 'template-parts/line-cta' ); ?>
+            <!-- ホームページサブスクリプション CTAセクション -->
+            <?php get_template_part( 'template-parts/homepage-subscription-cta' ); ?>
 
             <!-- シェアボタン -->
             <?php if ( get_theme_mod( 'show_share_buttons', true ) ) : ?>
