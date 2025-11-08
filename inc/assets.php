@@ -305,20 +305,29 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
 function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     // Front page
     if ( is_front_page() ) {
-        wp_enqueue_script( 
-            'corporate-seo-pro-hero-animations', 
-            get_template_directory_uri() . '/assets/js/features/hero-animations.js', 
-            array( 'corporate-seo-pro-animation-utils' ), 
-            $version, 
-            true 
+        wp_enqueue_script(
+            'corporate-seo-pro-hero-animations',
+            get_template_directory_uri() . '/assets/js/features/hero-animations.js',
+            array( 'corporate-seo-pro-animation-utils' ),
+            $version,
+            true
         );
-        
-        wp_enqueue_script( 
-            'corporate-seo-pro-hero-modern', 
-            get_template_directory_uri() . '/assets/js/features/hero-modern.js', 
-            array( 'corporate-seo-pro-animation-utils' ), 
-            $version, 
-            true 
+
+        wp_enqueue_script(
+            'corporate-seo-pro-hero-modern',
+            get_template_directory_uri() . '/assets/js/features/hero-modern.js',
+            array( 'corporate-seo-pro-animation-utils' ),
+            $version,
+            true
+        );
+
+        // Service scroll animations
+        wp_enqueue_script(
+            'corporate-seo-pro-service-scroll-animation',
+            get_template_directory_uri() . '/assets/js/service-scroll-animation.js',
+            array(),
+            $version,
+            true
         );
     }
     

@@ -194,35 +194,69 @@ get_header(); ?>
                 ) );
 
                 if ( $services_query->have_posts() ) : ?>
-                    <div class="services-grid-modern">
+                    <div class="services-grid-alternating">
                         <?php
                         $service_count = 0;
                         while ( $services_query->have_posts() ) :
                             $services_query->the_post();
                             $service_count++;
+
+                            // Get service features (ACF field or default)
+                            $features = get_field( 'service_features_list' );
+                            if ( ! $features ) {
+                                $features = array(
+                                    '高品質なサービス提供',
+                                    '柔軟なカスタマイズ対応',
+                                    '専任担当者によるサポート'
+                                );
+                            }
                         ?>
-                            <article class="service-card-modern" data-service="<?php echo $service_count; ?>">
-                                <a href="<?php the_permalink(); ?>" class="service-card-link">
-                                    <div class="service-card-icon">
-                                        <?php if ( has_post_thumbnail() ) : ?>
-                                            <?php the_post_thumbnail( 'thumbnail', array( 'loading' => 'lazy' ) ); ?>
-                                        <?php else : ?>
+                            <article class="service-card-alternating" data-service="<?php echo $service_count; ?>" data-scroll-animate>
+                                <div class="service-card-image">
+                                    <?php if ( has_post_thumbnail() ) : ?>
+                                        <?php the_post_thumbnail( 'medium_large', array( 'loading' => 'lazy' ) ); ?>
+                                    <?php else : ?>
+                                        <div class="service-image-placeholder">
                                             <i class="fas fa-layer-group"></i>
-                                        <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="service-card-number-badge"><?php echo str_pad($service_count, 2, '0', STR_PAD_LEFT); ?></div>
+                                </div>
+
+                                <div class="service-card-content-alt">
+                                    <div class="service-card-header">
+                                        <h3 class="service-card-title-alt">
+                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        </h3>
                                     </div>
 
-                                    <div class="service-card-content">
-                                        <div class="service-card-number"><?php echo str_pad($service_count, 2, '0', STR_PAD_LEFT); ?></div>
-                                        <h3 class="service-card-title"><?php the_title(); ?></h3>
-                                        <p class="service-card-excerpt"><?php echo wp_trim_words( get_the_excerpt(), 30, '...' ); ?></p>
-                                    </div>
+                                    <p class="service-card-excerpt-alt"><?php echo wp_trim_words( get_the_excerpt(), 35, '...' ); ?></p>
 
-                                    <div class="service-card-arrow">
-                                        <i class="fas fa-arrow-right"></i>
-                                    </div>
+                                    <?php if ( $features && is_array( $features ) ) : ?>
+                                        <ul class="service-features-list">
+                                            <?php
+                                            $feature_count = 0;
+                                            foreach ( $features as $feature ) :
+                                                if ( $feature_count >= 3 ) break; // Limit to 3 features
+                                                $feature_text = is_array( $feature ) ? $feature['feature'] : $feature;
+                                                if ( $feature_text ) :
+                                            ?>
+                                                <li><?php echo esc_html( $feature_text ); ?></li>
+                                            <?php
+                                                $feature_count++;
+                                                endif;
+                                            endforeach;
+                                            ?>
+                                        </ul>
+                                    <?php endif; ?>
 
-                                    <div class="service-card-hover"></div>
-                                </a>
+                                    <div class="service-card-footer-alt">
+                                        <a href="<?php the_permalink(); ?>" class="service-link-button">
+                                            詳しく見る
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </article>
                         <?php endwhile; ?>
                     </div>
