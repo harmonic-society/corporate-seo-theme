@@ -186,14 +186,14 @@ get_header(); ?>
                 </div>
 
                 <?php
-                // Define custom service order by title (exact match)
-                $service_order_titles = array(
-                    'ホームページ制作',
-                    'AI活用サポート',
-                    'Webアプリ共同開発',
-                    '取材記事の制作',
-                    'LP制作',
-                    'クラウドファンディング支援'
+                // Define custom service order by slug (correct slugs from WordPress)
+                $service_order = array(
+                    'hp-production',           // ホームページ制作
+                    'ai-support',              // AI活用サポート
+                    'web-app-co-developing',   // Webアプリ共同開発
+                    'interview-service',       // 取材記事の制作
+                    'web-design',              // LP制作
+                    'interview'                // クラウドファンディング支援
                 );
 
                 // Get all services
@@ -204,15 +204,15 @@ get_header(); ?>
                     'order'          => 'ASC',
                 ) );
 
-                // Reorder posts based on custom title order
+                // Reorder posts based on custom slug order
                 $ordered_posts = array();
                 if ( $services_query->have_posts() ) {
                     $all_posts = $services_query->posts;
 
-                    // Order posts based on custom title array
-                    foreach ( $service_order_titles as $title ) {
+                    // Order posts based on custom slug array
+                    foreach ( $service_order as $slug ) {
                         foreach ( $all_posts as $post ) {
-                            if ( $post->post_title === $title ) {
+                            if ( $post->post_name === $slug ) {
                                 $ordered_posts[] = $post;
                                 break;
                             }
@@ -221,7 +221,7 @@ get_header(); ?>
 
                     // Add any remaining posts not in the custom order
                     foreach ( $all_posts as $post ) {
-                        if ( ! in_array( $post->post_title, $service_order_titles ) ) {
+                        if ( ! in_array( $post->post_name, $service_order ) ) {
                             $ordered_posts[] = $post;
                         }
                     }
