@@ -259,7 +259,7 @@ get_header(); ?>
                         }
                     }
 
-                    $services_query->posts = array_slice( $ordered_posts, 0, 6 );
+                    $services_query->posts = array_slice( $ordered_posts, 0, 3 );
                     $services_query->post_count = count( $services_query->posts );
                 }
 
