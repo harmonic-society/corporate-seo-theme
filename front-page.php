@@ -201,13 +201,25 @@ get_header(); ?>
                             $services_query->the_post();
                             $service_count++;
 
-                            // Get service features (ACF field or default)
-                            $features = get_field( 'service_features_list' );
-                            if ( ! $features ) {
+                            // Get service features from ACF Repeater field (same as single-service.php)
+                            $features = array();
+                            if ( function_exists('have_rows') && have_rows('service_features') ) {
+                                while ( have_rows('service_features') ) {
+                                    the_row();
+                                    $features[] = array(
+                                        'icon' => get_sub_field('icon'),
+                                        'title' => get_sub_field('title'),
+                                        'description' => get_sub_field('description')
+                                    );
+                                }
+                            }
+
+                            // Fallback default features if not set
+                            if ( empty($features) ) {
                                 $features = array(
-                                    '高品質なサービス提供',
-                                    '柔軟なカスタマイズ対応',
-                                    '専任担当者によるサポート'
+                                    array('title' => '高品質なサービス提供'),
+                                    array('title' => '柔軟なカスタマイズ対応'),
+                                    array('title' => '専任担当者によるサポート')
                                 );
                             }
                         ?>
@@ -232,16 +244,16 @@ get_header(); ?>
 
                                     <p class="service-card-excerpt-alt"><?php echo wp_trim_words( get_the_excerpt(), 35, '...' ); ?></p>
 
-                                    <?php if ( $features && is_array( $features ) ) : ?>
+                                    <?php if ( ! empty( $features ) ) : ?>
                                         <ul class="service-features-list">
                                             <?php
                                             $feature_count = 0;
                                             foreach ( $features as $feature ) :
                                                 if ( $feature_count >= 3 ) break; // Limit to 3 features
-                                                $feature_text = is_array( $feature ) ? $feature['feature'] : $feature;
-                                                if ( $feature_text ) :
+                                                $feature_title = isset( $feature['title'] ) ? $feature['title'] : '';
+                                                if ( $feature_title ) :
                                             ?>
-                                                <li><?php echo esc_html( $feature_text ); ?></li>
+                                                <li><?php echo esc_html( $feature_title ); ?></li>
                                             <?php
                                                 $feature_count++;
                                                 endif;
