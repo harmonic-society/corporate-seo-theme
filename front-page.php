@@ -214,7 +214,7 @@ get_header(); ?>
                                     <div class="service-card-content">
                                         <div class="service-card-number"><?php echo str_pad($service_count, 2, '0', STR_PAD_LEFT); ?></div>
                                         <h3 class="service-card-title"><?php the_title(); ?></h3>
-                                        <p class="service-card-excerpt"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
+                                        <p class="service-card-excerpt"><?php echo wp_trim_words( get_the_excerpt(), 30, '...' ); ?></p>
                                     </div>
 
                                     <div class="service-card-arrow">

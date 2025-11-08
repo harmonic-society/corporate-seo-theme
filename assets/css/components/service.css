@@ -146,10 +146,14 @@
 }
 
 .service-card-excerpt {
-    font-size: 0.9375rem;
-    line-height: 1.7;
+    font-size: 0.875rem;
+    line-height: 1.6;
     color: #6b7280;
     margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: visible;
 }
 
 /* Service Card Arrow */
