@@ -31,7 +31,7 @@
         <div class="hero-content-inner">
             <!-- テキストセクション -->
             <div class="hero-text-section">
-                <div class="hero-subtitle">AI活用 × 集客設計 × Web制作</div>
+                <div class="hero-subtitle">あなたの強み、私たちが伝えます。</div>
                 
                 <h1 class="hero-title-modern">
                     つくるだけで終わらせない。<br>
@@ -39,8 +39,8 @@
                 </h1>
                 
                 <p class="hero-description">
-                    LP制作、LINE運用、広告設計までワンストップ。<br>
-                    AI活用で、最短距離の集客を実現します。
+                    小さなお店の、大きな力になる。<br>
+                    あなたの"やりたい"を一緒に形に。
                 </p>
                 
                 <div class="hero-cta-group">
