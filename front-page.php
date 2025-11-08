@@ -182,7 +182,7 @@ get_header(); ?>
                 <div class="section-header centered">
                     <span class="section-label"><?php esc_html_e( 'Our Services', 'corporate-seo-pro' ); ?></span>
                     <h2 class="section-title"><?php echo esc_html( get_theme_mod( 'services_title', __( 'サービス', 'corporate-seo-pro' ) ) ); ?></h2>
-                    <p class="section-description"><?php echo esc_html( get_theme_mod( 'services_description', __( '私たちは幅広いサービスを提供しています', 'corporate-seo-pro' ) ) ); ?></p>
+                    <p class="section-description"><?php echo esc_html( get_theme_mod( 'services_description', __( '一社一社に合わせた、カスタム型の支援を行っています。', 'corporate-seo-pro' ) ) ); ?></p>
                 </div>
 
                 <?php
