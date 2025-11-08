@@ -186,12 +186,48 @@ get_header(); ?>
                 </div>
 
                 <?php
+                // Define custom service order by slug
+                $service_order = array(
+                    'homepage-creation',           // ホームページ制作
+                    'ai-support',                  // AI活用サポート
+                    'web-app-development',         // Webアプリ共同開発
+                    'interview-article-creation',  // 取材記事の制作
+                    'lp-creation',                 // LP制作
+                    'crowdfunding-support'         // クラウドファンディング支援
+                );
+
+                // Get all services
                 $services_query = new WP_Query( array(
                     'post_type'      => 'service',
-                    'posts_per_page' => 6,
-                    'orderby'        => 'menu_order',
+                    'posts_per_page' => -1,
+                    'orderby'        => 'title',
                     'order'          => 'ASC',
                 ) );
+
+                // Reorder posts based on custom order
+                $ordered_posts = array();
+                if ( $services_query->have_posts() ) {
+                    $all_posts = $services_query->posts;
+
+                    foreach ( $service_order as $slug ) {
+                        foreach ( $all_posts as $post ) {
+                            if ( $post->post_name === $slug ) {
+                                $ordered_posts[] = $post;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Add any remaining posts not in the custom order
+                    foreach ( $all_posts as $post ) {
+                        if ( ! in_array( $post->post_name, $service_order ) ) {
+                            $ordered_posts[] = $post;
+                        }
+                    }
+
+                    $services_query->posts = array_slice( $ordered_posts, 0, 6 );
+                    $services_query->post_count = count( $services_query->posts );
+                }
 
                 if ( $services_query->have_posts() ) : ?>
                     <div class="services-grid-alternating">
