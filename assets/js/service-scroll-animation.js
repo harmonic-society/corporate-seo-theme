@@ -8,15 +8,24 @@
 (function() {
     'use strict';
 
+    // Add .js class to body for progressive enhancement
+    document.documentElement.classList.add('js');
+
     /**
      * Initialize scroll animations for service cards
      */
     function initServiceScrollAnimation() {
+        const serviceCards = document.querySelectorAll('[data-scroll-animate]');
+
+        // If no cards found, exit
+        if (serviceCards.length === 0) {
+            return;
+        }
+
         // Check if IntersectionObserver is supported
         if (!('IntersectionObserver' in window)) {
             // Fallback: show all cards immediately
-            const cards = document.querySelectorAll('[data-scroll-animate]');
-            cards.forEach(card => card.classList.add('animate-in'));
+            serviceCards.forEach(card => card.classList.add('animate-in'));
             return;
         }
 
@@ -28,12 +37,16 @@
         };
 
         // Callback function for intersection
-        const observerCallback = (entries, observer) => {
-            entries.forEach((entry, index) => {
+        const observerCallback = (entries) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Add animation class with delay based on index
+                    // Add animation class
                     const card = entry.target;
-                    const delay = index * 150; // 150ms delay between each card
+
+                    // Get the card's index in the parent
+                    const allCards = Array.from(document.querySelectorAll('[data-scroll-animate]'));
+                    const cardIndex = allCards.indexOf(card);
+                    const delay = cardIndex * 150; // 150ms delay between each card
 
                     setTimeout(() => {
                         card.classList.add('animate-in');
@@ -49,7 +62,6 @@
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
         // Observe all service cards
-        const serviceCards = document.querySelectorAll('[data-scroll-animate]');
         serviceCards.forEach(card => {
             observer.observe(card);
         });

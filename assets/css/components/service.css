@@ -306,9 +306,13 @@
     gap: 3rem;
     background: #ffffff;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
     border: 2px solid #f3f4f6;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* JavaScriptが有効な場合のみアニメーション準備 */
+.js .service-card-alternating[data-scroll-animate]:not(.animate-in) {
     opacity: 0;
     transform: translateY(30px);
 }
