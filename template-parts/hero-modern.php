@@ -31,16 +31,15 @@
         <div class="hero-content-inner">
             <!-- テキストセクション -->
             <div class="hero-text-section">
-                <div class="hero-subtitle">顧客管理・タスク管理・案件管理など、<br>御社の業務に必要な機能だけをシンプルに構築します。</div>
+                <div class="hero-subtitle">顧客管理・タスク管理・案件管理など、御社の業務に必要な機能だけをシンプルに構築します。</div>
 
                 <h1 class="hero-title-modern">
-                    小さな会社に"ちょうどいい"業務システムを、<br>
+                    小さな会社に"ちょうどいい"<br class="sp-only">業務システムを、<br>
                     <span class="hero-title-gradient">短期間・低コストで。</span>
                 </h1>
 
                 <p class="hero-description">
-                    Excelや紙で散らかる情報を一つにまとめ、<br>
-                    誰でも使える軽いWebシステムをオーダーメイドで作ります。
+                    Excelや紙で散らかる情報を一つにまとめ、誰でも使える軽いWebシステムをオーダーメイドで作ります。
                 </p>
                 
                 <div class="hero-cta-group">
