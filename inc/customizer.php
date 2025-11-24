@@ -578,10 +578,22 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
     ) );
     
     $wp_customize->add_setting( 'about_content', array(
-        'default'           => '',
+        'default'           => __( 'Harmonic Society株式会社は、「社会の調和」という理念を掲げ、人と技術が無理なく共存できる未来を目指しています。
+
+テクノロジーが急速に発展する一方で、「変化についていけない」「デジタルが苦手」という声を地域の中小企業の方々から多く聞きます。
+
+私は、誰かを置き去りにするデジタル化ではなく、"その会社の働き方に合った、やさしいデジタル化" を広げたいと考えています。
+
+AIやWebシステムは、正しく使えば忙しい現場を助け、人と人が向き合う時間を増やし、地域で挑戦する企業の力になります。
+
+だからこそ私たちは、高度な専門用語や大掛かりなDXではなく、「必要なところを、必要な分だけ」改善する小さな一歩 を大切にしています。
+
+その積み重ねが、やがて会社全体を変え、地域を変え、社会の調和につながっていく。
+
+そう信じて、Harmonic Societyはこれからも中小企業の皆さまとともに歩み続けます。', 'corporate-seo-pro' ),
         'sanitize_callback' => 'wp_kses_post',
     ) );
-    
+
     $wp_customize->add_control( 'about_content', array(
         'label'   => __( 'アバウトコンテンツ', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_front_sections',
