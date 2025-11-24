@@ -664,6 +664,60 @@ section {
     background: #ffffff;
 }
 
+/* ナラティブ形式 */
+.history-narrative {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.narrative-content {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    padding: 4rem 3rem;
+    border-radius: 16px;
+    border: 2px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+}
+
+.narrative-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #00867b, #10b981);
+}
+
+.narrative-paragraph {
+    font-size: 1.125rem;
+    line-height: 2;
+    color: #374151;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 0.5rem;
+}
+
+.narrative-paragraph:last-child {
+    margin-bottom: 0;
+}
+
+.narrative-paragraph br {
+    display: block;
+    content: "";
+    margin-top: 0.5rem;
+}
+
+.narrative-emphasis {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #00867b;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 2px solid #e5e7eb;
+}
+
+/* タイムライン形式（旧） */
 .timeline {
     max-width: 900px;
     margin: 0 auto;
@@ -1078,6 +1132,20 @@ section {
     /* Value Cards */
     .value-card {
         padding: 2rem 1.5rem;
+    }
+
+    /* Narrative */
+    .narrative-content {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .narrative-paragraph {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .narrative-emphasis {
+        font-size: 1.125rem;
     }
 
     /* Timeline */

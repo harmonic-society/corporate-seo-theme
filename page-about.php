@@ -316,69 +316,27 @@ get_header(); ?>
     <section class="history-section">
         <div class="container">
             <div class="section-header centered">
-                <span class="section-label">History</span>
-                <h2 class="section-title">企業沿革</h2>
-                <p class="section-description">
-                    小さな一歩から始まった私たちの歩み
-                </p>
+                <span class="section-label">Our Journey</span>
+                <h2 class="section-title">私たちの歩み</h2>
             </div>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker">
-                        <div class="marker-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023.03</div>
-                        <h3 class="timeline-title">会社設立</h3>
-                        <p class="timeline-description">
-                            Harmonic Society株式会社を設立。<br>
-                            「社会の調和」という理念を掲げ、<br>
-                            テクノロジーで社会をより良くする挑戦を開始
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">
-                        <div class="marker-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023.06</div>
-                        <h3 class="timeline-title">事業開始</h3>
-                        <p class="timeline-description">
-                            SEO支援・Web制作サービスを開始。<br>
-                            中小企業のデジタルマーケティング支援に注力
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">
-                        <div class="marker-dot"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2024.01</div>
-                        <h3 class="timeline-title">AI支援サービス開始</h3>
-                        <p class="timeline-description">
-                            AIツール活用支援・導入コンサルティングを開始。<br>
-                            中小企業のAI活用を積極的にサポート
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">
-                        <div class="marker-dot active"></div>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2025.現在</div>
-                        <h3 class="timeline-title">更なる成長へ</h3>
-                        <p class="timeline-description">
-                            「社会の調和」という理念のもと、<br>
-                            新しい価値創造に挑戦し続けています
-                        </p>
-                    </div>
+            <div class="history-narrative">
+                <div class="narrative-content">
+                    <p class="narrative-paragraph">
+                        Harmonic Societyは、<br>
+                        「テクノロジーが人を置き去りにしない社会をつくりたい」という想いから生まれました。
+                    </p>
+                    <p class="narrative-paragraph">
+                        創業当初は小さなWeb制作から始まり、<br>
+                        やがてAI、DX支援、業務システム開発へと事業を拡大。
+                    </p>
+                    <p class="narrative-paragraph">
+                        常に変化の速いデジタル時代において、<br>
+                        "会社ごとにちょうどいいデジタル化"を支える存在でありたいと考えています。
+                    </p>
+                    <p class="narrative-paragraph narrative-emphasis">
+                        これからも、人と技術、地域と未来の架け橋となる企業を目指します。
+                    </p>
                 </div>
             </div>
         </div>
