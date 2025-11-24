@@ -548,62 +548,31 @@ get_header(); ?>
     <?php endif; ?>
 
     <?php if ( get_theme_mod( 'show_cta_section', true ) ) : ?>
-        <section class="cta-section">
+        <section class="cta-section cta-homepage">
             <div class="cta-background">
                 <div class="cta-gradient"></div>
                 <div class="cta-pattern"></div>
                 <div class="cta-glow"></div>
             </div>
-            
+
             <div class="container">
                 <div class="cta-content">
-                    <div class="cta-badge">
-                        <span><?php esc_html_e( 'Contact Us', 'corporate-seo-pro' ); ?></span>
-                    </div>
-                    
                     <h2 class="cta-title">
-                        <?php echo esc_html( get_theme_mod( 'cta_title', __( 'お問い合わせはこちら', 'corporate-seo-pro' ) ) ); ?>
+                        <?php echo esc_html( get_theme_mod( 'cta_title', __( '業務の"散らかり"を、1つのシステムで解決しませんか？', 'corporate-seo-pro' ) ) ); ?>
                     </h2>
-                    
-                    <p class="cta-description">
-                        <?php echo esc_html( get_theme_mod( 'cta_description', __( 'お気軽にお問い合わせください', 'corporate-seo-pro' ) ) ); ?>
-                    </p>
-                    
-                    <div class="cta-features">
-                        <div class="cta-feature">
-                            <i class="fas fa-clock"></i>
-                            <span><?php esc_html_e( '24時間受付', 'corporate-seo-pro' ); ?></span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-comments"></i>
-                            <span><?php esc_html_e( '無料相談', 'corporate-seo-pro' ); ?></span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-shield-alt"></i>
-                            <span><?php esc_html_e( '秘密厳守', 'corporate-seo-pro' ); ?></span>
-                        </div>
-                    </div>
-                    
+
                     <div class="cta-button-wrapper">
                         <a href="<?php echo esc_url( get_theme_mod( 'cta_button_url', get_contact_page_url() ) ); ?>" class="cta-button">
-                            <span class="cta-button-text"><?php echo esc_html( get_theme_mod( 'cta_button_text', 'CONTACT US' ) ); ?></span>
+                            <span class="cta-button-text"><?php echo esc_html( get_theme_mod( 'cta_button_text', __( '無料で相談してみる', 'corporate-seo-pro' ) ) ); ?></span>
                             <span class="cta-button-icon">
                                 <i class="fas fa-arrow-right"></i>
                             </span>
                         </a>
                         <div class="cta-button-shadow"></div>
                     </div>
-                    
-                    <div class="cta-phone">
-                        <span><?php esc_html_e( 'お電話でのお問い合わせ', 'corporate-seo-pro' ); ?></span>
-                        <a href="tel:<?php echo esc_attr( get_theme_mod( 'cta_phone', '080-6946-4006' ) ); ?>" class="cta-phone-number">
-                            <i class="fas fa-phone"></i>
-                            <?php echo esc_html( get_theme_mod( 'cta_phone', '080-6946-4006' ) ); ?>
-                        </a>
-                    </div>
                 </div>
             </div>
-            
+
             <div class="cta-particles">
                 <div class="cta-particle"></div>
                 <div class="cta-particle"></div>

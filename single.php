@@ -276,6 +276,43 @@ get_header(); ?>
                 </div>
             <?php endif; ?>
 
+            <!-- ブログ記事用CTAセクション -->
+            <?php if ( get_theme_mod( 'show_blog_cta_section', true ) ) : ?>
+                <section class="cta-section cta-blog">
+                    <div class="cta-background">
+                        <div class="cta-gradient"></div>
+                        <div class="cta-pattern"></div>
+                        <div class="cta-glow"></div>
+                    </div>
+
+                    <div class="container">
+                        <div class="cta-content">
+                            <h2 class="cta-title">
+                                <?php echo esc_html( get_theme_mod( 'blog_cta_title', __( 'ちょっとした業務の悩みも、気軽にご相談ください。', 'corporate-seo-pro' ) ) ); ?>
+                            </h2>
+
+                            <div class="cta-button-wrapper">
+                                <a href="<?php echo esc_url( get_theme_mod( 'blog_cta_button_url', get_contact_page_url() ) ); ?>" class="cta-button">
+                                    <span class="cta-button-text"><?php echo esc_html( get_theme_mod( 'blog_cta_button_text', __( 'まずは話だけ聞いてもらう', 'corporate-seo-pro' ) ) ); ?></span>
+                                    <span class="cta-button-icon">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </a>
+                                <div class="cta-button-shadow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cta-particles">
+                        <div class="cta-particle"></div>
+                        <div class="cta-particle"></div>
+                        <div class="cta-particle"></div>
+                        <div class="cta-particle"></div>
+                        <div class="cta-particle"></div>
+                    </div>
+                </section>
+            <?php endif; ?>
+
             <!-- コメント -->
             <?php if ( comments_open() || get_comments_number() ) : ?>
                 <div class="comments-section">

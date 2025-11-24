@@ -766,59 +766,81 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
     ) );
     
     $wp_customize->add_setting( 'cta_title', array(
-        'default'           => __( 'お問い合わせはこちら', 'corporate-seo-pro' ),
+        'default'           => __( '業務の"散らかり"を、1つのシステムで解決しませんか？', 'corporate-seo-pro' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
-    
+
     $wp_customize->add_control( 'cta_title', array(
-        'label'   => __( 'CTAタイトル', 'corporate-seo-pro' ),
+        'label'   => __( 'TOPページCTAタイトル', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_front_sections',
         'type'    => 'text',
     ) );
-    
-    $wp_customize->add_setting( 'cta_description', array(
-        'default'           => __( 'お気軽にお問い合わせください', 'corporate-seo-pro' ),
-        'sanitize_callback' => 'sanitize_text_field',
-    ) );
-    
-    $wp_customize->add_control( 'cta_description', array(
-        'label'   => __( 'CTA説明文', 'corporate-seo-pro' ),
-        'section' => 'corporate_seo_front_sections',
-        'type'    => 'text',
-    ) );
-    
+
     $wp_customize->add_setting( 'cta_button_text', array(
-        'default'           => __( '今すぐお問い合わせ', 'corporate-seo-pro' ),
+        'default'           => __( '無料で相談してみる', 'corporate-seo-pro' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
-    
+
     $wp_customize->add_control( 'cta_button_text', array(
-        'label'   => __( 'CTAボタンテキスト', 'corporate-seo-pro' ),
+        'label'   => __( 'TOPページCTAボタンテキスト', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_front_sections',
         'type'    => 'text',
     ) );
-    
+
     $wp_customize->add_setting( 'cta_button_url', array(
         'default'           => '#contact',
         'sanitize_callback' => 'esc_url_raw',
     ) );
-    
+
     $wp_customize->add_control( 'cta_button_url', array(
-        'label'   => __( 'CTAボタンURL', 'corporate-seo-pro' ),
+        'label'   => __( 'TOPページCTAボタンURL', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_front_sections',
         'type'    => 'url',
     ) );
-    
-    $wp_customize->add_setting( 'cta_phone', array(
-        'default'           => '',
+
+    // ブログ記事用CTA設定
+    $wp_customize->add_setting( 'show_blog_cta_section', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+
+    $wp_customize->add_control( 'show_blog_cta_section', array(
+        'label'   => __( 'ブログ記事CTAセクションを表示', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_front_sections',
+        'type'    => 'checkbox',
+    ) );
+
+    $wp_customize->add_setting( 'blog_cta_title', array(
+        'default'           => __( 'ちょっとした業務の悩みも、気軽にご相談ください。', 'corporate-seo-pro' ),
         'sanitize_callback' => 'sanitize_text_field',
     ) );
-    
-    $wp_customize->add_control( 'cta_phone', array(
-        'label'   => __( 'CTA電話番号', 'corporate-seo-pro' ),
+
+    $wp_customize->add_control( 'blog_cta_title', array(
+        'label'   => __( 'ブログ記事CTAタイトル', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_front_sections',
-        'type'    => 'tel',
-        'description' => __( '例: 03-1234-5678', 'corporate-seo-pro' ),
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'blog_cta_button_text', array(
+        'default'           => __( 'まずは話だけ聞いてもらう', 'corporate-seo-pro' ),
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'blog_cta_button_text', array(
+        'label'   => __( 'ブログ記事CTAボタンテキスト', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_front_sections',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'blog_cta_button_url', array(
+        'default'           => '#contact',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+
+    $wp_customize->add_control( 'blog_cta_button_url', array(
+        'label'   => __( 'ブログ記事CTAボタンURL', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_front_sections',
+        'type'    => 'url',
     ) );
     
     /**
