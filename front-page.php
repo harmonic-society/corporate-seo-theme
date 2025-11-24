@@ -173,9 +173,6 @@ get_header(); ?>
     */ ?>
     <?php endif; ?>
 
-    <!-- Chiba Subscription Banner -->
-    <?php get_template_part( 'template-parts/chiba-subscription-banner' ); ?>
-
     <?php if ( get_theme_mod( 'show_about_section', true ) ) : ?>
         <section class="about-section brand-statement">
             <div class="container">
