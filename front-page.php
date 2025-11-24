@@ -219,31 +219,38 @@ get_header(); ?>
                 </div>
 
                 <?php
-                // Define custom service order by slug (correct slugs from WordPress)
-                $service_order = array(
-                    'hp-production',           // ホームページ制作
-                    'ai-support',              // AI活用サポート
-                    'web-app-co-developing',   // Webアプリ共同開発
-                    'interview-service',       // 取材記事の制作
-                    'web-design',              // LP制作
-                    'interview'                // クラウドファンディング支援
-                );
+                // Get featured services from Customizer settings
+                $featured_services = array();
+                for ( $i = 1; $i <= 3; $i++ ) {
+                    $service_slug = get_theme_mod( 'featured_service_' . $i );
+                    if ( ! empty( $service_slug ) ) {
+                        $featured_services[] = $service_slug;
+                    }
+                }
 
-                // Get all services
+                // If no services are selected in Customizer, use default order
+                if ( empty( $featured_services ) ) {
+                    $featured_services = array(
+                        'hp-production',           // ホームページ制作
+                        'ai-support',              // AI活用サポート
+                        'web-app-co-developing',   // Webアプリ共同開発
+                    );
+                }
+
+                // Build query arguments to fetch services in the specified order
                 $services_query = new WP_Query( array(
                     'post_type'      => 'service',
-                    'posts_per_page' => -1,
-                    'orderby'        => 'title',
-                    'order'          => 'ASC',
+                    'post_name__in'  => $featured_services,
+                    'posts_per_page' => 3,
+                    'orderby'        => 'post_name__in',
                 ) );
 
-                // Reorder posts based on custom slug order
+                // Reorder posts to match the custom order
                 $ordered_posts = array();
                 if ( $services_query->have_posts() ) {
                     $all_posts = $services_query->posts;
 
-                    // Order posts based on custom slug array
-                    foreach ( $service_order as $slug ) {
+                    foreach ( $featured_services as $slug ) {
                         foreach ( $all_posts as $post ) {
                             if ( $post->post_name === $slug ) {
                                 $ordered_posts[] = $post;
@@ -252,15 +259,8 @@ get_header(); ?>
                         }
                     }
 
-                    // Add any remaining posts not in the custom order
-                    foreach ( $all_posts as $post ) {
-                        if ( ! in_array( $post->post_name, $service_order ) ) {
-                            $ordered_posts[] = $post;
-                        }
-                    }
-
-                    $services_query->posts = array_slice( $ordered_posts, 0, 3 );
-                    $services_query->post_count = count( $services_query->posts );
+                    $services_query->posts = $ordered_posts;
+                    $services_query->post_count = count( $ordered_posts );
                 }
 
                 if ( $services_query->have_posts() ) : ?>

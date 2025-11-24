@@ -513,7 +513,47 @@ function corporate_seo_pro_customize_register( $wp_customize ) {
         'section' => 'corporate_seo_front_sections',
         'type'    => 'text',
     ) );
-    
+
+    $wp_customize->add_setting( 'services_description', array(
+        'default'           => __( '一社一社に合わせた、カスタム型の支援を行っています。', 'corporate-seo-pro' ),
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'services_description', array(
+        'label'   => __( 'サービスセクション説明文', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_front_sections',
+        'type'    => 'text',
+    ) );
+
+    // サービス選択設定（3つ）
+    for ( $i = 1; $i <= 3; $i++ ) {
+        $wp_customize->add_setting( 'featured_service_' . $i, array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+
+        // サービス投稿のリストを取得
+        $services = get_posts( array(
+            'post_type'      => 'service',
+            'posts_per_page' => -1,
+            'orderby'        => 'title',
+            'order'          => 'ASC',
+        ) );
+
+        $service_choices = array( '' => __( '選択してください', 'corporate-seo-pro' ) );
+        foreach ( $services as $service ) {
+            $service_choices[ $service->post_name ] = $service->post_title;
+        }
+
+        $wp_customize->add_control( 'featured_service_' . $i, array(
+            'label'       => sprintf( __( 'TOPページ表示サービス %d', 'corporate-seo-pro' ), $i ),
+            'section'     => 'corporate_seo_front_sections',
+            'type'        => 'select',
+            'choices'     => $service_choices,
+            'description' => $i === 1 ? __( 'TOPページに表示する3つのサービスを順番に選択してください', 'corporate-seo-pro' ) : '',
+        ) );
+    }
+
     // アバウトセクション
     $wp_customize->add_setting( 'show_about_section', array(
         'default'           => true,
