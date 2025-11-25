@@ -190,6 +190,14 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             array( 'corporate-seo-pro-single-service' ),
             $version
         );
+
+        // Single service mobile optimization
+        wp_enqueue_style(
+            'corporate-seo-pro-single-service-mobile',
+            get_template_directory_uri() . '/assets/css/pages/single-service-mobile.css',
+            array( 'corporate-seo-pro-single-service-modern' ),
+            $version
+        );
     }
     
     // All page templates

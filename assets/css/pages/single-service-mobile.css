@@ -1,0 +1,1073 @@
+/**
+ * Single Service Page Mobile Optimization
+ *
+ * サービス詳細ページのモバイルUI/UX最適化
+ * 可読性重視・堅実でプロフェッショナルなデザイン
+ */
+
+/* ==========================================================================
+   Base Mobile Optimization
+   ========================================================================== */
+@media (max-width: 768px) {
+    .single-service {
+        overflow-x: hidden;
+    }
+
+    .single-service .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* パンくずリスト */
+    .breadcrumb-wrapper {
+        padding: 12px 0;
+    }
+
+    .breadcrumb-wrapper .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+/* ==========================================================================
+   Hero Section Mobile - シンプル＆クリーン
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-hero-dynamic {
+        min-height: auto;
+        padding: 100px 0 80px;
+    }
+
+    /* 背景アニメーションを停止 */
+    .gradient-layer,
+    .hero-shapes .shape,
+    .hero-particles .particle {
+        animation: none;
+    }
+
+    .gradient-layer {
+        opacity: 0.15;
+    }
+
+    /* 装飾要素を非表示 */
+    .hero-shapes,
+    .hero-particles {
+        display: none;
+    }
+
+    .hero-content-modern {
+        padding: 40px 20px 60px;
+        max-width: 100%;
+    }
+
+    /* バッジ */
+    .service-badge-tag {
+        padding: 8px 18px;
+        font-size: 0.8rem;
+        margin-bottom: 24px;
+        animation: none;
+    }
+
+    /* タイトル */
+    .service-title-dynamic {
+        margin-bottom: 24px;
+        animation: none;
+    }
+
+    .service-title-dynamic .title-decorator {
+        width: 50px;
+        height: 3px;
+        margin-bottom: 16px;
+    }
+
+    .service-title-dynamic .title-main {
+        font-size: 1.75rem;
+        line-height: 1.35;
+        margin-bottom: 16px;
+        /* グラデーションテキストをシンプルな白に */
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: #ffffff;
+        background-clip: unset;
+    }
+
+    .service-title-dynamic .title-sub {
+        font-size: 1rem;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    /* 説明文 */
+    .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        margin-bottom: 32px;
+        animation: none;
+    }
+
+    .hero-description p {
+        margin-bottom: 0;
+    }
+
+    /* アクションボタン */
+    .hero-actions-modern {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 32px;
+        animation: none;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 0.95rem;
+        justify-content: center;
+    }
+
+    .btn-hero-primary {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* クイック特徴 */
+    .hero-quick-features {
+        flex-direction: column;
+        gap: 10px;
+        animation: none;
+    }
+
+    .quick-feature-item {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        justify-content: center;
+    }
+
+    .quick-feature-item i {
+        font-size: 1rem;
+    }
+
+    /* ウェーブディバイダー */
+    .hero-wave-divider svg {
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-hero-dynamic {
+        padding: 80px 0 60px;
+    }
+
+    .hero-content-modern {
+        padding: 32px 16px 48px;
+    }
+
+    .service-title-dynamic .title-main {
+        font-size: 1.5rem;
+    }
+
+    .service-title-dynamic .title-sub {
+        font-size: 0.95rem;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        padding: 14px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   Overview Section Mobile - 概要
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-overview-modern {
+        padding: 60px 0;
+    }
+
+    .overview-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .overview-visual-area {
+        order: -1;
+    }
+
+    /* フレーム装飾を非表示 */
+    .frame-decoration {
+        display: none;
+    }
+
+    .visual-frame {
+        border-radius: 12px;
+    }
+
+    .visual-image-container {
+        border-radius: 12px;
+    }
+
+    /* セクションヘッダー */
+    .section-header-modern {
+        margin-bottom: 28px;
+    }
+
+    .section-badge-small {
+        padding: 5px 14px;
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+    }
+
+    .section-title-modern .title-ja {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .title-decorator-line {
+        width: 60px;
+        height: 3px;
+    }
+
+    /* リードテキスト */
+    .service-lead-text {
+        font-size: 1rem;
+        line-height: 1.75;
+        margin-bottom: 24px;
+    }
+
+    /* 説明文 */
+    .service-description-styled {
+        font-size: 0.95rem;
+        line-height: 1.85;
+        margin-bottom: 32px;
+    }
+
+    .service-description-styled p {
+        margin-bottom: 16px;
+    }
+
+    /* Value Props */
+    .value-props {
+        gap: 12px;
+    }
+
+    .value-prop-item {
+        padding: 16px;
+        gap: 16px;
+        border-left-width: 3px;
+    }
+
+    .value-prop-item:hover {
+        transform: none;
+    }
+
+    .prop-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+    }
+
+    .prop-text h4 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+
+    .prop-text p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-overview-modern {
+        padding: 48px 0;
+    }
+
+    .section-title-modern .title-ja {
+        font-size: 1.35rem;
+    }
+
+    .service-lead-text {
+        font-size: 0.95rem;
+    }
+
+    .value-prop-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 16px;
+        border-left: none;
+        border-top: 3px solid #00867b;
+    }
+}
+
+/* ==========================================================================
+   Features Section Mobile - 特徴
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-features-modern {
+        padding: 60px 0;
+    }
+
+    /* 背景パターンを軽減 */
+    .features-bg-pattern {
+        opacity: 0.02;
+    }
+
+    /* セクションヘッダー */
+    .section-header-centered {
+        margin-bottom: 40px;
+    }
+
+    .section-badge-large {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+        margin-bottom: 16px;
+    }
+
+    .section-badge-large i {
+        font-size: 1rem;
+    }
+
+    .section-title-large .title-ja {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .section-title-large .title-accent {
+        font-size: 0.9rem;
+    }
+
+    /* 特徴カード */
+    .features-showcase {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .feature-card-modern {
+        padding: 24px 20px;
+        border-radius: 12px;
+    }
+
+    .feature-card-modern:hover {
+        transform: none;
+        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.1);
+    }
+
+    /* 番号 */
+    .feature-number {
+        font-size: 2rem;
+        top: 16px;
+        right: 16px;
+    }
+
+    /* アイコン */
+    .feature-icon-modern {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    .icon-circle {
+        border-radius: 12px;
+        font-size: 1.5rem;
+    }
+
+    .feature-card-modern:hover .icon-circle {
+        transform: none;
+    }
+
+    .icon-glow {
+        display: none;
+    }
+
+    /* コンテンツ */
+    .feature-title-modern {
+        font-size: 1.15rem;
+        margin-bottom: 12px;
+    }
+
+    .feature-description-modern {
+        font-size: 0.9rem;
+        line-height: 1.75;
+    }
+
+    /* ホバーエフェクト常時表示 */
+    .feature-hover-effect {
+        transform: scaleX(1);
+        height: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-features-modern {
+        padding: 48px 0;
+    }
+
+    .section-title-large .title-ja {
+        font-size: 1.35rem;
+    }
+
+    .feature-card-modern {
+        padding: 20px 16px;
+    }
+
+    .feature-icon-modern {
+        width: 52px;
+        height: 52px;
+    }
+
+    .icon-circle {
+        font-size: 1.35rem;
+    }
+
+    .feature-title-modern {
+        font-size: 1.1rem;
+    }
+}
+
+/* ==========================================================================
+   Pricing Section Mobile - 料金プラン
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-pricing-modern {
+        padding: 60px 0;
+    }
+
+    .pricing-gradient {
+        display: none;
+    }
+
+    .pricing-cards-wrapper {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 40px;
+    }
+
+    .pricing-card-modern {
+        padding: 32px 24px;
+        border-radius: 16px;
+    }
+
+    .pricing-card-modern:hover {
+        transform: none;
+        box-shadow: 0 8px 24px rgba(0, 134, 123, 0.1);
+    }
+
+    .pricing-card-modern.is-recommended {
+        transform: none;
+        border-width: 2px;
+    }
+
+    .pricing-card-modern.is-recommended:hover {
+        transform: none;
+    }
+
+    /* おすすめバッジ */
+    .recommended-badge-modern {
+        top: -14px;
+        padding: 6px 18px;
+        font-size: 0.8rem;
+    }
+
+    /* プランヘッダー */
+    .plan-header {
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+    }
+
+    .plan-name-modern {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+    }
+
+    .price-currency-modern {
+        font-size: 1.25rem;
+    }
+
+    .price-amount-modern {
+        font-size: 2.5rem;
+    }
+
+    .price-unit-modern {
+        font-size: 1rem;
+    }
+
+    /* プラン機能リスト */
+    .plan-features-modern li {
+        padding: 14px 0;
+        gap: 12px;
+        font-size: 0.95rem;
+    }
+
+    .feature-check {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+    }
+
+    /* CTA */
+    .plan-cta-modern {
+        padding: 16px;
+        font-size: 0.95rem;
+        border-radius: 10px;
+    }
+
+    .plan-decoration {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-pricing-modern {
+        padding: 48px 0;
+    }
+
+    .pricing-card-modern {
+        padding: 28px 20px;
+    }
+
+    .plan-name-modern {
+        font-size: 1.35rem;
+    }
+
+    .price-amount-modern {
+        font-size: 2.25rem;
+    }
+
+    .plan-features-modern li {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   Process Section Mobile - サービスの流れ
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-process-modern {
+        padding: 60px 0;
+    }
+
+    .process-pattern {
+        opacity: 0.015;
+    }
+
+    .process-flow {
+        gap: 24px;
+    }
+
+    .process-step-modern {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .process-step-modern:hover .step-card {
+        transform: none;
+    }
+
+    /* コネクター */
+    .step-connector {
+        left: 50%;
+        transform: translateX(-50%);
+        height: 24px;
+    }
+
+    /* バッジ */
+    .step-badge {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .badge-circle {
+        width: 100%;
+        height: 100%;
+    }
+
+    .process-step-modern:hover .badge-circle {
+        transform: none;
+    }
+
+    .badge-number {
+        font-size: 0.8rem;
+    }
+
+    .badge-glow {
+        display: none;
+    }
+
+    /* カード */
+    .step-card {
+        padding: 24px 20px;
+        border-radius: 12px;
+    }
+
+    .step-title-modern {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+    }
+
+    .step-description-modern {
+        font-size: 0.9rem;
+        line-height: 1.75;
+    }
+
+    .step-arrow {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-process-modern {
+        padding: 48px 0;
+    }
+
+    .step-badge {
+        width: 70px;
+        height: 70px;
+    }
+
+    .badge-number {
+        font-size: 0.75rem;
+    }
+
+    .step-card {
+        padding: 20px 16px;
+    }
+
+    .step-title-modern {
+        font-size: 1.1rem;
+    }
+}
+
+/* ==========================================================================
+   FAQ Section Mobile - よくある質問
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-faq-modern {
+        padding: 60px 0;
+    }
+
+    .faq-accordion {
+        max-width: 100%;
+    }
+
+    .faq-item-modern {
+        margin-bottom: 12px;
+        border-radius: 10px;
+    }
+
+    .faq-item-modern:hover {
+        box-shadow: none;
+    }
+
+    /* 質問部分 */
+    .faq-question-modern {
+        padding: 18px 16px;
+        gap: 12px;
+    }
+
+    .question-left {
+        gap: 12px;
+    }
+
+    .question-badge {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .question-text-modern {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .question-toggle {
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
+
+    /* 回答部分 */
+    .answer-wrapper {
+        padding: 0 16px 20px 16px;
+        gap: 12px;
+    }
+
+    .answer-badge {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .answer-content-modern {
+        font-size: 0.9rem;
+        line-height: 1.75;
+    }
+
+    .answer-content-modern p {
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-faq-modern {
+        padding: 48px 0;
+    }
+
+    .faq-question-modern {
+        padding: 16px 14px;
+    }
+
+    .question-text-modern {
+        font-size: 0.9rem;
+    }
+
+    .answer-wrapper {
+        padding: 0 14px 18px 14px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .answer-badge {
+        align-self: flex-start;
+    }
+
+    .answer-content-modern {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   CTA Section Mobile - お問い合わせ
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-cta {
+        padding: 48px 0;
+    }
+
+    .service-cta h2 {
+        font-size: 1.35rem;
+        line-height: 1.5;
+        margin-bottom: 16px;
+    }
+
+    .service-cta p {
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+        line-height: 1.7;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .cta-buttons a {
+        width: 100%;
+        padding: 16px 24px;
+        justify-content: center;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-cta {
+        padding: 40px 0;
+    }
+
+    .service-cta h2 {
+        font-size: 1.25rem;
+    }
+
+    .cta-buttons a {
+        padding: 14px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   Related Services Mobile - 関連サービス
+   ========================================================================== */
+@media (max-width: 768px) {
+    .service-related-modern {
+        padding: 60px 0;
+    }
+
+    /* 背景エフェクト軽減 */
+    .bg-gradient-effect {
+        animation: none;
+        opacity: 0.5;
+    }
+
+    .bg-pattern-dots {
+        opacity: 0.5;
+    }
+
+    /* ヘッダー */
+    .related-header {
+        margin-bottom: 32px;
+    }
+
+    .section-badge {
+        padding: 6px 16px;
+        font-size: 0.8rem;
+        margin-bottom: 16px;
+    }
+
+    .related-title {
+        margin-bottom: 24px;
+    }
+
+    .related-title .title-main {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .related-title .title-sub {
+        font-size: 0.9rem;
+    }
+
+    /* カテゴリーフィルター */
+    .category-filter {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* カルーセル */
+    .related-services-wrapper {
+        padding: 0;
+    }
+
+    .services-carousel {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* カード */
+    .related-service-card {
+        border-radius: 12px;
+    }
+
+    .related-service-card:hover {
+        transform: none;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    /* おすすめバッジ */
+    .recommended-badge {
+        top: 12px;
+        right: 12px;
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        animation: none;
+    }
+
+    /* カード画像 */
+    .card-image-wrapper {
+        height: 180px;
+    }
+
+    .related-service-card:hover .card-image {
+        transform: none;
+    }
+
+    .card-overlay {
+        display: none;
+    }
+
+    /* カードコンテンツ */
+    .card-content {
+        padding: 20px;
+    }
+
+    .card-categories {
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .category-tag {
+        padding: 3px 10px;
+        font-size: 0.7rem;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .card-excerpt {
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+        min-height: auto;
+        line-height: 1.65;
+    }
+
+    .card-meta {
+        gap: 16px;
+        padding-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .meta-item {
+        font-size: 0.8rem;
+    }
+
+    .learn-more {
+        font-size: 0.85rem;
+    }
+
+    /* ナビゲーション非表示 */
+    .carousel-navigation {
+        display: none;
+    }
+
+    /* プログレス */
+    .carousel-progress {
+        margin-top: 24px;
+    }
+
+    .progress-track {
+        width: 150px;
+    }
+
+    /* フッター */
+    .related-footer {
+        margin-top: 32px;
+    }
+
+    .view-all-services {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 24px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-related-modern {
+        padding: 48px 0;
+    }
+
+    .related-title .title-main {
+        font-size: 1.35rem;
+    }
+
+    .card-image-wrapper {
+        height: 160px;
+    }
+
+    .card-content {
+        padding: 16px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-excerpt {
+        font-size: 0.8rem;
+    }
+}
+
+/* ==========================================================================
+   Touch Device Optimizations
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+    /* ホバー効果を無効化 */
+    .feature-card-modern:hover,
+    .pricing-card-modern:hover,
+    .process-step-modern:hover .step-card,
+    .faq-item-modern:hover,
+    .related-service-card:hover,
+    .value-prop-item:hover {
+        transform: none;
+        box-shadow: inherit;
+    }
+
+    /* アニメーションを無効化 */
+    .feature-card-modern:hover .icon-circle,
+    .process-step-modern:hover .badge-circle,
+    .related-service-card:hover .card-image {
+        transform: none;
+    }
+
+    /* タッチターゲットサイズ確保 */
+    .btn-hero-primary,
+    .btn-hero-secondary,
+    .plan-cta-modern,
+    .cta-buttons a,
+    .faq-question-modern,
+    .view-all-services {
+        min-height: 48px;
+    }
+
+    /* アクティブ状態のフィードバック */
+    .btn-hero-primary:active,
+    .btn-hero-secondary:active,
+    .plan-cta-modern:active,
+    .cta-buttons a:active {
+        opacity: 0.9;
+        transform: scale(0.98);
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .service-hero-dynamic *,
+    .service-overview-modern *,
+    .service-features-modern *,
+    .service-pricing-modern *,
+    .service-process-modern *,
+    .service-faq-modern *,
+    .service-related-modern * {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   Accessibility Improvements
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* フォーカス状態の可視化 */
+    .btn-hero-primary:focus,
+    .btn-hero-secondary:focus,
+    .plan-cta-modern:focus,
+    .cta-buttons a:focus,
+    .faq-question-modern:focus,
+    .view-all-services:focus {
+        outline: 2px solid #ffffff;
+        outline-offset: 3px;
+    }
+
+    .faq-question-modern:focus {
+        outline-color: var(--primary-color);
+    }
+
+    /* 十分なコントラスト */
+    .hero-description,
+    .service-lead-text,
+    .service-description-styled,
+    .feature-description-modern,
+    .step-description-modern,
+    .answer-content-modern {
+        color: #4b5563;
+    }
+
+    .service-hero-dynamic .hero-description {
+        color: rgba(255, 255, 255, 0.95);
+    }
+}
