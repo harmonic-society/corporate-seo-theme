@@ -587,7 +587,23 @@
 
     .service-features-list li {
         font-size: 0.85rem;
-        padding: 6px 0;
+        padding-left: 1.75rem;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        line-height: 1.5;
+    }
+
+    .service-features-list li::before {
+        width: 1.1rem;
+        height: 1.1rem;
+        top: 0.35rem;
+    }
+
+    .service-features-list li::after {
+        width: 1.1rem;
+        height: 1.1rem;
+        top: 0.35rem;
+        font-size: 0.6rem;
     }
 
     .service-link-button {
