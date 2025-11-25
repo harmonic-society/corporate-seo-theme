@@ -1,0 +1,444 @@
+/**
+ * Contact Page Mobile Optimization
+ *
+ * お問い合わせページのモバイル専用スタイル
+ * 可読性重視・プロフェッショナルなデザイン
+ */
+
+/* ==========================================================================
+   Hero CTA Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .contact-hero-cta {
+        padding: 60px 0 50px;
+    }
+
+    /* 背景パターン簡素化 */
+    .contact-hero-cta::before {
+        opacity: 0.5;
+    }
+
+    .hero-cta-content {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .hero-cta-title {
+        font-size: 1.75rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
+
+    .hero-cta-text {
+        font-size: 1rem;
+        line-height: 1.75;
+        margin-bottom: 2rem;
+    }
+
+    .hero-cta-text br {
+        display: none;
+    }
+
+    /* 特徴バッジ */
+    .hero-cta-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-cta-feature {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 0.6rem 1.25rem;
+    }
+
+    .hero-cta-feature i {
+        font-size: 1rem;
+    }
+
+    .hero-cta-feature span {
+        font-size: 0.9rem;
+    }
+
+    /* LINEボタン */
+    .hero-cta-button-wrapper {
+        text-align: center;
+    }
+
+    .hero-cta-button {
+        width: 100%;
+        max-width: 300px;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .hero-cta-button i {
+        font-size: 1.25rem;
+    }
+
+    /* ホバー効果無効化 */
+    .hero-cta-button:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-hero-cta {
+        padding: 48px 16px 40px;
+    }
+
+    .hero-cta-title {
+        font-size: 1.5rem;
+    }
+
+    .hero-cta-text {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-cta-features {
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-cta-feature {
+        max-width: 100%;
+        padding: 0.5rem 1rem;
+    }
+
+    .hero-cta-feature span {
+        font-size: 0.85rem;
+    }
+
+    .hero-cta-button {
+        max-width: 100%;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================================================
+   Contact Form Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .contact-main {
+        padding: 48px 0;
+    }
+
+    .contact-form-single {
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    /* フォームヘッダー */
+    .contact-form-single .form-header {
+        margin-bottom: 2rem;
+    }
+
+    .contact-form-single .form-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-form-single .form-subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* フォームグループ */
+    .contact-form-single .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .contact-form-single label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* 必須マーク */
+    .contact-form-single .required,
+    .contact-form-single label .required {
+        font-size: 0.75rem;
+        margin-left: 0.25rem;
+    }
+
+    /* 入力フィールド */
+    .contact-form-single input[type="text"],
+    .contact-form-single input[type="email"],
+    .contact-form-single input[type="tel"],
+    .contact-form-single textarea,
+    .contact-form-single select {
+        padding: 0.875rem 1rem;
+        font-size: 16px; /* iOS zoom防止 */
+        border-radius: 8px;
+        border-width: 2px;
+    }
+
+    .contact-form-single input:focus,
+    .contact-form-single textarea:focus,
+    .contact-form-single select:focus {
+        border-color: #00867b;
+        box-shadow: 0 0 0 3px rgba(0, 134, 123, 0.1);
+    }
+
+    .contact-form-single textarea {
+        min-height: 120px;
+    }
+
+    /* 送信ボタン */
+    .contact-form-single .submit-button,
+    .contact-form-single input[type="submit"],
+    .contact-form-single button[type="submit"] {
+        width: 100%;
+        min-height: 52px;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-radius: 50px;
+        margin-top: 1rem;
+    }
+
+    /* ホバー効果無効化 */
+    .contact-form-single .submit-button:hover,
+    .contact-form-single input[type="submit"]:hover,
+    .contact-form-single button[type="submit"]:hover {
+        transform: none;
+    }
+
+    /* エラーメッセージ */
+    .contact-form-single .error-message,
+    .contact-form-single .wpcf7-not-valid-tip {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+    }
+
+    /* 成功メッセージ */
+    .contact-form-single .success-message,
+    .contact-form-single .wpcf7-mail-sent-ok {
+        font-size: 0.9rem;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-main {
+        padding: 32px 0;
+    }
+
+    .contact-form-single {
+        padding: 1.5rem 1rem;
+    }
+
+    .contact-form-single .form-title {
+        font-size: 1.35rem;
+    }
+
+    .contact-form-single .form-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .contact-form-single .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .contact-form-single label {
+        font-size: 0.85rem;
+    }
+
+    .contact-form-single input[type="text"],
+    .contact-form-single input[type="email"],
+    .contact-form-single input[type="tel"],
+    .contact-form-single textarea,
+    .contact-form-single select {
+        padding: 0.75rem;
+    }
+
+    .contact-form-single textarea {
+        min-height: 100px;
+    }
+
+    .contact-form-single .submit-button,
+    .contact-form-single input[type="submit"],
+    .contact-form-single button[type="submit"] {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================================================
+   Contact Form 7 Integration Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* CF7スピナー */
+    .wpcf7-spinner {
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* CF7送信中状態 */
+    .wpcf7-submit.submitting {
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    /* CF7バリデーションメッセージ */
+    .wpcf7-response-output {
+        font-size: 0.9rem;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 8px;
+    }
+
+    /* CF7チェックボックス・ラジオボタン */
+    .wpcf7-list-item {
+        margin: 0.5rem 0;
+    }
+
+    .wpcf7-list-item-label {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .wpcf7-checkbox,
+    .wpcf7-radio {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   Privacy Policy Checkbox Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .privacy-checkbox-wrapper,
+    .form-checkbox-group {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: #f9fafb;
+        border-radius: 8px;
+    }
+
+    .privacy-checkbox-wrapper label,
+    .form-checkbox-group label {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .privacy-checkbox-wrapper input[type="checkbox"],
+    .form-checkbox-group input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        margin-top: 0.1rem;
+        accent-color: #00867b;
+    }
+
+    .privacy-checkbox-wrapper a,
+    .form-checkbox-group a {
+        color: #00867b;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+}
+
+/* ==========================================================================
+   Touch Device Optimizations
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+    /* タッチターゲットサイズ確保 */
+    .hero-cta-button,
+    .contact-form-single .submit-button,
+    .contact-form-single input[type="submit"],
+    .contact-form-single button[type="submit"] {
+        min-height: 48px;
+    }
+
+    /* ホバー効果無効化 */
+    .hero-cta-button:hover,
+    .hero-cta-feature:hover {
+        transform: none;
+        box-shadow: inherit;
+    }
+
+    /* アクティブ状態 */
+    .hero-cta-button:active,
+    .contact-form-single .submit-button:active,
+    .contact-form-single input[type="submit"]:active,
+    .contact-form-single button[type="submit"]:active {
+        opacity: 0.9;
+        transform: scale(0.98);
+    }
+
+    /* 入力フィールドタッチ対応 */
+    .contact-form-single input,
+    .contact-form-single textarea,
+    .contact-form-single select {
+        min-height: 48px;
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .contact-hero-cta *,
+    .contact-form-single * {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* フォーカス状態 */
+    .hero-cta-button:focus,
+    .contact-form-single input:focus,
+    .contact-form-single textarea:focus,
+    .contact-form-single select:focus,
+    .contact-form-single .submit-button:focus,
+    .contact-form-single input[type="submit"]:focus,
+    .contact-form-single button[type="submit"]:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+
+    /* LINEボタンのフォーカス */
+    .hero-cta-button:focus {
+        outline-color: #ffffff;
+        outline-offset: 3px;
+    }
+
+    /* ラベル可読性 */
+    .contact-form-single label {
+        color: #374151;
+    }
+
+    /* プレースホルダー可読性 */
+    .contact-form-single input::placeholder,
+    .contact-form-single textarea::placeholder {
+        color: #9ca3af;
+        opacity: 1;
+    }
+
+    /* エラー状態の可視性 */
+    .contact-form-single input.error,
+    .contact-form-single textarea.error,
+    .contact-form-single .wpcf7-not-valid {
+        border-color: #ef4444;
+        background-color: #fef2f2;
+    }
+}

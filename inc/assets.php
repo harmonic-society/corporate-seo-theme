@@ -50,11 +50,19 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version 
     );
     
-    wp_enqueue_style( 
-        'corporate-seo-pro-responsive', 
-        get_template_directory_uri() . '/assets/css/base/responsive.css', 
-        array( 'corporate-seo-pro-base' ), 
-        $version 
+    wp_enqueue_style(
+        'corporate-seo-pro-responsive',
+        get_template_directory_uri() . '/assets/css/base/responsive.css',
+        array( 'corporate-seo-pro-base' ),
+        $version
+    );
+
+    // Common mobile optimization
+    wp_enqueue_style(
+        'corporate-seo-pro-mobile-common',
+        get_template_directory_uri() . '/assets/css/base/mobile-common.css',
+        array( 'corporate-seo-pro-responsive' ),
+        $version
     );
     
     // Utilities
@@ -211,32 +219,48 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
         
         // Contact page specific styles
         if ( is_page_template( 'page-contact.php' ) || is_page( 'contact' ) ) {
-            wp_enqueue_style( 
-                'corporate-seo-pro-contact', 
-                get_template_directory_uri() . '/assets/css/pages/contact.css', 
-                array( 'corporate-seo-pro-pages' ), 
-                $version 
+            wp_enqueue_style(
+                'corporate-seo-pro-contact',
+                get_template_directory_uri() . '/assets/css/pages/contact.css',
+                array( 'corporate-seo-pro-pages' ),
+                $version
+            );
+
+            // Contact page mobile optimization
+            wp_enqueue_style(
+                'corporate-seo-pro-contact-mobile',
+                get_template_directory_uri() . '/assets/css/pages/contact-mobile.css',
+                array( 'corporate-seo-pro-contact' ),
+                $version
             );
         }
     }
     
     // News/Blog components
     if ( is_home() || is_archive() || is_single() || is_category() || is_tag() ) {
-        wp_enqueue_style( 
-            'corporate-seo-pro-news-release', 
-            get_template_directory_uri() . '/assets/css/components/news-release.css', 
-            array( 'corporate-seo-pro-base' ), 
-            $version 
+        wp_enqueue_style(
+            'corporate-seo-pro-news-release',
+            get_template_directory_uri() . '/assets/css/components/news-release.css',
+            array( 'corporate-seo-pro-base' ),
+            $version
         );
-        
+
         // Blog filters CSS
-        wp_enqueue_style( 
-            'corporate-seo-pro-blog-filters', 
-            get_template_directory_uri() . '/assets/css/components/blog-filters.css', 
-            array( 'corporate-seo-pro-base' ), 
-            $version 
+        wp_enqueue_style(
+            'corporate-seo-pro-blog-filters',
+            get_template_directory_uri() . '/assets/css/components/blog-filters.css',
+            array( 'corporate-seo-pro-base' ),
+            $version
         );
-        
+
+        // Blog mobile optimization
+        wp_enqueue_style(
+            'corporate-seo-pro-blog-mobile',
+            get_template_directory_uri() . '/assets/css/pages/blog-mobile.css',
+            array( 'corporate-seo-pro-news-release' ),
+            $version
+        );
+
         // Homepage Subscription CTA CSS for single posts
         if ( is_single() ) {
             wp_enqueue_style(
@@ -462,6 +486,14 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             'corporate-seo-pro-about',
             get_template_directory_uri() . '/assets/css/pages/about.css',
             array( 'corporate-seo-pro-base', 'corporate-seo-pro-style', 'corporate-seo-pro-color-scheme' ),
+            $version
+        );
+
+        // About page mobile optimization
+        wp_enqueue_style(
+            'corporate-seo-pro-about-mobile',
+            get_template_directory_uri() . '/assets/css/pages/about-mobile.css',
+            array( 'corporate-seo-pro-about' ),
             $version
         );
     }

@@ -1,0 +1,788 @@
+/**
+ * About Page Mobile Optimization
+ *
+ * Aboutページのモバイル専用スタイル
+ * 可読性重視・プロフェッショナルなデザイン
+ */
+
+/* ==========================================================================
+   Hero Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: 70vh;
+        padding: 80px 0 60px;
+    }
+
+    /* 背景エフェクト簡素化 */
+    .hero-background::before {
+        animation: none;
+    }
+
+    .hero-particles {
+        animation: none;
+        opacity: 0.3;
+    }
+
+    .hero-content {
+        padding: 1.5rem 0;
+    }
+
+    .hero-catchphrase {
+        font-size: 0.95rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 1rem;
+    }
+
+    .hero-title {
+        margin-bottom: 1.5rem;
+    }
+
+    .title-main {
+        font-size: 2.25rem;
+        letter-spacing: -0.5px;
+        margin-bottom: 0.5rem;
+    }
+
+    .title-sub {
+        font-size: 1.35rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        line-height: 1.85;
+        margin: 0 auto 2rem;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .hero-description br {
+        display: none;
+    }
+
+    /* スクロールインジケーター */
+    .hero-scroll {
+        display: none;
+    }
+
+    /* ウェーブ */
+    .hero-wave {
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero {
+        min-height: 60vh;
+        padding: 60px 0 50px;
+    }
+
+    .title-main {
+        font-size: 1.85rem;
+    }
+
+    .title-sub {
+        font-size: 1.15rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .hero-wave {
+        height: 40px;
+    }
+}
+
+/* ==========================================================================
+   CEO Message Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .ceo-message-section {
+        padding: 60px 0;
+    }
+
+    .ceo-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .ceo-image-wrapper {
+        position: static;
+        text-align: center;
+    }
+
+    .ceo-image {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 1.5rem;
+        border-width: 5px;
+    }
+
+    .image-placeholder {
+        font-size: 4rem;
+    }
+
+    .ceo-info {
+        text-align: center;
+    }
+
+    .ceo-role {
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+
+    .ceo-name {
+        font-size: 1.35rem;
+    }
+
+    .ceo-name-en {
+        font-size: 0.9rem;
+    }
+
+    /* メッセージテキスト */
+    .ceo-text {
+        padding: 0;
+    }
+
+    .message-quote {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .message-content {
+        padding-left: 1rem;
+        border-left-width: 3px;
+    }
+
+    .message-paragraph {
+        font-size: 0.95rem;
+        line-height: 1.9;
+        margin-bottom: 1.25rem;
+    }
+
+    .message-paragraph br {
+        display: none;
+    }
+
+    .message-signature {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        text-align: center;
+    }
+
+    .message-signature p {
+        font-size: 0.875rem;
+    }
+
+    .signature-name {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ceo-message-section {
+        padding: 48px 0;
+    }
+
+    .ceo-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .image-placeholder {
+        font-size: 3rem;
+    }
+
+    .ceo-name {
+        font-size: 1.25rem;
+    }
+
+    .message-content {
+        padding-left: 0.75rem;
+    }
+
+    .message-paragraph {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   Vision/Mission/Purpose Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .vision-mission-section {
+        padding: 60px 0;
+    }
+
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .philosophy-card {
+        padding: 2rem 1.5rem;
+    }
+
+    /* ホバー効果無効化 */
+    .philosophy-card:hover {
+        transform: none;
+    }
+
+    /* アクセントライン常時表示 */
+    .philosophy-card::before {
+        transform: scaleX(1);
+    }
+
+    .card-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-title {
+        margin-bottom: 1rem;
+    }
+
+    .title-en {
+        font-size: 1.35rem;
+    }
+
+    .title-ja {
+        font-size: 0.8rem;
+    }
+
+    .card-main-text {
+        font-size: 1.1rem;
+    }
+
+    .card-sub-text {
+        font-size: 0.9rem;
+    }
+
+    .card-description {
+        font-size: 0.9rem;
+        line-height: 1.75;
+    }
+
+    .card-description br {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .vision-mission-section {
+        padding: 48px 0;
+    }
+
+    .philosophy-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .card-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.35rem;
+    }
+
+    .title-en {
+        font-size: 1.25rem;
+    }
+
+    .card-main-text {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Three Harmonies Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .three-harmonies-section {
+        padding: 60px 0;
+    }
+
+    .harmonies-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .harmony-card {
+        padding: 2rem 1.5rem;
+    }
+
+    /* ホバー効果無効化 */
+    .harmony-card:hover {
+        transform: none;
+    }
+
+    .harmony-number {
+        font-size: 2.5rem;
+        top: 1rem;
+        right: 1rem;
+        opacity: 0.1;
+    }
+
+    .harmony-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .harmony-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .harmony-description {
+        font-size: 0.9rem;
+        line-height: 1.8;
+        margin-bottom: 1.25rem;
+    }
+
+    .harmony-description br {
+        display: none;
+    }
+
+    .harmony-features {
+        padding-top: 0.5rem;
+    }
+
+    .harmony-features li {
+        font-size: 0.875rem;
+        padding: 0.4rem 0;
+        gap: 0.5rem;
+    }
+
+    .harmony-features i {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .three-harmonies-section {
+        padding: 48px 0;
+    }
+
+    .harmony-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .harmony-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.35rem;
+    }
+
+    .harmony-title {
+        font-size: 1.15rem;
+    }
+
+    .harmony-description {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   Values Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .values-section {
+        padding: 60px 0;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .value-card {
+        padding: 2rem 1.5rem;
+    }
+
+    /* ホバー効果無効化 */
+    .value-card:hover {
+        transform: none;
+    }
+
+    .value-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.35rem;
+        margin-bottom: 1rem;
+    }
+
+    .value-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .value-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .value-description {
+        font-size: 0.9rem;
+        line-height: 1.8;
+    }
+
+    .value-description br {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .values-section {
+        padding: 48px 0;
+    }
+
+    .value-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .value-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+
+    .value-title {
+        font-size: 1.15rem;
+    }
+
+    .value-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .value-description {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   History Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .history-section {
+        padding: 60px 0;
+    }
+
+    .history-narrative {
+        max-width: 100%;
+    }
+
+    .narrative-content {
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+    }
+
+    .narrative-content::before {
+        width: 3px;
+    }
+
+    .narrative-paragraph {
+        font-size: 0.95rem;
+        line-height: 1.9;
+        margin-bottom: 1.5rem;
+        padding-left: 0.25rem;
+    }
+
+    .narrative-paragraph br {
+        display: none;
+    }
+
+    .narrative-emphasis {
+        font-size: 1.05rem;
+        padding-top: 1rem;
+        margin-top: 0.75rem;
+    }
+
+    /* タイムライン（旧形式）対応 */
+    .timeline::before {
+        left: 16px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 40px 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-content {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .timeline-item:nth-child(even) .timeline-marker,
+    .timeline-item:nth-child(odd) .timeline-marker {
+        grid-column: 1;
+    }
+
+    .marker-dot {
+        width: 16px;
+        height: 16px;
+        border-width: 3px;
+    }
+
+    .marker-dot.active {
+        width: 24px;
+        height: 24px;
+    }
+
+    .timeline-content {
+        padding: 1.25rem;
+    }
+
+    .timeline-date {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.75rem;
+    }
+
+    .timeline-title {
+        font-size: 1.1rem;
+    }
+
+    .timeline-description {
+        font-size: 0.9rem;
+        line-height: 1.75;
+    }
+}
+
+@media (max-width: 480px) {
+    .history-section {
+        padding: 48px 0;
+    }
+
+    .narrative-content {
+        padding: 1.5rem 1rem;
+    }
+
+    .narrative-paragraph {
+        font-size: 0.9rem;
+    }
+
+    .narrative-emphasis {
+        font-size: 1rem;
+    }
+
+    .timeline-content {
+        padding: 1rem;
+    }
+
+    .timeline-title {
+        font-size: 1rem;
+    }
+
+    .timeline-description {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   Company Info Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .company-info-section {
+        padding: 60px 0;
+    }
+
+    .company-info-card {
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+    }
+
+    .info-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1.25rem 0;
+    }
+
+    .info-item dt {
+        font-size: 0.85rem;
+        gap: 0.4rem;
+    }
+
+    .info-item dt i {
+        font-size: 1rem;
+    }
+
+    .info-item dd {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        padding-left: 0;
+    }
+
+    .info-item dd br {
+        display: inline;
+    }
+}
+
+@media (max-width: 480px) {
+    .company-info-section {
+        padding: 48px 0;
+    }
+
+    .company-info-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .info-item {
+        padding: 1rem 0;
+    }
+
+    .info-item dd {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   About CTA Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .about-cta {
+        padding: 60px 0;
+    }
+
+    .about-cta::before {
+        opacity: 0.5;
+    }
+
+    .cta-content {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .cta-title {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+    }
+
+    .cta-text {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+    }
+
+    .cta-text br {
+        display: none;
+    }
+
+    .btn-large {
+        width: 100%;
+        max-width: 300px;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-cta {
+        padding: 48px 0;
+    }
+
+    .cta-title {
+        font-size: 1.35rem;
+    }
+
+    .cta-text {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-large {
+        max-width: 100%;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================================================
+   Touch Device Optimizations
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+    /* ホバー効果完全無効化 */
+    .philosophy-card:hover,
+    .harmony-card:hover,
+    .value-card:hover,
+    .timeline-item:hover .timeline-content,
+    .btn-large:hover {
+        transform: none;
+        box-shadow: inherit;
+    }
+
+    .philosophy-card:hover .card-icon,
+    .harmony-card:hover .harmony-icon,
+    .value-card:hover .value-icon {
+        transform: none;
+        background: inherit;
+        color: inherit;
+    }
+
+    /* タッチターゲットサイズ */
+    .btn-large,
+    .info-item dd a {
+        min-height: 48px;
+    }
+
+    /* アクティブ状態 */
+    .btn-large:active {
+        opacity: 0.9;
+        transform: scale(0.98);
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .about-hero *,
+    .hero-background::before,
+    .hero-particles,
+    .marker-dot.active {
+        animation: none !important;
+    }
+
+    .philosophy-card,
+    .harmony-card,
+    .value-card,
+    .timeline-content,
+    .btn-large {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* フォーカス状態 */
+    .btn-large:focus,
+    .info-item dd a:focus {
+        outline: 2px solid #ffffff;
+        outline-offset: 3px;
+    }
+
+    /* 十分なコントラスト */
+    .message-paragraph,
+    .card-description,
+    .harmony-description,
+    .value-description,
+    .narrative-paragraph {
+        color: #374151;
+    }
+
+    /* リンクの可視性 */
+    .info-item dd a {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+}
