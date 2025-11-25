@@ -1,0 +1,623 @@
+/**
+ * Footer Mobile Optimization
+ *
+ * フッターのモバイル専用スタイル
+ * プロフェッショナル・可読性重視・タッチ最適化
+ */
+
+/* ==========================================================================
+   Footer Main - Mobile Base
+   ========================================================================== */
+@media (max-width: 768px) {
+    .site-footer {
+        position: relative;
+        background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .footer-main {
+        padding: 48px 0 32px;
+    }
+
+    /* 背景装飾を簡素化 */
+    .footer-main::before {
+        opacity: 0.5;
+    }
+
+    .decoration-circle,
+    .decoration-circle-1,
+    .decoration-circle-2 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-main {
+        padding: 40px 0 24px;
+    }
+}
+
+/* ==========================================================================
+   Footer Grid - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .footer-widgets-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        gap: 24px;
+    }
+
+    .footer-widgets-grid {
+        gap: 24px;
+    }
+}
+
+/* ==========================================================================
+   Footer Widget - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .footer-widget {
+        animation: none;
+    }
+
+    .footer-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        position: relative;
+    }
+
+    .footer-title::after {
+        width: 40px;
+        height: 2px;
+        animation: none;
+    }
+
+    /* フッター情報ウィジェット */
+    .footer-info .footer-title {
+        font-size: 1.35rem;
+        margin-bottom: 16px;
+    }
+
+    .footer-description {
+        font-size: 0.9rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-title {
+        font-size: 1.05rem;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+    }
+
+    .footer-info .footer-title {
+        font-size: 1.2rem;
+    }
+
+    .footer-description {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   Footer Location - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .footer-location {
+        margin: 16px 0;
+        padding: 14px 0;
+    }
+
+    .footer-address {
+        font-size: 0.9rem;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+
+    .footer-address i {
+        font-size: 14px;
+        min-width: 18px;
+    }
+
+    .footer-full-address {
+        padding-left: 26px;
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+}
+
+/* ==========================================================================
+   Footer Menu - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .footer-menu {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 16px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-menu li {
+        margin-bottom: 0;
+    }
+
+    .footer-menu a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 10px 0;
+        min-height: 44px;
+        transition: color 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .footer-menu a::before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        background: #00867b;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .footer-menu a:hover,
+    .footer-menu a:active {
+        color: white;
+        transform: none;
+    }
+
+    .footer-menu a:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-menu {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .footer-menu a {
+        font-size: 0.875rem;
+        padding: 8px 0;
+    }
+}
+
+/* ==========================================================================
+   Footer Contact - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-phone,
+    .footer-email {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 0.9rem;
+        min-height: 48px;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .footer-phone i,
+    .footer-email i {
+        width: 18px;
+        text-align: center;
+        color: #00867b;
+        font-size: 0.95rem;
+    }
+
+    .footer-phone:hover,
+    .footer-phone:active,
+    .footer-email:hover,
+    .footer-email:active {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(0, 134, 123, 0.3);
+        color: white;
+        transform: none;
+    }
+
+    .footer-phone:focus,
+    .footer-email:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-phone,
+    .footer-email {
+        padding: 10px 12px;
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   Footer CTA Button - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .footer-cta-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 52px;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, #00867b, #10b981);
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 1rem;
+        gap: 10px;
+        margin-top: 8px;
+        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.4);
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .footer-cta-button::before {
+        display: none;
+    }
+
+    .footer-cta-button:hover,
+    .footer-cta-button:active {
+        transform: none;
+        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.5);
+    }
+
+    .footer-cta-button:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+
+    .footer-cta-button i {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-cta-button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================================================
+   Footer Social Links - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .footer-social {
+        margin-top: 24px;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .social-links li {
+        margin: 0;
+    }
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .social-links a::before {
+        display: none;
+    }
+
+    .social-links a:hover,
+    .social-links a:active {
+        background: #00867b;
+        border-color: #00867b;
+        color: white;
+        transform: none;
+        box-shadow: none;
+    }
+
+    .social-links a:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-social {
+        margin-top: 20px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   Footer Bottom - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .footer-bottom {
+        padding: 20px 0;
+        background: rgba(0, 0, 0, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-bottom-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .copyright {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .footer-bottom-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .footer-bottom-links a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 0.85rem;
+        padding: 6px 0;
+        min-height: 36px;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .footer-bottom-links a::after {
+        display: none;
+    }
+
+    .footer-bottom-links a:hover,
+    .footer-bottom-links a:active {
+        color: white;
+    }
+
+    .footer-bottom-links a:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+
+    .footer-bottom-links .separator {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-bottom {
+        padding: 16px 0;
+    }
+
+    .copyright {
+        font-size: 0.75rem;
+    }
+
+    .footer-bottom-links a {
+        font-size: 0.8rem;
+    }
+}
+
+/* ==========================================================================
+   Scroll to Top Button - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .scroll-to-top,
+    .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #00867b, #10b981);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        z-index: 9999;
+        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.4);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .scroll-to-top.visible,
+    .scroll-to-top.show,
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .scroll-to-top::before,
+    .back-to-top::before {
+        display: none;
+    }
+
+    .scroll-to-top:hover,
+    .scroll-to-top:active,
+    .back-to-top:hover,
+    .back-to-top:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.5);
+    }
+
+    .scroll-to-top:focus,
+    .back-to-top:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-to-top,
+    .back-to-top {
+        bottom: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Touch Device Optimizations
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+    .footer-menu a:hover,
+    .footer-phone:hover,
+    .footer-email:hover,
+    .footer-cta-button:hover,
+    .social-links a:hover,
+    .footer-bottom-links a:hover,
+    .scroll-to-top:hover,
+    .back-to-top:hover {
+        transform: none;
+        box-shadow: inherit;
+    }
+
+    /* アクティブ状態のフィードバック */
+    .footer-menu a:active,
+    .footer-phone:active,
+    .footer-email:active,
+    .footer-cta-button:active,
+    .social-links a:active,
+    .footer-bottom-links a:active {
+        opacity: 0.85;
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .footer-widget,
+    .footer-title::after,
+    .social-links a,
+    .scroll-to-top,
+    .back-to-top {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .decoration-circle {
+        animation: none !important;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 十分なコントラスト */
+    .footer-description,
+    .footer-menu a,
+    .footer-phone,
+    .footer-email {
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* フォーカスリング */
+    .site-footer a:focus-visible,
+    .site-footer button:focus-visible {
+        outline: 3px solid #00867b;
+        outline-offset: 3px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+@media print {
+    .site-footer {
+        background: white !important;
+        color: black !important;
+        padding: 20px 0;
+    }
+
+    .scroll-to-top,
+    .back-to-top,
+    .footer-social,
+    .footer-cta-button,
+    .decoration-circle {
+        display: none !important;
+    }
+
+    .footer-menu a,
+    .footer-bottom-links a {
+        color: black !important;
+    }
+}

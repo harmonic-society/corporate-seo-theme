@@ -117,10 +117,26 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version
     );
 
+    // Footer mobile optimization
+    wp_enqueue_style(
+        'corporate-seo-pro-footer-mobile',
+        get_template_directory_uri() . '/assets/css/components/footer-mobile.css',
+        array( 'corporate-seo-pro-footer-modern' ),
+        $version
+    );
+
     wp_enqueue_style(
         'corporate-seo-pro-mobile-menu',
         get_template_directory_uri() . '/assets/css/components/mobile-menu.css',
         array( 'corporate-seo-pro-navigation' ),
+        $version
+    );
+
+    // Header mobile optimization
+    wp_enqueue_style(
+        'corporate-seo-pro-header-mobile',
+        get_template_directory_uri() . '/assets/css/components/header-mobile.css',
+        array( 'corporate-seo-pro-navigation', 'corporate-seo-pro-mobile-menu' ),
         $version
     );
 

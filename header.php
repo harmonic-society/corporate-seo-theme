@@ -12,122 +12,14 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
     
     <?php wp_head(); ?>
-    
-    <!-- Force disable all submenus and fix text colors -->
+
+    <!-- Service feature list text fix -->
     <style>
-        .sub-menu,
-        .primary-menu .sub-menu,
-        .main-navigation .sub-menu,
-        .menu .sub-menu,
-        .nav-menu .sub-menu,
-        ul.sub-menu,
-        li .sub-menu,
-        .menu-item .sub-menu {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            height: 0 !important;
-            overflow: hidden !important;
-            position: absolute !important;
-            left: -99999px !important;
-            top: -99999px !important;
-            pointer-events: none !important;
-            max-height: 0 !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-        
-        /* Force service feature list text to be dark */
         .service-features .feature-list li,
         .service-archive-item .feature-list li,
         .service-card .feature-list li,
         .feature-list li {
             color: #1f2937 !important;
-        }
-        
-        /* LINE友達登録ボタンのスタイル */
-        .nav-cta-button {
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 8px !important;
-            padding: 0 20px !important;
-            background-color: #06C755 !important;
-            color: white !important;
-            border-radius: 8px !important;
-            font-size: 14px !important;
-            font-weight: 600 !important;
-            text-decoration: none !important;
-            border: none !important;
-            box-shadow: 0 2px 8px rgba(6, 199, 85, 0.25) !important;
-            white-space: nowrap !important;
-            height: 40px !important;
-            line-height: 40px !important;
-            transition: background-color 0.2s ease !important;
-            transform: none !important;
-        }
-        
-        .nav-cta-button:hover {
-            background-color: #00B900 !important;
-            box-shadow: 0 2px 8px rgba(6, 199, 85, 0.35) !important;
-            color: white !important;
-            transform: none !important;
-        }
-        
-        .nav-cta-button i {
-            font-size: 18px !important;
-            color: white !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            line-height: inherit !important;
-            vertical-align: middle !important;
-            display: inline-block !important;
-        }
-        
-        /* モバイルメニューのLINEボタン */
-        .mobile-menu-actions .btn.btn-primary {
-            background-color: #06C755 !important;
-            border-color: #06C755 !important;
-            color: white !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 8px !important;
-            font-weight: 600 !important;
-            transition: background-color 0.2s ease !important;
-            transform: none !important;
-            padding: 10px 20px !important;
-            border-radius: 8px !important;
-            text-decoration: none !important;
-            font-size: 14px !important;
-            line-height: 20px !important;
-        }
-        
-        .mobile-menu-actions .btn.btn-primary:hover {
-            background-color: #00B900 !important;
-            border-color: #00B900 !important;
-            transform: none !important;
-        }
-        
-        .mobile-menu-actions .btn.btn-primary i {
-            font-size: 18px !important;
-            vertical-align: middle !important;
-            line-height: inherit !important;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-cta-button {
-                padding: 0 16px !important;
-                font-size: 13px !important;
-                height: 36px !important;
-                line-height: 36px !important;
-            }
-            
-            .nav-cta-button i {
-                font-size: 16px !important;
-            }
         }
     </style>
 </head>

@@ -1,0 +1,600 @@
+/**
+ * Header Mobile Optimization
+ *
+ * ヘッダーのモバイル専用スタイル
+ * プロフェッショナル・可読性重視・タッチ最適化
+ */
+
+/* ==========================================================================
+   Site Header - Mobile Base
+   ========================================================================== */
+@media (max-width: 768px) {
+    .site-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 99999 !important;
+        height: 60px !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .header-container {
+        height: 60px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* ヘッダースペーサー */
+    .header-spacer {
+        height: 60px !important;
+    }
+
+    /* Admin bar対応 */
+    .admin-bar .site-header {
+        top: 46px !important;
+    }
+
+    .admin-bar .header-spacer {
+        height: 106px !important;
+    }
+}
+
+@media (max-width: 782px) {
+    .admin-bar .site-header {
+        top: 46px !important;
+    }
+
+    .admin-bar .header-spacer {
+        height: 106px !important;
+    }
+}
+
+@media (min-width: 783px) {
+    .admin-bar .site-header {
+        top: 32px !important;
+    }
+
+    .admin-bar .header-spacer {
+        height: 112px !important;
+    }
+}
+
+/* ==========================================================================
+   Site Branding - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .site-branding {
+        flex-shrink: 0;
+    }
+
+    .site-logo {
+        max-width: 160px;
+    }
+
+    .site-logo img {
+        max-height: 36px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .site-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .site-title a {
+        color: #1f2937;
+        text-decoration: none;
+    }
+
+    .site-description {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-logo {
+        max-width: 140px;
+    }
+
+    .site-logo img {
+        max-height: 32px;
+    }
+
+    .site-title {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Mobile Menu Toggle Button
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .mobile-menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: background-color 0.2s ease;
+    }
+
+    .mobile-menu-toggle:hover,
+    .mobile-menu-toggle:focus {
+        background-color: rgba(0, 134, 123, 0.08);
+    }
+
+    .mobile-menu-toggle:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+
+    /* ハンバーガーアイコン */
+    .hamburger {
+        position: relative;
+        width: 24px;
+        height: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #374151;
+        border-radius: 1px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+    }
+
+    /* アクティブ状態 */
+    .mobile-menu-toggle.is-active .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle.is-active .hamburger span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .mobile-menu-toggle.is-active .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* デスクトップナビを非表示 */
+    .nav-wrapper {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   Navigation CTA Button - Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .nav-cta-button {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        padding: 0 14px !important;
+        background-color: #06C755 !important;
+        color: white !important;
+        border-radius: 6px !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        text-decoration: none !important;
+        border: none !important;
+        box-shadow: 0 2px 6px rgba(6, 199, 85, 0.25) !important;
+        white-space: nowrap !important;
+        height: 36px !important;
+        line-height: 36px !important;
+        transition: background-color 0.2s ease !important;
+        min-height: 36px;
+    }
+
+    .nav-cta-button:hover,
+    .nav-cta-button:active {
+        background-color: #00B900 !important;
+        color: white !important;
+        transform: none !important;
+    }
+
+    .nav-cta-button i {
+        font-size: 16px !important;
+        color: white !important;
+    }
+}
+
+/* ==========================================================================
+   Mobile Menu - Enhanced Styles
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 85%;
+        max-width: 360px;
+        height: 100vh;
+        height: 100dvh;
+        background-color: #ffffff;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 100000;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+
+    .mobile-menu.is-active {
+        transform: translateX(0);
+    }
+
+    /* オーバーレイ */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 99999;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+
+    .mobile-menu-overlay.is-active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* 閉じるボタン */
+    .mobile-menu-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f3f4f6;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 10;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-close span {
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        background-color: #374151;
+        border-radius: 1px;
+    }
+
+    .mobile-menu-close span:first-child {
+        transform: rotate(45deg);
+    }
+
+    .mobile-menu-close span:last-child {
+        transform: rotate(-45deg);
+    }
+
+    .mobile-menu-close:hover,
+    .mobile-menu-close:active {
+        background-color: #e5e7eb;
+    }
+
+    .mobile-menu-close:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+}
+
+/* ==========================================================================
+   Mobile Menu Content
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .mobile-menu-content {
+        padding: 72px 20px 32px;
+    }
+
+    .mobile-menu-nav {
+        margin-bottom: 24px;
+    }
+
+    .mobile-menu-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .mobile-menu-list li {
+        margin-bottom: 4px;
+    }
+
+    .mobile-menu-list a,
+    .mobile-menu-link {
+        display: flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 14px 16px;
+        color: #374151;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 10px;
+        border-bottom: 1px solid #f3f4f6;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-list a:hover,
+    .mobile-menu-list a:focus,
+    .mobile-menu-link:hover,
+    .mobile-menu-link:focus {
+        background-color: rgba(0, 134, 123, 0.06);
+        color: #00867b;
+    }
+
+    .mobile-menu-list a:active,
+    .mobile-menu-link:active {
+        background-color: rgba(0, 134, 123, 0.1);
+        transform: scale(0.98);
+    }
+
+    .mobile-menu-list a:focus,
+    .mobile-menu-link:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+
+    /* カレントメニュー */
+    .mobile-menu-list .current-menu-item > a,
+    .mobile-menu-list .current-menu-item > .mobile-menu-link {
+        background-color: rgba(0, 134, 123, 0.08);
+        color: #00867b;
+        font-weight: 600;
+        border-left: 3px solid #00867b;
+        padding-left: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-menu {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .mobile-menu-content {
+        padding: 64px 16px 24px;
+    }
+
+    .mobile-menu-list a,
+    .mobile-menu-link {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================================================
+   Mobile Menu Actions (CTA Button)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .mobile-menu-actions {
+        padding: 20px 0;
+        border-top: 1px solid #e5e7eb;
+        margin-top: 16px;
+    }
+
+    .mobile-menu-actions .btn,
+    .mobile-menu-actions .btn-primary {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100%;
+        min-height: 52px;
+        padding: 14px 24px !important;
+        background-color: #06C755 !important;
+        color: white !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        border-radius: 10px !important;
+        border: none !important;
+        text-decoration: none !important;
+        gap: 10px !important;
+        box-shadow: 0 4px 12px rgba(6, 199, 85, 0.3) !important;
+        transition: all 0.2s ease !important;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-actions .btn:hover,
+    .mobile-menu-actions .btn:active,
+    .mobile-menu-actions .btn-primary:hover,
+    .mobile-menu-actions .btn-primary:active {
+        background-color: #00B900 !important;
+        transform: none !important;
+    }
+
+    .mobile-menu-actions .btn:focus,
+    .mobile-menu-actions .btn-primary:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+
+    .mobile-menu-actions .btn i,
+    .mobile-menu-actions .btn-primary i {
+        font-size: 1.25rem !important;
+        color: white !important;
+    }
+}
+
+/* ==========================================================================
+   Mobile Menu Social Links
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .mobile-menu-social {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        padding-top: 20px;
+    }
+
+    .mobile-menu-social a {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f3f4f6;
+        border-radius: 50%;
+        color: #6b7280;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-social a:hover,
+    .mobile-menu-social a:active {
+        background-color: #00867b;
+        color: white;
+    }
+
+    .mobile-menu-social a:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+}
+
+/* ==========================================================================
+   Body State - Menu Open
+   ========================================================================== */
+body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================================================
+   Submenus - Force Hidden
+   ========================================================================== */
+.sub-menu,
+.primary-menu .sub-menu,
+.main-navigation .sub-menu,
+.menu .sub-menu,
+.nav-menu .sub-menu,
+ul.sub-menu,
+li .sub-menu,
+.menu-item .sub-menu {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -99999px !important;
+    top: -99999px !important;
+    pointer-events: none !important;
+}
+
+/* ==========================================================================
+   Touch Device Optimizations
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+    .mobile-menu-toggle:hover,
+    .mobile-menu-close:hover,
+    .mobile-menu-list a:hover,
+    .mobile-menu-actions .btn:hover,
+    .mobile-menu-social a:hover {
+        transform: none;
+    }
+
+    /* アクティブ状態のフィードバック */
+    .mobile-menu-toggle:active,
+    .mobile-menu-close:active {
+        background-color: rgba(0, 134, 123, 0.12);
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .mobile-menu-overlay,
+    .mobile-menu-list li,
+    .hamburger span {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+@media (max-width: 1024px) {
+    /* スキップリンク */
+    .skip-link {
+        position: absolute;
+        top: -100px;
+        left: 10px;
+        z-index: 100001;
+        padding: 12px 20px;
+        background: #00867b;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .skip-link:focus {
+        top: 10px;
+    }
+
+    /* フォーカスリング */
+    .mobile-menu a:focus-visible,
+    .mobile-menu button:focus-visible {
+        outline: 3px solid #00867b;
+        outline-offset: 3px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+@media print {
+    .mobile-menu,
+    .mobile-menu-overlay,
+    .mobile-menu-toggle,
+    .nav-cta-button {
+        display: none !important;
+    }
+}
