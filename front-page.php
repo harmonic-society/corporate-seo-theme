@@ -131,7 +131,7 @@ get_header(); ?>
                     <div class="hero-actions">
                         <?php 
                         $button1_text = get_theme_mod( 'hero_button_text', '無料相談を申し込む' );
-                        $button1_url = get_theme_mod( 'hero_button_url', get_permalink( get_page_by_path( 'contact' ) ) );
+                        $button1_url = get_theme_mod( 'hero_button_url', get_contact_page_url() );
                         $button2_text = get_theme_mod( 'hero_button2_text', 'サービスを見る' );
                         $button2_url = get_theme_mod( 'hero_button2_url', '#services' );
                         ?>
