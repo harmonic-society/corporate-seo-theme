@@ -174,33 +174,99 @@ get_header(); ?>
     <?php endif; ?>
 
     <?php if ( get_theme_mod( 'show_about_section', true ) ) : ?>
-        <section class="about-section brand-statement">
+        <section class="about-section-modern">
+            <!-- Background Elements -->
+            <div class="about-bg-elements">
+                <div class="about-bg-gradient"></div>
+                <div class="about-floating-shapes">
+                    <div class="floating-shape shape-1"></div>
+                    <div class="floating-shape shape-2"></div>
+                    <div class="floating-shape shape-3"></div>
+                </div>
+                <div class="about-grid-pattern"></div>
+            </div>
+
             <div class="container">
-                <div class="brand-statement-content">
-                    <div class="brand-statement-header">
-                        <span class="brand-statement-label"><?php esc_html_e( 'Our Philosophy', 'corporate-seo-pro' ); ?></span>
-                        <h2 class="brand-statement-title">
-                            <?php echo esc_html( get_theme_mod( 'about_title', __( '私たちについて', 'corporate-seo-pro' ) ) ); ?>
-                        </h2>
+                <div class="about-modern-wrapper">
+                    <!-- Left: Visual Element -->
+                    <div class="about-visual-side">
+                        <div class="about-visual-container">
+                            <div class="visual-accent-ring ring-1"></div>
+                            <div class="visual-accent-ring ring-2"></div>
+                            <div class="visual-main-circle">
+                                <div class="circle-content">
+                                    <span class="circle-label"><?php esc_html_e( 'Since', 'corporate-seo-pro' ); ?></span>
+                                    <span class="circle-year">2020</span>
+                                </div>
+                            </div>
+                            <div class="visual-stats">
+                                <div class="stat-item stat-1">
+                                    <span class="stat-number">500+</span>
+                                    <span class="stat-label"><?php esc_html_e( 'プロジェクト', 'corporate-seo-pro' ); ?></span>
+                                </div>
+                                <div class="stat-item stat-2">
+                                    <span class="stat-number">98%</span>
+                                    <span class="stat-label"><?php esc_html_e( '顧客満足度', 'corporate-seo-pro' ); ?></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="brand-statement-text">
-                        <?php echo wp_kses_post( wpautop( get_theme_mod( 'about_content', __( 'ここに会社の説明文を入力してください。', 'corporate-seo-pro' ) ) ) ); ?>
+                    <!-- Right: Content -->
+                    <div class="about-content-side">
+                        <div class="about-header-modern">
+                            <div class="about-label-badge">
+                                <span class="label-icon"><i class="fas fa-building"></i></span>
+                                <span class="label-text"><?php esc_html_e( 'About Us', 'corporate-seo-pro' ); ?></span>
+                            </div>
+                            <h2 class="about-title-modern">
+                                <span class="title-line"><?php echo esc_html( get_theme_mod( 'about_title', __( '私たちについて', 'corporate-seo-pro' ) ) ); ?></span>
+                                <span class="title-underline"></span>
+                            </h2>
+                        </div>
+
+                        <div class="about-text-modern">
+                            <?php echo wp_kses_post( wpautop( get_theme_mod( 'about_content', __( 'ここに会社の説明文を入力してください。', 'corporate-seo-pro' ) ) ) ); ?>
+                        </div>
+
+                        <div class="about-features-row">
+                            <div class="about-feature-item">
+                                <div class="feature-icon-circle">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <span class="feature-text"><?php esc_html_e( 'イノベーション', 'corporate-seo-pro' ); ?></span>
+                            </div>
+                            <div class="about-feature-item">
+                                <div class="feature-icon-circle">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <span class="feature-text"><?php esc_html_e( '信頼と誠実', 'corporate-seo-pro' ); ?></span>
+                            </div>
+                            <div class="about-feature-item">
+                                <div class="feature-icon-circle">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <span class="feature-text"><?php esc_html_e( '成長支援', 'corporate-seo-pro' ); ?></span>
+                            </div>
+                        </div>
+
+                        <?php if ( get_theme_mod( 'about_button_text' ) ) : ?>
+                            <div class="about-action-modern">
+                                <a href="<?php echo esc_url( get_theme_mod( 'about_button_url', '#' ) ); ?>" class="about-btn-modern">
+                                    <span class="btn-text"><?php echo esc_html( get_theme_mod( 'about_button_text' ) ); ?></span>
+                                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                                    <span class="btn-bg"></span>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ( get_theme_mod( 'about_signature' ) ) : ?>
+                            <div class="about-signature-modern">
+                                <div class="signature-line"></div>
+                                <span class="signature-text"><?php echo esc_html( get_theme_mod( 'about_signature' ) ); ?></span>
+                            </div>
+                        <?php endif; ?>
                     </div>
-
-                    <?php if ( get_theme_mod( 'about_button_text' ) ) : ?>
-                        <div class="brand-statement-action">
-                            <a href="<?php echo esc_url( get_theme_mod( 'about_button_url', '#' ) ); ?>" class="btn btn-outline">
-                                <?php echo esc_html( get_theme_mod( 'about_button_text' ) ); ?>
-                            </a>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if ( get_theme_mod( 'about_signature' ) ) : ?>
-                        <div class="brand-statement-signature">
-                            <?php echo esc_html( get_theme_mod( 'about_signature' ) ); ?>
-                        </div>
-                    <?php endif; ?>
                 </div>
             </div>
         </section>
