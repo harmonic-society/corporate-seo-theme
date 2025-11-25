@@ -76,7 +76,7 @@ get_header(); ?>
                     </div>
 
                     <div class="hero-actions-modern">
-                        <a href="#service-inquiry" class="btn-hero-primary smooth-scroll">
+                        <a href="<?php echo esc_url( get_contact_page_url() ); ?>" class="btn-hero-primary">
                             <span class="btn-bg-effect"></span>
                             <span class="btn-content">
                                 <span class="btn-text">お問い合わせ</span>
@@ -340,7 +340,7 @@ get_header(); ?>
                                 endif;
                             endif; ?>
 
-                            <a href="#service-inquiry" class="plan-cta-modern smooth-scroll">
+                            <a href="<?php echo esc_url( get_contact_page_url() ); ?>" class="plan-cta-modern">
                                 <span class="cta-bg"></span>
                                 <span class="cta-text">このプランで相談する</span>
                                 <i class="fas fa-arrow-right"></i>
@@ -517,7 +517,7 @@ get_header(); ?>
                 <h2>まずはお気軽にご相談ください</h2>
                 <p>サービスに関するご質問やご相談は、下記フォームまたはお電話にてお気軽にお問い合わせください。</p>
                 <div class="cta-buttons">
-                    <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn-primary">
+                    <a href="<?php echo esc_url( get_contact_page_url() ); ?>" class="btn-primary">
                         <i class="fas fa-envelope"></i>
                         お問い合わせフォーム
                     </a>
