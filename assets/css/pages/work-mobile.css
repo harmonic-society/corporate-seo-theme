@@ -1,0 +1,1508 @@
+/**
+ * Work (実績) Mobile Optimization
+ *
+ * 実績一覧・詳細ページのモバイル専用スタイル
+ * プロフェッショナル・可読性重視・タッチ最適化
+ */
+
+/* ==========================================================================
+   Work Archive - Hero Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-archive-page .work-hero {
+        min-height: auto;
+        padding: 60px 0 50px;
+    }
+
+    .work-hero .hero-bg-wrapper {
+        opacity: 0.6;
+    }
+
+    .work-hero .hero-content {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .work-hero .hero-badge {
+        margin-bottom: 16px;
+    }
+
+    .work-hero .badge-text {
+        font-size: 0.75rem;
+        padding: 6px 14px;
+        letter-spacing: 0.08em;
+    }
+
+    .work-hero .hero-title {
+        margin-bottom: 16px;
+    }
+
+    .work-hero .hero-title .title-main {
+        font-size: 2.25rem;
+        letter-spacing: 0.05em;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .work-hero .hero-title .title-sub {
+        font-size: 1rem;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+
+    .work-hero .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 32px;
+        padding: 0 10px;
+    }
+
+    .work-hero .hero-description br {
+        display: none;
+    }
+
+    /* Hero Stats */
+    .work-hero .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        padding: 0 10px;
+    }
+
+    .work-hero .stat-item {
+        text-align: center;
+        padding: 16px 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .work-hero .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .work-hero .stat-label {
+        font-size: 0.7rem;
+        opacity: 0.85;
+        line-height: 1.3;
+    }
+
+    /* Scroll indicator */
+    .work-hero .hero-scroll {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-hero .hero-title .title-main {
+        font-size: 1.875rem;
+    }
+
+    .work-hero .hero-stats {
+        gap: 8px;
+    }
+
+    .work-hero .stat-item {
+        padding: 12px 6px;
+    }
+
+    .work-hero .stat-number {
+        font-size: 1.25rem;
+    }
+
+    .work-hero .stat-label {
+        font-size: 0.65rem;
+    }
+}
+
+/* ==========================================================================
+   Work Archive - Filter Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-filter-section {
+        padding: 24px 0;
+        background: #ffffff;
+        position: sticky;
+        top: 60px;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .work-filter-section .container {
+        padding: 0 16px;
+    }
+
+    .work-filter-section .filter-wrapper {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 4px;
+    }
+
+    .work-filter-section .filter-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .work-filter-section .filter-btn {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 16px;
+        min-height: 44px;
+        background: #f3f4f6;
+        border: none;
+        border-radius: 22px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .work-filter-section .filter-btn.active {
+        background: #00867b;
+        color: white;
+    }
+
+    .work-filter-section .filter-btn:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+
+    .work-filter-section .filter-count {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        background: rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+    }
+
+    .work-filter-section .filter-btn.active .filter-count {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* ==========================================================================
+   Work Archive - Grid Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-grid-section {
+        padding: 32px 0 60px;
+        background: #f8f9fa;
+    }
+
+    .work-grid-section .container {
+        padding: 0 16px;
+    }
+
+    .work-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Work Item Card */
+    .work-item {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .work-item:active {
+        transform: scale(0.98);
+    }
+
+    .work-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* Work Image */
+    .work-image-wrapper {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+    }
+
+    .work-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .work-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .work-no-image {
+        background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .no-image-placeholder i {
+        font-size: 2.5rem;
+        color: #9ca3af;
+    }
+
+    /* Overlay - hidden on mobile */
+    .work-overlay {
+        display: none;
+    }
+
+    /* Work Number */
+    .work-number {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: white;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 4px 10px;
+        border-radius: 4px;
+        letter-spacing: 0.05em;
+    }
+
+    /* Work Info */
+    .work-info {
+        padding: 20px;
+    }
+
+    .work-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+
+    .work-category {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #00867b;
+        background: rgba(0, 134, 123, 0.1);
+        padding: 4px 10px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .work-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1f2937;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    .work-client {
+        font-size: 0.85rem;
+        color: #6b7280;
+        margin-bottom: 10px;
+    }
+
+    .work-client .client-label {
+        font-weight: 600;
+        margin-right: 4px;
+    }
+
+    .work-excerpt {
+        font-size: 0.9rem;
+        color: #4b5563;
+        line-height: 1.7;
+        margin-bottom: 14px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Technologies */
+    .work-technologies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .tech-tag {
+        font-size: 0.7rem;
+        color: #6b7280;
+        background: #f3f4f6;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-info {
+        padding: 16px;
+    }
+
+    .work-title {
+        font-size: 1rem;
+    }
+
+    .work-excerpt {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   Work Archive - Pagination Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-pagination {
+        margin-top: 40px;
+        padding: 0 16px;
+    }
+
+    .work-pagination .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .work-pagination .page-numbers {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0 12px;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #374151;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .work-pagination .page-numbers:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+
+    .work-pagination .page-numbers.current {
+        background: #00867b;
+        border-color: #00867b;
+        color: white;
+    }
+
+    .work-pagination .page-numbers.prev,
+    .work-pagination .page-numbers.next {
+        gap: 4px;
+        padding: 0 16px;
+    }
+
+    .work-pagination .page-numbers i {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   Work Archive - No Works Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .no-works {
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .no-works-icon {
+        font-size: 3rem;
+        color: #d1d5db;
+        margin-bottom: 20px;
+    }
+
+    .no-works h2 {
+        font-size: 1.25rem;
+        color: #1f2937;
+        margin-bottom: 10px;
+    }
+
+    .no-works p {
+        font-size: 0.95rem;
+        color: #6b7280;
+        margin-bottom: 24px;
+    }
+
+    .back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 24px;
+        min-height: 48px;
+        background: #00867b;
+        color: white;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .back-home:focus {
+        outline: 2px solid #00867b;
+        outline-offset: 2px;
+    }
+}
+
+/* ==========================================================================
+   Work Archive - CTA Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-cta-section {
+        position: relative;
+        padding: 60px 0;
+        overflow: hidden;
+    }
+
+    .work-cta-section .cta-bg-effect {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .work-cta-section .cta-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #00867b 0%, #005952 100%);
+    }
+
+    .work-cta-section .cta-pattern {
+        position: absolute;
+        inset: 0;
+        opacity: 0.05;
+        background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.1) 20px,
+            rgba(255, 255, 255, 0.1) 40px
+        );
+    }
+
+    .work-cta-section .container {
+        position: relative;
+        z-index: 1;
+        padding: 0 20px;
+    }
+
+    .work-cta-section .cta-content {
+        text-align: center;
+        color: white;
+    }
+
+    .work-cta-section .cta-title {
+        margin-bottom: 16px;
+    }
+
+    .work-cta-section .cta-title .title-main {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+
+    .work-cta-section .cta-title .title-sub {
+        display: block;
+        font-size: 1.125rem;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+
+    .work-cta-section .cta-description {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        opacity: 0.9;
+        margin-bottom: 32px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .work-cta-section .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .work-cta-section .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 16px 24px;
+        min-height: 52px;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .work-cta-section .cta-button.primary {
+        background: white;
+        color: #00867b;
+    }
+
+    .work-cta-section .cta-button.secondary {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        color: white;
+    }
+
+    .work-cta-section .cta-button:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+
+    .work-cta-section .button-icon {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   Single Work - Hero Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .single-work .work-detail-hero {
+        position: relative;
+        min-height: auto;
+    }
+
+    .work-detail-hero .hero-image-container {
+        position: relative;
+        height: 240px;
+        overflow: hidden;
+    }
+
+    .work-detail-hero .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .work-detail-hero .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .work-detail-hero .hero-content-wrapper {
+        position: relative;
+        background: white;
+        padding: 24px 20px 32px;
+        margin-top: -40px;
+        border-radius: 24px 24px 0 0;
+        z-index: 10;
+    }
+
+    /* Breadcrumb */
+    .work-detail-hero .work-breadcrumb {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-bottom: 16px;
+        line-height: 1.5;
+    }
+
+    .work-detail-hero .work-breadcrumb a {
+        color: #00867b;
+        text-decoration: none;
+    }
+
+    .work-detail-hero .work-breadcrumb .separator {
+        margin: 0 8px;
+        opacity: 0.5;
+    }
+
+    .work-detail-hero .work-breadcrumb .current {
+        color: #374151;
+    }
+
+    /* Categories */
+    .work-detail-hero .work-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .work-detail-hero .category-badge {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #00867b;
+        background: rgba(0, 134, 123, 0.1);
+        padding: 5px 12px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    /* Title */
+    .work-detail-hero .work-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        line-height: 1.4;
+        margin-bottom: 16px;
+    }
+
+    /* Client Info */
+    .work-detail-hero .client-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .work-detail-hero .client-label {
+        font-weight: 600;
+        color: #6b7280;
+    }
+
+    .work-detail-hero .client-name {
+        color: #1f2937;
+    }
+
+    /* Duration */
+    .work-detail-hero .project-duration {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+
+    .work-detail-hero .project-duration i {
+        color: #00867b;
+    }
+
+    /* Decoration - hidden on mobile */
+    .work-detail-hero .hero-decoration {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-detail-hero .hero-image-container {
+        height: 200px;
+    }
+
+    .work-detail-hero .work-title {
+        font-size: 1.375rem;
+    }
+}
+
+/* ==========================================================================
+   Single Work - Overview Section Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-overview {
+        padding: 40px 0;
+        background: #f8f9fa;
+    }
+
+    .work-overview .container {
+        padding: 0 20px;
+    }
+
+    .work-overview .overview-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .work-overview .overview-main {
+        order: 1;
+    }
+
+    .work-overview .overview-sidebar {
+        order: 2;
+    }
+
+    /* Section Title */
+    .work-overview .section-title {
+        margin-bottom: 24px;
+    }
+
+    .work-overview .section-title .title-en {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #00867b;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 6px;
+    }
+
+    .work-overview .section-title .title-ja {
+        display: block;
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: #1f2937;
+    }
+
+    /* Overview Content */
+    .work-overview .overview-content {
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #374151;
+    }
+
+    .work-overview .overview-content p {
+        margin-bottom: 1.5em;
+    }
+
+    .work-overview .overview-content p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Project Info Card */
+    .work-overview .project-info-card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        margin-bottom: 20px;
+    }
+
+    .work-overview .card-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #00867b;
+    }
+
+    .work-overview .info-item {
+        padding: 14px 0;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .work-overview .info-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .work-overview .info-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 6px;
+    }
+
+    .work-overview .info-value {
+        font-size: 0.95rem;
+        color: #1f2937;
+        word-break: break-all;
+    }
+
+    .work-overview .info-value.link {
+        color: #00867b;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .work-overview .info-value.link i {
+        font-size: 0.75rem;
+    }
+
+    /* Technologies Card */
+    .work-overview .technologies-card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .work-overview .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .work-overview .tech-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        color: #374151;
+        background: #f3f4f6;
+        padding: 8px 12px;
+        border-radius: 6px;
+    }
+
+    .work-overview .tech-tag i {
+        font-size: 0.75rem;
+        color: #00867b;
+    }
+}
+
+/* ==========================================================================
+   Single Work - Challenge & Solution Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-challenge-solution {
+        padding: 40px 0;
+        background: white;
+    }
+
+    .work-challenge-solution .container {
+        padding: 0 20px;
+    }
+
+    .work-challenge-solution .cs-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .challenge-card,
+    .solution-card {
+        background: #f8f9fa;
+        border-radius: 16px;
+        padding: 24px;
+    }
+
+    .challenge-card {
+        border-left: 4px solid #ef4444;
+    }
+
+    .solution-card {
+        border-left: 4px solid #00867b;
+    }
+
+    .challenge-card .card-icon,
+    .solution-card .card-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        margin-bottom: 16px;
+    }
+
+    .challenge-card .card-icon {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+    }
+
+    .solution-card .card-icon {
+        background: rgba(0, 134, 123, 0.1);
+        color: #00867b;
+    }
+
+    .challenge-card .card-title,
+    .solution-card .card-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 12px;
+    }
+
+    .challenge-card .card-content,
+    .solution-card .card-content {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: #374151;
+    }
+
+    .challenge-card .card-content p,
+    .solution-card .card-content p {
+        margin: 0;
+    }
+}
+
+/* ==========================================================================
+   Single Work - Gallery Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-gallery {
+        padding: 40px 0;
+        background: #f8f9fa;
+    }
+
+    .work-gallery .container {
+        padding: 0 20px;
+    }
+
+    .work-gallery .section-title {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .work-gallery .section-title .title-en {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #00867b;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 6px;
+    }
+
+    .work-gallery .section-title .title-ja {
+        display: block;
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: #1f2937;
+    }
+
+    .work-gallery .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .work-gallery .gallery-item {
+        border-radius: 12px;
+        overflow: hidden;
+        aspect-ratio: 1;
+    }
+
+    .work-gallery .gallery-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .work-gallery .gallery-link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .work-gallery .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .work-gallery .gallery-link:active .gallery-overlay {
+        opacity: 1;
+    }
+
+    .work-gallery .gallery-overlay i {
+        font-size: 1.5rem;
+        color: white;
+    }
+}
+
+/* ==========================================================================
+   Single Work - Results Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-results {
+        padding: 40px 0;
+        background: white;
+    }
+
+    .work-results .container {
+        padding: 0 20px;
+    }
+
+    .work-results .section-title {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .work-results .section-title .title-en {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #00867b;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 6px;
+    }
+
+    .work-results .section-title .title-ja {
+        display: block;
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: #1f2937;
+    }
+
+    .work-results .results-content {
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #374151;
+        margin-bottom: 32px;
+    }
+
+    .work-results .results-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .work-results .stat-card {
+        background: #f8f9fa;
+        border-radius: 16px;
+        padding: 24px 16px;
+        text-align: center;
+    }
+
+    .work-results .stat-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 134, 123, 0.1);
+        border-radius: 12px;
+        color: #00867b;
+        font-size: 1.25rem;
+    }
+
+    .work-results .stat-number {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 4px;
+    }
+
+    .work-results .stat-label {
+        font-size: 0.8rem;
+        color: #6b7280;
+    }
+}
+
+/* ==========================================================================
+   Single Work - Testimonial Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-testimonial {
+        padding: 40px 0;
+        background: linear-gradient(135deg, #00867b 0%, #005952 100%);
+    }
+
+    .work-testimonial .container {
+        padding: 0 20px;
+    }
+
+    .work-testimonial .testimonial-card {
+        background: white;
+        border-radius: 20px;
+        padding: 32px 24px;
+        position: relative;
+    }
+
+    .work-testimonial .quote-icon {
+        position: absolute;
+        top: -16px;
+        left: 24px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #00867b;
+        border-radius: 50%;
+        color: white;
+        font-size: 1.25rem;
+    }
+
+    .work-testimonial .testimonial-content {
+        font-size: 1rem;
+        line-height: 1.9;
+        color: #374151;
+        margin-bottom: 24px;
+        padding-top: 16px;
+    }
+
+    .work-testimonial .testimonial-content p {
+        margin: 0;
+    }
+
+    .work-testimonial .testimonial-author {
+        border-top: 1px solid #e5e7eb;
+        padding-top: 20px;
+    }
+
+    .work-testimonial .author-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 4px;
+    }
+
+    .work-testimonial .author-position {
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+}
+
+/* ==========================================================================
+   Single Work - Related Works Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .related-works {
+        padding: 40px 0;
+        background: #f8f9fa;
+    }
+
+    .related-works .container {
+        padding: 0 20px;
+    }
+
+    .related-works .section-title {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .related-works .section-title .title-en {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #00867b;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 6px;
+    }
+
+    .related-works .section-title .title-ja {
+        display: block;
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: #1f2937;
+    }
+
+    .related-works-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .related-work-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .related-work-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .related-work-image {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+    }
+
+    .related-work-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .related-work-image .image-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 134, 123, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .related-work-card:active .image-overlay {
+        opacity: 1;
+    }
+
+    .related-work-image .overlay-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border-radius: 50%;
+        color: #00867b;
+    }
+
+    .related-work-content {
+        padding: 20px;
+    }
+
+    .related-work-content .work-category {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #00867b;
+        background: rgba(0, 134, 123, 0.1);
+        padding: 4px 10px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .related-work-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1f2937;
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+
+    .related-work-client {
+        font-size: 0.85rem;
+        color: #6b7280;
+    }
+}
+
+/* ==========================================================================
+   Single Work - Detail CTA Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .work-detail-cta {
+        position: relative;
+        padding: 60px 0;
+        overflow: hidden;
+    }
+
+    .work-detail-cta .cta-bg-wrapper {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .work-detail-cta .cta-bg-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    .work-detail-cta .cta-bg-pattern {
+        position: absolute;
+        inset: 0;
+        opacity: 0.03;
+        background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.1) 20px,
+            rgba(255, 255, 255, 0.1) 40px
+        );
+    }
+
+    .work-detail-cta .container {
+        position: relative;
+        z-index: 1;
+        padding: 0 20px;
+    }
+
+    .work-detail-cta .cta-content {
+        text-align: center;
+        color: white;
+    }
+
+    .work-detail-cta .cta-title {
+        margin-bottom: 16px;
+    }
+
+    .work-detail-cta .cta-title .title-main {
+        display: block;
+        font-size: 1.375rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+
+    .work-detail-cta .cta-title .title-sub {
+        display: block;
+        font-size: 1.125rem;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+
+    .work-detail-cta .cta-description {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        opacity: 0.85;
+        margin-bottom: 32px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .work-detail-cta .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .work-detail-cta .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 16px 24px;
+        min-height: 52px;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .work-detail-cta .cta-button.primary {
+        background: #00867b;
+        color: white;
+    }
+
+    .work-detail-cta .cta-button.secondary {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        color: white;
+    }
+
+    .work-detail-cta .cta-button:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+}
+
+/* ==========================================================================
+   Touch Device Optimizations
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+    .work-item:hover,
+    .related-work-card:hover {
+        transform: none;
+    }
+
+    .work-item:active {
+        transform: scale(0.98);
+    }
+
+    .filter-btn:active {
+        background: #00867b;
+        color: white;
+    }
+
+    .cta-button:active {
+        opacity: 0.8;
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .work-item,
+    .related-work-card,
+    .filter-btn,
+    .cta-button,
+    .work-image img {
+        transition: none !important;
+    }
+
+    .work-hero .hero-bg-wrapper,
+    .work-cta-section .cta-pattern,
+    .work-detail-cta .cta-bg-pattern {
+        animation: none !important;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Focus states */
+    .work-link:focus,
+    .related-work-link:focus,
+    .filter-btn:focus,
+    .cta-button:focus,
+    .back-home:focus,
+    .gallery-link:focus {
+        outline: 3px solid #00867b;
+        outline-offset: 3px;
+    }
+
+    /* High contrast support */
+    @media (prefers-contrast: high) {
+        .work-category,
+        .category-badge,
+        .tech-tag {
+            border: 1px solid currentColor;
+        }
+
+        .filter-btn {
+            border: 2px solid #374151;
+        }
+
+        .filter-btn.active {
+            border-color: #00867b;
+        }
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+@media print {
+    .work-filter-section,
+    .work-cta-section,
+    .work-detail-cta,
+    .work-hero .hero-scroll,
+    .work-overlay,
+    .gallery-overlay,
+    .image-overlay {
+        display: none !important;
+    }
+
+    .work-item,
+    .related-work-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
+    }
+}

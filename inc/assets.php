@@ -252,6 +252,16 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
         }
     }
     
+    // Work (実績) pages
+    if ( is_post_type_archive( 'work' ) || is_singular( 'work' ) ) {
+        wp_enqueue_style(
+            'corporate-seo-pro-work-mobile',
+            get_template_directory_uri() . '/assets/css/pages/work-mobile.css',
+            array( 'corporate-seo-pro-pages' ),
+            $version
+        );
+    }
+
     // News/Blog components
     if ( is_home() || is_archive() || is_single() || is_category() || is_tag() ) {
         wp_enqueue_style(
