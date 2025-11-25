@@ -156,6 +156,14 @@ function corporate_seo_pro_enqueue_styles( $version ) {
             array( 'corporate-seo-pro-features-enhanced' ),
             $version
         );
+
+        // Front page mobile optimization
+        wp_enqueue_style(
+            'corporate-seo-pro-front-page-mobile',
+            get_template_directory_uri() . '/assets/css/pages/front-page-mobile.css',
+            array( 'corporate-seo-pro-features-modern' ),
+            $version
+        );
     }
     
     // Page-specific styles (loaded conditionally)

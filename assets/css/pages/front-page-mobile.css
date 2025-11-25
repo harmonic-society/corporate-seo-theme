@@ -1,0 +1,961 @@
+/**
+ * Front Page Mobile Optimization
+ *
+ * TOPページのモバイルUI/UX最適化
+ * 可読性重視・堅実でプロフェッショナルなデザイン
+ */
+
+/* ==========================================================================
+   Base Mobile Optimization
+   ========================================================================== */
+
+/* モバイル基本設定 */
+@media (max-width: 768px) {
+    /* コンテナのパディング調整 */
+    .front-page-main .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* セクション間の余白を最適化 */
+    .front-page-main section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    /* 共通のセクションヘッダー */
+    .section-header,
+    .section-header-premium,
+    .features-header-refined {
+        margin-bottom: 40px;
+    }
+
+    /* タイトルの可読性向上 */
+    .section-title,
+    .section-title-premium .title-main,
+    .features-title-refined {
+        font-size: 1.75rem;
+        line-height: 1.4;
+        letter-spacing: -0.01em;
+    }
+
+    /* 説明文の可読性向上 */
+    .section-description,
+    .section-description-premium,
+    .features-subtitle-refined {
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+}
+
+@media (max-width: 480px) {
+    .front-page-main .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .front-page-main section {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .section-title,
+    .section-title-premium .title-main,
+    .features-title-refined {
+        font-size: 1.5rem;
+    }
+}
+
+/* ==========================================================================
+   About Section Mobile - 私たちについて
+   ========================================================================== */
+@media (max-width: 768px) {
+    .about-section-modern {
+        padding: 60px 0;
+    }
+
+    /* 背景要素を簡素化 */
+    .about-bg-elements .floating-shape {
+        display: none;
+    }
+
+    .about-bg-gradient {
+        opacity: 0.5;
+    }
+
+    .about-grid-pattern {
+        opacity: 0.3;
+    }
+
+    /* レイアウトをシンプルに */
+    .about-modern-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    /* ビジュアル要素を縮小 */
+    .about-visual-side {
+        order: 1;
+    }
+
+    .about-visual-container {
+        height: auto;
+        min-height: 280px;
+        padding: 20px 0;
+    }
+
+    /* 回転アニメーションを停止 */
+    .visual-accent-ring {
+        animation: none;
+    }
+
+    .visual-accent-ring.ring-1 {
+        width: 220px;
+        height: 220px;
+    }
+
+    .visual-accent-ring.ring-2 {
+        width: 180px;
+        height: 180px;
+    }
+
+    .visual-main-circle {
+        width: 130px;
+        height: 130px;
+        animation: none;
+        box-shadow:
+            0 12px 40px rgba(0, 134, 123, 0.25),
+            0 0 0 8px rgba(0, 134, 123, 0.08);
+    }
+
+    .circle-label {
+        font-size: 0.7rem;
+    }
+
+    .circle-year {
+        font-size: 2rem;
+    }
+
+    /* 統計情報を横並びで下部に配置 */
+    .visual-stats {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 24px;
+        height: auto;
+        width: 100%;
+    }
+
+    .stat-item {
+        position: relative;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        animation: none;
+        padding: 12px 20px;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    /* コンテンツ側 */
+    .about-content-side {
+        order: 2;
+    }
+
+    .about-header-modern {
+        margin-bottom: 24px;
+    }
+
+    .about-label-badge {
+        padding: 6px 14px;
+        margin-bottom: 16px;
+    }
+
+    .label-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 0.6rem;
+    }
+
+    .label-text {
+        font-size: 0.75rem;
+    }
+
+    .about-title-modern {
+        font-size: 1.75rem;
+        line-height: 1.4;
+    }
+
+    .title-underline {
+        width: 60px;
+        height: 3px;
+        margin-top: 12px;
+    }
+
+    .about-text-modern {
+        font-size: 0.95rem;
+        line-height: 1.85;
+        margin-bottom: 28px;
+    }
+
+    .about-text-modern p {
+        margin-bottom: 1rem;
+    }
+
+    /* 特徴アイコンを2列で表示 */
+    .about-features-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 16px;
+        margin-bottom: 28px;
+    }
+
+    .about-feature-item {
+        gap: 8px;
+    }
+
+    .about-feature-item:last-child {
+        grid-column: 1 / -1;
+        justify-content: center;
+    }
+
+    .feature-icon-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+
+    .feature-text {
+        font-size: 0.8rem;
+    }
+
+    /* ボタン */
+    .about-action-modern {
+        margin-bottom: 24px;
+    }
+
+    .about-btn-modern {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+        font-size: 0.95rem;
+    }
+
+    .about-btn-modern .btn-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 0.65rem;
+    }
+
+    /* 署名 */
+    .about-signature-modern {
+        justify-content: center;
+    }
+
+    .signature-line {
+        width: 30px;
+    }
+
+    .signature-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section-modern {
+        padding: 48px 0;
+    }
+
+    .about-visual-container {
+        min-height: 240px;
+    }
+
+    .visual-accent-ring.ring-1 {
+        width: 180px;
+        height: 180px;
+    }
+
+    .visual-accent-ring.ring-2 {
+        width: 150px;
+        height: 150px;
+    }
+
+    .visual-main-circle {
+        width: 110px;
+        height: 110px;
+    }
+
+    .circle-year {
+        font-size: 1.75rem;
+    }
+
+    .stat-item {
+        padding: 10px 16px;
+    }
+
+    .stat-number {
+        font-size: 1.25rem;
+    }
+
+    .about-title-modern {
+        font-size: 1.5rem;
+    }
+
+    .about-text-modern {
+        font-size: 0.9rem;
+    }
+
+    /* 特徴アイコンを縦並びに */
+    .about-features-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .about-feature-item,
+    .about-feature-item:last-child {
+        grid-column: auto;
+        justify-content: flex-start;
+    }
+}
+
+/* ==========================================================================
+   Features Section Mobile - 選ばれる理由
+   ========================================================================== */
+@media (max-width: 768px) {
+    .features-section-refined {
+        padding: 60px 0 70px;
+    }
+
+    /* 背景要素を簡素化 */
+    .refined-diagonal-lines {
+        opacity: 0.3;
+    }
+
+    .refined-accent-circle {
+        display: none;
+    }
+
+    /* ヘッダー */
+    .features-header-refined {
+        margin-bottom: 40px;
+    }
+
+    .header-top-line {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .line-left,
+    .line-right {
+        width: 30px;
+    }
+
+    .header-label-refined {
+        font-size: 0.7rem;
+        padding: 6px 14px;
+        letter-spacing: 0.15em;
+    }
+
+    .features-title-refined {
+        font-size: 1.75rem;
+        margin-bottom: 16px;
+    }
+
+    .features-subtitle-refined {
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+
+    /* カードグリッド */
+    .features-grid-refined {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: none;
+    }
+
+    /* カードスタイル - シンプルに */
+    .feature-card-refined {
+        animation: none;
+    }
+
+    .feature-card-refined .card-inner {
+        padding: 28px 24px 24px;
+    }
+
+    .feature-card-refined:hover {
+        transform: none;
+    }
+
+    .feature-card-refined:hover .card-inner {
+        border-color: rgba(0, 134, 123, 0.2);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    /* トップアクセントを常に表示 */
+    .card-top-accent {
+        transform: scaleX(1);
+        height: 3px;
+    }
+
+    /* 数字バッジ */
+    .feature-number-refined {
+        margin-bottom: 20px;
+    }
+
+    .number-text {
+        font-size: 1.75rem;
+    }
+
+    .number-line {
+        display: none;
+    }
+
+    /* アイコン */
+    .feature-icon-refined {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 20px;
+    }
+
+    .icon-bg-shape {
+        border-radius: 14px;
+        transform: rotate(-4deg);
+    }
+
+    .icon-inner {
+        font-size: 1.35rem;
+    }
+
+    /* コンテンツ */
+    .feature-content-refined {
+        margin-bottom: 16px;
+    }
+
+    .feature-heading-refined {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+    }
+
+    .feature-text-refined {
+        font-size: 0.9rem;
+        line-height: 1.75;
+    }
+
+    /* インジケーター */
+    .feature-indicator {
+        display: none;
+    }
+
+    /* ボトム装飾 */
+    .features-bottom-element {
+        margin-top: 48px;
+        gap: 16px;
+    }
+
+    .bottom-line {
+        width: 60px;
+    }
+
+    .bottom-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-section-refined {
+        padding: 48px 0 56px;
+    }
+
+    .features-title-refined {
+        font-size: 1.5rem;
+    }
+
+    .feature-card-refined .card-inner {
+        padding: 24px 20px 20px;
+    }
+
+    .number-text {
+        font-size: 1.5rem;
+    }
+
+    .feature-icon-refined {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+    }
+
+    .icon-inner {
+        font-size: 1.2rem;
+    }
+
+    .feature-heading-refined {
+        font-size: 1.1rem;
+    }
+
+    .feature-text-refined {
+        font-size: 0.875rem;
+    }
+
+    .features-bottom-element {
+        margin-top: 40px;
+    }
+
+    .bottom-line {
+        width: 40px;
+    }
+}
+
+/* ==========================================================================
+   Services Section Mobile - サービス
+   ========================================================================== */
+@media (max-width: 768px) {
+    .services-section.services-modern {
+        padding: 60px 0;
+    }
+
+    .services-section .section-header {
+        margin-bottom: 36px;
+    }
+
+    .services-section .section-label {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+
+    .services-section .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 12px;
+    }
+
+    .services-section .section-description {
+        font-size: 0.95rem;
+    }
+
+    /* サービスカード */
+    .services-grid-alternating {
+        gap: 24px;
+    }
+
+    .service-card-alternating {
+        flex-direction: column;
+    }
+
+    .service-card-alternating:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .service-card-image {
+        width: 100%;
+        max-height: 200px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .service-card-content-alt {
+        padding: 24px 20px;
+    }
+
+    .service-card-title-alt {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+
+    .service-card-title-alt a {
+        line-height: 1.4;
+    }
+
+    .service-card-excerpt-alt {
+        font-size: 0.9rem;
+        line-height: 1.75;
+        margin-bottom: 16px;
+    }
+
+    .service-features-list {
+        margin-bottom: 20px;
+    }
+
+    .service-features-list li {
+        font-size: 0.85rem;
+        padding: 6px 0;
+    }
+
+    .service-link-button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+
+    /* CTAボタン */
+    .services-cta {
+        margin-top: 32px;
+    }
+
+    .btn-outline-large {
+        width: 100%;
+        max-width: 300px;
+        padding: 14px 24px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-section.services-modern {
+        padding: 48px 0;
+    }
+
+    .services-section .section-title {
+        font-size: 1.5rem;
+    }
+
+    .service-card-image {
+        max-height: 180px;
+    }
+
+    .service-card-content-alt {
+        padding: 20px 16px;
+    }
+
+    .service-card-title-alt {
+        font-size: 1.1rem;
+    }
+
+    .service-card-excerpt-alt {
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================================
+   News Release Section Mobile - ニュースリリース
+   ========================================================================== */
+@media (max-width: 768px) {
+    .news-release-section {
+        padding: 60px 0;
+    }
+
+    .news-release-section .section-header {
+        margin-bottom: 32px;
+    }
+
+    .news-release-section .section-label {
+        font-size: 0.75rem;
+    }
+
+    .news-release-section .section-title {
+        font-size: 1.75rem;
+    }
+
+    .news-release-list {
+        gap: 0;
+    }
+
+    .news-release-item {
+        padding: 16px 0;
+    }
+
+    .news-release-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .news-release-date {
+        font-size: 0.8rem;
+    }
+
+    .news-release-content {
+        width: 100%;
+    }
+
+    .news-release-title {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .news-release-excerpt {
+        font-size: 0.85rem;
+        line-height: 1.7;
+        margin-top: 8px;
+    }
+
+    .news-release-arrow {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-release-section {
+        padding: 48px 0;
+    }
+
+    .news-release-section .section-title {
+        font-size: 1.5rem;
+    }
+
+    .news-release-title {
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================================================
+   News Section Mobile - 最新情報
+   ========================================================================== */
+@media (max-width: 768px) {
+    .news-section {
+        padding: 60px 0;
+    }
+
+    .news-section .section-header {
+        margin-bottom: 32px;
+    }
+
+    .news-section .section-label {
+        font-size: 0.75rem;
+    }
+
+    .news-section .section-title {
+        font-size: 1.75rem;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .news-item {
+        animation: none;
+    }
+
+    .news-link {
+        padding: 16px;
+    }
+
+    .news-date-wrapper {
+        margin-bottom: 12px;
+    }
+
+    .news-date {
+        flex-direction: row;
+        gap: 6px;
+    }
+
+    .date-day {
+        font-size: 1.25rem;
+    }
+
+    .date-month,
+    .date-year {
+        font-size: 0.75rem;
+    }
+
+    .news-category {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+        margin-bottom: 8px;
+    }
+
+    .news-title {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .news-excerpt {
+        font-size: 0.85rem;
+        line-height: 1.7;
+        margin-top: 8px;
+    }
+
+    .news-arrow {
+        display: none;
+    }
+
+    /* セクションフッター */
+    .section-footer {
+        margin-top: 32px;
+    }
+
+    .section-footer .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 24px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-section {
+        padding: 48px 0;
+    }
+
+    .news-section .section-title {
+        font-size: 1.5rem;
+    }
+
+    .news-link {
+        padding: 14px;
+    }
+
+    .news-title {
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================================================
+   CTA Section Mobile - お問い合わせ
+   ========================================================================== */
+@media (max-width: 768px) {
+    .cta-section.cta-homepage {
+        padding: 60px 0;
+    }
+
+    /* 背景エフェクトを簡素化 */
+    .cta-particles {
+        display: none;
+    }
+
+    .cta-pattern {
+        opacity: 0.3;
+    }
+
+    .cta-glow {
+        opacity: 0.5;
+    }
+
+    .cta-content {
+        text-align: center;
+    }
+
+    .cta-title {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        margin-bottom: 24px;
+    }
+
+    .cta-button-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+        padding: 16px 28px;
+        font-size: 1rem;
+    }
+
+    .cta-button-text {
+        font-size: 1rem;
+    }
+
+    .cta-button-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-section.cta-homepage {
+        padding: 48px 0;
+    }
+
+    .cta-title {
+        font-size: 1.35rem;
+    }
+
+    .cta-button {
+        padding: 14px 24px;
+    }
+}
+
+/* ==========================================================================
+   Touch Device Optimizations
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+    /* タッチデバイスでのホバー効果を無効化 */
+    .feature-card-refined:hover,
+    .about-feature-item:hover .feature-icon-circle,
+    .about-btn-modern:hover,
+    .service-card-alternating:hover,
+    .news-item:hover {
+        transform: none;
+    }
+
+    /* タッチターゲットサイズを確保 */
+    .about-btn-modern,
+    .service-link-button,
+    .cta-button,
+    .btn,
+    .news-link {
+        min-height: 48px;
+    }
+
+    /* アクティブ状態のフィードバック */
+    .about-btn-modern:active,
+    .service-link-button:active,
+    .cta-button:active {
+        opacity: 0.9;
+        transform: scale(0.98);
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .about-section-modern *,
+    .features-section-refined *,
+    .services-section *,
+    .news-section *,
+    .cta-section * {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .visual-accent-ring,
+    .visual-main-circle,
+    .floating-shape,
+    .stat-item {
+        animation: none !important;
+    }
+}
+
+/* ==========================================================================
+   Accessibility Improvements
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* フォーカス状態の可視化 */
+    a:focus,
+    button:focus,
+    .about-btn-modern:focus,
+    .service-link-button:focus,
+    .cta-button:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 3px;
+    }
+
+    /* 十分なコントラスト確保 */
+    .about-text-modern,
+    .feature-text-refined,
+    .service-card-excerpt-alt,
+    .news-excerpt {
+        color: #4b5563;
+    }
+
+    /* リンクの下線表示 */
+    .about-text-modern a,
+    .feature-text-refined a {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+}
