@@ -1,6 +1,6 @@
 <?php
 /**
- * ホームページサブスクリプション CTA テンプレート
+ * システム開発 CTA テンプレート
  *
  * @package Corporate_SEO_Pro
  */
@@ -15,11 +15,11 @@
                 <div class="hp-icon-bg"></div>
             </div>
 
-            <!-- アイコン -->
+            <!-- アイコン（歯車） -->
             <div class="hp-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                 </svg>
             </div>
 
@@ -27,27 +27,26 @@
             <div class="homepage-subscription-cta-content">
                 <!-- キャッチコピー -->
                 <div class="hp-cta-catchphrase">
-                    費用は抑えたい。でも、安っぽいサイトは嫌だ。
+                    Excel管理、もう限界？業務をシステム化して、本業に集中。
                 </div>
 
-                <!-- 千葉県限定バッジ -->
+                <!-- バッジ -->
                 <div class="hp-cta-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
-                    千葉県限定サブスクリプションプラン
+                    小規模事業者向けシステム開発
                 </div>
 
                 <!-- 価格表示 -->
                 <div class="hp-cta-pricing">
                     <div class="hp-price-main">
-                        <span class="price-label">月額</span>
-                        <span class="price-amount">5,500</span>
-                        <span class="price-unit">円</span>
-                        <span class="price-tax">（税込）</span>
+                        <span class="price-amount" style="font-size: 2.5rem;">お見積もり</span>
+                        <span class="price-tax">（無料）</span>
                     </div>
                     <div class="hp-price-details">
-                        初期費用0円・最低契約期間6ヶ月
+                        ご要望に合わせた最適なプランをご提案
                     </div>
                 </div>
 
@@ -57,29 +56,27 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
-                        完全オーダーメイドWordPressデザイン
+                        業務フローに合わせたオーダーメイド設計
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
-                        ドメイン・サーバー・保守すべて込み
+                        導入後の運用サポート・保守も安心
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
-                        地域密着の対面サポート体制
+                        小さく始めて、必要に応じて拡張可能
                     </li>
                 </ul>
 
                 <!-- CTAボタン -->
                 <div class="hp-cta-button-wrapper">
-                    <a href="https://chiba.harmonic-society.co.jp/"
-                       class="hp-cta-button primary"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        <span class="btn-text">詳しく見る</span>
+                    <a href="https://harmonic-society.co.jp/services/system-development/"
+                       class="hp-cta-button primary">
+                        <span class="btn-text">サービスを見る</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
@@ -89,7 +86,7 @@
 
                 <!-- 補足情報 -->
                 <p class="hp-cta-note">
-                    千葉県内全域対応。まずはお気軽にご相談ください。
+                    まずは無料相談から。お気軽にお問い合わせください。
                 </p>
             </div>
         </div>
