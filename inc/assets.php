@@ -295,11 +295,11 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             $version
         );
 
-        // Homepage Subscription CTA CSS for single posts
+        // Newsletter CTA CSS for single posts
         if ( is_single() ) {
             wp_enqueue_style(
-                'corporate-seo-pro-homepage-subscription-cta',
-                get_template_directory_uri() . '/assets/css/components/homepage-subscription-cta.css',
+                'corporate-seo-pro-newsletter-cta',
+                get_template_directory_uri() . '/assets/css/components/newsletter-cta.css',
                 array( 'corporate-seo-pro-base' ),
                 $version
             );

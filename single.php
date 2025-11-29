@@ -152,8 +152,8 @@ get_header(); ?>
                 </div>
             </aside>
 
-            <!-- ホームページサブスクリプション CTAセクション -->
-            <?php get_template_part( 'template-parts/homepage-subscription-cta' ); ?>
+            <!-- メルマガ登録CTAセクション -->
+            <?php get_template_part( 'template-parts/newsletter-cta' ); ?>
 
             <!-- シェアボタン -->
             <?php if ( get_theme_mod( 'show_share_buttons', true ) ) : ?>

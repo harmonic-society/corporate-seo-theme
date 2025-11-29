@@ -37,6 +37,11 @@ require_once CORPORATE_SEO_PRO_DIR . '/inc/contact-form.php';
 require_once CORPORATE_SEO_PRO_DIR . '/inc/download-form-handler.php';
 
 /**
+ * メルマガ登録・配信ハンドラーを読み込み
+ */
+require_once CORPORATE_SEO_PRO_DIR . '/inc/newsletter-handler.php';
+
+/**
  * Theme initialization
  * 
  * All theme functionality is now modularized into separate files:
