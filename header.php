@@ -81,6 +81,10 @@
                     ?>
                     
                     <div class="nav-cta">
+                        <a href="https://docs.google.com/presentation/d/17HIvwsf-T2UUZzOQrGhi_QvHIE919OJA/edit?usp=sharing&ouid=103237259871738523873&rtpof=true&sd=true" class="nav-cta-button nav-cta-secondary" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-file-download"></i>
+                            <?php esc_html_e( '資料ダウンロード', 'corporate-seo-pro' ); ?>
+                        </a>
                         <a href="https://calendar.app.google/prkDu7TEhWaSzDjN8" class="nav-cta-button" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-calendar-check"></i>
                             <?php esc_html_e( '今すぐ予約する', 'corporate-seo-pro' ); ?>
@@ -128,6 +132,10 @@
                 
                 <!-- モバイルメニューアクション -->
                 <div class="mobile-menu-actions">
+                    <a href="https://docs.google.com/presentation/d/17HIvwsf-T2UUZzOQrGhi_QvHIE919OJA/edit?usp=sharing&ouid=103237259871738523873&rtpof=true&sd=true" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-download"></i>
+                        <?php esc_html_e( '資料ダウンロード', 'corporate-seo-pro' ); ?>
+                    </a>
                     <a href="https://calendar.app.google/prkDu7TEhWaSzDjN8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-calendar-check"></i>
                         <?php esc_html_e( '今すぐ予約する', 'corporate-seo-pro' ); ?>

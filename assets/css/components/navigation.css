@@ -201,6 +201,9 @@
    ========================================================================== */
 .nav-cta {
     margin-left: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .nav-cta-button {
@@ -254,6 +257,25 @@
 .nav-cta-button i {
     color: #ffffff !important;
     font-size: 18px;
+}
+
+/* 資料ダウンロードボタン（セカンダリ） */
+.nav-cta-button.nav-cta-secondary {
+    background-color: transparent;
+    color: #00867b !important;
+    border: 2px solid #00867b;
+    box-shadow: none;
+    padding: 14px 28px;
+}
+
+.nav-cta-button.nav-cta-secondary:hover {
+    background-color: #00867b;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.3);
+}
+
+.nav-cta-button.nav-cta-secondary i {
+    color: inherit !important;
 }
 
 /* ==========================================================================

@@ -412,6 +412,12 @@
         margin-top: 16px;
     }
 
+    .mobile-menu-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
     .mobile-menu-actions .btn,
     .mobile-menu-actions .btn-primary {
         display: flex !important;
@@ -439,6 +445,24 @@
     .mobile-menu-actions .btn-primary:active {
         background-color: #006b61 !important;
         transform: none !important;
+    }
+
+    /* 資料ダウンロードボタン（セカンダリ） */
+    .mobile-menu-actions .btn-secondary {
+        background-color: transparent !important;
+        color: #00867b !important;
+        border: 2px solid #00867b !important;
+        box-shadow: none !important;
+    }
+
+    .mobile-menu-actions .btn-secondary:hover,
+    .mobile-menu-actions .btn-secondary:active {
+        background-color: #00867b !important;
+        color: #ffffff !important;
+    }
+
+    .mobile-menu-actions .btn-secondary i {
+        color: inherit !important;
     }
 
     .mobile-menu-actions .btn:focus,
