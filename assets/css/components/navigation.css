@@ -207,46 +207,52 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 10px 20px;
-    background-color: #06C755;
-    color: white;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
+    gap: 8px;
+    padding: 14px 28px;
+    background-color: #00867b;
+    color: #ffffff !important;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
     text-decoration: none;
     border: none;
-    box-shadow: 0 2px 8px rgba(6, 199, 85, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.3);
     white-space: nowrap;
-    height: 40px;
-    line-height: 20px;
-    transition: background-color 0.2s ease;
+    height: auto;
+    line-height: 1.2;
+    transition: all 0.3s ease;
 }
 
 .nav-cta-button:hover {
-    background-color: #00B900;
-    box-shadow: 0 2px 8px rgba(6, 199, 85, 0.35);
-    color: white;
+    background-color: #006b61;
+    box-shadow: 0 6px 16px rgba(0, 134, 123, 0.4);
+    color: #ffffff !important;
+    transform: translateY(-2px);
 }
 
 .nav-cta-button .cta-text,
 .nav-cta-button .cta-icon {
     display: inline-block;
     vertical-align: middle;
-    line-height: 20px;
+    line-height: 1.2;
     margin: 0;
     padding: 0;
 }
 
 .nav-cta-button .cta-text {
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
+    color: #ffffff !important;
+    font-size: 15px;
+    font-weight: 700;
 }
 
 .nav-cta-button .cta-icon {
     font-size: 18px;
-    color: white;
+    color: #ffffff !important;
+}
+
+.nav-cta-button i {
+    color: #ffffff !important;
+    font-size: 18px;
 }
 
 /* ==========================================================================
