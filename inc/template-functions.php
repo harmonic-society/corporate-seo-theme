@@ -59,32 +59,66 @@ function corporate_seo_pro_reading_time() {
 
 /**
  * 関連記事の取得
+ * カテゴリベースで取得し、足りない場合は新しい順で補完
  */
-function corporate_seo_pro_get_related_posts( $post_id, $number_posts = 3 ) {
-    $args = array(
-        'post_type' => 'post',
-        'post__not_in' => array( $post_id ),
-        'posts_per_page' => $number_posts,
-        'orderby' => 'rand',
-    );
-    
-    // カテゴリーベースで関連記事を取得
+function corporate_seo_pro_get_related_posts( $post_id, $number_posts = 6 ) {
+    $related_post_ids = array();
+    $exclude_ids = array( $post_id );
+
+    // 1. まずカテゴリーベースで関連記事を取得
     $categories = wp_get_post_categories( $post_id );
     if ( $categories ) {
-        $args['category__in'] = $categories;
-    }
-    
-    // タグベースでも検索
-    $tags = wp_get_post_tags( $post_id );
-    if ( $tags ) {
-        $tag_ids = array();
-        foreach ( $tags as $tag ) {
-            $tag_ids[] = $tag->term_id;
+        $category_args = array(
+            'post_type'      => 'post',
+            'post__not_in'   => $exclude_ids,
+            'posts_per_page' => $number_posts,
+            'category__in'   => $categories,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            'fields'         => 'ids',
+        );
+
+        $category_posts = get_posts( $category_args );
+        if ( $category_posts ) {
+            $related_post_ids = array_merge( $related_post_ids, $category_posts );
         }
-        $args['tag__in'] = $tag_ids;
     }
-    
-    return new WP_Query( $args );
+
+    // 2. カテゴリベースで足りない場合は新しい順で補完
+    $current_count = count( $related_post_ids );
+    if ( $current_count < $number_posts ) {
+        $needed = $number_posts - $current_count;
+        $exclude_ids = array_merge( $exclude_ids, $related_post_ids );
+
+        $recent_args = array(
+            'post_type'      => 'post',
+            'post__not_in'   => $exclude_ids,
+            'posts_per_page' => $needed,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            'fields'         => 'ids',
+        );
+
+        $recent_posts = get_posts( $recent_args );
+        if ( $recent_posts ) {
+            $related_post_ids = array_merge( $related_post_ids, $recent_posts );
+        }
+    }
+
+    // 3. 取得した投稿IDでWP_Queryを実行
+    if ( empty( $related_post_ids ) ) {
+        // 何もない場合は空のクエリを返す
+        return new WP_Query();
+    }
+
+    $final_args = array(
+        'post_type'      => 'post',
+        'post__in'       => $related_post_ids,
+        'posts_per_page' => $number_posts,
+        'orderby'        => 'post__in',
+    );
+
+    return new WP_Query( $final_args );
 }
 
 /**

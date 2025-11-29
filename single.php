@@ -244,27 +244,35 @@ get_header(); ?>
                     <div class="container">
                         <h2 class="section-title"><?php esc_html_e( '関連記事', 'corporate-seo-pro' ); ?></h2>
                         <?php
-                        $related_posts = corporate_seo_pro_get_related_posts( get_the_ID(), 3 );
+                        $related_posts = corporate_seo_pro_get_related_posts( get_the_ID(), 6 );
                         if ( $related_posts->have_posts() ) : ?>
-                            <div class="related-posts-grid">
+                            <div class="related-posts-grid related-posts-grid-6">
                                 <?php while ( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
                                     <article class="related-post">
                                         <a href="<?php the_permalink(); ?>" class="related-post-link">
                                             <?php if ( has_post_thumbnail() ) : ?>
                                                 <div class="related-post-image">
-                                                    <?php the_post_thumbnail( 'corporate-featured', array( 'loading' => 'lazy' ) ); ?>
+                                                    <?php the_post_thumbnail( 'medium_large', array( 'loading' => 'lazy' ) ); ?>
+                                                </div>
+                                            <?php else : ?>
+                                                <div class="related-post-image related-post-no-image">
+                                                    <div class="no-image-placeholder">
+                                                        <i class="fas fa-newspaper"></i>
+                                                    </div>
                                                 </div>
                                             <?php endif; ?>
                                             <div class="related-post-content">
+                                                <?php
+                                                $categories = get_the_category();
+                                                if ( ! empty( $categories ) ) : ?>
+                                                    <span class="related-post-category"><?php echo esc_html( $categories[0]->name ); ?></span>
+                                                <?php endif; ?>
+                                                <h3 class="related-post-title"><?php the_title(); ?></h3>
                                                 <div class="related-post-meta">
                                                     <time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
                                                         <?php echo get_the_date(); ?>
                                                     </time>
                                                 </div>
-                                                <h3 class="related-post-title"><?php the_title(); ?></h3>
-                                                <p class="related-post-excerpt">
-                                                    <?php echo wp_trim_words( get_the_excerpt(), 15 ); ?>
-                                                </p>
                                             </div>
                                         </a>
                                     </article>
