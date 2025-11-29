@@ -31,8 +31,7 @@ function corporate_seo_pro_register_newsletter_subscriber_cpt() {
         'labels'              => $labels,
         'public'              => false,
         'show_ui'             => true,
-        'show_in_menu'        => true,
-        'menu_position'       => 26,
+        'show_in_menu'        => false, // 手動でメニュー追加
         'capability_type'     => 'post',
         'hierarchical'        => false,
         'supports'            => array( 'title' ),
@@ -45,6 +44,20 @@ function corporate_seo_pro_register_newsletter_subscriber_cpt() {
     register_post_type( 'newsletter_subscriber', $args );
 }
 add_action( 'init', 'corporate_seo_pro_register_newsletter_subscriber_cpt', 5 );
+
+/**
+ * メルマガ購読者を資料DLリードのサブメニューに追加
+ */
+function corporate_seo_pro_add_newsletter_submenu() {
+    add_submenu_page(
+        'edit.php?post_type=download_lead',
+        __( 'メルマガ購読者', 'corporate-seo-pro' ),
+        __( 'メルマガ購読者', 'corporate-seo-pro' ),
+        'edit_posts',
+        'edit.php?post_type=newsletter_subscriber'
+    );
+}
+add_action( 'admin_menu', 'corporate_seo_pro_add_newsletter_submenu' );
 
 /**
  * メルマガ購読者一覧にカスタムカラムを追加
@@ -500,9 +513,9 @@ if ( ! function_exists( 'corporate_seo_pro_get_client_ip' ) ) {
  */
 function corporate_seo_pro_newsletter_admin_menu() {
     add_submenu_page(
-        'edit.php?post_type=newsletter_subscriber',
+        'edit.php?post_type=download_lead',
         __( 'メルマガ手動配信', 'corporate-seo-pro' ),
-        __( '手動配信', 'corporate-seo-pro' ),
+        __( 'メルマガ手動配信', 'corporate-seo-pro' ),
         'manage_options',
         'newsletter-manual-send',
         'corporate_seo_pro_newsletter_manual_send_page'
