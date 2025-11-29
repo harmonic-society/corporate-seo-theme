@@ -119,8 +119,12 @@
     margin: 0 auto;
 }
 
-.newsletter-form-group input {
-    width: 100%;
+.newsletter-form-group input[type="email"] {
+    display: block;
+    width: 100% !important;
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 1.1rem 1.5rem;
     border: none;
     border-radius: 50px;
@@ -131,11 +135,11 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.newsletter-form-group input::placeholder {
+.newsletter-form-group input[type="email"]::placeholder {
     color: #9ca3af;
 }
 
-.newsletter-form-group input:focus {
+.newsletter-form-group input[type="email"]:focus {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
