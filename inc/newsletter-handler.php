@@ -31,7 +31,8 @@ function corporate_seo_pro_register_newsletter_subscriber_cpt() {
         'labels'              => $labels,
         'public'              => false,
         'show_ui'             => true,
-        'show_in_menu'        => 'edit.php?post_type=download_lead',
+        'show_in_menu'        => true,
+        'menu_position'       => 26,
         'capability_type'     => 'post',
         'hierarchical'        => false,
         'supports'            => array( 'title' ),
@@ -482,9 +483,9 @@ if ( ! function_exists( 'corporate_seo_pro_get_client_ip' ) ) {
  */
 function corporate_seo_pro_newsletter_admin_menu() {
     add_submenu_page(
-        'edit.php?post_type=download_lead',
+        'edit.php?post_type=newsletter_subscriber',
         __( 'メルマガ手動配信', 'corporate-seo-pro' ),
-        __( 'メルマガ手動配信', 'corporate-seo-pro' ),
+        __( '手動配信', 'corporate-seo-pro' ),
         'manage_options',
         'newsletter-manual-send',
         'corporate_seo_pro_newsletter_manual_send_page'
