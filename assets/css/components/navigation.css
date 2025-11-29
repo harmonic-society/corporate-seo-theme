@@ -99,7 +99,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: var(--space-xl);
+    gap: var(--space-lg);
 }
 
 .primary-menu > li {
@@ -115,7 +115,7 @@
     color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: color var(--transition-base);
     position: relative;
 }
@@ -200,29 +200,29 @@
    LINE CTA Button in Navigation
    ========================================================================== */
 .nav-cta {
-    margin-left: var(--space-lg);
+    margin-left: var(--space-md);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .nav-cta-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 16px 32px;
+    gap: 6px;
+    padding: 12px 20px;
     background-color: #00867b;
     color: #ffffff !important;
     border-radius: 50px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     text-decoration: none;
     border: none;
     box-shadow: 0 4px 12px rgba(0, 134, 123, 0.3);
     white-space: nowrap;
     height: auto;
-    min-height: 52px;
+    min-height: 44px;
     line-height: 1.2;
     transition: all 0.3s ease;
 }
@@ -256,7 +256,7 @@
 
 .nav-cta-button i {
     color: #ffffff !important;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 /* 資料ダウンロードボタン（セカンダリ） */
@@ -265,7 +265,7 @@
     color: #00867b !important;
     border: 2px solid #00867b;
     box-shadow: none;
-    padding: 14px 28px;
+    padding: 10px 18px;
 }
 
 .nav-cta-button.nav-cta-secondary:hover {
