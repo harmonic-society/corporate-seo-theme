@@ -285,8 +285,8 @@ a:hover {
     align-items: center !important;
 }
 
-.main-navigation .menu-item a,
-#primary-menu .menu-item a,
+.main-navigation .menu-item a:not(.nav-cta-button),
+#primary-menu .menu-item a:not(.nav-cta-button),
 .site-header .main-navigation a:not(.nav-cta-button) {
     color: #333333 !important;
     font-size: 16px !important;
