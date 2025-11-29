@@ -126,15 +126,15 @@ get_header(); ?>
                 <!-- 緊急の場合 -->
                 <div class="action-card urgent">
                     <div class="card-icon">
-                        <i class="fas fa-phone-volume"></i>
+                        <i class="fas fa-calendar-check"></i>
                     </div>
                     <h3>お急ぎの場合</h3>
-                    <p>緊急のご用件は、お電話でも承っております</p>
-                    <a href="tel:08069464006" class="phone-link">
-                        <i class="fas fa-phone"></i>
-                        080-6946-4006
+                    <p>オンラインでお打ち合わせをご予約いただけます</p>
+                    <a href="https://calendar.app.google/prkDu7TEhWaSzDjN8" class="btn-booking" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-calendar-check"></i>
+                        今すぐ予約する
                     </a>
-                    <span class="phone-hours">平日 9:00-18:00</span>
+                    <span class="booking-note">24時間予約受付中</span>
                 </div>
                 
                 <!-- よくある質問 -->
