@@ -287,7 +287,7 @@ a:hover {
 
 .main-navigation .menu-item a,
 #primary-menu .menu-item a,
-.site-header .main-navigation a {
+.site-header .main-navigation a:not(.nav-cta-button) {
     color: #333333 !important;
     font-size: 16px !important;
     visibility: visible !important;
