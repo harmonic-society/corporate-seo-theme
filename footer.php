@@ -113,28 +113,29 @@
                     <div class="footer-widget footer-contact-widget">
                         <h3 class="footer-title"><?php esc_html_e( 'お問い合わせ', 'corporate-seo-pro' ); ?></h3>
                         <div class="footer-contact">
-                            <?php if ( get_theme_mod( 'footer_phone' ) ) : ?>
-                                <a href="tel:<?php echo esc_attr( get_theme_mod( 'footer_phone' ) ); ?>" class="footer-phone">
-                                    <i class="fas fa-phone"></i>
-                                    <?php echo esc_html( get_theme_mod( 'footer_phone' ) ); ?>
-                                </a>
-                            <?php endif; ?>
-                            
-                            <?php if ( get_theme_mod( 'footer_email' ) ) : ?>
-                                <a href="mailto:<?php echo esc_attr( get_theme_mod( 'footer_email' ) ); ?>" class="footer-email">
+                            <div class="footer-cta-buttons">
+                                <!-- お問い合わせフォーム -->
+                                <?php
+                                $contact_page = get_page_by_path( 'contact' );
+                                $contact_url = $contact_page ? get_permalink( $contact_page ) : home_url( '/contact/' );
+                                ?>
+                                <a href="<?php echo esc_url( $contact_url ); ?>" class="footer-cta-button footer-cta-form">
                                     <i class="fas fa-envelope"></i>
-                                    <?php echo esc_html( get_theme_mod( 'footer_email' ) ); ?>
+                                    <span><?php esc_html_e( 'お問い合わせフォーム', 'corporate-seo-pro' ); ?></span>
                                 </a>
-                            <?php endif; ?>
-                            
-                            <?php
-                            $contact_page = get_page_by_path( 'contact' );
-                            $contact_url = $contact_page ? get_permalink( $contact_page ) : '#contact';
-                            ?>
-                            <a href="<?php echo esc_url( $contact_url ); ?>" class="footer-cta-button">
-                                <?php esc_html_e( 'お問い合わせフォーム', 'corporate-seo-pro' ); ?>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+
+                                <!-- 資料ダウンロード -->
+                                <button type="button" class="footer-cta-button footer-cta-download" data-open-download-modal>
+                                    <i class="fas fa-file-download"></i>
+                                    <span><?php esc_html_e( '資料ダウンロード', 'corporate-seo-pro' ); ?></span>
+                                </button>
+
+                                <!-- 今すぐ予約する -->
+                                <a href="https://calendar.app.google/prkDu7TEhWaSzDjN8" class="footer-cta-button footer-cta-booking" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <span><?php esc_html_e( '今すぐ予約する', 'corporate-seo-pro' ); ?></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
