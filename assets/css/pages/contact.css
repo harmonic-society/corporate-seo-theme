@@ -117,7 +117,7 @@
     margin: 0 auto;
     background: #ffffff;
     border-radius: 16px;
-    padding: 3rem;
+    padding: 2rem;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
@@ -125,7 +125,7 @@
 /* フォームヘッダー */
 .contact-form-single .form-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .contact-form-single .form-title {
@@ -146,14 +146,15 @@
 }
 
 .contact-form-single .form-group {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.875rem;
 }
 
 .contact-form-single label {
     display: block;
     font-weight: 600;
+    font-size: 0.875rem;
     color: #374151;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.25rem;
 }
 
 .contact-form-single input[type="text"],
@@ -163,7 +164,7 @@
 .contact-form-single textarea,
 .contact-form-single select {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.625rem 0.875rem;
     border: 2px solid #e5e7eb;
     border-radius: 8px;
     font-size: 1rem;
@@ -179,7 +180,7 @@
 }
 
 .contact-form-single textarea {
-    min-height: 150px;
+    min-height: 100px;
     resize: vertical;
 }
 

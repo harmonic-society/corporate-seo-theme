@@ -51,30 +51,32 @@ class Corporate_SEO_Pro_Contact_Form {
                 <label for="your-name" class="form-label">
                     お名前 <span class="required">*</span>
                 </label>
-                <input 
-                    type="text" 
-                    id="your-name" 
-                    name="your_name" 
-                    class="form-control" 
-                    required 
+                <input
+                    type="text"
+                    id="your-name"
+                    name="your_name"
+                    class="form-control"
+                    required
                     autocomplete="name"
+                    placeholder="例：山田 太郎"
                     data-validation="required|min:2|max:50"
                 >
                 <span class="error-message" role="alert"></span>
             </div>
-            
+
             <!-- メールアドレス -->
             <div class="form-group">
                 <label for="your-email" class="form-label">
                     メールアドレス <span class="required">*</span>
                 </label>
-                <input 
-                    type="email" 
-                    id="your-email" 
-                    name="your_email" 
-                    class="form-control" 
-                    required 
+                <input
+                    type="email"
+                    id="your-email"
+                    name="your_email"
+                    class="form-control"
+                    required
                     autocomplete="email"
+                    placeholder="例：info@example.com"
                     data-validation="required|email"
                 >
                 <span class="error-message" role="alert"></span>
@@ -110,6 +112,7 @@ class Corporate_SEO_Pro_Contact_Form {
                     class="form-control"
                     required
                     autocomplete="organization"
+                    placeholder="例：株式会社〇〇"
                     data-validation="required|max:100"
                 >
                 <span class="error-message" role="alert"></span>
@@ -159,11 +162,12 @@ class Corporate_SEO_Pro_Contact_Form {
                 <label for="your-subject" class="form-label">
                     題名
                 </label>
-                <input 
-                    type="text" 
-                    id="your-subject" 
-                    name="your_subject" 
+                <input
+                    type="text"
+                    id="your-subject"
+                    name="your_subject"
                     class="form-control"
+                    placeholder="例：サービスについてのご相談"
                     data-validation="max:100"
                 >
                 <span class="error-message" role="alert"></span>
@@ -174,12 +178,13 @@ class Corporate_SEO_Pro_Contact_Form {
                 <label for="your-message" class="form-label">
                     お問い合わせ内容 <span class="required">*</span>
                 </label>
-                <textarea 
-                    id="your-message" 
-                    name="your_message" 
-                    class="form-control" 
-                    rows="8" 
+                <textarea
+                    id="your-message"
+                    name="your_message"
+                    class="form-control"
+                    rows="5"
                     required
+                    placeholder="お問い合わせ内容をご記入ください"
                     data-validation="required|min:10|max:2000"
                 ></textarea>
                 <span class="error-message" role="alert"></span>
@@ -236,19 +241,20 @@ class Corporate_SEO_Pro_Contact_Form {
         }
         
         .form-group {
-            margin-bottom: 2rem;
+            margin-bottom: 0.875rem;
         }
-        
+
         .form-label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             font-weight: 600;
+            font-size: 0.875rem;
             color: #1f2937;
         }
-        
+
         .form-control {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.625rem 0.875rem;
             font-size: 1rem;
             line-height: 1.5;
             color: #1f2937;
@@ -274,7 +280,7 @@ class Corporate_SEO_Pro_Contact_Form {
         
         textarea.form-control {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
         
         .required {
@@ -307,9 +313,9 @@ class Corporate_SEO_Pro_Contact_Form {
         
         /* チェックボックス */
         .form-checkbox {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             background-color: #f9fafb;
-            padding: 1rem;
+            padding: 0.75rem;
             border-radius: 0.375rem;
             border: 1px solid #e5e7eb;
         }
