@@ -148,6 +148,14 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version
     );
 
+    // Download Modal
+    wp_enqueue_style(
+        'corporate-seo-pro-download-modal',
+        get_template_directory_uri() . '/assets/css/components/download-modal.css',
+        array( 'corporate-seo-pro-base' ),
+        $version
+    );
+
     // Service component (used on front page and service pages)
     wp_enqueue_style(
         'corporate-seo-pro-service',
@@ -338,13 +346,27 @@ function corporate_seo_pro_enqueue_scripts( $version ) {
     );
     
     // Main theme script
-    wp_enqueue_script( 
-        'corporate-seo-pro-theme', 
-        get_template_directory_uri() . '/assets/js/theme.js', 
-        array( 'corporate-seo-pro-animation-utils', 'corporate-seo-pro-tablet-detection' ), 
-        $version, 
-        true 
+    wp_enqueue_script(
+        'corporate-seo-pro-theme',
+        get_template_directory_uri() . '/assets/js/theme.js',
+        array( 'corporate-seo-pro-animation-utils', 'corporate-seo-pro-tablet-detection' ),
+        $version,
+        true
     );
+
+    // Download Modal
+    wp_enqueue_script(
+        'corporate-seo-pro-download-modal',
+        get_template_directory_uri() . '/assets/js/download-modal.js',
+        array(),
+        $version,
+        true
+    );
+
+    // Localize download modal script with AJAX URL
+    wp_localize_script( 'corporate-seo-pro-download-modal', 'corporate_seo_pro_ajax', array(
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+    ) );
     
     // Sticky header
     wp_enqueue_script( 
