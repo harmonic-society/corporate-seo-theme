@@ -44,7 +44,7 @@ function corporate_seo_pro_register_newsletter_subscriber_cpt() {
 
     register_post_type( 'newsletter_subscriber', $args );
 }
-add_action( 'init', 'corporate_seo_pro_register_newsletter_subscriber_cpt' );
+add_action( 'init', 'corporate_seo_pro_register_newsletter_subscriber_cpt', 5 );
 
 /**
  * メルマガ購読者一覧にカスタムカラムを追加
@@ -244,9 +244,10 @@ add_action( 'after_switch_theme', 'corporate_seo_pro_activate_newsletter_cron' )
  * 一度だけパーマリンクをフラッシュ（CPT追加後の初回アクセス時）
  */
 function corporate_seo_pro_maybe_flush_rewrite_rules() {
-    if ( get_option( 'corporate_seo_pro_newsletter_cpt_flush' ) !== '1' ) {
+    // バージョン2でリセット
+    if ( get_option( 'corporate_seo_pro_newsletter_cpt_flush' ) !== '2' ) {
         flush_rewrite_rules();
-        update_option( 'corporate_seo_pro_newsletter_cpt_flush', '1' );
+        update_option( 'corporate_seo_pro_newsletter_cpt_flush', '2' );
     }
 }
 add_action( 'init', 'corporate_seo_pro_maybe_flush_rewrite_rules', 20 );
