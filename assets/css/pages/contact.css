@@ -113,12 +113,24 @@
 }
 
 .contact-form-single {
-    max-width: 720px;
+    max-width: 900px;
     margin: 0 auto;
     background: #ffffff;
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* 2カラムレイアウト */
+.contact-form-single .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 0.875rem;
+}
+
+.contact-form-single .form-row .form-group {
+    margin-bottom: 0;
 }
 
 

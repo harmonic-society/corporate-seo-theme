@@ -135,6 +135,12 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
 
+    /* 2カラム→1カラム */
+    .contact-form-single .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
     /* フォームヘッダー */
     .contact-form-single .form-header {
         margin-bottom: 1.25rem;

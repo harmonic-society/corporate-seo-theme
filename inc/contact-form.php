@@ -46,117 +46,120 @@ class Corporate_SEO_Pro_Contact_Form {
                 <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
             </div>
             
-            <!-- お名前 -->
-            <div class="form-group">
-                <label for="your-name" class="form-label">
-                    お名前 <span class="required">*</span>
-                </label>
-                <input
-                    type="text"
-                    id="your-name"
-                    name="your_name"
-                    class="form-control"
-                    required
-                    autocomplete="name"
-                    placeholder="例：山田 太郎"
-                    data-validation="required|min:2|max:50"
-                >
-                <span class="error-message" role="alert"></span>
+            <!-- 2カラム: お名前 + メールアドレス -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="your-name" class="form-label">
+                        お名前 <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="your-name"
+                        name="your_name"
+                        class="form-control"
+                        required
+                        autocomplete="name"
+                        placeholder="例：山田 太郎"
+                        data-validation="required|min:2|max:50"
+                    >
+                    <span class="error-message" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="your-email" class="form-label">
+                        メールアドレス <span class="required">*</span>
+                    </label>
+                    <input
+                        type="email"
+                        id="your-email"
+                        name="your_email"
+                        class="form-control"
+                        required
+                        autocomplete="email"
+                        placeholder="例：info@example.com"
+                        data-validation="required|email"
+                    >
+                    <span class="error-message" role="alert"></span>
+                </div>
             </div>
 
-            <!-- メールアドレス -->
-            <div class="form-group">
-                <label for="your-email" class="form-label">
-                    メールアドレス <span class="required">*</span>
-                </label>
-                <input
-                    type="email"
-                    id="your-email"
-                    name="your_email"
-                    class="form-control"
-                    required
-                    autocomplete="email"
-                    placeholder="例：info@example.com"
-                    data-validation="required|email"
-                >
-                <span class="error-message" role="alert"></span>
-            </div>
-            
-            <!-- 電話番号 -->
-            <div class="form-group">
-                <label for="your-phone" class="form-label">
-                    電話番号 <span class="required">*</span>
-                </label>
-                <input
-                    type="tel"
-                    id="your-phone"
-                    name="your_phone"
-                    class="form-control"
-                    required
-                    autocomplete="tel"
-                    placeholder="090-1234-5678"
-                    data-validation="required|phone"
-                >
-                <span class="error-message" role="alert"></span>
+            <!-- 2カラム: 電話番号 + 会社名 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="your-phone" class="form-label">
+                        電話番号 <span class="required">*</span>
+                    </label>
+                    <input
+                        type="tel"
+                        id="your-phone"
+                        name="your_phone"
+                        class="form-control"
+                        required
+                        autocomplete="tel"
+                        placeholder="090-1234-5678"
+                        data-validation="required|phone"
+                    >
+                    <span class="error-message" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="your-company" class="form-label">
+                        会社名 <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="your-company"
+                        name="your_company"
+                        class="form-control"
+                        required
+                        autocomplete="organization"
+                        placeholder="例：株式会社〇〇"
+                        data-validation="required|max:100"
+                    >
+                    <span class="error-message" role="alert"></span>
+                </div>
             </div>
 
-            <!-- 会社名 -->
-            <div class="form-group">
-                <label for="your-company" class="form-label">
-                    会社名 <span class="required">*</span>
-                </label>
-                <input
-                    type="text"
-                    id="your-company"
-                    name="your_company"
-                    class="form-control"
-                    required
-                    autocomplete="organization"
-                    placeholder="例：株式会社〇〇"
-                    data-validation="required|max:100"
-                >
-                <span class="error-message" role="alert"></span>
+            <!-- 2カラム: ホームページURL + お問い合わせ種別 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="your-url" class="form-label">
+                        ホームページURL <span class="required">*</span>
+                    </label>
+                    <input
+                        type="url"
+                        id="your-url"
+                        name="your_url"
+                        class="form-control"
+                        required
+                        autocomplete="url"
+                        placeholder="https://example.com"
+                        data-validation="required|url"
+                    >
+                    <span class="error-message" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="inquiry-type" class="form-label">
+                        お問い合わせ種別 <span class="required">*</span>
+                    </label>
+                    <select
+                        id="inquiry-type"
+                        name="inquiry_type"
+                        class="form-control"
+                        required
+                        data-validation="required"
+                    >
+                        <option value="">選択してください</option>
+                        <option value="サービスについて">サービスについて</option>
+                        <option value="料金について">料金について</option>
+                        <option value="お見積もり依頼">お見積もり依頼</option>
+                        <option value="その他">その他</option>
+                    </select>
+                    <span class="error-message" role="alert"></span>
+                </div>
             </div>
 
-            <!-- ホームページURL -->
-            <div class="form-group">
-                <label for="your-url" class="form-label">
-                    ホームページURL <span class="required">*</span>
-                </label>
-                <input
-                    type="url"
-                    id="your-url"
-                    name="your_url"
-                    class="form-control"
-                    required
-                    autocomplete="url"
-                    placeholder="https://example.com"
-                    data-validation="required|url"
-                >
-                <span class="error-message" role="alert"></span>
-            </div>
-            
-            <!-- お問い合わせ種別 -->
-            <div class="form-group">
-                <label for="inquiry-type" class="form-label">
-                    お問い合わせ種別 <span class="required">*</span>
-                </label>
-                <select 
-                    id="inquiry-type" 
-                    name="inquiry_type" 
-                    class="form-control" 
-                    required
-                    data-validation="required"
-                >
-                    <option value="">選択してください</option>
-                    <option value="サービスについて">サービスについて</option>
-                    <option value="料金について">料金について</option>
-                    <option value="お見積もり依頼">お見積もり依頼</option>
-                    <option value="その他">その他</option>
-                </select>
-                <span class="error-message" role="alert"></span>
-            </div>
-            
             <!-- 題名 -->
             <div class="form-group">
                 <label for="your-subject" class="form-label">
