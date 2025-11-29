@@ -228,12 +228,28 @@ function corporate_seo_pro_schedule_newsletter_cron() {
 add_action( 'wp', 'corporate_seo_pro_schedule_newsletter_cron' );
 
 /**
- * テーマ有効化時にCronを登録
+ * テーマ有効化時にCronを登録＆パーマリンクをフラッシュ
  */
 function corporate_seo_pro_activate_newsletter_cron() {
+    // CPTを登録
+    corporate_seo_pro_register_newsletter_subscriber_cpt();
+    // パーマリンクをフラッシュ
+    flush_rewrite_rules();
+    // Cronを登録
     corporate_seo_pro_schedule_newsletter_cron();
 }
 add_action( 'after_switch_theme', 'corporate_seo_pro_activate_newsletter_cron' );
+
+/**
+ * 一度だけパーマリンクをフラッシュ（CPT追加後の初回アクセス時）
+ */
+function corporate_seo_pro_maybe_flush_rewrite_rules() {
+    if ( get_option( 'corporate_seo_pro_newsletter_cpt_flush' ) !== '1' ) {
+        flush_rewrite_rules();
+        update_option( 'corporate_seo_pro_newsletter_cpt_flush', '1' );
+    }
+}
+add_action( 'init', 'corporate_seo_pro_maybe_flush_rewrite_rules', 20 );
 
 /**
  * テーマ無効化時にCronを解除
