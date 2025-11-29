@@ -566,63 +566,49 @@ get_header(); ?>
     <?php endif; ?>
 
     <?php if ( get_theme_mod( 'show_news_section', true ) ) : ?>
-        <section class="news-section">
+        <section class="blog-section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label"><?php esc_html_e( 'Latest News', 'corporate-seo-pro' ); ?></span>
-                    <h2 class="section-title"><?php echo esc_html( get_theme_mod( 'news_title', __( '最新情報', 'corporate-seo-pro' ) ) ); ?></h2>
+                <div class="section-header centered">
+                    <span class="section-label"><?php esc_html_e( 'Blog', 'corporate-seo-pro' ); ?></span>
+                    <h2 class="section-title"><?php echo esc_html( get_theme_mod( 'news_title', __( 'ブログ', 'corporate-seo-pro' ) ) ); ?></h2>
                 </div>
 
                 <?php
-                $news_query = new WP_Query( array(
+                $blog_query = new WP_Query( array(
                     'post_type'      => 'post',
-                    'posts_per_page' => 3,
+                    'posts_per_page' => 9,
                 ) );
 
-                if ( $news_query->have_posts() ) : ?>
-                    <div class="news-grid">
-                        <?php 
-                        $post_count = 0;
-                        while ( $news_query->have_posts() ) : 
-                            $news_query->the_post(); 
-                            $post_count++;
-                            $categories = get_the_category();
-                        ?>
-                            <article class="news-item" data-post="<?php echo $post_count; ?>">
-                                <a href="<?php the_permalink(); ?>" class="news-link">
-                                    <div class="news-date-wrapper">
-                                        <time class="news-date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
-                                            <span class="date-day"><?php echo esc_html( get_the_date( 'd' ) ); ?></span>
-                                            <span class="date-month"><?php echo esc_html( get_the_date( 'M' ) ); ?></span>
-                                            <span class="date-year"><?php echo esc_html( get_the_date( 'Y' ) ); ?></span>
-                                        </time>
-                                    </div>
-                                    
-                                    <div class="news-content">
-                                        <?php if ( ! empty( $categories ) ) : ?>
-                                            <span class="news-category"><?php echo esc_html( $categories[0]->name ); ?></span>
+                if ( $blog_query->have_posts() ) : ?>
+                    <div class="blog-grid-3x3">
+                        <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
+                            <article class="blog-card">
+                                <a href="<?php the_permalink(); ?>" class="blog-card-link">
+                                    <div class="blog-card-image">
+                                        <?php if ( has_post_thumbnail() ) : ?>
+                                            <?php the_post_thumbnail( 'medium_large', array( 'loading' => 'lazy' ) ); ?>
+                                        <?php else : ?>
+                                            <div class="blog-card-placeholder">
+                                                <i class="fas fa-image"></i>
+                                            </div>
                                         <?php endif; ?>
-                                        
-                                        <h3 class="news-title">
-                                            <?php the_title(); ?>
-                                            <span class="news-arrow">→</span>
-                                        </h3>
-                                        
-                                        <div class="news-excerpt">
-                                            <?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?>
-                                        </div>
                                     </div>
-                                    
-                                    <div class="news-hover-effect"></div>
+                                    <div class="blog-card-content">
+                                        <time class="blog-card-date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
+                                            <?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?>
+                                        </time>
+                                        <h3 class="blog-card-title"><?php the_title(); ?></h3>
+                                    </div>
                                 </a>
                             </article>
                         <?php endwhile; ?>
                     </div>
                     <?php wp_reset_postdata(); ?>
-                    
+
                     <div class="section-footer">
-                        <a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>" class="btn btn-primary">
+                        <a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>" class="btn btn-outline-large">
                             <?php esc_html_e( 'すべての記事を見る', 'corporate-seo-pro' ); ?>
+                            <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 <?php endif; ?>
