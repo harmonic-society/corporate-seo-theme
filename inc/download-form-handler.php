@@ -158,7 +158,7 @@ add_action( 'wp_ajax_nopriv_process_download_form', 'corporate_seo_pro_process_d
  */
 function corporate_seo_pro_send_download_notification( $email, $download_url = '' ) {
     // 送信先（管理者メール）
-    $to = get_option( 'admin_email' );
+    $to = 'morota@harmonic-society.co.jp';
 
     // サイト名
     $site_name = get_bloginfo( 'name' );

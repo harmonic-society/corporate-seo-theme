@@ -584,7 +584,7 @@ class Corporate_SEO_Pro_Contact_Form {
      */
     private function send_emails( $data ) {
         // 管理者向けメール
-        $admin_email = 'koushiki@harmonic-society.co.jp';
+        $admin_email = 'morota@harmonic-society.co.jp';
         $admin_subject = '[お問い合わせ] ' . $data['inquiry_type'];
         if ( ! empty( $data['subject'] ) ) {
             $admin_subject .= ' - ' . $data['subject'];
