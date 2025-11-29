@@ -352,45 +352,64 @@
     text-align: left;
 }
 
-/* お問い合わせフォームボタン（白背景・プライマリ） */
+/* お問い合わせフォームボタン（白背景・ダークテキスト） */
 .footer-cta-form {
-    background: #ffffff;
-    color: #1f2937;
+    background: #ffffff !important;
+    color: #1f2937 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .footer-cta-form i {
-    color: #00867b;
+    color: #00867b !important;
+}
+
+.footer-cta-form span {
+    color: #1f2937 !important;
 }
 
 .footer-cta-form:hover {
-    background: #f8f8f8;
+    background: #f8f8f8 !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* 資料ダウンロードボタン（オレンジ） */
+/* 資料ダウンロードボタン（オレンジ・ダークテキスト） */
 .footer-cta-download {
-    background: linear-gradient(135deg, #f59e0b, #fbbf24);
-    color: #1f2937;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+    color: #1f2937 !important;
     box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+.footer-cta-download i,
+.footer-cta-download span {
+    color: #1f2937 !important;
 }
 
 .footer-cta-download:hover {
     box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
-    background: linear-gradient(135deg, #d97706, #f59e0b);
+    background: linear-gradient(135deg, #d97706, #f59e0b) !important;
 }
 
-/* 今すぐ予約するボタン（白アウトライン） */
+/* 今すぐ予約するボタン（白アウトライン・白テキスト） */
 .footer-cta-booking {
-    background: transparent;
-    border: 2px solid #ffffff;
-    color: #ffffff;
+    background: transparent !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+.footer-cta-booking i,
+.footer-cta-booking span {
+    color: #ffffff !important;
 }
 
 .footer-cta-booking:hover {
-    background: #ffffff;
-    border-color: #ffffff;
-    color: #1f2937;
+    background: #ffffff !important;
+    border-color: #ffffff !important;
+    color: #00867b !important;
+}
+
+.footer-cta-booking:hover i,
+.footer-cta-booking:hover span {
+    color: #00867b !important;
 }
 
 /* ==========================================================================
