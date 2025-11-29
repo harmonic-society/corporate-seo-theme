@@ -137,6 +137,9 @@ function corporate_seo_pro_process_download_form() {
     // ダウンロードURL
     $download_url = isset( $_POST['download_url'] ) ? esc_url_raw( wp_unslash( $_POST['download_url'] ) ) : '';
 
+    // 管理者にメール通知を送信
+    corporate_seo_pro_send_download_notification( $email, $download_url );
+
     // 成功レスポンス
     wp_send_json_success( array(
         'message'      => __( 'ダウンロードの準備ができました。', 'corporate-seo-pro' ),
@@ -145,6 +148,73 @@ function corporate_seo_pro_process_download_form() {
 }
 add_action( 'wp_ajax_process_download_form', 'corporate_seo_pro_process_download_form' );
 add_action( 'wp_ajax_nopriv_process_download_form', 'corporate_seo_pro_process_download_form' );
+
+/**
+ * 資料ダウンロード通知メールを管理者に送信
+ *
+ * @param string $email        ダウンロードしたユーザーのメールアドレス
+ * @param string $download_url ダウンロードURL
+ * @return bool メール送信の成否
+ */
+function corporate_seo_pro_send_download_notification( $email, $download_url = '' ) {
+    // 送信先（管理者メール）
+    $to = get_option( 'admin_email' );
+
+    // サイト名
+    $site_name = get_bloginfo( 'name' );
+
+    // 件名
+    $subject = sprintf(
+        /* translators: %s: site name */
+        __( '[%s] 資料ダウンロードがありました', 'corporate-seo-pro' ),
+        $site_name
+    );
+
+    // 日時
+    $datetime = current_time( 'Y年m月d日 H:i:s' );
+
+    // IPアドレス
+    $ip_address = corporate_seo_pro_get_user_ip();
+
+    // メール本文
+    $message = sprintf(
+        __( '資料ダウンロードの通知
+
+以下の情報で資料がダウンロードされました。
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+■ メールアドレス
+%1$s
+
+■ ダウンロード日時
+%2$s
+
+■ IPアドレス
+%3$s
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+このメールは %4$s からの自動送信です。
+管理画面でリード一覧を確認できます: %5$s
+
+', 'corporate-seo-pro' ),
+        $email,
+        $datetime,
+        $ip_address,
+        $site_name,
+        admin_url( 'edit.php?post_type=download_lead' )
+    );
+
+    // メールヘッダー
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: ' . $site_name . ' <' . $to . '>',
+    );
+
+    // メール送信
+    return wp_mail( $to, $subject, $message, $headers );
+}
 
 /**
  * ユーザーIPアドレスを取得
