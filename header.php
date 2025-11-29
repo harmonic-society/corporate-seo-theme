@@ -81,12 +81,9 @@
                     ?>
                     
                     <div class="nav-cta">
-                        <?php
-                        $line_url = 'https://lin.ee/NySum53';
-                        ?>
-                        <a href="<?php echo esc_url( $line_url ); ?>" class="nav-cta-button" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line"></i>
-                            <?php esc_html_e( 'LINE友達登録', 'corporate-seo-pro' ); ?>
+                        <a href="https://calendar.app.google/prkDu7TEhWaSzDjN8" class="nav-cta-button" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-calendar-check"></i>
+                            <?php esc_html_e( '今すぐ予約する', 'corporate-seo-pro' ); ?>
                         </a>
                     </div>
                 </div>
@@ -131,9 +128,9 @@
                 
                 <!-- モバイルメニューアクション -->
                 <div class="mobile-menu-actions">
-                    <a href="<?php echo esc_url( 'https://lin.ee/NySum53' ); ?>" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-line"></i>
-                        <?php esc_html_e( 'LINE友達登録', 'corporate-seo-pro' ); ?>
+                    <a href="https://calendar.app.google/prkDu7TEhWaSzDjN8" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-calendar-check"></i>
+                        <?php esc_html_e( '今すぐ予約する', 'corporate-seo-pro' ); ?>
                     </a>
                 </div>
                 
