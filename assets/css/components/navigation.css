@@ -99,7 +99,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: var(--space-lg);
+    gap: var(--space-md);
 }
 
 .primary-menu > li {
@@ -115,7 +115,7 @@
     color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: color var(--transition-base);
     position: relative;
 }
@@ -200,38 +200,39 @@
    LINE CTA Button in Navigation
    ========================================================================== */
 .nav-cta {
-    margin-left: var(--space-md);
+    margin-left: var(--space-sm);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .nav-cta-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 12px 20px;
+    gap: 4px;
+    padding: 8px 14px;
     background-color: #00867b;
     color: #ffffff !important;
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     text-decoration: none;
     border: none;
-    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.3);
+    box-shadow: 0 3px 10px rgba(0, 134, 123, 0.3);
     white-space: nowrap;
     height: auto;
-    min-height: 44px;
+    min-height: 36px;
     line-height: 1.2;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .nav-cta-button:hover {
     background-color: #006b61;
-    box-shadow: 0 6px 16px rgba(0, 134, 123, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.4);
     color: #ffffff !important;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .nav-cta-button .cta-text,
@@ -259,23 +260,23 @@
     font-size: 14px;
 }
 
-/* 資料ダウンロードボタン（セカンダリ） */
+/* 資料ダウンロードボタン（オレンジ） */
 .nav-cta-button.nav-cta-secondary {
-    background-color: transparent;
-    color: #00867b !important;
-    border: 2px solid #00867b;
-    box-shadow: none;
-    padding: 10px 18px;
+    background-color: #f59e0b;
+    color: #ffffff !important;
+    border: none;
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+    padding: 8px 14px;
 }
 
 .nav-cta-button.nav-cta-secondary:hover {
-    background-color: #00867b;
+    background-color: #d97706;
     color: #ffffff !important;
-    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.3);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
 }
 
 .nav-cta-button.nav-cta-secondary i {
-    color: inherit !important;
+    color: #ffffff !important;
 }
 
 /* ==========================================================================

@@ -447,22 +447,22 @@
         transform: none !important;
     }
 
-    /* 資料ダウンロードボタン（セカンダリ） */
+    /* 資料ダウンロードボタン（オレンジ） */
     .mobile-menu-actions .btn-secondary {
-        background-color: transparent !important;
-        color: #00867b !important;
-        border: 2px solid #00867b !important;
-        box-shadow: none !important;
+        background-color: #f59e0b !important;
+        color: #ffffff !important;
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3) !important;
     }
 
     .mobile-menu-actions .btn-secondary:hover,
     .mobile-menu-actions .btn-secondary:active {
-        background-color: #00867b !important;
+        background-color: #d97706 !important;
         color: #ffffff !important;
     }
 
     .mobile-menu-actions .btn-secondary i {
-        color: inherit !important;
+        color: #ffffff !important;
     }
 
     .mobile-menu-actions .btn:focus,
