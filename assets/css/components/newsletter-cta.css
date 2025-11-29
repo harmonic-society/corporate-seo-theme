@@ -113,26 +113,22 @@
 
 .newsletter-form-group {
     display: flex;
-    gap: 0.5rem;
-    max-width: 580px;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    padding: 0.5rem;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .newsletter-form-group input {
-    flex: 1;
-    padding: 1rem 1.5rem;
+    width: 100%;
+    padding: 1.1rem 1.5rem;
     border: none;
     border-radius: 50px;
     font-size: 1rem;
     background: white;
     color: #1f2937;
     outline: none;
-    min-width: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .newsletter-form-group input::placeholder {
@@ -140,7 +136,7 @@
 }
 
 .newsletter-form-group input:focus {
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* 送信ボタン */
@@ -149,7 +145,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 1rem 1.75rem;
+    width: 100%;
+    padding: 1.1rem 2rem;
     background: #1f2937;
     color: white;
     border: none;
@@ -160,6 +157,7 @@
     transition: all 0.3s ease;
     white-space: nowrap;
     position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .newsletter-submit-btn:hover {
@@ -316,23 +314,16 @@
     }
 
     .newsletter-form-group {
-        flex-direction: column;
-        padding: 0;
-        background: none;
-        border: none;
-        backdrop-filter: none;
+        max-width: 100%;
         gap: 0.75rem;
     }
 
     .newsletter-form-group input {
-        width: 100%;
         padding: 1rem 1.25rem;
     }
 
     .newsletter-submit-btn {
-        width: 100%;
         padding: 1rem;
-        justify-content: center;
     }
 
     .sp-only {
