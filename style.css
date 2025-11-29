@@ -399,6 +399,14 @@ span.menu-text {
     text-decoration: none !important;
 }
 
+/* CTAボタンのフォントサイズを強制上書き */
+.site-header .main-navigation .nav-cta-button,
+.site-header .main-navigation a.nav-cta-button,
+a.nav-cta-button,
+button.nav-cta-button {
+    font-size: 11px !important;
+}
+
 /* Moved to buttons.css
 .nav-cta-button {
     display: inline-flex;
