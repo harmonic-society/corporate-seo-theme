@@ -312,6 +312,12 @@
         // 初期値
         currentSpan.textContent = textarea.value.length;
 
+        // テキストエリア自動リサイズ関数
+        function autoResize() {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+
         // 入力時の更新
         textarea.addEventListener('input', function() {
             const length = this.value.length;
@@ -327,7 +333,15 @@
             } else {
                 counter.classList.remove('warning', 'error');
             }
+
+            // テキストエリア自動リサイズ
+            autoResize();
         });
+
+        // 初期表示時にもリサイズを適用（既存の値がある場合）
+        if (textarea.value) {
+            autoResize();
+        }
     }
 
     /**

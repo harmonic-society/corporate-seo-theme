@@ -252,8 +252,9 @@
 }
 
 .contact-form-single textarea {
-    min-height: 100px;
-    resize: vertical;
+    min-height: 80px;
+    resize: none;
+    overflow: hidden;
 }
 
 /* 送信ボタン */
