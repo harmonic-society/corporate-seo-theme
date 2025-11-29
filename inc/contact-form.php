@@ -493,7 +493,7 @@ class Corporate_SEO_Pro_Contact_Form {
         // バリデーション
         $errors = array();
         
-        if ( empty( $name ) || strlen( $name ) < 2 ) {
+        if ( empty( $name ) || mb_strlen( $name, 'UTF-8' ) < 2 ) {
             $errors['your_name'] = 'お名前を正しく入力してください。';
         }
         
@@ -521,11 +521,11 @@ class Corporate_SEO_Pro_Contact_Form {
             $errors['inquiry_type'] = 'お問い合わせ種別を選択してください。';
         }
         
-        if ( empty( $message ) || strlen( $message ) < 10 ) {
+        if ( empty( $message ) || mb_strlen( $message, 'UTF-8' ) < 10 ) {
             $errors['your_message'] = 'お問い合わせ内容を10文字以上で入力してください。';
         }
-        
-        if ( strlen( $message ) > 2000 ) {
+
+        if ( mb_strlen( $message, 'UTF-8' ) > 2000 ) {
             $errors['your_message'] = 'お問い合わせ内容は2000文字以内で入力してください。';
         }
         

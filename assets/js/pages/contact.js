@@ -204,14 +204,14 @@
                     break;
 
                 case 'min':
-                    if (value && value.length < parseInt(ruleValue)) {
+                    if (value && getCharacterCount(value) < parseInt(ruleValue)) {
                         errorMessage = `${ruleValue}文字以上で入力してください。`;
                         isValid = false;
                     }
                     break;
 
                 case 'max':
-                    if (value && value.length > parseInt(ruleValue)) {
+                    if (value && getCharacterCount(value) > parseInt(ruleValue)) {
                         errorMessage = `${ruleValue}文字以内で入力してください。`;
                         isValid = false;
                     }
@@ -296,6 +296,16 @@
     }
 
     /**
+     * 文字数をカウント（日本語・絵文字対応）
+     * @param {string} str
+     * @returns {number}
+     */
+    function getCharacterCount(str) {
+        // スプレッド演算子でUnicodeコードポイント単位でカウント
+        return [...str].length;
+    }
+
+    /**
      * 文字数カウンターの初期化
      */
     function initCharacterCounter() {
@@ -310,7 +320,7 @@
         const maxLength = 2000;
 
         // 初期値
-        currentSpan.textContent = textarea.value.length;
+        currentSpan.textContent = getCharacterCount(textarea.value);
 
         // テキストエリア自動リサイズ関数
         function autoResize() {
@@ -320,7 +330,7 @@
 
         // 入力時の更新
         textarea.addEventListener('input', function() {
-            const length = this.value.length;
+            const length = getCharacterCount(this.value);
             currentSpan.textContent = length;
 
             // 色の変更
