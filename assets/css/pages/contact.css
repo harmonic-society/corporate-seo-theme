@@ -133,6 +133,66 @@
     margin-bottom: 0;
 }
 
+/* オンライン予約CTA */
+.quick-booking-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #f0fdf9 0%, #e0f7f4 100%);
+    border: 2px solid #00867b;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.quick-booking-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quick-booking-badge {
+    background: #00867b;
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.quick-booking-text {
+    color: #1f2937;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.quick-booking-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #00867b;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.quick-booking-button:hover {
+    background: #006b61;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 134, 123, 0.3);
+}
+
+.quick-booking-button i {
+    font-size: 1rem;
+}
 
 /* フォームヘッダー */
 .contact-form-single .form-header {
