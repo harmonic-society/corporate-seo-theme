@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * カスタム投稿タイプ: メルマガ購読者
  */
-function corporate_seo_pro_register_newsletter_subscriber_cpt() {
+function corporate_seo_pro_register_nl_subscriber_cpt() {
     $labels = array(
         'name'               => __( 'メルマガ購読者', 'corporate-seo-pro' ),
         'singular_name'      => __( 'メルマガ購読者', 'corporate-seo-pro' ),
@@ -41,9 +41,9 @@ function corporate_seo_pro_register_newsletter_subscriber_cpt() {
         'show_in_nav_menus'   => false,
     );
 
-    register_post_type( 'newsletter_subscriber', $args );
+    register_post_type( 'nl_subscriber', $args );
 }
-add_action( 'init', 'corporate_seo_pro_register_newsletter_subscriber_cpt', 5 );
+add_action( 'init', 'corporate_seo_pro_register_nl_subscriber_cpt', 5 );
 
 /**
  * メルマガ購読者を資料DLリードのサブメニューに追加
@@ -54,7 +54,7 @@ function corporate_seo_pro_add_newsletter_submenu() {
         __( 'メルマガ購読者', 'corporate-seo-pro' ),
         __( 'メルマガ購読者', 'corporate-seo-pro' ),
         'edit_posts',
-        'edit.php?post_type=newsletter_subscriber'
+        'edit.php?post_type=nl_subscriber'
     );
 }
 add_action( 'admin_menu', 'corporate_seo_pro_add_newsletter_submenu' );
@@ -62,7 +62,7 @@ add_action( 'admin_menu', 'corporate_seo_pro_add_newsletter_submenu' );
 /**
  * メルマガ購読者一覧にカスタムカラムを追加
  */
-function corporate_seo_pro_newsletter_subscriber_columns( $columns ) {
+function corporate_seo_pro_nl_subscriber_columns( $columns ) {
     $new_columns = array();
     $new_columns['cb'] = $columns['cb'];
     $new_columns['title'] = __( 'メールアドレス', 'corporate-seo-pro' );
@@ -72,12 +72,12 @@ function corporate_seo_pro_newsletter_subscriber_columns( $columns ) {
 
     return $new_columns;
 }
-add_filter( 'manage_newsletter_subscriber_posts_columns', 'corporate_seo_pro_newsletter_subscriber_columns' );
+add_filter( 'manage_nl_subscriber_posts_columns', 'corporate_seo_pro_nl_subscriber_columns' );
 
 /**
  * メルマガ購読者一覧のカスタムカラム内容
  */
-function corporate_seo_pro_newsletter_subscriber_column_content( $column, $post_id ) {
+function corporate_seo_pro_nl_subscriber_column_content( $column, $post_id ) {
     switch ( $column ) {
         case 'status':
             $status = get_post_meta( $post_id, 'subscriber_status', true );
@@ -99,14 +99,14 @@ function corporate_seo_pro_newsletter_subscriber_column_content( $column, $post_
             break;
     }
 }
-add_action( 'manage_newsletter_subscriber_posts_custom_column', 'corporate_seo_pro_newsletter_subscriber_column_content', 10, 2 );
+add_action( 'manage_nl_subscriber_posts_custom_column', 'corporate_seo_pro_nl_subscriber_column_content', 10, 2 );
 
 /**
  * メルマガ購読者一覧のステータスバッジスタイル
  */
 function corporate_seo_pro_newsletter_admin_styles() {
     $screen = get_current_screen();
-    if ( $screen && $screen->post_type === 'newsletter_subscriber' ) {
+    if ( $screen && $screen->post_type === 'nl_subscriber' ) {
         echo '<style>
             .subscriber-status {
                 display: inline-block;
@@ -146,7 +146,7 @@ function corporate_seo_pro_newsletter_subscribe() {
 
     // 重複チェック
     $existing = get_posts( array(
-        'post_type'      => 'newsletter_subscriber',
+        'post_type'      => 'nl_subscriber',
         'meta_key'       => 'subscriber_email',
         'meta_value'     => $email,
         'posts_per_page' => 1,
@@ -168,7 +168,7 @@ function corporate_seo_pro_newsletter_subscribe() {
 
     // 新規購読者を保存
     $post_id = wp_insert_post( array(
-        'post_type'   => 'newsletter_subscriber',
+        'post_type'   => 'nl_subscriber',
         'post_title'  => $email,
         'post_status' => 'publish',
     ) );
@@ -208,7 +208,7 @@ function corporate_seo_pro_notify_newsletter_subscription( $email ) {
         "管理画面で確認: %s",
         $email,
         current_time( 'Y/m/d H:i:s' ),
-        admin_url( 'edit.php?post_type=newsletter_subscriber' )
+        admin_url( 'edit.php?post_type=nl_subscriber' )
     );
 
     $headers = array(
@@ -245,7 +245,7 @@ add_action( 'wp', 'corporate_seo_pro_schedule_newsletter_cron' );
  */
 function corporate_seo_pro_activate_newsletter_cron() {
     // CPTを登録
-    corporate_seo_pro_register_newsletter_subscriber_cpt();
+    corporate_seo_pro_register_nl_subscriber_cpt();
     // パーマリンクをフラッシュ
     flush_rewrite_rules();
     // Cronを登録
@@ -257,10 +257,10 @@ add_action( 'after_switch_theme', 'corporate_seo_pro_activate_newsletter_cron' )
  * 一度だけパーマリンクをフラッシュ（CPT追加後の初回アクセス時）
  */
 function corporate_seo_pro_maybe_flush_rewrite_rules() {
-    // バージョン2でリセット
-    if ( get_option( 'corporate_seo_pro_newsletter_cpt_flush' ) !== '2' ) {
+    // バージョン3でリセット（CPT名変更）
+    if ( get_option( 'corporate_seo_pro_newsletter_cpt_flush' ) !== '3' ) {
         flush_rewrite_rules();
-        update_option( 'corporate_seo_pro_newsletter_cpt_flush', '2' );
+        update_option( 'corporate_seo_pro_newsletter_cpt_flush', '3' );
     }
 }
 add_action( 'init', 'corporate_seo_pro_maybe_flush_rewrite_rules', 20 );
@@ -302,7 +302,7 @@ function corporate_seo_pro_send_daily_newsletter() {
 
     // アクティブな購読者を取得
     $subscribers = get_posts( array(
-        'post_type'      => 'newsletter_subscriber',
+        'post_type'      => 'nl_subscriber',
         'meta_key'       => 'subscriber_status',
         'meta_value'     => 'active',
         'posts_per_page' => -1,
@@ -538,9 +538,9 @@ function corporate_seo_pro_newsletter_manual_send_page() {
     $next_time = $next_scheduled ? date_i18n( 'Y/m/d H:i:s', $next_scheduled ) : __( '未設定', 'corporate-seo-pro' );
 
     // 購読者数を取得
-    $subscriber_count = wp_count_posts( 'newsletter_subscriber' );
+    $subscriber_count = wp_count_posts( 'nl_subscriber' );
     $active_count = get_posts( array(
-        'post_type'      => 'newsletter_subscriber',
+        'post_type'      => 'nl_subscriber',
         'meta_key'       => 'subscriber_status',
         'meta_value'     => 'active',
         'posts_per_page' => -1,
