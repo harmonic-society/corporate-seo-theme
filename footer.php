@@ -153,7 +153,7 @@
             <div class="container">
                 <div class="footer-bottom-content">
                     <p class="copyright">
-                        &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?> | 千葉県千葉市のホームページ制作.
+                        &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?> | 千葉県千葉市のWebシステム開発.
                         <?php esc_html_e( 'All rights reserved.', 'corporate-seo-pro' ); ?>
                     </p>
 
