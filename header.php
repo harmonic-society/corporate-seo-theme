@@ -81,12 +81,12 @@
                     ?>
                     
                     <div class="nav-cta">
-                        <button type="button" class="nav-cta-button nav-cta-secondary" data-open-download-modal>
-                            <i class="fas fa-file-download"></i>
+                        <button type="button" class="nav-cta-button nav-cta-secondary" style="font-size: 11px !important;" data-open-download-modal>
+                            <i class="fas fa-file-download" style="font-size: 11px !important;"></i>
                             <?php esc_html_e( '資料ダウンロード', 'corporate-seo-pro' ); ?>
                         </button>
-                        <a href="https://calendar.app.google/prkDu7TEhWaSzDjN8" class="nav-cta-button" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-calendar-check"></i>
+                        <a href="https://calendar.app.google/prkDu7TEhWaSzDjN8" class="nav-cta-button" style="font-size: 11px !important;" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-calendar-check" style="font-size: 11px !important;"></i>
                             <?php esc_html_e( '今すぐ予約する', 'corporate-seo-pro' ); ?>
                         </a>
                     </div>
