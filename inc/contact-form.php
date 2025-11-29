@@ -83,32 +83,52 @@ class Corporate_SEO_Pro_Contact_Form {
             <!-- 電話番号 -->
             <div class="form-group">
                 <label for="your-phone" class="form-label">
-                    電話番号
+                    電話番号 <span class="required">*</span>
                 </label>
-                <input 
-                    type="tel" 
-                    id="your-phone" 
-                    name="your_phone" 
-                    class="form-control" 
+                <input
+                    type="tel"
+                    id="your-phone"
+                    name="your_phone"
+                    class="form-control"
+                    required
                     autocomplete="tel"
                     placeholder="090-1234-5678"
-                    data-validation="phone"
+                    data-validation="required|phone"
                 >
                 <span class="error-message" role="alert"></span>
             </div>
-            
+
             <!-- 会社名 -->
             <div class="form-group">
                 <label for="your-company" class="form-label">
-                    会社名
+                    会社名 <span class="required">*</span>
                 </label>
-                <input 
-                    type="text" 
-                    id="your-company" 
-                    name="your_company" 
-                    class="form-control" 
+                <input
+                    type="text"
+                    id="your-company"
+                    name="your_company"
+                    class="form-control"
+                    required
                     autocomplete="organization"
-                    data-validation="max:100"
+                    data-validation="required|max:100"
+                >
+                <span class="error-message" role="alert"></span>
+            </div>
+
+            <!-- ホームページURL -->
+            <div class="form-group">
+                <label for="your-url" class="form-label">
+                    ホームページURL <span class="required">*</span>
+                </label>
+                <input
+                    type="url"
+                    id="your-url"
+                    name="your_url"
+                    class="form-control"
+                    required
+                    autocomplete="url"
+                    placeholder="https://example.com"
+                    data-validation="required|url"
                 >
                 <span class="error-message" role="alert"></span>
             </div>
@@ -455,6 +475,7 @@ class Corporate_SEO_Pro_Contact_Form {
         $email = sanitize_email( $data['your_email'] ?? '' );
         $phone = sanitize_text_field( $data['your_phone'] ?? '' );
         $company = sanitize_text_field( $data['your_company'] ?? '' );
+        $url = isset( $data['your_url'] ) ? esc_url_raw( $data['your_url'] ) : '';
         $inquiry_type = sanitize_text_field( $data['inquiry_type'] ?? '' );
         $subject = sanitize_text_field( $data['your_subject'] ?? '' );
         $message = sanitize_textarea_field( $data['your_message'] ?? '' );
@@ -470,11 +491,23 @@ class Corporate_SEO_Pro_Contact_Form {
         if ( empty( $email ) || ! is_email( $email ) ) {
             $errors['your_email'] = '有効なメールアドレスを入力してください。';
         }
-        
-        if ( ! empty( $phone ) && ! preg_match( '/^[0-9\-\+\(\)\s]+$/', $phone ) ) {
-            $errors['your_phone'] = '電話番号の形式が正しくありません。';
+
+        if ( empty( $phone ) ) {
+            $errors['your_phone'] = '電話番号を入力してください。';
+        } elseif ( ! preg_match( '/^[0-9\-\+\(\)\s]+$/', $phone ) ) {
+            $errors['your_phone'] = '有効な電話番号を入力してください。';
         }
-        
+
+        if ( empty( $company ) ) {
+            $errors['your_company'] = '会社名を入力してください。';
+        }
+
+        if ( empty( $url ) ) {
+            $errors['your_url'] = 'ホームページURLを入力してください。';
+        } elseif ( ! filter_var( $url, FILTER_VALIDATE_URL ) ) {
+            $errors['your_url'] = '有効なURLを入力してください。';
+        }
+
         if ( empty( $inquiry_type ) ) {
             $errors['inquiry_type'] = 'お問い合わせ種別を選択してください。';
         }
@@ -506,6 +539,7 @@ class Corporate_SEO_Pro_Contact_Form {
             'email' => $email,
             'phone' => $phone,
             'company' => $company,
+            'url' => $url,
             'inquiry_type' => $inquiry_type,
             'subject' => $subject,
             'message' => $message,
@@ -586,6 +620,9 @@ class Corporate_SEO_Pro_Contact_Form {
         }
         if ( ! empty( $data['company'] ) ) {
             $message .= "会社名: " . $data['company'] . "\n";
+        }
+        if ( ! empty( $data['url'] ) ) {
+            $message .= "ホームページURL: " . $data['url'] . "\n";
         }
         $message .= "\n";
         $message .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";

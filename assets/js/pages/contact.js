@@ -192,6 +192,17 @@
                     }
                     break;
 
+                case 'url':
+                    if (value) {
+                        try {
+                            new URL(value);
+                        } catch (_) {
+                            errorMessage = '有効なURLを入力してください。';
+                            isValid = false;
+                        }
+                    }
+                    break;
+
                 case 'min':
                     if (value && value.length < parseInt(ruleValue)) {
                         errorMessage = `${ruleValue}文字以上で入力してください。`;
