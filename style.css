@@ -11715,9 +11715,19 @@ body.lightbox-open {
     filter: blur(20px);
 }
 
-/* エラーメッセージ */
-.error-message {
+/* エラーメッセージ（404ページ用） */
+.error-page .error-message {
     margin-bottom: 3rem;
+}
+
+/* フォームのエラーメッセージ */
+form .error-message,
+.contact-form .error-message,
+.download-form .error-message {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #ef4444;
+    min-height: 1.25rem;
 }
 
 .error-title {
