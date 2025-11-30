@@ -42,136 +42,51 @@ get_header(); ?>
         </div>
     </section>
     
-    <!-- 検索セクション -->
-    <section class="blog-search-section">
+    <!-- 検索・フィルターセクション -->
+    <section class="blog-filter-section">
         <div class="container">
-            <div class="search-container">
-                <!-- 検索エリア -->
-                <div class="search-area">
-                    <?php
-                    // ブログページのURLを取得
-                    $blog_url = '';
-                    if ( get_option( 'page_for_posts' ) ) {
-                        $blog_url = get_permalink( get_option( 'page_for_posts' ) );
-                    } elseif ( get_option( 'show_on_front' ) == 'posts' ) {
-                        $blog_url = home_url( '/' );
-                    } else {
-                        // フォールバック: 現在のページURLを使用
-                        $blog_url = get_pagenum_link();
-                    }
-                    ?>
-                    <form class="blog-search-form" method="get" action="<?php echo esc_url( $blog_url ); ?>">
-                        <div class="search-input-group">
-                            <input type="search" 
-                                   name="s" 
-                                   class="search-input" 
-                                   placeholder="気になるキーワードを入力" 
-                                   value="<?php echo isset($_GET['s']) ? esc_attr($_GET['s']) : ''; ?>"
-                                   autocomplete="off">
-                            <button type="submit" class="search-submit" aria-label="検索">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                        
-                        <!-- インラインフィルター -->
-                        <div class="inline-filters">
-                            <div class="filter-chips">
-                                <!-- 人気タグ -->
-                                <?php
-                                // 実際のタグを取得
-                                $popular_tags = get_tags( array(
-                                    'orderby' => 'count',
-                                    'order' => 'DESC',
-                                    'number' => 4,
-                                ) );
-                                
-                                if ( $popular_tags ) :
-                                    foreach ( $popular_tags as $tag ) :
-                                ?>
-                                    <button type="button" class="filter-chip" data-tag="<?php echo esc_attr( $tag->slug ); ?>">
-                                        <i class="fas fa-hashtag"></i>
-                                        <span><?php echo esc_html( $tag->name ); ?></span>
-                                    </button>
-                                <?php 
-                                    endforeach;
-                                endif;
-                                ?>
-                                
-                                <!-- カテゴリードロップダウン -->
-                                <div class="filter-dropdown">
-                                    <button type="button" class="filter-dropdown-toggle">
-                                        <i class="fas fa-folder"></i>
-                                        <span>カテゴリー</span>
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                    <div class="filter-dropdown-menu">
-                                        <?php
-                                        $categories = get_categories();
-                                        foreach ($categories as $category) :
-                                        ?>
-                                            <label class="dropdown-item">
-                                                <input type="checkbox" name="category[]" value="<?php echo $category->term_id; ?>">
-                                                <span><?php echo $category->name; ?></span>
-                                                <span class="count"><?php echo $category->count; ?></span>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                                
-                                <!-- 期間フィルター -->
-                                <div class="filter-dropdown">
-                                    <button type="button" class="filter-dropdown-toggle">
-                                        <i class="fas fa-calendar"></i>
-                                        <span>期間</span>
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                    <div class="filter-dropdown-menu">
-                                        <label class="dropdown-item">
-                                            <input type="radio" name="period" value="all" checked>
-                                            <span>すべて</span>
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="radio" name="period" value="week">
-                                            <span>今週</span>
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="radio" name="period" value="month">
-                                            <span>今月</span>
-                                        </label>
-                                        <label class="dropdown-item">
-                                            <input type="radio" name="period" value="3months">
-                                            <span>3ヶ月以内</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <!-- アクティブフィルター表示 -->
-                                <div class="active-filters"></div>
-                                
-                                <!-- 検索実行ボタン -->
-                                <button type="submit" class="search-execute-btn">
-                                    <i class="fas fa-search"></i>
-                                    <span>検索する</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    <!-- 検索結果数 -->
-                    <?php if ( isset($_GET['s']) || isset($_GET['category']) || isset($_GET['tags']) || isset($_GET['period']) ) : ?>
-                    <div class="search-results-info">
-                        <span class="results-count">
-                            <?php
-                            global $wp_query;
-                            echo number_format_i18n( $wp_query->found_posts ) . '件の記事';
-                            ?>
-                        </span>
-                        <?php if ( isset($_GET['s']) && !empty($_GET['s']) ) : ?>
-                        <span class="search-query">「<?php echo esc_html( $_GET['s'] ); ?>」の検索結果</span>
-                        <?php endif; ?>
+            <!-- 検索フォーム -->
+            <div class="blog-search-wrapper">
+                <?php
+                $blog_url = '';
+                if ( get_option( 'page_for_posts' ) ) {
+                    $blog_url = get_permalink( get_option( 'page_for_posts' ) );
+                } elseif ( get_option( 'show_on_front' ) == 'posts' ) {
+                    $blog_url = home_url( '/' );
+                } else {
+                    $blog_url = get_pagenum_link();
+                }
+                ?>
+                <form class="blog-search-form-minimal" method="get" action="<?php echo esc_url( $blog_url ); ?>">
+                    <div class="search-input-minimal">
+                        <i class="fas fa-search search-icon-minimal"></i>
+                        <input type="search"
+                               name="s"
+                               placeholder="記事を検索..."
+                               value="<?php echo isset($_GET['s']) ? esc_attr($_GET['s']) : ''; ?>"
+                               autocomplete="off">
+                        <button type="submit" class="search-btn-minimal" aria-label="検索">
+                            検索
+                        </button>
                     </div>
-                    <?php endif; ?>
-                </div>
+                </form>
+            </div>
+
+            <!-- カテゴリータブ -->
+            <div class="blog-category-tabs">
+                <?php
+                $current_cat = isset($_GET['cat']) ? intval($_GET['cat']) : 0;
+                $categories = get_categories(array('hide_empty' => true));
+                ?>
+                <a href="<?php echo esc_url($blog_url); ?>" class="category-tab <?php echo $current_cat === 0 ? 'active' : ''; ?>">
+                    すべて
+                </a>
+                <?php foreach ($categories as $category) : ?>
+                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
+                       class="category-tab <?php echo $current_cat === $category->term_id ? 'active' : ''; ?>">
+                        <?php echo esc_html($category->name); ?>
+                    </a>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -182,24 +97,33 @@ get_header(); ?>
             
             <?php if ( have_posts() ) : ?>
                 
-                <!-- ソートオプション -->
-                <div class="sort-options">
-                    <div class="sort-label">並び替え：</div>
-                    <select class="sort-select" id="sortPosts">
-                        <option value="date">新着順</option>
-                        <option value="popular">人気順</option>
-                        <option value="title">タイトル順</option>
-                        <option value="comments">コメント数順</option>
-                    </select>
-                    
-                    <!-- ビュー切り替え -->
-                    <div class="view-options">
-                        <button class="view-option active" data-view="grid">
-                            <i class="fas fa-th"></i>
-                        </button>
-                        <button class="view-option" data-view="list">
-                            <i class="fas fa-list"></i>
-                        </button>
+                <!-- ツールバー -->
+                <div class="blog-toolbar">
+                    <div class="toolbar-left">
+                        <span class="post-count">
+                            <?php
+                            global $wp_query;
+                            echo number_format_i18n($wp_query->found_posts);
+                            ?>件の記事
+                        </span>
+                    </div>
+
+                    <div class="toolbar-right">
+                        <!-- 並び替え -->
+                        <div class="sort-buttons">
+                            <button class="sort-btn active" data-sort="date">新着順</button>
+                            <button class="sort-btn" data-sort="title">タイトル順</button>
+                        </div>
+
+                        <!-- ビュー切り替え -->
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid" aria-label="グリッド表示">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button class="view-btn" data-view="list" aria-label="リスト表示">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 

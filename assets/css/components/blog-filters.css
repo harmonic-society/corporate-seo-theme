@@ -1,9 +1,273 @@
 /**
  * ブログフィルタースタイル
- * Corporate SEO Pro Theme
+ * Corporate SEO Pro Theme - Minimal Design
  */
 
-/* 検索セクション */
+/* ========================================
+   新しいミニマルデザイン
+   ======================================== */
+
+/* フィルターセクション */
+.blog-filter-section {
+    padding: 2rem 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* 検索フォーム */
+.blog-search-wrapper {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+}
+
+.blog-search-form-minimal {
+    width: 100%;
+}
+
+.search-input-minimal {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 2px solid #e5e7eb;
+    border-radius: 50px;
+    padding: 0.25rem 0.25rem 0.25rem 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.search-input-minimal:focus-within {
+    border-color: #00867b;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 134, 123, 0.1);
+}
+
+.search-icon-minimal {
+    color: #9ca3af;
+    font-size: 1rem;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.search-input-minimal input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 0.9375rem;
+    color: #1f2937;
+    outline: none;
+    padding: 0.5rem 0;
+}
+
+.search-input-minimal input::placeholder {
+    color: #9ca3af;
+}
+
+.search-btn-minimal {
+    background: #00867b;
+    color: #ffffff;
+    border: none;
+    padding: 0.625rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.search-btn-minimal:hover {
+    background: #006b61;
+}
+
+/* カテゴリータブ */
+.blog-category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+
+.category-tab {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.category-tab:hover {
+    color: #00867b;
+    background: rgba(0, 134, 123, 0.05);
+}
+
+.category-tab.active {
+    color: #00867b;
+    background: rgba(0, 134, 123, 0.1);
+    border-color: rgba(0, 134, 123, 0.2);
+}
+
+/* ツールバー */
+.blog-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.post-count {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* 並び替えボタン */
+.sort-buttons {
+    display: flex;
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 0.25rem;
+}
+
+.sort-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #6b7280;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sort-btn:hover {
+    color: #1f2937;
+}
+
+.sort-btn.active {
+    background: #ffffff;
+    color: #00867b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ビュー切り替え */
+.view-toggle {
+    display: flex;
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 0.25rem;
+}
+
+.view-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+    color: #6b7280;
+}
+
+.view-btn.active {
+    background: #ffffff;
+    color: #00867b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.view-btn i {
+    font-size: 0.875rem;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .blog-filter-section {
+        padding: 1.5rem 0;
+    }
+
+    .blog-search-wrapper {
+        margin-bottom: 1rem;
+    }
+
+    .search-input-minimal {
+        padding: 0.25rem 0.25rem 0.25rem 1rem;
+    }
+
+    .search-input-minimal input {
+        font-size: 1rem;
+    }
+
+    .blog-category-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .blog-category-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .category-tab {
+        flex-shrink: 0;
+        padding: 0.5rem 1rem;
+        font-size: 0.8125rem;
+    }
+
+    .blog-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .toolbar-left {
+        justify-content: center;
+    }
+
+    .toolbar-right {
+        justify-content: center;
+    }
+
+    .sort-buttons {
+        flex: 1;
+    }
+
+    .sort-btn {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* ========================================
+   以下は旧スタイル（互換性のため残す）
+   ======================================== */
+
+/* 検索セクション（旧） */
 .blog-search-section {
     padding: 30px 0;
     background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
