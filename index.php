@@ -12,62 +12,32 @@ get_header(); ?>
     
     <!-- ブログヒーローセクション -->
     <section class="blog-hero-modern">
-        <!-- 動的グラデーション背景 -->
-        <div class="hero-gradient-bg">
-            <div class="gradient-layer gradient-1"></div>
-            <div class="gradient-layer gradient-2"></div>
-            <div class="gradient-layer gradient-3"></div>
+        <!-- 背景パターン -->
+        <div class="blog-hero-bg">
+            <div class="blog-hero-gradient"></div>
+            <div class="blog-hero-pattern"></div>
         </div>
-        
-        <!-- フローティングエレメント -->
-        <div class="floating-elements">
-            <div class="floating-element element-1"><i class="fas fa-pen-nib"></i></div>
-            <div class="floating-element element-2"><i class="fas fa-lightbulb"></i></div>
-            <div class="floating-element element-3"><i class="fas fa-rocket"></i></div>
-            <div class="floating-element element-4"><i class="fas fa-code"></i></div>
-            <div class="floating-element element-5"><i class="fas fa-chart-line"></i></div>
-        </div>
-        
+
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-sparkles"></i>
-                    <span>Insights & Innovation</span>
-                </div>
-                
-                <h1 class="hero-title">
-                    <span class="title-word">知識と</span>
-                    <span class="title-word gradient-text">インスピレーション</span>
-                    <span class="title-word">の泉</span>
+            <div class="blog-hero-content">
+                <p class="blog-hero-label">Blog</p>
+
+                <h1 class="blog-hero-title">
+                    業務改善のヒントと<br>
+                    最新情報をお届け
                 </h1>
-                
-                <p class="hero-description">
-                    ビジネスの成長を加速させる最新のトレンド、<br class="pc-only">
-                    実践的なノウハウ、革新的なアイデアをお届けします
+
+                <p class="blog-hero-description">
+                    中小企業の業務効率化・システム導入に役立つ情報を発信しています
                 </p>
-                
-                <!-- 統計情報 -->
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="<?php echo wp_count_posts()->publish; ?>">0</span>
-                        <span class="stat-label">記事数</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="<?php echo count(get_categories()); ?>">0</span>
-                        <span class="stat-label">カテゴリー</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="<?php echo count(get_tags()); ?>">0</span>
-                        <span class="stat-label">タグ</span>
-                    </div>
+
+                <!-- 記事数 -->
+                <div class="blog-hero-meta">
+                    <span class="blog-article-count">
+                        <i class="fas fa-file-alt"></i>
+                        <?php echo wp_count_posts()->publish; ?>件の記事
+                    </span>
                 </div>
-            </div>
-        </div>
-        
-        <!-- スクロールインジケーター -->
-        <div class="scroll-indicator">
-            <div class="mouse-icon">
-                <div class="mouse-wheel"></div>
             </div>
         </div>
     </section>
