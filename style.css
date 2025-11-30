@@ -10089,220 +10089,119 @@ select:focus {
    ========================================================================== */
 
 /* 実績アーカイブページ - ヒーロー */
-.work-archive-page .work-hero {
-    min-height: 80vh;
+/* ========================================
+   Worksヒーローセクション - Harmonic Society
+   ======================================== */
+.work-hero-modern {
     position: relative;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    padding: 100px 0 80px;
+    background: #00867b;
     overflow: hidden;
 }
 
-.work-hero .hero-bg-wrapper {
+/* 背景 */
+.work-hero-bg {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     pointer-events: none;
 }
 
-.work-hero .hero-bg-pattern {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px),
-        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.01) 35px, rgba(255,255,255,0.01) 70px);
-    animation: patternSlide 60s linear infinite;
-}
-
-.work-hero .hero-gradient-1 {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 201, 167, 0.3) 0%, transparent 70%);
-    top: -300px;
-    right: -200px;
-    animation: floatAnimation 20s ease-in-out infinite;
-}
-
-.work-hero .hero-gradient-2 {
-    position: absolute;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(0, 134, 123, 0.2) 0%, transparent 70%);
-    bottom: -400px;
-    left: -300px;
-    animation: floatAnimation 25s ease-in-out infinite reverse;
-}
-
-.work-hero .hero-particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.work-hero .hero-particles span {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    animation: floatUp 20s linear infinite;
-}
-
-.work-hero .hero-particles span:nth-child(1) { left: 10%; animation-delay: 0s; }
-.work-hero .hero-particles span:nth-child(2) { left: 25%; animation-delay: 3s; }
-.work-hero .hero-particles span:nth-child(3) { left: 40%; animation-delay: 6s; }
-.work-hero .hero-particles span:nth-child(4) { left: 60%; animation-delay: 9s; }
-.work-hero .hero-particles span:nth-child(5) { left: 75%; animation-delay: 12s; }
-.work-hero .hero-particles span:nth-child(6) { left: 90%; animation-delay: 15s; }
-
-@keyframes floatUp {
-    0% {
-        bottom: -10px;
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        bottom: 100%;
-        opacity: 0;
-    }
-}
-
-.work-hero .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 6rem 0;
-}
-
-.hero-badge {
-    display: inline-block;
-    background: rgba(0, 201, 167, 0.2);
-    border: 1px solid rgba(0, 201, 167, 0.5);
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    margin-bottom: 2rem;
-    animation: fadeInDown 0.8s ease-out;
-}
-
-.badge-text {
-    color: #00c9a7;
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.work-hero .hero-title {
-    margin-bottom: 1.5rem;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-}
-
-.hero-title .title-main {
-    display: block;
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 900;
-    color: white;
-    letter-spacing: 0.05em;
-    line-height: 1;
-}
-
-.hero-title .title-sub {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 0.5rem;
-}
-
-.hero-description {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.95);
-    line-height: 1.8;
-    max-width: 600px;
-    margin: 0 auto 3rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    animation: fadeInUp 0.8s ease-out 0.4s both;
-}
-
-/* ヒーロー統計 */
-.hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    margin-top: 3rem;
-    animation: fadeInUp 0.8s ease-out 0.6s both;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-number {
-    display: block;
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-}
-
-.stat-number::after {
-    content: '+';
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-/* スクロールインジケーター */
-.hero-scroll {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    animation: fadeIn 1s ease-out 1s both;
-}
-
-.scroll-text {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.scroll-arrow {
-    width: 1px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.scroll-arrow::after {
-    content: '';
+.work-hero-gradient {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 10px;
-    background: white;
-    animation: scrollDown 2s infinite;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #00867b 0%, #006b61 50%, #005a52 100%);
+}
+
+.work-hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
+}
+
+/* コンテンツ */
+.work-hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: #ffffff;
+}
+
+.work-hero-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 2rem;
+}
+
+.work-hero-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+    color: #ffffff;
+}
+
+.work-hero-description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+}
+
+/* 実績数メタ情報 */
+.work-hero-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.work-project-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+}
+
+.work-project-count i {
+    font-size: 0.875rem;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .work-hero-modern {
+        padding: 80px 0 60px;
+    }
+
+    .work-hero-title {
+        font-size: 1.5rem;
+    }
+
+    .work-hero-description {
+        font-size: 0.9375rem;
+        padding: 0 1rem;
+    }
 }
 
 /* カテゴリーフィルター */

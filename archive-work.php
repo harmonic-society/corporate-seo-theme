@@ -9,53 +9,34 @@ get_header(); ?>
 
 <main id="main" class="site-main work-archive-page">
     <!-- ヒーローセクション -->
-    <section class="work-hero">
-        <div class="hero-bg-wrapper">
-            <div class="hero-bg-pattern"></div>
-            <div class="hero-gradient-1"></div>
-            <div class="hero-gradient-2"></div>
-            <div class="hero-particles">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-            </div>
+    <section class="work-hero-modern">
+        <!-- 背景パターン -->
+        <div class="work-hero-bg">
+            <div class="work-hero-gradient"></div>
+            <div class="work-hero-pattern"></div>
         </div>
-        
+
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-text">Our Portfolio</span>
-                </div>
-                
-                <h1 class="hero-title">
-                    <span class="title-main">WORKS</span>
-                    <span class="title-sub">私たちの実績</span>
+            <div class="work-hero-content">
+                <p class="work-hero-label">Works</p>
+
+                <h1 class="work-hero-title">
+                    お客様と共に歩んだ<br>
+                    プロジェクトの軌跡
                 </h1>
-                
-                <p class="hero-description">
-                    Harmonic Societyが手がけた数々のプロジェクト。<br>
-                    お客様の成功と共に歩んできた軌跡をご覧ください。
+
+                <p class="work-hero-description">
+                    中小企業の業務改善を支援してきた実績をご紹介します
                 </p>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="150">0</span>
-                        <span class="stat-label">プロジェクト</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="98">0</span>
-                        <span class="stat-label">%顧客満足度</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="95">0</span>
-                        <span class="stat-label">%リピート率</span>
-                    </div>
+
+                <!-- 実績数 -->
+                <div class="work-hero-meta">
+                    <span class="work-project-count">
+                        <i class="fas fa-briefcase"></i>
+                        <?php echo wp_count_posts('work')->publish; ?>件の実績
+                    </span>
                 </div>
             </div>
-        </div>
-        
-        <div class="hero-scroll">
-            <span class="scroll-text">Scroll</span>
-            <span class="scroll-arrow"></span>
         </div>
     </section>
 
