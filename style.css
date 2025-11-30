@@ -4960,6 +4960,168 @@ button.nav-cta-button {
     color: inherit;
 }
 
+/* テーブル */
+.entry-content table,
+.entry-content .wp-block-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.entry-content table thead,
+.entry-content .wp-block-table table thead {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+}
+
+.entry-content table th,
+.entry-content .wp-block-table table th {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 0.9375rem;
+    letter-spacing: 0.025em;
+    border: none;
+}
+
+.entry-content table th:first-child,
+.entry-content .wp-block-table table th:first-child {
+    border-radius: 12px 0 0 0;
+}
+
+.entry-content table th:last-child,
+.entry-content .wp-block-table table th:last-child {
+    border-radius: 0 12px 0 0;
+}
+
+.entry-content table td,
+.entry-content .wp-block-table table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e5e7eb;
+    color: var(--text-color);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    transition: background-color 0.2s ease;
+}
+
+.entry-content table tbody tr:last-child td,
+.entry-content .wp-block-table table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.entry-content table tbody tr:nth-child(even),
+.entry-content .wp-block-table table tbody tr:nth-child(even) {
+    background-color: #f8fafa;
+}
+
+.entry-content table tbody tr:hover,
+.entry-content .wp-block-table table tbody tr:hover {
+    background-color: rgba(0, 134, 123, 0.06);
+}
+
+.entry-content table tbody tr:last-child td:first-child,
+.entry-content .wp-block-table table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 12px;
+}
+
+.entry-content table tbody tr:last-child td:last-child,
+.entry-content .wp-block-table table tbody tr:last-child td:last-child {
+    border-radius: 0 0 12px 0;
+}
+
+/* テーブル内リンク */
+.entry-content table a,
+.entry-content .wp-block-table table a {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.entry-content table a:hover,
+.entry-content .wp-block-table table a:hover {
+    border-bottom-color: var(--primary-color);
+}
+
+/* ヘッダーなしテーブル（WordPressブロック） */
+.entry-content .wp-block-table.is-style-regular table thead,
+.entry-content table:not(:has(thead)) tbody tr:first-child {
+    background: transparent;
+}
+
+.entry-content .wp-block-table.is-style-regular table th,
+.entry-content table:not(:has(thead)) tbody tr:first-child td {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* ストライプスタイル */
+.entry-content .wp-block-table.is-style-stripes table tbody tr:nth-child(odd) {
+    background-color: #f8fafa;
+}
+
+.entry-content .wp-block-table.is-style-stripes table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* テーブルキャプション */
+.entry-content table caption,
+.entry-content .wp-block-table figcaption {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
+    font-style: normal;
+    margin-top: 0.5rem;
+}
+
+/* レスポンシブテーブル */
+@media (max-width: 768px) {
+    .entry-content table,
+    .entry-content .wp-block-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 1.5rem -1rem;
+        width: calc(100% + 2rem);
+    }
+
+    .entry-content .wp-block-table table {
+        min-width: 600px;
+    }
+
+    .entry-content table th,
+    .entry-content table td,
+    .entry-content .wp-block-table table th,
+    .entry-content .wp-block-table table td {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        white-space: nowrap;
+    }
+
+    .entry-content table th:first-child,
+    .entry-content table td:first-child,
+    .entry-content .wp-block-table table th:first-child,
+    .entry-content .wp-block-table table td:first-child {
+        position: sticky;
+        left: 0;
+        background: inherit;
+        z-index: 1;
+    }
+
+    .entry-content table thead th:first-child,
+    .entry-content .wp-block-table table thead th:first-child {
+        background: var(--primary-color);
+    }
+}
+
 /* タグ */
 .entry-tags {
     margin-top: 3rem;
