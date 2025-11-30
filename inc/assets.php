@@ -692,12 +692,20 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
  * 外部ライブラリの読み込み
  */
 function corporate_seo_pro_enqueue_libraries() {
+    // Google Fonts - Cormorant Garamond（エレガントなセリフ体）
+    wp_enqueue_style(
+        'google-fonts-cormorant',
+        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap',
+        array(),
+        null
+    );
+
     // Font Awesome
-    wp_enqueue_style( 
-        'font-awesome', 
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', 
-        array(), 
-        '6.4.0' 
+    wp_enqueue_style(
+        'font-awesome',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+        array(),
+        '6.4.0'
     );
 }
 
