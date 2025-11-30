@@ -4908,15 +4908,165 @@ button.nav-cta-button {
     color: var(--text-color);
 }
 
+/* リスト共通スタイル */
 .entry-content ul,
 .entry-content ol {
-    margin-bottom: 1.75rem;
-    padding-left: 2rem;
+    margin: 1.75rem 0;
+    padding: 0;
+    list-style: none;
 }
 
 .entry-content li {
-    margin-bottom: 0.75rem;
+    position: relative;
+    margin-bottom: 0.875rem;
+    padding-left: 1.75rem;
     line-height: 1.8;
+}
+
+/* 順序なしリスト（ul） */
+.entry-content ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 134, 123, 0.3);
+}
+
+/* 順序なしリスト - ネスト1階層目 */
+.entry-content ul ul > li::before {
+    width: 6px;
+    height: 6px;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    box-shadow: none;
+}
+
+/* 順序なしリスト - ネスト2階層目 */
+.entry-content ul ul ul > li::before {
+    width: 6px;
+    height: 6px;
+    background: var(--primary-color);
+    opacity: 0.5;
+    border: none;
+}
+
+/* 順序付きリスト（ol） */
+.entry-content ol {
+    counter-reset: list-counter;
+}
+
+.entry-content ol > li {
+    counter-increment: list-counter;
+    padding-left: 2.5rem;
+}
+
+.entry-content ol > li::before {
+    content: counter(list-counter);
+    position: absolute;
+    left: 0;
+    top: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: #ffffff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 134, 123, 0.35);
+}
+
+/* 順序付きリスト - ネスト */
+.entry-content ol ol {
+    counter-reset: nested-counter;
+    margin-top: 0.75rem;
+}
+
+.entry-content ol ol > li {
+    counter-increment: nested-counter;
+    padding-left: 2rem;
+}
+
+.entry-content ol ol > li::before {
+    content: counter(nested-counter);
+    width: 1.375rem;
+    height: 1.375rem;
+    font-size: 0.75rem;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: none;
+}
+
+/* ネストリストの間隔 */
+.entry-content li > ul,
+.entry-content li > ol {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+/* チェックリスト風（WordPress用） */
+.entry-content ul.is-style-checkmark > li::before,
+.entry-content .wp-block-list.is-style-checkmark > li::before {
+    content: '✓';
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--primary-color);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    top: 0.35em;
+    box-shadow: 0 2px 4px rgba(0, 134, 123, 0.3);
+}
+
+/* リスト内の強調 */
+.entry-content li strong {
+    color: var(--primary-dark);
+}
+
+/* リストホバー効果 */
+.entry-content ul > li,
+.entry-content ol > li {
+    transition: transform 0.2s ease;
+}
+
+.entry-content ul > li:hover,
+.entry-content ol > li:hover {
+    transform: translateX(4px);
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .entry-content ul > li::before {
+        width: 6px;
+        height: 6px;
+        top: 0.7em;
+    }
+
+    .entry-content ol > li::before {
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    .entry-content ol > li {
+        padding-left: 2.25rem;
+    }
+
+    .entry-content ul > li:hover,
+    .entry-content ol > li:hover {
+        transform: none;
+    }
 }
 
 .entry-content blockquote {
