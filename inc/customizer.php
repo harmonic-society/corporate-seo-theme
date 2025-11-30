@@ -892,7 +892,33 @@ AIやWebシステムは、正しく使えば忙しい現場を助け、人と人
             'ProfessionalService' => __( '専門サービス', 'corporate-seo-pro' ),
         ),
     ) );
-    
+
+    // 自動内部リンク
+    $wp_customize->add_setting( 'enable_auto_internal_links', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+
+    $wp_customize->add_control( 'enable_auto_internal_links', array(
+        'label'       => __( '自動内部リンクを有効化', 'corporate-seo-pro' ),
+        'description' => __( '記事内のキーワードを自動的に関連ページにリンクします', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_settings',
+        'type'        => 'checkbox',
+    ) );
+
+    // AI/LLMクローラー設定
+    $wp_customize->add_setting( 'enable_ai_crawlers', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ) );
+
+    $wp_customize->add_control( 'enable_ai_crawlers', array(
+        'label'       => __( 'AIクローラーを許可', 'corporate-seo-pro' ),
+        'description' => __( 'GPTBot、ClaudeBot等のAIクローラーにコンテンツを公開します', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_settings',
+        'type'        => 'checkbox',
+    ) );
+
     /**
      * その他の設定
      */
@@ -918,11 +944,189 @@ AIやWebシステムは、正しく使えば忙しい現場を助け、人と人
         'default'           => true,
         'sanitize_callback' => 'wp_validate_boolean',
     ) );
-    
+
     $wp_customize->add_control( 'show_related_posts', array(
         'label'   => __( '関連記事を表示', 'corporate-seo-pro' ),
         'section' => 'corporate_seo_misc',
         'type'    => 'checkbox',
+    ) );
+
+    /**
+     * ===================================
+     * エンティティ・ナレッジグラフ設定
+     * ===================================
+     * GoogleナレッジパネルやAI Overviewでの企業情報表示に使用
+     */
+    $wp_customize->add_section( 'corporate_seo_entity', array(
+        'title'       => __( 'エンティティ・ナレッジグラフ設定', 'corporate-seo-pro' ),
+        'priority'    => 45,
+        'description' => __( 'GoogleナレッジパネルやAI Overviewでの表示、構造化データ（Schema.org）に使用される企業情報です。', 'corporate-seo-pro' ),
+    ) );
+
+    // 正式法人名
+    $wp_customize->add_setting( 'company_legal_name', array(
+        'default'           => 'Harmonic Society株式会社',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_legal_name', array(
+        'label'       => __( '正式法人名', 'corporate-seo-pro' ),
+        'description' => __( '登記上の正式な法人名', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_entity',
+        'type'        => 'text',
+    ) );
+
+    // 創業日
+    $wp_customize->add_setting( 'company_founding_date', array(
+        'default'           => '2023-03-03',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_founding_date', array(
+        'label'       => __( '創業日', 'corporate-seo-pro' ),
+        'description' => __( 'YYYY-MM-DD形式で入力（例：2023-03-03）', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_entity',
+        'type'        => 'date',
+    ) );
+
+    // 創業者名
+    $wp_customize->add_setting( 'company_founder_name', array(
+        'default'           => '師田 賢人',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_founder_name', array(
+        'label'   => __( '創業者氏名', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_entity',
+        'type'    => 'text',
+    ) );
+
+    // 創業者役職
+    $wp_customize->add_setting( 'company_founder_title', array(
+        'default'           => '代表取締役',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_founder_title', array(
+        'label'   => __( '創業者役職', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_entity',
+        'type'    => 'text',
+    ) );
+
+    // 創業者画像
+    $wp_customize->add_setting( 'company_founder_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'company_founder_image', array(
+        'label'       => __( '創業者・代表者写真', 'corporate-seo-pro' ),
+        'description' => __( 'Person Schemaに使用されます（推奨: 400x400px以上）', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_entity',
+    ) ) );
+
+    // 創業者経歴
+    $wp_customize->add_setting( 'company_founder_description', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ) );
+
+    $wp_customize->add_control( 'company_founder_description', array(
+        'label'       => __( '創業者経歴・プロフィール', 'corporate-seo-pro' ),
+        'description' => __( '簡潔な経歴や専門分野を記載', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_entity',
+        'type'        => 'textarea',
+    ) );
+
+    // 企業スローガン
+    $wp_customize->add_setting( 'company_slogan', array(
+        'default'           => '社会の調和',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_slogan', array(
+        'label'       => __( '企業スローガン', 'corporate-seo-pro' ),
+        'description' => __( '企業の理念やキャッチフレーズ', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_entity',
+        'type'        => 'text',
+    ) );
+
+    // 従業員数
+    $wp_customize->add_setting( 'company_employee_count', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+
+    $wp_customize->add_control( 'company_employee_count', array(
+        'label'       => __( '従業員数', 'corporate-seo-pro' ),
+        'description' => __( '空欄の場合は出力されません', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_entity',
+        'type'        => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'max' => 10000,
+        ),
+    ) );
+
+    // 郵便番号
+    $wp_customize->add_setting( 'company_postal_code', array(
+        'default'           => '262-0033',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_postal_code', array(
+        'label'   => __( '郵便番号', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_entity',
+        'type'    => 'text',
+    ) );
+
+    // 都道府県
+    $wp_customize->add_setting( 'company_address_region', array(
+        'default'           => '千葉県',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_address_region', array(
+        'label'   => __( '都道府県', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_entity',
+        'type'    => 'text',
+    ) );
+
+    // 市区町村
+    $wp_customize->add_setting( 'company_address_locality', array(
+        'default'           => '千葉市花見川区',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_address_locality', array(
+        'label'   => __( '市区町村', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_entity',
+        'type'    => 'text',
+    ) );
+
+    // 番地
+    $wp_customize->add_setting( 'company_street_address', array(
+        'default'           => '幕張本郷3-31-8',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_street_address', array(
+        'label'   => __( '番地・建物名', 'corporate-seo-pro' ),
+        'section' => 'corporate_seo_entity',
+        'type'    => 'text',
+    ) );
+
+    // DUNS番号（オプション）
+    $wp_customize->add_setting( 'company_duns_number', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'company_duns_number', array(
+        'label'       => __( 'DUNS番号（任意）', 'corporate-seo-pro' ),
+        'description' => __( 'D&B社が付与する企業識別番号', 'corporate-seo-pro' ),
+        'section'     => 'corporate_seo_entity',
+        'type'        => 'text',
     ) );
 }
 add_action( 'customize_register', 'corporate_seo_pro_customize_register' );

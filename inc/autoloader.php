@@ -43,6 +43,8 @@ function corporate_seo_pro_load_includes() {
         '/inc/pagespeed-hints.php',     // PageSpeed Module hints
         '/inc/url-filter.php',          // URL auto-link functionality
         '/inc/fix-url-display.php',     // Fix URL display issues
+        '/inc/llms-txt.php',            // llms.txt for AI agents
+        '/inc/author-profile-fields.php', // E-E-A-T author profile fields
     );
     
     // Load each file

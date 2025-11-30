@@ -595,3 +595,315 @@ function corporate_seo_pro_register_service_worker() {
     }
 }
 add_action( 'wp_footer', 'corporate_seo_pro_register_service_worker', 30 );
+
+/**
+ * =============================================
+ * Core Web Vitals最適化（LCP, CLS, INP対応）
+ * =============================================
+ */
+
+/**
+ * LCP（Largest Contentful Paint）最適化
+ * ヒーロー画像やメインビジュアルのプリロード
+ */
+function corporate_seo_pro_lcp_optimization() {
+    // フロントページのヒーロー画像をプリロード
+    if ( is_front_page() ) {
+        $hero_image = get_theme_mod( 'hero_modern_bg_image' );
+        if ( $hero_image ) {
+            echo '<link rel="preload" as="image" href="' . esc_url( $hero_image ) . '" fetchpriority="high">' . "\n";
+        }
+    }
+
+    // 個別投稿のアイキャッチ画像をプリロード
+    if ( is_singular() && has_post_thumbnail() ) {
+        $thumbnail_id = get_post_thumbnail_id();
+        $thumbnail_src = wp_get_attachment_image_src( $thumbnail_id, 'large' );
+        if ( $thumbnail_src ) {
+            echo '<link rel="preload" as="image" href="' . esc_url( $thumbnail_src[0] ) . '" fetchpriority="high">' . "\n";
+        }
+    }
+}
+add_action( 'wp_head', 'corporate_seo_pro_lcp_optimization', 1 );
+
+/**
+ * CLS（Cumulative Layout Shift）最適化
+ * 画像にwidth/height属性を自動追加
+ */
+function corporate_seo_pro_add_image_dimensions( $content ) {
+    if ( is_admin() || is_feed() ) {
+        return $content;
+    }
+
+    // 画像タグにwidth/heightがない場合に追加
+    $content = preg_replace_callback(
+        '/<img([^>]+)src=["\']([^"\']+)["\']([^>]*)>/i',
+        function( $matches ) {
+            $img_tag = $matches[0];
+            $attributes = $matches[1] . $matches[3];
+
+            // 既にwidth/heightがある場合はスキップ
+            if ( preg_match( '/\b(width|height)\s*=/i', $attributes ) ) {
+                return $img_tag;
+            }
+
+            // 画像サイズを取得
+            $src = $matches[2];
+            $attachment_id = attachment_url_to_postid( $src );
+
+            if ( $attachment_id ) {
+                $image_data = wp_get_attachment_image_src( $attachment_id, 'full' );
+                if ( $image_data ) {
+                    $width = $image_data[1];
+                    $height = $image_data[2];
+                    return str_replace( '<img', '<img width="' . esc_attr( $width ) . '" height="' . esc_attr( $height ) . '"', $img_tag );
+                }
+            }
+
+            return $img_tag;
+        },
+        $content
+    );
+
+    return $content;
+}
+add_filter( 'the_content', 'corporate_seo_pro_add_image_dimensions', 99 );
+
+/**
+ * INP（Interaction to Next Paint）最適化
+ * Passive Event Listenerの適用とスクロールパフォーマンス改善
+ */
+function corporate_seo_pro_inp_optimization() {
+    ?>
+    <script>
+    // Passive Event Listeners for improved INP
+    (function() {
+        // タッチ・スクロールイベントをpassiveに
+        var passiveSupported = false;
+        try {
+            var options = Object.defineProperty({}, 'passive', {
+                get: function() { passiveSupported = true; }
+            });
+            window.addEventListener('test', null, options);
+            window.removeEventListener('test', null, options);
+        } catch(e) {}
+
+        if (passiveSupported) {
+            // スクロールイベントの最適化
+            document.addEventListener('scroll', function() {}, { passive: true });
+            document.addEventListener('touchstart', function() {}, { passive: true });
+            document.addEventListener('touchmove', function() {}, { passive: true });
+            document.addEventListener('wheel', function() {}, { passive: true });
+        }
+
+        // Long Task分割 - 重い処理をrequestIdleCallbackで実行
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(function() {
+                // 非クリティカルな初期化処理
+                var lazyElements = document.querySelectorAll('[data-lazy-init]');
+                lazyElements.forEach(function(el) {
+                    el.removeAttribute('data-lazy-init');
+                });
+            });
+        }
+    })();
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'corporate_seo_pro_inp_optimization', 5 );
+
+/**
+ * fetchpriorityヒントの追加
+ * 重要な画像にfetchpriority="high"を追加
+ */
+function corporate_seo_pro_fetchpriority_hints( $attr, $attachment, $size ) {
+    // アイキャッチ画像はhigh priority
+    if ( is_singular() && has_post_thumbnail() ) {
+        $thumbnail_id = get_post_thumbnail_id();
+        if ( $attachment->ID === $thumbnail_id ) {
+            $attr['fetchpriority'] = 'high';
+            $attr['loading'] = 'eager'; // LCP画像はeagerに
+        }
+    }
+
+    return $attr;
+}
+add_filter( 'wp_get_attachment_image_attributes', 'corporate_seo_pro_fetchpriority_hints', 10, 3 );
+
+/**
+ * 遅延読み込みの改善
+ * Above-the-foldの画像はloading="eager"に
+ */
+function corporate_seo_pro_smart_lazy_loading( $content ) {
+    if ( is_admin() || is_feed() ) {
+        return $content;
+    }
+
+    // 最初の3つの画像はeagerに（Above-the-fold対策）
+    $image_count = 0;
+    $content = preg_replace_callback(
+        '/<img([^>]+)loading=["\']lazy["\']([^>]*)>/i',
+        function( $matches ) use ( &$image_count ) {
+            $image_count++;
+            if ( $image_count <= 3 ) {
+                // 最初の3つはeagerに変更
+                return '<img' . $matches[1] . 'loading="eager" fetchpriority="high"' . $matches[2] . '>';
+            }
+            return $matches[0];
+        },
+        $content
+    );
+
+    return $content;
+}
+add_filter( 'the_content', 'corporate_seo_pro_smart_lazy_loading', 100 );
+
+/**
+ * メインスレッドブロッキングの削減
+ * 非クリティカルなスクリプトをdeferまたはasyncに
+ */
+function corporate_seo_pro_optimize_script_loading( $tag, $handle, $src ) {
+    // 非クリティカルなスクリプトのリスト
+    $defer_scripts = array(
+        'comment-reply',
+        'wp-embed',
+        'corporate-seo-pro-navigation',
+        'corporate-seo-pro-theme',
+    );
+
+    $async_scripts = array(
+        'google-analytics',
+        'gtag',
+    );
+
+    if ( in_array( $handle, $defer_scripts, true ) ) {
+        return str_replace( ' src', ' defer src', $tag );
+    }
+
+    if ( in_array( $handle, $async_scripts, true ) ) {
+        return str_replace( ' src', ' async src', $tag );
+    }
+
+    return $tag;
+}
+add_filter( 'script_loader_tag', 'corporate_seo_pro_optimize_script_loading', 10, 3 );
+
+/**
+ * Font Display Swap強制
+ * ウェブフォントのFOIT（Flash of Invisible Text）防止
+ */
+function corporate_seo_pro_font_display_swap( $html, $handle, $href, $media ) {
+    // Google Fontsの場合はdisplay=swapを追加
+    if ( strpos( $href, 'fonts.googleapis.com' ) !== false ) {
+        if ( strpos( $href, 'display=' ) === false ) {
+            $href = add_query_arg( 'display', 'swap', $href );
+            return "<link rel='stylesheet' id='$handle-css' href='$href' media='$media'>\n";
+        }
+    }
+    return $html;
+}
+add_filter( 'style_loader_tag', 'corporate_seo_pro_font_display_swap', 10, 4 );
+
+/**
+ * 画像のアスペクト比予約
+ * CLSを防ぐためのアスペクト比CSSを出力
+ */
+function corporate_seo_pro_aspect_ratio_css() {
+    ?>
+    <style id="cwv-aspect-ratio">
+    /* CLS Prevention - Aspect Ratio Boxes */
+    .wp-block-image img,
+    .entry-content img,
+    .post-thumbnail img {
+        aspect-ratio: attr(width) / attr(height);
+        height: auto;
+        max-width: 100%;
+    }
+
+    /* 埋め込みコンテンツのアスペクト比 */
+    .wp-block-embed__wrapper {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 */
+    }
+
+    .wp-block-embed__wrapper iframe,
+    .wp-block-embed__wrapper video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Skeleton Loading State */
+    .skeleton-loading {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: skeleton-pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes skeleton-pulse {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+
+    /* 広告スペース予約 */
+    .ad-container {
+        min-height: 250px;
+        background: #f5f5f5;
+    }
+
+    /* ナビゲーションの高さ固定（CLS防止） */
+    .site-header {
+        min-height: 80px;
+    }
+
+    @media (max-width: 768px) {
+        .site-header {
+            min-height: 60px;
+        }
+    }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'corporate_seo_pro_aspect_ratio_css', 5 );
+
+/**
+ * リソースヒントの最適化
+ * 重要なリソースをpreconnect/prefetchでプリロード
+ */
+function corporate_seo_pro_optimized_resource_hints() {
+    $hints = array(
+        // Preconnect（重要な外部ドメイン）
+        'preconnect' => array(
+            'https://fonts.googleapis.com',
+            'https://fonts.gstatic.com',
+        ),
+        // DNS-Prefetch（その他の外部ドメイン）
+        'dns-prefetch' => array(
+            '//www.google-analytics.com',
+            '//www.googletagmanager.com',
+            '//ajax.googleapis.com',
+        ),
+    );
+
+    // Preconnect
+    foreach ( $hints['preconnect'] as $url ) {
+        echo '<link rel="preconnect" href="' . esc_url( $url ) . '" crossorigin>' . "\n";
+    }
+
+    // DNS-Prefetch
+    foreach ( $hints['dns-prefetch'] as $url ) {
+        echo '<link rel="dns-prefetch" href="' . esc_url( $url ) . '">' . "\n";
+    }
+
+    // 次のページへのプリフェッチ（ナビゲーション予測）
+    if ( is_singular() ) {
+        // 関連記事や次の記事へのprefetch
+        $next_post = get_next_post();
+        if ( $next_post ) {
+            echo '<link rel="prefetch" href="' . esc_url( get_permalink( $next_post ) ) . '">' . "\n";
+        }
+    }
+}
+add_action( 'wp_head', 'corporate_seo_pro_optimized_resource_hints', 1 );

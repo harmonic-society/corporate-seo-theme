@@ -128,27 +128,191 @@ function corporate_seo_pro_meta_tags() {
         }
     }
     
-    // Canonical URL
-    if ( is_singular() ) {
-        echo '<link rel="canonical" href="' . esc_url( get_permalink() ) . '">' . "\n";
-    }
 }
 add_action( 'wp_head', 'corporate_seo_pro_meta_tags', 1 );
 
 /**
- * robots.txtの最適化
+ * Canonical URLの出力（拡張版）
+ *
+ * すべてのページタイプに対応したcanonical URL設定
+ */
+function corporate_seo_pro_canonical_url() {
+    $canonical_url = '';
+
+    // フロントページ
+    if ( is_front_page() ) {
+        $canonical_url = home_url( '/' );
+    }
+    // 個別投稿・固定ページ
+    elseif ( is_singular() ) {
+        $canonical_url = get_permalink();
+    }
+    // カテゴリーアーカイブ
+    elseif ( is_category() ) {
+        $canonical_url = get_category_link( get_queried_object_id() );
+    }
+    // タグアーカイブ
+    elseif ( is_tag() ) {
+        $canonical_url = get_tag_link( get_queried_object_id() );
+    }
+    // タクソノミーアーカイブ
+    elseif ( is_tax() ) {
+        $term = get_queried_object();
+        if ( $term && ! is_wp_error( $term ) ) {
+            $canonical_url = get_term_link( $term );
+        }
+    }
+    // 投稿タイプアーカイブ
+    elseif ( is_post_type_archive() ) {
+        $post_type = get_queried_object();
+        if ( $post_type ) {
+            $canonical_url = get_post_type_archive_link( $post_type->name );
+        }
+    }
+    // 著者アーカイブ
+    elseif ( is_author() ) {
+        $canonical_url = get_author_posts_url( get_queried_object_id() );
+    }
+    // 日付アーカイブ
+    elseif ( is_date() ) {
+        if ( is_year() ) {
+            $canonical_url = get_year_link( get_the_date( 'Y' ) );
+        } elseif ( is_month() ) {
+            $canonical_url = get_month_link( get_the_date( 'Y' ), get_the_date( 'm' ) );
+        } elseif ( is_day() ) {
+            $canonical_url = get_day_link( get_the_date( 'Y' ), get_the_date( 'm' ), get_the_date( 'd' ) );
+        }
+    }
+    // ホームページ（ブログページ）
+    elseif ( is_home() ) {
+        $page_for_posts = get_option( 'page_for_posts' );
+        if ( $page_for_posts ) {
+            $canonical_url = get_permalink( $page_for_posts );
+        } else {
+            $canonical_url = home_url( '/' );
+        }
+    }
+
+    // canonical URLを出力
+    if ( ! empty( $canonical_url ) && ! is_wp_error( $canonical_url ) ) {
+        echo '<link rel="canonical" href="' . esc_url( $canonical_url ) . '">' . "\n";
+    }
+}
+add_action( 'wp_head', 'corporate_seo_pro_canonical_url', 2 );
+
+/**
+ * ページネーション用のprev/nextリンク
+ */
+function corporate_seo_pro_pagination_links() {
+    global $wp_query;
+
+    // アーカイブページでのページネーション
+    if ( ! is_singular() && $wp_query->max_num_pages > 1 ) {
+        $paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+
+        // 前のページ
+        if ( $paged > 1 ) {
+            $prev_url = get_pagenum_link( $paged - 1 );
+            echo '<link rel="prev" href="' . esc_url( $prev_url ) . '">' . "\n";
+        }
+
+        // 次のページ
+        if ( $paged < $wp_query->max_num_pages ) {
+            $next_url = get_pagenum_link( $paged + 1 );
+            echo '<link rel="next" href="' . esc_url( $next_url ) . '">' . "\n";
+        }
+    }
+}
+add_action( 'wp_head', 'corporate_seo_pro_pagination_links', 3 );
+
+/**
+ * 検索結果ページにnoindexを追加
+ */
+function corporate_seo_pro_search_noindex() {
+    if ( is_search() ) {
+        echo '<meta name="robots" content="noindex,follow">' . "\n";
+    }
+}
+add_action( 'wp_head', 'corporate_seo_pro_search_noindex', 1 );
+
+/**
+ * robots.txtの最適化（AIクローラー対応版）
  */
 function corporate_seo_pro_robots_txt( $output, $public ) {
     if ( '1' == $public ) {
         // クリーンアップ
         $output = "User-agent: *\n";
-        $output .= "Allow: /\n\n";
-        
-        // クロール遅延（秒）
+        $output .= "Allow: /\n";
         $output .= "Crawl-delay: 1\n\n";
-        
-        // WordPress関連ディレクトリのブロック
+
+        // ===================================
+        // AI Crawlers - Welcome（生成AI対応）
+        // ===================================
+        $output .= "# AI Crawlers - Welcome\n\n";
+
+        // GPTBot (OpenAI/ChatGPT)
+        $output .= "User-agent: GPTBot\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n";
+        $output .= "Disallow: /*?*\n\n";
+
+        // ChatGPT-User (ChatGPT browse mode)
+        $output .= "User-agent: ChatGPT-User\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n\n";
+
+        // ClaudeBot (Anthropic/Claude)
+        $output .= "User-agent: ClaudeBot\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n";
+        $output .= "Disallow: /*?*\n\n";
+
+        // Claude-Web (Anthropic Claude Web)
+        $output .= "User-agent: Claude-Web\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n\n";
+
+        // PerplexityBot
+        $output .= "User-agent: PerplexityBot\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n";
+        $output .= "Disallow: /*?*\n\n";
+
+        // Google-Extended (Gemini/Bard AI training)
+        $output .= "User-agent: Google-Extended\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n\n";
+
+        // Amazonbot (Amazon/Alexa)
+        $output .= "User-agent: Amazonbot\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n\n";
+
+        // CCBot (Common Crawl - AI training data)
+        $output .= "User-agent: CCBot\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n\n";
+
+        // Cohere AI
+        $output .= "User-agent: cohere-ai\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n\n";
+
+        // Meta AI (Facebook/Meta)
+        $output .= "User-agent: FacebookBot\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n\n";
+
+        // Bytespider (ByteDance/TikTok AI)
+        $output .= "User-agent: Bytespider\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n\n";
+
+        // ===================================
+        // WordPress関連ディレクトリ
+        // ===================================
         $output .= "# WordPress Core\n";
+        $output .= "User-agent: *\n";
         $output .= "Disallow: /wp-admin/\n";
         $output .= "Allow: /wp-admin/admin-ajax.php\n";
         $output .= "Disallow: /wp-includes/\n";
@@ -161,8 +325,10 @@ function corporate_seo_pro_robots_txt( $output, $public ) {
         $output .= "Disallow: /wp-content/themes/\n";
         $output .= "Allow: /wp-content/themes/*/assets/\n";
         $output .= "Allow: /wp-content/uploads/\n\n";
-        
+
+        // ===================================
         // 検索結果とフィードのブロック
+        // ===================================
         $output .= "# Search & Feeds\n";
         $output .= "Disallow: /?s=\n";
         $output .= "Disallow: /search/\n";
@@ -171,46 +337,64 @@ function corporate_seo_pro_robots_txt( $output, $public ) {
         $output .= "Disallow: */trackback/\n";
         $output .= "Disallow: */comment-page-\n";
         $output .= "Disallow: */comments/\n\n";
-        
+
+        // ===================================
         // パラメータ付きURLのブロック
+        // ===================================
         $output .= "# URL Parameters\n";
         $output .= "Disallow: /*?*\n";
         $output .= "Disallow: /*?\n";
         $output .= "Allow: /*?utm_*\n";
         $output .= "Allow: /*?page=\n\n";
-        
+
+        // ===================================
         // ファイルタイプ
+        // ===================================
         $output .= "# File Types\n";
         $output .= "Disallow: /*.pdf$\n";
         $output .= "Allow: /wp-content/uploads/*.pdf$\n\n";
-        
+
+        // ===================================
         // 特定のボット向け設定
+        // ===================================
         $output .= "# Googlebot\n";
         $output .= "User-agent: Googlebot\n";
         $output .= "Allow: /\n";
         $output .= "Disallow: /wp-admin/\n";
         $output .= "Allow: /wp-admin/admin-ajax.php\n\n";
-        
+
         $output .= "# Googlebot Image\n";
         $output .= "User-agent: Googlebot-Image\n";
         $output .= "Allow: /wp-content/uploads/\n";
         $output .= "Disallow: /wp-content/themes/\n";
         $output .= "Allow: /wp-content/themes/*/assets/images/\n\n";
-        
+
+        $output .= "# Bingbot\n";
+        $output .= "User-agent: Bingbot\n";
+        $output .= "Allow: /\n";
+        $output .= "Disallow: /wp-admin/\n";
+        $output .= "Allow: /wp-admin/admin-ajax.php\n\n";
+
+        // ===================================
         // 悪意のあるボットのブロック
+        // ===================================
         $output .= "# Bad Bots\n";
-        $bad_bots = array( 'AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot' );
+        $bad_bots = array( 'AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot', 'BLEXBot', 'DataForSeoBot' );
         foreach ( $bad_bots as $bot ) {
             $output .= "User-agent: $bot\n";
             $output .= "Disallow: /\n\n";
         }
-        
-        // サイトマップ
-        $output .= "# Sitemaps\n";
+
+        // ===================================
+        // サイトマップとAIコンテンツ
+        // ===================================
+        $output .= "# Sitemaps & AI Content\n";
         $output .= "Sitemap: " . home_url( '/wp-sitemap.xml' ) . "\n";
         $output .= "Sitemap: " . home_url( '/?sitemap=news' ) . "\n";
+        $output .= "# LLMs.txt: " . home_url( '/llms.txt' ) . "\n";
+        $output .= "# LLMs-Full.txt: " . home_url( '/llms-full.txt' ) . "\n";
     }
-    
+
     return $output;
 }
 add_filter( 'robots_txt', 'corporate_seo_pro_robots_txt', 10, 2 );

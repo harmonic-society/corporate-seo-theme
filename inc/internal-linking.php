@@ -181,49 +181,145 @@ function corporate_seo_pro_get_post_card( $post ) {
 }
 
 /**
- * 自動内部リンク生成
+ * 自動内部リンク生成（改善版）
+ *
+ * URLエンコーディング問題を修正し、より堅牢な実装に変更
  */
 function corporate_seo_pro_auto_internal_links( $content ) {
     if ( ! is_singular() || ! in_the_loop() || ! is_main_query() ) {
         return $content;
     }
-    
-    // ニュースリリースでは自動内部リンクを無効化
-    if ( is_singular( 'news' ) ) {
+
+    // 自動リンクを無効化する投稿タイプ
+    $disabled_post_types = apply_filters( 'corporate_seo_pro_disable_auto_links_post_types', array( 'news' ) );
+    if ( in_array( get_post_type(), $disabled_post_types, true ) ) {
         return $content;
     }
-    
+
+    // カスタマイザーで無効化されている場合
+    if ( ! get_theme_mod( 'enable_auto_internal_links', true ) ) {
+        return $content;
+    }
+
     // キーワードとリンクのマッピング
     $keywords = corporate_seo_pro_get_keyword_links();
-    
+
     if ( empty( $keywords ) ) {
         return $content;
     }
-    
-    // 既存のリンクとHTMLタグを保護
-    $content = corporate_seo_pro_protect_existing_links( $content );
-    
-    foreach ( $keywords as $keyword => $url ) {
-        // 現在のページへのリンクは作成しない
-        if ( $url === get_permalink() ) {
-            continue;
-        }
-        
-        // キーワードを内部リンクに変換（大文字小文字を区別しない）
-        $pattern = '/\b(' . preg_quote( $keyword, '/' ) . ')\b(?![^<]*>)/i';
-        $replacement = '<a href="' . esc_url( $url ) . '" class="auto-internal-link">$1</a>';
-        
-        // 最初の出現箇所のみ置換
-        $content = preg_replace( $pattern, $replacement, $content, 1 );
-    }
-    
-    // 保護したコンテンツを復元
-    $content = corporate_seo_pro_restore_protected_content( $content );
-    
+
+    // DOMDocumentを使用した安全な処理
+    $content = corporate_seo_pro_process_auto_links_safe( $content, $keywords );
+
     return $content;
 }
-// 一時的に無効化 - URLエンコーディング問題の修正のため
-// add_filter( 'the_content', 'corporate_seo_pro_auto_internal_links', 20 );
+add_filter( 'the_content', 'corporate_seo_pro_auto_internal_links', 20 );
+
+/**
+ * DOMDocumentを使用した安全な自動リンク処理
+ *
+ * @param string $content コンテンツ
+ * @param array  $keywords キーワードとURLのマッピング
+ * @return string 処理後のコンテンツ
+ */
+function corporate_seo_pro_process_auto_links_safe( $content, $keywords ) {
+    // 空のコンテンツは処理しない
+    if ( empty( $content ) ) {
+        return $content;
+    }
+
+    // 現在のページのURL（パーマリンク正規化）
+    $current_url = trailingslashit( get_permalink() );
+
+    // 既にリンク済みのキーワードを追跡
+    $linked_keywords = array();
+
+    // 最大リンク数
+    $max_links = apply_filters( 'corporate_seo_pro_auto_links_max', 5 );
+    $link_count = 0;
+
+    // キーワードを長さ順にソート（長いキーワードを優先）
+    uksort( $keywords, function( $a, $b ) {
+        return mb_strlen( $b ) - mb_strlen( $a );
+    } );
+
+    foreach ( $keywords as $keyword => $url ) {
+        // 最大リンク数に達した場合
+        if ( $link_count >= $max_links ) {
+            break;
+        }
+
+        // 空のキーワードはスキップ
+        if ( empty( $keyword ) || mb_strlen( $keyword ) < 2 ) {
+            continue;
+        }
+
+        // URLの正規化
+        $normalized_url = trailingslashit( $url );
+
+        // 現在のページへのリンクは作成しない
+        if ( $normalized_url === $current_url ) {
+            continue;
+        }
+
+        // 既にリンク済みのキーワードはスキップ
+        if ( in_array( $keyword, $linked_keywords, true ) ) {
+            continue;
+        }
+
+        // HTMLタグ外のテキストのみを対象にキーワードを置換
+        $new_content = corporate_seo_pro_replace_keyword_outside_tags( $content, $keyword, $url );
+
+        // 置換が行われた場合
+        if ( $new_content !== $content ) {
+            $content = $new_content;
+            $linked_keywords[] = $keyword;
+            $link_count++;
+        }
+    }
+
+    return $content;
+}
+
+/**
+ * HTMLタグ外のキーワードを安全に置換
+ *
+ * @param string $content コンテンツ
+ * @param string $keyword キーワード
+ * @param string $url リンク先URL
+ * @return string 処理後のコンテンツ
+ */
+function corporate_seo_pro_replace_keyword_outside_tags( $content, $keyword, $url ) {
+    // 置換対象外のタグ
+    $skip_tags = array( 'a', 'script', 'style', 'code', 'pre', 'textarea', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' );
+
+    // キーワードのエスケープ（正規表現用）
+    $escaped_keyword = preg_quote( $keyword, '/' );
+
+    // 日本語の場合は単語境界を使用しない
+    $is_japanese = preg_match( '/[\x{3040}-\x{309F}\x{30A0}-\x{30FF}\x{4E00}-\x{9FFF}]/u', $keyword );
+
+    if ( $is_japanese ) {
+        // 日本語キーワードのパターン
+        $pattern = '/(' . $escaped_keyword . ')(?![^<]*>)(?![^<]*<\/(?:' . implode( '|', $skip_tags ) . ')>)/u';
+    } else {
+        // 英語キーワードのパターン（単語境界あり）
+        $pattern = '/\b(' . $escaped_keyword . ')\b(?![^<]*>)(?![^<]*<\/(?:' . implode( '|', $skip_tags ) . ')>)/iu';
+    }
+
+    // リンクの生成
+    $replacement = '<a href="' . esc_url( $url ) . '" class="auto-internal-link" data-auto-link="true">$1</a>';
+
+    // 最初の出現箇所のみ置換
+    $new_content = preg_replace( $pattern, $replacement, $content, 1, $count );
+
+    // 置換が成功したか確認
+    if ( null === $new_content ) {
+        return $content;
+    }
+
+    return $new_content;
+}
 
 /**
  * キーワードとリンクのマッピング取得
