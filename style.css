@@ -289,7 +289,10 @@ a:hover {
 #primary-menu .menu-item a:not(.nav-cta-button),
 .site-header .main-navigation a:not(.nav-cta-button) {
     color: #333333 !important;
-    font-size: 16px !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.0625rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.03em !important;
     visibility: visible !important;
     opacity: 1 !important;
     display: inline-flex !important;
@@ -301,8 +304,10 @@ a:hover {
 #primary-menu > li > a > .menu-text,
 body .site-header .menu-text {
     color: #1f2937 !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.0625rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.03em !important;
     visibility: visible !important;
     opacity: 1 !important;
     display: inline-block !important;
@@ -312,7 +317,10 @@ body .site-header .menu-text {
 /* 最終手段 - すべてのmenu-textを強制 */
 span.menu-text {
     color: #1f2937 !important;
-    font-size: 15px !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.0625rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.03em !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
