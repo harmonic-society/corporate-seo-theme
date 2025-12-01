@@ -1,5 +1,7 @@
 ## Hi there 👋 Welcome to Harmonic Society
 
+Corporate SEO Pro - A WordPress theme for business websites.
+
 <!--
 **harmonic-society/harmonic-society** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
