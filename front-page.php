@@ -174,41 +174,20 @@ get_header(); ?>
     <?php endif; ?>
 
     <?php if ( get_theme_mod( 'show_about_section', true ) ) : ?>
-        <section class="about-section-modern">
-            <!-- Background Elements -->
-            <div class="about-bg-elements">
-                <div class="about-bg-gradient"></div>
-                <div class="about-floating-shapes">
-                    <div class="floating-shape shape-1"></div>
-                    <div class="floating-shape shape-2"></div>
-                    <div class="floating-shape shape-3"></div>
-                </div>
-                <div class="about-grid-pattern"></div>
-            </div>
-
+        <section class="about-section-modern about-video-section">
             <div class="container">
                 <div class="about-modern-wrapper">
-                    <!-- Left: Visual Element -->
-                    <div class="about-visual-side">
-                        <div class="about-visual-container">
-                            <div class="visual-accent-ring ring-1"></div>
-                            <div class="visual-accent-ring ring-2"></div>
-                            <div class="visual-main-circle">
-                                <div class="circle-content">
-                                    <span class="circle-label"><?php esc_html_e( 'Since', 'corporate-seo-pro' ); ?></span>
-                                    <span class="circle-year">2020</span>
-                                </div>
-                            </div>
-                            <div class="visual-stats">
-                                <div class="stat-item stat-1">
-                                    <span class="stat-number">500+</span>
-                                    <span class="stat-label"><?php esc_html_e( 'プロジェクト', 'corporate-seo-pro' ); ?></span>
-                                </div>
-                                <div class="stat-item stat-2">
-                                    <span class="stat-number">98%</span>
-                                    <span class="stat-label"><?php esc_html_e( '顧客満足度', 'corporate-seo-pro' ); ?></span>
-                                </div>
-                            </div>
+                    <!-- Left: YouTube Video -->
+                    <div class="about-video-side">
+                        <div class="about-video-container">
+                            <iframe
+                                src="https://www.youtube.com/embed/qNAc5fUnuY0?si=XLwecJ3r8ScYTi0j"
+                                title="Harmonic Society"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
 
@@ -227,27 +206,6 @@ get_header(); ?>
 
                         <div class="about-text-modern">
                             <?php echo wp_kses_post( wpautop( get_theme_mod( 'about_content', __( 'ここに会社の説明文を入力してください。', 'corporate-seo-pro' ) ) ) ); ?>
-                        </div>
-
-                        <div class="about-features-row">
-                            <div class="about-feature-item">
-                                <div class="feature-icon-circle">
-                                    <i class="fas fa-lightbulb"></i>
-                                </div>
-                                <span class="feature-text"><?php esc_html_e( 'イノベーション', 'corporate-seo-pro' ); ?></span>
-                            </div>
-                            <div class="about-feature-item">
-                                <div class="feature-icon-circle">
-                                    <i class="fas fa-handshake"></i>
-                                </div>
-                                <span class="feature-text"><?php esc_html_e( '信頼と誠実', 'corporate-seo-pro' ); ?></span>
-                            </div>
-                            <div class="about-feature-item">
-                                <div class="feature-icon-circle">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <span class="feature-text"><?php esc_html_e( '成長支援', 'corporate-seo-pro' ); ?></span>
-                            </div>
                         </div>
 
                         <?php if ( get_theme_mod( 'about_button_text' ) ) : ?>
