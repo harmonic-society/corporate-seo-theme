@@ -181,7 +181,7 @@ get_header(); ?>
                     <div class="about-video-side">
                         <div class="about-video-container">
                             <iframe
-                                src="https://www.youtube.com/embed/qNAc5fUnuY0?si=XLwecJ3r8ScYTi0j"
+                                src="https://www.youtube.com/embed/qNAc5fUnuY0?si=XLwecJ3r8ScYTi0j&mute=1"
                                 title="Harmonic Society"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
