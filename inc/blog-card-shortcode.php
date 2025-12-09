@@ -114,14 +114,20 @@ function corporate_seo_pro_render_blog_card( $post, $atts ) {
 
     // Start output buffering.
     ob_start();
+
+    // Inline styles to override any conflicting CSS
+    $card_style = 'display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:stretch!important;';
+    $thumbnail_style = 'flex:0 0 200px!important;width:200px!important;min-width:200px!important;max-width:200px!important;height:150px!important;';
+    $content_style = 'flex:1 1 auto!important;min-width:0!important;';
     ?>
-    <a href="<?php echo esc_url( $permalink ); ?>" class="blog-card-shortcode blog-card-shortcode--<?php echo esc_attr( $style ); ?>">
+    <a href="<?php echo esc_url( $permalink ); ?>" class="blog-card-shortcode blog-card-shortcode--<?php echo esc_attr( $style ); ?>" style="<?php echo esc_attr( $card_style ); ?>">
         <?php if ( $show_thumbnail ) : ?>
-            <div class="blog-card-thumbnail">
+            <div class="blog-card-thumbnail" style="<?php echo esc_attr( $thumbnail_style ); ?>">
                 <?php if ( has_post_thumbnail( $post->ID ) ) : ?>
                     <?php echo get_the_post_thumbnail( $post->ID, 'medium', array(
                         'loading' => 'lazy',
                         'alt'     => esc_attr( $title ),
+                        'style'   => 'width:200px!important;height:150px!important;object-fit:cover!important;margin:0!important;',
                     ) ); ?>
                 <?php else : ?>
                     <div class="blog-card-thumbnail--placeholder">
@@ -131,7 +137,7 @@ function corporate_seo_pro_render_blog_card( $post, $atts ) {
             </div>
         <?php endif; ?>
 
-        <div class="blog-card-content">
+        <div class="blog-card-content" style="<?php echo esc_attr( $content_style ); ?>">
             <?php if ( ( $show_category && ! empty( $categories ) ) || $show_date ) : ?>
                 <div class="blog-card-meta">
                     <?php if ( $show_category && ! empty( $categories ) ) : ?>
