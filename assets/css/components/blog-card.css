@@ -38,13 +38,17 @@
 
 .blog-card-shortcode--default {
     display: flex;
-    align-items: stretch;
+    align-items: center;
 }
 
 .blog-card-shortcode--default .blog-card-thumbnail {
     flex-shrink: 0;
     width: 200px;
-    min-height: 133px;
+    max-width: 200px;
+    height: auto;
+    max-height: 200px;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
 }
 
 .blog-card-shortcode--default .blog-card-content {
@@ -300,6 +304,7 @@
 
 .entry-content .blog-card-shortcode--default {
     flex-direction: row !important;
+    align-items: center !important;
 }
 
 .entry-content .blog-card-shortcode:hover {
@@ -310,15 +315,25 @@
 
 /* サムネイルのスタイル上書き */
 .entry-content .blog-card-thumbnail {
+    flex-shrink: 0 !important;
+    width: 200px !important;
+    max-width: 200px !important;
+    height: auto !important;
+    max-height: 150px !important;
     margin: 0 !important;
-    border-radius: 0 !important;
+    border-radius: 12px 0 0 12px !important;
     box-shadow: none !important;
+    overflow: hidden !important;
 }
 
 .entry-content .blog-card-thumbnail img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 150px !important;
     margin: 0 !important;
     border-radius: 0 !important;
     box-shadow: none !important;
+    object-fit: cover !important;
 }
 
 /* コンテンツ部分のスタイル上書き */
