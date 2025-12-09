@@ -195,82 +195,79 @@ function corporate_seo_pro_auto_blog_card( $content ) {
         return $content;
     }
 
+    // Skip if already contains blog card (prevent double processing).
+    if ( strpos( $content, 'blog-card-shortcode' ) !== false ) {
+        return $content;
+    }
+
     // Get site URL for matching.
     $site_url  = home_url();
     $site_host = wp_parse_url( $site_url, PHP_URL_HOST );
 
-    // Pattern 1: Match standalone URLs on their own paragraph.
-    // Matches: <p>https://example.com/post-slug/</p>
-    $pattern_plain = '#<p>\s*(https?://[^\s<>"\']+)\s*</p>#i';
+    // Helper function to convert URL to blog card.
+    $convert_url_to_card = function( $url ) use ( $site_host ) {
+        // Parse URL to check if it's an internal link.
+        $url_host = wp_parse_url( $url, PHP_URL_HOST );
 
-    // Pattern 2: Match URLs that WordPress auto-linked (make_clickable).
-    // Matches: <p><a href="...">URL</a></p>
-    $pattern_linked = '#<p>\s*<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>\s*https?://[^<]+</a>\s*</p>#i';
+        // Only convert internal URLs.
+        if ( $url_host !== $site_host ) {
+            return null;
+        }
 
-    // Pattern 3: Match figure/blockquote wrapped links (Gutenberg embed fallback).
-    // Matches: <figure...><a href="...">URL</a></figure> or <blockquote><a...
-    $pattern_figure = '#<(?:figure|blockquote)[^>]*>\s*<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>[^<]*</a>\s*</(?:figure|blockquote)>#i';
+        // Try to get post ID from URL.
+        $post_id = url_to_postid( $url );
 
-    // Pattern 4: Match Gutenberg embed block with wp-block-embed wrapper.
-    // Matches: <figure class="wp-block-embed...">...<a href="URL">...</a>...</figure>
-    $pattern_embed = '#<figure[^>]*class="[^"]*wp-block-embed[^"]*"[^>]*>.*?<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>.*?</a>.*?</figure>#is';
+        if ( ! $post_id ) {
+            return null;
+        }
 
-    // Pattern 5: Match div wrapped embeds.
-    // Matches: <div class="wp-block-embed...">...<a href="URL">...</a>...</div>
-    $pattern_div_embed = '#<div[^>]*class="[^"]*wp-block-embed[^"]*"[^>]*>.*?<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>.*?</a>.*?</div>#is';
+        $post = get_post( $post_id );
 
-    // Process each pattern.
-    $patterns = array( $pattern_embed, $pattern_div_embed, $pattern_plain, $pattern_linked, $pattern_figure );
+        // Check if post exists and is published.
+        if ( ! $post || 'publish' !== $post->post_status ) {
+            return null;
+        }
 
-    foreach ( $patterns as $pattern ) {
-        $content = preg_replace_callback(
-            $pattern,
-            function ( $matches ) use ( $site_host ) {
-                $url = $matches[1];
+        // Prevent self-referencing.
+        if ( $post_id === get_the_ID() ) {
+            return null;
+        }
 
-                // Parse URL to check if it's an internal link.
-                $url_host = wp_parse_url( $url, PHP_URL_HOST );
-
-                // Only convert internal URLs.
-                if ( $url_host !== $site_host ) {
-                    return $matches[0];
-                }
-
-                // Try to get post ID from URL.
-                $post_id = url_to_postid( $url );
-
-                if ( ! $post_id ) {
-                    return $matches[0];
-                }
-
-                $post = get_post( $post_id );
-
-                // Check if post exists and is published.
-                if ( ! $post || 'publish' !== $post->post_status ) {
-                    return $matches[0];
-                }
-
-                // Prevent self-referencing.
-                if ( $post_id === get_the_ID() ) {
-                    return $matches[0];
-                }
-
-                // Render blog card.
-                $atts = array(
-                    'id'             => $post_id,
-                    'url'            => '',
-                    'style'          => 'default',
-                    'show_excerpt'   => 'true',
-                    'show_thumbnail' => 'true',
-                    'show_category'  => 'true',
-                    'show_date'      => 'true',
-                );
-
-                return corporate_seo_pro_render_blog_card( $post, $atts );
-            },
-            $content
+        // Render blog card.
+        $atts = array(
+            'id'             => $post_id,
+            'url'            => '',
+            'style'          => 'default',
+            'show_excerpt'   => 'true',
+            'show_thumbnail' => 'true',
+            'show_category'  => 'true',
+            'show_date'      => 'true',
         );
-    }
+
+        return corporate_seo_pro_render_blog_card( $post, $atts );
+    };
+
+    // Pattern 1: Match standalone URLs in paragraph.
+    // Matches: <p>https://example.com/post-slug/</p>
+    $content = preg_replace_callback(
+        '#<p>\s*(https?://[^\s<>"\']+)\s*</p>#i',
+        function( $matches ) use ( $convert_url_to_card ) {
+            $card = $convert_url_to_card( $matches[1] );
+            return $card ? $card : $matches[0];
+        },
+        $content
+    );
+
+    // Pattern 2: Match WordPress auto-linked URLs.
+    // Matches: <p><a href="URL">URL</a></p>
+    $content = preg_replace_callback(
+        '#<p>\s*<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>https?://[^<]+</a>\s*</p>#i',
+        function( $matches ) use ( $convert_url_to_card ) {
+            $card = $convert_url_to_card( $matches[1] );
+            return $card ? $card : $matches[0];
+        },
+        $content
+    );
 
     return $content;
 }
