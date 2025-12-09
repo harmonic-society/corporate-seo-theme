@@ -7408,11 +7408,11 @@ button.nav-cta-button {
 @media (max-width: 768px) {
     /* 新レイアウト レスポンシブ */
     .entry-header-clean {
-        padding: 2rem 0 1.5rem;
+        padding: 1.25rem 0 1rem;
     }
 
     .entry-title-clean {
-        font-size: 1.5rem;
+        font-size: 1.375rem;
         margin-bottom: 1rem;
     }
 
@@ -7423,7 +7423,7 @@ button.nav-cta-button {
     }
 
     .entry-featured-image {
-        padding: 0 0 1.5rem;
+        padding: 0 0 1.25rem;
     }
 
     .container-wide {
