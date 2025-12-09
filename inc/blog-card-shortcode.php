@@ -281,8 +281,8 @@ function corporate_seo_pro_auto_blog_card( $content ) {
 
     return $content;
 }
-// Priority 25: After wpautop (10), make_clickable (9), but before most theme filters.
-add_filter( 'the_content', 'corporate_seo_pro_auto_blog_card', 25 );
+// Priority 15: After wpautop (10), make_clickable (9), but BEFORE auto_internal_links (20).
+add_filter( 'the_content', 'corporate_seo_pro_auto_blog_card', 15 );
 
 /**
  * Register Gutenberg block for blog card

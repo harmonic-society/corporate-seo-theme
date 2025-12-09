@@ -290,8 +290,26 @@ function corporate_seo_pro_process_auto_links_safe( $content, $keywords ) {
  * @return string 処理後のコンテンツ
  */
 function corporate_seo_pro_replace_keyword_outside_tags( $content, $keyword, $url ) {
-    // 置換対象外のタグ
-    $skip_tags = array( 'a', 'script', 'style', 'code', 'pre', 'textarea', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' );
+    // 既存のリンク（<a>...</a>）を一時的にプレースホルダーに置換
+    $placeholders = array();
+    $placeholder_prefix = '<!--LINK_PLACEHOLDER_';
+    $placeholder_suffix = '-->';
+    $counter = 0;
+
+    // <a>タグ全体を保護（ネストされたタグも含む）
+    $content = preg_replace_callback(
+        '/<a\s[^>]*>.*?<\/a>/is',
+        function( $matches ) use ( &$placeholders, &$counter, $placeholder_prefix, $placeholder_suffix ) {
+            $placeholder = $placeholder_prefix . $counter . $placeholder_suffix;
+            $placeholders[ $placeholder ] = $matches[0];
+            $counter++;
+            return $placeholder;
+        },
+        $content
+    );
+
+    // 置換対象外のタグ（aは除外済み）
+    $skip_tags = array( 'script', 'style', 'code', 'pre', 'textarea', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' );
 
     // キーワードのエスケープ（正規表現用）
     $escaped_keyword = preg_quote( $keyword, '/' );
@@ -315,7 +333,12 @@ function corporate_seo_pro_replace_keyword_outside_tags( $content, $keyword, $ur
 
     // 置換が成功したか確認
     if ( null === $new_content ) {
-        return $content;
+        $new_content = $content;
+    }
+
+    // プレースホルダーを元のリンクに戻す
+    foreach ( $placeholders as $placeholder => $original ) {
+        $new_content = str_replace( $placeholder, $original, $new_content );
     }
 
     return $new_content;
