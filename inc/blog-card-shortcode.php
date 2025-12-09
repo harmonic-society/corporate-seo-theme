@@ -211,8 +211,16 @@ function corporate_seo_pro_auto_blog_card( $content ) {
     // Matches: <figure...><a href="...">URL</a></figure> or <blockquote><a...
     $pattern_figure = '#<(?:figure|blockquote)[^>]*>\s*<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>[^<]*</a>\s*</(?:figure|blockquote)>#i';
 
+    // Pattern 4: Match Gutenberg embed block with wp-block-embed wrapper.
+    // Matches: <figure class="wp-block-embed...">...<a href="URL">...</a>...</figure>
+    $pattern_embed = '#<figure[^>]*class="[^"]*wp-block-embed[^"]*"[^>]*>.*?<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>.*?</a>.*?</figure>#is';
+
+    // Pattern 5: Match div wrapped embeds.
+    // Matches: <div class="wp-block-embed...">...<a href="URL">...</a>...</div>
+    $pattern_div_embed = '#<div[^>]*class="[^"]*wp-block-embed[^"]*"[^>]*>.*?<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>.*?</a>.*?</div>#is';
+
     // Process each pattern.
-    $patterns = array( $pattern_plain, $pattern_linked, $pattern_figure );
+    $patterns = array( $pattern_embed, $pattern_div_embed, $pattern_plain, $pattern_linked, $pattern_figure );
 
     foreach ( $patterns as $pattern ) {
         $content = preg_replace_callback(
