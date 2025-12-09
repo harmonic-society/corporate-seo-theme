@@ -15,61 +15,63 @@ get_header(); ?>
     
     <?php while ( have_posts() ) : the_post(); ?>
         
-        <!-- ヒーローセクション -->
+        <!-- ヘッダーセクション -->
         <article id="post-<?php the_ID(); ?>" <?php post_class('post-single'); ?>>
-            <header class="entry-hero">
-                <?php if ( has_post_thumbnail() ) : ?>
-                    <div class="entry-hero-image">
-                        <?php the_post_thumbnail('full', array('loading' => 'eager')); ?>
-                        <div class="entry-hero-overlay"></div>
-                    </div>
-                <?php endif; ?>
-                
-                <div class="entry-hero-content">
-                    <div class="container-narrow">
-                        <!-- カテゴリーバッジ -->
-                        <div class="entry-categories">
-                            <?php
-                            $categories = get_the_category();
-                            if ( ! empty( $categories ) ) {
-                                foreach ( $categories as $category ) {
-                                    echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" class="category-badge">' . esc_html( $category->name ) . '</a>';
-                                }
+            <header class="entry-header-clean">
+                <div class="container-narrow">
+                    <!-- カテゴリーバッジ -->
+                    <div class="entry-categories-clean">
+                        <?php
+                        $categories = get_the_category();
+                        if ( ! empty( $categories ) ) {
+                            foreach ( $categories as $category ) {
+                                echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" class="category-badge-clean">' . esc_html( $category->name ) . '</a>';
                             }
-                            ?>
+                        }
+                        ?>
+                    </div>
+
+                    <!-- タイトル -->
+                    <h1 class="entry-title-clean"><?php the_title(); ?></h1>
+
+                    <!-- メタ情報 -->
+                    <div class="entry-meta-clean">
+                        <div class="meta-author-clean">
+                            <?php echo get_avatar( get_the_author_meta( 'ID' ), 44 ); ?>
+                            <div class="author-info-clean">
+                                <span class="author-name-clean"><?php the_author(); ?></span>
+                                <time class="entry-date-clean" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
+                                    <?php echo get_the_date(); ?>
+                                </time>
+                            </div>
                         </div>
-                        
-                        <!-- タイトル -->
-                        <h1 class="entry-title"><?php the_title(); ?></h1>
-                        
-                        <!-- メタ情報 -->
-                        <div class="entry-meta">
-                            <div class="meta-author">
-                                <?php echo get_avatar( get_the_author_meta( 'ID' ), 48 ); ?>
-                                <div class="author-info">
-                                    <span class="author-name"><?php the_author(); ?></span>
-                                    <time class="entry-date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
-                                        <?php echo get_the_date(); ?>
-                                    </time>
-                                </div>
-                            </div>
-                            
-                            <div class="meta-stats">
-                                <span class="reading-time">
-                                    <i class="far fa-clock"></i>
-                                    <span><?php echo corporate_seo_get_reading_time(); ?></span>
+
+                        <div class="meta-stats-clean">
+                            <span class="reading-time-clean">
+                                <i class="far fa-clock"></i>
+                                <span><?php echo corporate_seo_get_reading_time(); ?></span>
+                            </span>
+                            <?php if ( comments_open() ) : ?>
+                                <span class="comment-count-clean">
+                                    <i class="far fa-comment"></i>
+                                    <span><?php comments_number( '0', '1', '%' ); ?></span>
                                 </span>
-                                <?php if ( comments_open() ) : ?>
-                                    <span class="comment-count">
-                                        <i class="far fa-comment"></i>
-                                        <span><?php comments_number( '0', '1', '%' ); ?></span>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </header>
+
+            <!-- アイキャッチ画像 -->
+            <?php if ( has_post_thumbnail() ) : ?>
+                <div class="entry-featured-image">
+                    <div class="container-wide">
+                        <figure class="featured-image-wrapper">
+                            <?php the_post_thumbnail( 'full', array( 'loading' => 'eager' ) ); ?>
+                        </figure>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <!-- 記事本文 -->
             <div class="entry-content-wrapper">

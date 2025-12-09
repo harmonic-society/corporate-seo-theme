@@ -4750,6 +4750,139 @@ button.nav-cta-button {
     background: #f8f9fa;
 }
 
+/* ==========================================================================
+   新レイアウト - タイトル上、アイキャッチ画像下
+   ========================================================================== */
+
+/* ヘッダーセクション */
+.entry-header-clean {
+    background: #ffffff;
+    padding: 3rem 0 2rem;
+}
+
+/* カテゴリーバッジ */
+.entry-categories-clean {
+    margin-bottom: 1rem;
+}
+
+.category-badge-clean {
+    display: inline-block;
+    padding: 0.375rem 1rem;
+    background: rgba(0, 134, 123, 0.1);
+    border-radius: 25px;
+    color: var(--primary-color, #00867b);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.category-badge-clean:hover {
+    background: rgba(0, 134, 123, 0.2);
+    color: var(--primary-color, #00867b);
+}
+
+/* エントリータイトル */
+.entry-title-clean {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: #1f2937;
+    line-height: 1.35;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.02em;
+}
+
+/* メタ情報 */
+.entry-meta-clean {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.meta-author-clean {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.meta-author-clean img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
+}
+
+.author-info-clean {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name-clean {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #1f2937;
+}
+
+.entry-date-clean {
+    font-size: 0.8125rem;
+    color: #6b7280;
+}
+
+.meta-stats-clean {
+    display: flex;
+    gap: 1rem;
+}
+
+.reading-time-clean,
+.comment-count-clean {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+}
+
+.reading-time-clean i,
+.comment-count-clean i {
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+/* アイキャッチ画像セクション */
+.entry-featured-image {
+    background: #ffffff;
+    padding: 0 0 2rem;
+}
+
+.container-wide {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.featured-image-wrapper {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.featured-image-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   旧レイアウト - ヒーローセクション（互換性のため残す）
+   ========================================================================== */
+
 /* ヒーローセクション */
 .entry-hero {
     position: relative;
@@ -4798,7 +4931,7 @@ button.nav-cta-button {
     padding: 0 1.5rem;
 }
 
-/* カテゴリーバッジ */
+/* カテゴリーバッジ（旧） */
 .entry-categories {
     margin-bottom: 1.5rem;
 }
@@ -4823,7 +4956,7 @@ button.nav-cta-button {
     transform: translateY(-2px);
 }
 
-/* エントリータイトル */
+/* エントリータイトル（旧） */
 .single-post .entry-title {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
@@ -4833,7 +4966,7 @@ button.nav-cta-button {
     letter-spacing: -0.02em;
 }
 
-/* メタ情報 */
+/* メタ情報（旧） */
 .entry-meta {
     display: flex;
     align-items: center;
@@ -7273,32 +7406,61 @@ button.nav-cta-button {
 
 /* レスポンシブ */
 @media (max-width: 768px) {
+    /* 新レイアウト レスポンシブ */
+    .entry-header-clean {
+        padding: 2rem 0 1.5rem;
+    }
+
+    .entry-title-clean {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .entry-meta-clean {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .entry-featured-image {
+        padding: 0 0 1.5rem;
+    }
+
+    .container-wide {
+        padding: 0 1rem;
+    }
+
+    .featured-image-wrapper {
+        border-radius: 8px;
+    }
+
+    /* 旧レイアウト レスポンシブ */
     .entry-hero {
         min-height: 300px;
     }
-    
+
     .single-post .entry-title {
         font-size: 2rem;
     }
-    
+
     .entry-meta {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .entry-content {
         font-size: 1rem;
     }
-    
+
     .author-box {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .post-navigation .nav-links {
         grid-template-columns: 1fr;
     }
-    
+
     .share-buttons {
         flex-direction: column;
         gap: 0.75rem;
