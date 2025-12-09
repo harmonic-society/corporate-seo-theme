@@ -1,0 +1,269 @@
+/**
+ * Blog Card Block Editor Styles
+ * Gutenbergエディタ用ブログカードブロックのスタイル
+ *
+ * @package Corporate_SEO_Pro
+ */
+
+/* プレースホルダー */
+.blog-card-block-placeholder {
+    padding: 2rem;
+    background: #f9fafb;
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.blog-card-block-icon {
+    margin-bottom: 1rem;
+}
+
+.blog-card-block-icon .dashicons {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: #00867b;
+}
+
+.blog-card-block-placeholder h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.blog-card-block-placeholder p {
+    margin: 0 0 1.5rem 0;
+    color: #6b7280;
+}
+
+/* 検索UI */
+.blog-card-search {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.blog-card-search-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    color: #6b7280;
+}
+
+.blog-card-search-results {
+    list-style: none;
+    margin: 0.5rem 0 0 0;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.blog-card-search-result {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.15s ease;
+}
+
+.blog-card-search-result:last-child {
+    border-bottom: none;
+}
+
+.blog-card-search-result:hover {
+    background-color: #f9fafb;
+}
+
+.blog-card-search-result.is-selected {
+    background-color: rgba(0, 134, 123, 0.1);
+}
+
+.blog-card-search-result-thumbnail {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.blog-card-search-result-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.blog-card-search-result-title {
+    display: block;
+    font-weight: 500;
+    color: #1f2937;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-card-search-result-date {
+    display: block;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.125rem;
+}
+
+/* プレビュー */
+.blog-card-block-preview {
+    position: relative;
+}
+
+.blog-card-block-preview.blog-card-shortcode {
+    display: flex;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+.blog-card-block-preview.blog-card-shortcode--default {
+    flex-direction: row;
+    align-items: center;
+}
+
+.blog-card-block-preview.blog-card-shortcode--compact {
+    flex-direction: row;
+    align-items: center;
+    padding: 0.75rem;
+}
+
+.blog-card-block-preview.blog-card-shortcode--full {
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.blog-card-block-preview .blog-card-thumbnail {
+    flex-shrink: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.blog-card-block-preview.blog-card-shortcode--default .blog-card-thumbnail {
+    width: 200px;
+    max-height: 150px;
+}
+
+.blog-card-block-preview.blog-card-shortcode--compact .blog-card-thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+}
+
+.blog-card-block-preview.blog-card-shortcode--full .blog-card-thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+}
+
+.blog-card-block-preview .blog-card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-card-block-preview .blog-card-thumbnail--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+}
+
+.blog-card-block-preview .blog-card-thumbnail--placeholder .dashicons {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    color: #d1d5db;
+}
+
+.blog-card-block-preview .blog-card-content {
+    flex: 1;
+    padding: 1.25rem;
+}
+
+.blog-card-block-preview.blog-card-shortcode--compact .blog-card-content {
+    padding: 0 0 0 1rem;
+}
+
+.blog-card-block-preview .blog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-card-block-preview .blog-card-category {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #00867b;
+    background: rgba(0, 134, 123, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+.blog-card-block-preview .blog-card-date {
+    font-size: 0.8125rem;
+    color: #6b7280;
+}
+
+.blog-card-block-preview .blog-card-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0;
+}
+
+.blog-card-block-preview.blog-card-shortcode--compact .blog-card-title {
+    font-size: 0.9375rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-card-block-preview .blog-card-excerpt {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 記事変更ボタン */
+.blog-card-block-change {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.blog-card-block-preview:hover .blog-card-block-change {
+    opacity: 1;
+}
+
+.blog-card-block-change:hover {
+    background: rgba(0, 0, 0, 0.85);
+}

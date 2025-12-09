@@ -268,3 +268,105 @@ function corporate_seo_pro_auto_blog_card( $content ) {
 }
 // Priority 25: After wpautop (10), make_clickable (9), but before most theme filters.
 add_filter( 'the_content', 'corporate_seo_pro_auto_blog_card', 25 );
+
+/**
+ * Register Gutenberg block for blog card
+ */
+function corporate_seo_pro_register_blog_card_block() {
+    // ブロックエディタが利用可能か確認
+    if ( ! function_exists( 'register_block_type' ) ) {
+        return;
+    }
+
+    // エディタ用スクリプトを登録
+    wp_register_script(
+        'corporate-seo-pro-blog-card-block',
+        get_template_directory_uri() . '/assets/js/admin/blog-card-block.js',
+        array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-api-fetch' ),
+        wp_get_theme()->get( 'Version' ),
+        true
+    );
+
+    // エディタ用スタイルを登録
+    wp_register_style(
+        'corporate-seo-pro-blog-card-block-editor',
+        get_template_directory_uri() . '/assets/css/admin/blog-card-block.css',
+        array( 'wp-edit-blocks' ),
+        wp_get_theme()->get( 'Version' )
+    );
+
+    // フロント用スタイルを登録
+    wp_register_style(
+        'corporate-seo-pro-blog-card-block-style',
+        get_template_directory_uri() . '/assets/css/components/blog-card.css',
+        array(),
+        wp_get_theme()->get( 'Version' )
+    );
+
+    // ブロックを登録
+    register_block_type( 'corporate-seo-pro/blog-card', array(
+        'editor_script'   => 'corporate-seo-pro-blog-card-block',
+        'editor_style'    => 'corporate-seo-pro-blog-card-block-editor',
+        'style'           => 'corporate-seo-pro-blog-card-block-style',
+        'render_callback' => 'corporate_seo_pro_blog_card_block_render',
+        'attributes'      => array(
+            'postId' => array(
+                'type'    => 'number',
+                'default' => 0,
+            ),
+            'style' => array(
+                'type'    => 'string',
+                'default' => 'default',
+            ),
+            'showExcerpt' => array(
+                'type'    => 'boolean',
+                'default' => true,
+            ),
+            'showThumbnail' => array(
+                'type'    => 'boolean',
+                'default' => true,
+            ),
+            'showCategory' => array(
+                'type'    => 'boolean',
+                'default' => true,
+            ),
+            'showDate' => array(
+                'type'    => 'boolean',
+                'default' => true,
+            ),
+        ),
+    ) );
+}
+add_action( 'init', 'corporate_seo_pro_register_blog_card_block' );
+
+/**
+ * Render callback for blog card block
+ *
+ * @param array $attributes Block attributes.
+ * @return string Rendered HTML.
+ */
+function corporate_seo_pro_blog_card_block_render( $attributes ) {
+    $post_id = isset( $attributes['postId'] ) ? intval( $attributes['postId'] ) : 0;
+
+    if ( ! $post_id ) {
+        return '';
+    }
+
+    $post = get_post( $post_id );
+
+    if ( ! $post || 'publish' !== $post->post_status ) {
+        return corporate_seo_pro_blog_card_error_message();
+    }
+
+    $atts = array(
+        'id'             => $post_id,
+        'url'            => '',
+        'style'          => isset( $attributes['style'] ) ? $attributes['style'] : 'default',
+        'show_excerpt'   => isset( $attributes['showExcerpt'] ) ? ( $attributes['showExcerpt'] ? 'true' : 'false' ) : 'true',
+        'show_thumbnail' => isset( $attributes['showThumbnail'] ) ? ( $attributes['showThumbnail'] ? 'true' : 'false' ) : 'true',
+        'show_category'  => isset( $attributes['showCategory'] ) ? ( $attributes['showCategory'] ? 'true' : 'false' ) : 'true',
+        'show_date'      => isset( $attributes['showDate'] ) ? ( $attributes['showDate'] ? 'true' : 'false' ) : 'true',
+    );
+
+    return corporate_seo_pro_render_blog_card( $post, $atts );
+}
