@@ -228,26 +228,33 @@
    ========================================================================== */
 
 @media (max-width: 640px) {
-    .blog-card-shortcode--default {
-        flex-direction: column;
+    .blog-card-shortcode--default,
+    .entry-content .blog-card-shortcode--default {
+        flex-direction: column !important;
     }
 
-    .blog-card-shortcode--default .blog-card-thumbnail {
-        width: 100%;
+    .blog-card-shortcode--default .blog-card-thumbnail,
+    .entry-content .blog-card-shortcode--default .blog-card-thumbnail {
+        width: 100% !important;
+        max-width: 100% !important;
         aspect-ratio: 16 / 9;
         min-height: auto;
+        border-radius: 12px 12px 0 0 !important;
     }
 
-    .blog-card-shortcode--full {
+    .blog-card-shortcode--full,
+    .entry-content .blog-card-shortcode--full {
         max-width: 100%;
     }
 
-    .blog-card-title {
-        font-size: 1rem;
+    .blog-card-title,
+    .entry-content .blog-card-title {
+        font-size: 1rem !important;
     }
 
-    .blog-card-excerpt {
-        font-size: 0.8125rem;
+    .blog-card-excerpt,
+    .entry-content .blog-card-excerpt {
+        font-size: 0.8125rem !important;
         -webkit-line-clamp: 3;
     }
 }
@@ -288,9 +295,14 @@
    entry-content内のblockquoteスタイルを上書き
    ========================================================================== */
 
+/* ブログカード本体 */
+.blog-card-shortcode,
+a.blog-card-shortcode,
 .entry-content .blog-card-shortcode,
 .entry-content a.blog-card-shortcode {
     display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
     margin: 2rem 0 !important;
     padding: 0 !important;
     background: #ffffff !important;
@@ -300,8 +312,10 @@
     font-style: normal !important;
     color: inherit !important;
     text-decoration: none !important;
+    overflow: hidden !important;
 }
 
+.blog-card-shortcode--default,
 .entry-content .blog-card-shortcode--default {
     flex-direction: row !important;
     align-items: center !important;
@@ -387,4 +401,47 @@
     font-size: 0.8125rem !important;
     font-style: normal !important;
     color: #6b7280 !important;
+}
+
+/* ==========================================================================
+   Desktop Layout Override
+   デスクトップでの横並びレイアウトを強制
+   ========================================================================== */
+
+@media (min-width: 641px) {
+    .blog-card-shortcode,
+    .blog-card-shortcode--default,
+    a.blog-card-shortcode,
+    a.blog-card-shortcode--default,
+    .entry-content .blog-card-shortcode,
+    .entry-content .blog-card-shortcode--default,
+    .entry-content a.blog-card-shortcode,
+    .entry-content a.blog-card-shortcode--default {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+    }
+
+    .blog-card-shortcode .blog-card-thumbnail,
+    .blog-card-shortcode--default .blog-card-thumbnail,
+    .entry-content .blog-card-shortcode .blog-card-thumbnail,
+    .entry-content .blog-card-shortcode--default .blog-card-thumbnail {
+        flex: 0 0 200px !important;
+        width: 200px !important;
+        max-width: 200px !important;
+        min-width: 200px !important;
+        height: auto !important;
+        max-height: 150px !important;
+        border-radius: 12px 0 0 12px !important;
+    }
+
+    .blog-card-shortcode .blog-card-content,
+    .blog-card-shortcode--default .blog-card-content,
+    .entry-content .blog-card-shortcode .blog-card-content,
+    .entry-content .blog-card-shortcode--default .blog-card-content {
+        flex: 1 1 auto !important;
+        width: auto !important;
+        padding: 1.25rem !important;
+    }
 }
