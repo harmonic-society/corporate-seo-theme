@@ -196,61 +196,75 @@ function corporate_seo_pro_auto_blog_card( $content ) {
     }
 
     // Get site URL for matching.
-    $site_url = home_url();
+    $site_url  = home_url();
     $site_host = wp_parse_url( $site_url, PHP_URL_HOST );
 
-    // Pattern to match standalone URLs on their own paragraph.
+    // Pattern 1: Match standalone URLs on their own paragraph.
     // Matches: <p>https://example.com/post-slug/</p>
-    $pattern = '#<p>\s*(https?://[^\s<>"\']+)\s*</p>#i';
+    $pattern_plain = '#<p>\s*(https?://[^\s<>"\']+)\s*</p>#i';
 
-    $content = preg_replace_callback(
-        $pattern,
-        function ( $matches ) use ( $site_host ) {
-            $url = $matches[1];
+    // Pattern 2: Match URLs that WordPress auto-linked (make_clickable).
+    // Matches: <p><a href="...">URL</a></p>
+    $pattern_linked = '#<p>\s*<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>\s*https?://[^<]+</a>\s*</p>#i';
 
-            // Parse URL to check if it's an internal link.
-            $url_host = wp_parse_url( $url, PHP_URL_HOST );
+    // Pattern 3: Match figure/blockquote wrapped links (Gutenberg embed fallback).
+    // Matches: <figure...><a href="...">URL</a></figure> or <blockquote><a...
+    $pattern_figure = '#<(?:figure|blockquote)[^>]*>\s*<a\s+href=["\']?(https?://[^"\'>\s]+)["\']?[^>]*>[^<]*</a>\s*</(?:figure|blockquote)>#i';
 
-            // Only convert internal URLs.
-            if ( $url_host !== $site_host ) {
-                return $matches[0];
-            }
+    // Process each pattern.
+    $patterns = array( $pattern_plain, $pattern_linked, $pattern_figure );
 
-            // Try to get post ID from URL.
-            $post_id = url_to_postid( $url );
+    foreach ( $patterns as $pattern ) {
+        $content = preg_replace_callback(
+            $pattern,
+            function ( $matches ) use ( $site_host ) {
+                $url = $matches[1];
 
-            if ( ! $post_id ) {
-                return $matches[0];
-            }
+                // Parse URL to check if it's an internal link.
+                $url_host = wp_parse_url( $url, PHP_URL_HOST );
 
-            $post = get_post( $post_id );
+                // Only convert internal URLs.
+                if ( $url_host !== $site_host ) {
+                    return $matches[0];
+                }
 
-            // Check if post exists and is published.
-            if ( ! $post || 'publish' !== $post->post_status ) {
-                return $matches[0];
-            }
+                // Try to get post ID from URL.
+                $post_id = url_to_postid( $url );
 
-            // Prevent self-referencing.
-            if ( $post_id === get_the_ID() ) {
-                return $matches[0];
-            }
+                if ( ! $post_id ) {
+                    return $matches[0];
+                }
 
-            // Render blog card.
-            $atts = array(
-                'id'             => $post_id,
-                'url'            => '',
-                'style'          => 'default',
-                'show_excerpt'   => 'true',
-                'show_thumbnail' => 'true',
-                'show_category'  => 'true',
-                'show_date'      => 'true',
-            );
+                $post = get_post( $post_id );
 
-            return corporate_seo_pro_render_blog_card( $post, $atts );
-        },
-        $content
-    );
+                // Check if post exists and is published.
+                if ( ! $post || 'publish' !== $post->post_status ) {
+                    return $matches[0];
+                }
+
+                // Prevent self-referencing.
+                if ( $post_id === get_the_ID() ) {
+                    return $matches[0];
+                }
+
+                // Render blog card.
+                $atts = array(
+                    'id'             => $post_id,
+                    'url'            => '',
+                    'style'          => 'default',
+                    'show_excerpt'   => 'true',
+                    'show_thumbnail' => 'true',
+                    'show_category'  => 'true',
+                    'show_date'      => 'true',
+                );
+
+                return corporate_seo_pro_render_blog_card( $post, $atts );
+            },
+            $content
+        );
+    }
 
     return $content;
 }
-add_filter( 'the_content', 'corporate_seo_pro_auto_blog_card', 15 );
+// Priority 25: After wpautop (10), make_clickable (9), but before most theme filters.
+add_filter( 'the_content', 'corporate_seo_pro_auto_blog_card', 25 );
