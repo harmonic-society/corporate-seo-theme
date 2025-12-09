@@ -302,7 +302,8 @@ a.blog-card-shortcode,
 .entry-content a.blog-card-shortcode {
     display: flex !important;
     flex-direction: row !important;
-    align-items: center !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
     margin: 2rem 0 !important;
     padding: 0 !important;
     background: #ffffff !important;
@@ -328,36 +329,57 @@ a.blog-card-shortcode,
 }
 
 /* サムネイルのスタイル上書き */
+.blog-card-shortcode .blog-card-thumbnail,
+.blog-card-shortcode > .blog-card-thumbnail,
+a.blog-card-shortcode .blog-card-thumbnail,
+.entry-content .blog-card-shortcode .blog-card-thumbnail,
+.entry-content a.blog-card-shortcode .blog-card-thumbnail,
 .entry-content .blog-card-thumbnail {
-    flex-shrink: 0 !important;
+    flex: 0 0 200px !important;
     width: 200px !important;
+    min-width: 200px !important;
     max-width: 200px !important;
-    height: auto !important;
+    height: 150px !important;
     max-height: 150px !important;
     margin: 0 !important;
+    padding: 0 !important;
     border-radius: 12px 0 0 12px !important;
     box-shadow: none !important;
     overflow: hidden !important;
 }
 
+.blog-card-shortcode .blog-card-thumbnail img,
+.blog-card-shortcode > .blog-card-thumbnail img,
+a.blog-card-shortcode .blog-card-thumbnail img,
+.entry-content .blog-card-shortcode .blog-card-thumbnail img,
+.entry-content a.blog-card-shortcode .blog-card-thumbnail img,
 .entry-content .blog-card-thumbnail img {
-    width: 100% !important;
-    height: 100% !important;
+    width: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+    height: 150px !important;
     max-height: 150px !important;
     margin: 0 !important;
+    padding: 0 !important;
     border-radius: 0 !important;
     box-shadow: none !important;
     object-fit: cover !important;
 }
 
 /* コンテンツ部分のスタイル上書き */
+.blog-card-shortcode .blog-card-content,
+.blog-card-shortcode > .blog-card-content,
+a.blog-card-shortcode .blog-card-content,
+.entry-content .blog-card-shortcode .blog-card-content,
+.entry-content a.blog-card-shortcode .blog-card-content,
 .entry-content .blog-card-content {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
-    flex: 1 !important;
-    padding: 1.25rem !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
     min-width: 0 !important;
+    padding: 1.25rem !important;
 }
 
 .entry-content .blog-card-meta {
@@ -409,39 +431,51 @@ a.blog-card-shortcode,
    ========================================================================== */
 
 @media (min-width: 641px) {
-    .blog-card-shortcode,
-    .blog-card-shortcode--default,
-    a.blog-card-shortcode,
-    a.blog-card-shortcode--default,
-    .entry-content .blog-card-shortcode,
-    .entry-content .blog-card-shortcode--default,
-    .entry-content a.blog-card-shortcode,
-    .entry-content a.blog-card-shortcode--default {
+    /* カード本体 - 横並びレイアウト */
+    a.blog-card-shortcode.blog-card-shortcode--default,
+    .entry-content a.blog-card-shortcode.blog-card-shortcode--default,
+    .entry-content > a.blog-card-shortcode,
+    article .entry-content a.blog-card-shortcode {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
-        align-items: center !important;
+        align-items: stretch !important;
+        max-width: 100% !important;
     }
 
-    .blog-card-shortcode .blog-card-thumbnail,
-    .blog-card-shortcode--default .blog-card-thumbnail,
-    .entry-content .blog-card-shortcode .blog-card-thumbnail,
-    .entry-content .blog-card-shortcode--default .blog-card-thumbnail {
+    /* サムネイル - 固定幅 */
+    a.blog-card-shortcode.blog-card-shortcode--default > .blog-card-thumbnail,
+    .entry-content a.blog-card-shortcode > .blog-card-thumbnail,
+    article .entry-content a.blog-card-shortcode > .blog-card-thumbnail {
         flex: 0 0 200px !important;
         width: 200px !important;
         max-width: 200px !important;
         min-width: 200px !important;
-        height: auto !important;
+        height: 150px !important;
         max-height: 150px !important;
         border-radius: 12px 0 0 12px !important;
+        overflow: hidden !important;
     }
 
-    .blog-card-shortcode .blog-card-content,
-    .blog-card-shortcode--default .blog-card-content,
-    .entry-content .blog-card-shortcode .blog-card-content,
-    .entry-content .blog-card-shortcode--default .blog-card-content {
-        flex: 1 1 auto !important;
-        width: auto !important;
+    /* サムネイル内の画像 */
+    a.blog-card-shortcode > .blog-card-thumbnail img,
+    .entry-content a.blog-card-shortcode > .blog-card-thumbnail img {
+        width: 100% !important;
+        height: 150px !important;
+        max-height: 150px !important;
+        object-fit: cover !important;
+    }
+
+    /* コンテンツ部分 - 残り幅を使用 */
+    a.blog-card-shortcode.blog-card-shortcode--default > .blog-card-content,
+    .entry-content a.blog-card-shortcode > .blog-card-content,
+    article .entry-content a.blog-card-shortcode > .blog-card-content {
+        flex: 1 1 0% !important;
+        width: 0 !important;
+        min-width: 0 !important;
         padding: 1.25rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
     }
 }
