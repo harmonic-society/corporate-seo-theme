@@ -5025,10 +5025,15 @@ button.nav-cta-button {
 /* 記事コンテンツ */
 .entry-content-wrapper {
     background: white;
-    padding: 5rem 0;
-    margin-top: -3rem;
-    border-radius: 30px 30px 0 0;
+    padding: 3rem 0;
     position: relative;
+}
+
+/* 旧レイアウト用（ヒーロー画像に被せる） */
+.entry-hero + .entry-content-wrapper {
+    margin-top: -3rem;
+    padding: 5rem 0;
+    border-radius: 30px 30px 0 0;
     box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
 }
 
