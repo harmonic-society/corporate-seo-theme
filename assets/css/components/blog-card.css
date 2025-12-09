@@ -267,12 +267,74 @@
 
 /* タイトルの装飾をリセット */
 .entry-content .blog-card-title {
-    border: none;
-    padding: 0;
-    background: none;
+    border: none !important;
+    padding: 0 !important;
+    background: none !important;
+    font-style: normal !important;
+    color: var(--text-color, #1f2937) !important;
 }
 
 .entry-content .blog-card-title::before,
 .entry-content .blog-card-title::after {
-    display: none;
+    display: none !important;
+}
+
+/* ==========================================================================
+   Blockquote Style Override
+   entry-content内のblockquoteスタイルを上書き
+   ========================================================================== */
+
+.entry-content .blog-card-shortcode,
+.entry-content a.blog-card-shortcode {
+    display: flex !important;
+    margin: 2rem 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid var(--border-color, #e5e7eb) !important;
+    border-left: 1px solid var(--border-color, #e5e7eb) !important;
+    border-radius: 12px !important;
+    font-style: normal !important;
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+.entry-content .blog-card-shortcode--default {
+    flex-direction: row !important;
+}
+
+.entry-content .blog-card-shortcode:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 134, 123, 0.12) !important;
+    border-color: rgba(0, 134, 123, 0.3) !important;
+}
+
+/* サムネイルのスタイル上書き */
+.entry-content .blog-card-thumbnail {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.entry-content .blog-card-thumbnail img {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* コンテンツ部分のスタイル上書き */
+.entry-content .blog-card-content {
+    padding: 1.25rem !important;
+}
+
+.entry-content .blog-card-category {
+    font-style: normal !important;
+}
+
+.entry-content .blog-card-excerpt {
+    font-style: normal !important;
+    color: #6b7280 !important;
+}
+
+.entry-content .blog-card-date {
+    font-style: normal !important;
 }
