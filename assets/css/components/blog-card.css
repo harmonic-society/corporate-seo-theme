@@ -338,18 +338,53 @@
 
 /* コンテンツ部分のスタイル上書き */
 .entry-content .blog-card-content {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    flex: 1 !important;
     padding: 1.25rem !important;
+    min-width: 0 !important;
+}
+
+.entry-content .blog-card-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
 }
 
 .entry-content .blog-card-category {
+    display: inline-block !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
     font-style: normal !important;
+    color: var(--primary-color, #00867b) !important;
+    background: rgba(0, 134, 123, 0.1) !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 20px !important;
+}
+
+.entry-content .blog-card-title {
+    display: block !important;
+    font-size: 1.0625rem !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    color: #1f2937 !important;
+    line-height: 1.5 !important;
+    margin: 0 0 0.5rem 0 !important;
 }
 
 .entry-content .blog-card-excerpt {
+    display: block !important;
+    font-size: 0.875rem !important;
     font-style: normal !important;
     color: #6b7280 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
 }
 
 .entry-content .blog-card-date {
+    font-size: 0.8125rem !important;
     font-style: normal !important;
+    color: #6b7280 !important;
 }
