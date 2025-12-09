@@ -305,6 +305,16 @@ function corporate_seo_pro_enqueue_conditional_styles( $version ) {
             );
         }
     }
+
+    // Blog card shortcode styles (single posts and pages)
+    if ( is_singular( array( 'post', 'page' ) ) ) {
+        wp_enqueue_style(
+            'corporate-seo-pro-blog-card',
+            get_template_directory_uri() . '/assets/css/components/blog-card.css',
+            array( 'corporate-seo-pro-base' ),
+            $version
+        );
+    }
 }
 
 /**

@@ -45,6 +45,7 @@ function corporate_seo_pro_load_includes() {
         '/inc/fix-url-display.php',     // Fix URL display issues
         '/inc/llms-txt.php',            // llms.txt for AI agents
         '/inc/author-profile-fields.php', // E-E-A-T author profile fields
+        '/inc/blog-card-shortcode.php',   // Blog card shortcode
     );
     
     // Load each file
