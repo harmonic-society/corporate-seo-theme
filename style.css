@@ -5257,8 +5257,8 @@ button.nav-cta-button {
 }
 
 .entry-content img {
-    max-width: 100%;
-    width: auto;
+    max-width: 100% !important;
+    width: auto !important;
     height: auto !important;
     margin: 2rem 0;
     border-radius: 10px;
@@ -5273,8 +5273,8 @@ button.nav-cta-button {
 
 .entry-content figure img {
     margin: 0;
-    max-width: 100%;
-    width: auto;
+    max-width: 100% !important;
+    width: auto !important;
     height: auto !important;
 }
 
@@ -5289,10 +5289,13 @@ button.nav-cta-button {
     margin: 2rem 0;
 }
 
-.entry-content .wp-block-image img {
+.entry-content .wp-block-image img,
+.entry-content .wp-block-image.size-large img,
+.entry-content .wp-block-image.size-full img,
+.entry-content figure.wp-block-image img {
     margin: 0;
-    max-width: 100%;
-    width: auto;
+    max-width: 100% !important;
+    width: auto !important;
     height: auto !important;
 }
 
