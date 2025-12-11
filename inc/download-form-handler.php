@@ -173,6 +173,9 @@ function corporate_seo_pro_process_download_form() {
     // 管理者にメール通知を送信
     corporate_seo_pro_send_download_notification( $email, $download_url );
 
+    // メルマガ購読者にも自動登録
+    corporate_seo_pro_auto_subscribe_newsletter( $email, $source );
+
     // 成功レスポンス
     wp_send_json_success( array(
         'message'      => __( 'ダウンロードの準備ができました。', 'corporate-seo-pro' ),
@@ -346,3 +349,66 @@ function corporate_seo_pro_export_download_leads() {
     exit;
 }
 add_action( 'wp_ajax_export_download_leads', 'corporate_seo_pro_export_download_leads' );
+
+/**
+ * 資料ダウンロード時にメルマガ購読者として自動登録
+ *
+ * @param string $email  メールアドレス
+ * @param string $source ダウンロード元（nav_button, blog_article等）
+ */
+function corporate_seo_pro_auto_subscribe_newsletter( $email, $source = 'download' ) {
+    // メールアドレスのバリデーション
+    if ( ! is_email( $email ) ) {
+        return;
+    }
+
+    // 既存の購読者をチェック
+    $existing = get_posts( array(
+        'post_type'      => 'nl_subscriber',
+        'meta_key'       => 'subscriber_email',
+        'meta_value'     => $email,
+        'posts_per_page' => 1,
+        'post_status'    => 'any',
+    ) );
+
+    // 既に登録済みの場合
+    if ( ! empty( $existing ) ) {
+        $existing_id = $existing[0]->ID;
+        $current_status = get_post_meta( $existing_id, 'subscriber_status', true );
+
+        // inactiveの場合はactiveに戻す
+        if ( $current_status !== 'active' ) {
+            update_post_meta( $existing_id, 'subscriber_status', 'active' );
+        }
+        return;
+    }
+
+    // 新規購読者として登録
+    $subscriber_id = wp_insert_post( array(
+        'post_type'   => 'nl_subscriber',
+        'post_title'  => $email,
+        'post_status' => 'publish',
+    ) );
+
+    if ( is_wp_error( $subscriber_id ) ) {
+        return;
+    }
+
+    // ソース名を日本語に変換
+    $source_labels = array(
+        'nav_button'   => '資料DL（ナビボタン）',
+        'mobile_menu'  => '資料DL（モバイルメニュー）',
+        'footer'       => '資料DL（フッター）',
+        'page'         => '資料DL（ページ内）',
+        'blog_article' => '資料DL（ブログ記事）',
+    );
+    $source_label = isset( $source_labels[ $source ] ) ? $source_labels[ $source ] : '資料DL';
+
+    // メタデータを保存
+    update_post_meta( $subscriber_id, 'subscriber_email', $email );
+    update_post_meta( $subscriber_id, 'subscribed_at', current_time( 'mysql' ) );
+    update_post_meta( $subscriber_id, 'subscriber_status', 'active' );
+    update_post_meta( $subscriber_id, 'source', $source_label );
+    update_post_meta( $subscriber_id, 'ip_address', corporate_seo_pro_get_user_ip() );
+    update_post_meta( $subscriber_id, 'user_agent', isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '' );
+}
