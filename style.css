@@ -5258,7 +5258,8 @@ button.nav-cta-button {
 
 .entry-content img {
     max-width: 100%;
-    height: auto;
+    width: auto;
+    height: auto !important;
     margin: 2rem 0;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -5272,8 +5273,9 @@ button.nav-cta-button {
 
 .entry-content figure img {
     margin: 0;
-    width: 100%;
-    height: auto;
+    max-width: 100%;
+    width: auto;
+    height: auto !important;
 }
 
 .entry-content figure figcaption {
@@ -5289,11 +5291,18 @@ button.nav-cta-button {
 
 .entry-content .wp-block-image img {
     margin: 0;
-    height: auto;
+    max-width: 100%;
+    width: auto;
+    height: auto !important;
 }
 
 .entry-content .wp-block-image.aligncenter {
     text-align: center;
+}
+
+.entry-content .wp-block-image.aligncenter img {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .entry-content .wp-block-image.alignleft {
@@ -5306,11 +5315,6 @@ button.nav-cta-button {
     float: right;
     margin-left: 1.5rem;
     margin-bottom: 1rem;
-}
-
-.entry-content .wp-block-image.size-full img,
-.entry-content .wp-block-image.size-large img {
-    width: 100%;
 }
 
 /* Clear floats after aligned images */
