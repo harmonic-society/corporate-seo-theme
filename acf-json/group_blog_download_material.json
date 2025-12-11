@@ -1,0 +1,212 @@
+{
+    "key": "group_blog_download_material",
+    "title": "ダウンロード資料設定",
+    "fields": [
+        {
+            "key": "field_enable_download_cta",
+            "label": "資料DL CTAを表示",
+            "name": "enable_download_cta",
+            "type": "true_false",
+            "instructions": "オンにすると、記事下部に資料ダウンロードのCTAセクションが表示されます",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "資料ダウンロードCTAを表示する",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "表示",
+            "ui_off_text": "非表示"
+        },
+        {
+            "key": "field_download_url_type",
+            "label": "資料の種類",
+            "name": "download_url_type",
+            "type": "radio",
+            "instructions": "アップロードする資料か、外部URL（Google Drive等）かを選択してください",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_download_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "upload": "ファイルをアップロード",
+                "external": "外部URL（Google Drive等）"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "upload",
+            "layout": "horizontal",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_download_file",
+            "label": "資料ファイル",
+            "name": "download_file",
+            "type": "file",
+            "instructions": "PDF、Word、PowerPoint等のファイルをアップロードしてください",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_download_cta",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_download_url_type",
+                        "operator": "==",
+                        "value": "upload"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": 50,
+            "mime_types": "pdf,doc,docx,ppt,pptx,xls,xlsx"
+        },
+        {
+            "key": "field_download_external_url",
+            "label": "外部URL",
+            "name": "download_external_url",
+            "type": "url",
+            "instructions": "Google DriveやDropbox等の共有リンクを入力してください",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_download_cta",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_download_url_type",
+                        "operator": "==",
+                        "value": "external"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://docs.google.com/..."
+        },
+        {
+            "key": "field_download_material_name",
+            "label": "資料名",
+            "name": "download_material_name",
+            "type": "text",
+            "instructions": "表示する資料名を入力してください",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_download_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：CRM導入ガイドブック"
+        },
+        {
+            "key": "field_download_cta_title",
+            "label": "CTAタイトル",
+            "name": "download_cta_title",
+            "type": "text",
+            "instructions": "CTAセクションのタイトル（空欄の場合はデフォルトが使用されます）",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_download_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "この記事の関連資料をダウンロード"
+        },
+        {
+            "key": "field_download_cta_description",
+            "label": "CTA説明文",
+            "name": "download_cta_description",
+            "type": "textarea",
+            "instructions": "資料の内容や特徴を簡潔に説明してください（任意）",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_download_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "例：この記事で解説したCRM導入のポイントをまとめたPDF資料です。",
+            "maxlength": 200,
+            "rows": 2,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "ブログ記事下部に表示する資料ダウンロードCTAの設定",
+    "show_in_rest": 0,
+    "modified": 1733900400
+}

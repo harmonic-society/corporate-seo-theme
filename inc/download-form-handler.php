@@ -57,6 +57,7 @@ function corporate_seo_pro_download_lead_columns( $columns ) {
         'title'         => __( 'メールアドレス', 'corporate-seo-pro' ),
         'download_date' => __( 'ダウンロード日時', 'corporate-seo-pro' ),
         'source'        => __( 'ソース', 'corporate-seo-pro' ),
+        'source_post'   => __( '関連記事', 'corporate-seo-pro' ),
     );
     return $new_columns;
 }
@@ -81,8 +82,24 @@ function corporate_seo_pro_download_lead_column_content( $column, $post_id ) {
                 'mobile_menu'    => __( 'モバイルメニュー', 'corporate-seo-pro' ),
                 'footer'         => __( 'フッター', 'corporate-seo-pro' ),
                 'page'           => __( 'ページ内', 'corporate-seo-pro' ),
+                'blog_article'   => __( 'ブログ記事', 'corporate-seo-pro' ),
             );
             echo isset( $source_labels[ $source ] ) ? esc_html( $source_labels[ $source ] ) : esc_html( $source );
+            break;
+
+        case 'source_post':
+            $source_post_id = get_post_meta( $post_id, '_download_source_post_id', true );
+            if ( $source_post_id ) {
+                $post_title = get_post_meta( $post_id, '_download_source_post_title', true );
+                $edit_link = get_edit_post_link( $source_post_id );
+                if ( $edit_link ) {
+                    echo '<a href="' . esc_url( $edit_link ) . '">' . esc_html( $post_title ) . '</a>';
+                } else {
+                    echo esc_html( $post_title );
+                }
+            } else {
+                echo '—';
+            }
             break;
     }
 }
@@ -127,12 +144,28 @@ function corporate_seo_pro_process_download_form() {
         wp_send_json_error( array( 'message' => __( 'データの保存に失敗しました。', 'corporate-seo-pro' ) ) );
     }
 
+    // ソース情報を取得（拡張）
+    $source = isset( $_POST['source'] )
+        ? sanitize_text_field( wp_unslash( $_POST['source'] ) )
+        : 'nav_button';
+
+    // 記事IDを取得（新規）
+    $source_post_id = isset( $_POST['source_post_id'] )
+        ? absint( wp_unslash( $_POST['source_post_id'] ) )
+        : 0;
+
     // メタデータを保存
     update_post_meta( $post_id, '_download_email', $email );
     update_post_meta( $post_id, '_download_date', current_time( 'mysql' ) );
-    update_post_meta( $post_id, '_download_source', 'nav_button' );
+    update_post_meta( $post_id, '_download_source', $source );
     update_post_meta( $post_id, '_user_ip', corporate_seo_pro_get_user_ip() );
     update_post_meta( $post_id, '_user_agent', isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '' );
+
+    // 記事IDが指定されている場合は保存
+    if ( $source_post_id > 0 ) {
+        update_post_meta( $post_id, '_download_source_post_id', $source_post_id );
+        update_post_meta( $post_id, '_download_source_post_title', get_the_title( $source_post_id ) );
+    }
 
     // ダウンロードURL
     $download_url = isset( $_POST['download_url'] ) ? esc_url_raw( wp_unslash( $_POST['download_url'] ) ) : '';
@@ -294,6 +327,7 @@ function corporate_seo_pro_export_download_leads() {
         'メールアドレス',
         'ダウンロード日時',
         'ソース',
+        '関連記事',
         'IPアドレス',
     ) );
 
@@ -303,6 +337,7 @@ function corporate_seo_pro_export_download_leads() {
             get_post_meta( $lead->ID, '_download_email', true ),
             get_post_meta( $lead->ID, '_download_date', true ),
             get_post_meta( $lead->ID, '_download_source', true ),
+            get_post_meta( $lead->ID, '_download_source_post_title', true ),
             get_post_meta( $lead->ID, '_user_ip', true ),
         ) );
     }

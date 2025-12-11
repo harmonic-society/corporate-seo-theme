@@ -1,0 +1,384 @@
+/**
+ * ブログ記事 資料ダウンロードCTA スタイル
+ *
+ * @package Corporate_SEO_Pro
+ */
+
+/* ==========================================================================
+   ブログダウンロードCTAセクション
+   ========================================================================== */
+
+.blog-download-cta-section {
+    position: relative;
+    padding: 4rem 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0, 134, 123, 0.05) 0%, rgba(16, 185, 129, 0.08) 100%);
+}
+
+.blog-download-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 134, 123, 0.3), transparent);
+}
+
+/* カード */
+.blog-download-cta-card {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow:
+        0 10px 40px rgba(0, 134, 123, 0.1),
+        0 0 0 1px rgba(0, 134, 123, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-download-cta-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 20px 60px rgba(0, 134, 123, 0.15),
+        0 0 0 1px rgba(0, 134, 123, 0.12);
+}
+
+/* バッジ */
+.blog-download-cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, #00867b 0%, #10b981 100%);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.025em;
+}
+
+.blog-download-cta-badge i {
+    font-size: 0.9rem;
+}
+
+/* タイトル */
+.blog-download-cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+/* 説明文 */
+.blog-download-cta-description {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* 資料名 */
+.blog-download-cta-material {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(0, 134, 123, 0.08);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #00867b;
+    margin-bottom: 2rem;
+}
+
+.blog-download-cta-material i {
+    font-size: 1.1rem;
+}
+
+/* フォーム */
+.blog-download-cta-form {
+    width: 100%;
+}
+
+.blog-download-cta-form-row {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 500px;
+    margin: 0 auto 0.75rem;
+}
+
+/* 入力フィールド */
+.blog-download-cta-input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.blog-download-cta-input-wrapper i {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.blog-download-cta-form input[type="email"] {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #1f2937;
+    background: #f9fafb;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.blog-download-cta-form input[type="email"]::placeholder {
+    color: #9ca3af;
+}
+
+.blog-download-cta-form input[type="email"]:focus {
+    border-color: #00867b;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(0, 134, 123, 0.1);
+}
+
+.blog-download-cta-form input[type="email"].error {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+/* 送信ボタン */
+.blog-download-cta-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    background: linear-gradient(135deg, #00867b 0%, #006b61 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 134, 123, 0.3);
+}
+
+.blog-download-cta-submit:hover {
+    background: linear-gradient(135deg, #006b61 0%, #005952 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 134, 123, 0.4);
+}
+
+.blog-download-cta-submit:active {
+    transform: translateY(0);
+}
+
+.blog-download-cta-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.blog-download-cta-submit .btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.blog-download-cta-submit .btn-loading {
+    display: none;
+}
+
+/* エラーメッセージ */
+.blog-download-cta-error {
+    display: none;
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+/* プライバシーポリシー */
+.blog-download-cta-privacy {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-top: 1rem;
+}
+
+.blog-download-cta-privacy a {
+    color: #00867b;
+    text-decoration: underline;
+}
+
+.blog-download-cta-privacy a:hover {
+    color: #006b61;
+}
+
+/* 成功メッセージ */
+.blog-download-cta-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    animation: successFadeIn 0.5s ease;
+}
+
+@keyframes successFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.blog-download-cta-success .success-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: successBounce 0.6s ease;
+}
+
+@keyframes successBounce {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.blog-download-cta-success .success-icon i {
+    font-size: 1.75rem;
+    color: white;
+}
+
+.blog-download-cta-success p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #059669;
+    margin: 0;
+}
+
+/* ==========================================================================
+   レスポンシブ
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .blog-download-cta-section {
+        padding: 3rem 0;
+    }
+
+    .blog-download-cta-card {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+        border-radius: 16px;
+    }
+
+    .blog-download-cta-title {
+        font-size: 1.25rem;
+    }
+
+    .blog-download-cta-description {
+        font-size: 0.9rem;
+    }
+
+    .blog-download-cta-form-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .blog-download-cta-submit {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .blog-download-cta-form input[type="email"] {
+        font-size: 16px; /* iOS zoom 防止 */
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-download-cta-section {
+        padding: 2.5rem 0;
+    }
+
+    .blog-download-cta-card {
+        padding: 1.5rem 1.25rem;
+        margin: 0 0.75rem;
+    }
+
+    .blog-download-cta-badge {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+    }
+
+    .blog-download-cta-title {
+        font-size: 1.15rem;
+    }
+
+    .blog-download-cta-material {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.25rem;
+    }
+
+    .blog-download-cta-success .success-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .blog-download-cta-success .success-icon i {
+        font-size: 1.5rem;
+    }
+
+    .blog-download-cta-success p {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   アクセシビリティ
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-download-cta-card {
+        transition: none;
+    }
+
+    .blog-download-cta-submit {
+        transition: none;
+    }
+
+    .blog-download-cta-success,
+    .blog-download-cta-success .success-icon {
+        animation: none;
+    }
+}
+
+/* フォーカス状態 */
+.blog-download-cta-form input[type="email"]:focus-visible {
+    outline: 2px solid #00867b;
+    outline-offset: 2px;
+}
+
+.blog-download-cta-submit:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}

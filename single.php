@@ -286,6 +286,9 @@ get_header(); ?>
                 </div>
             <?php endif; ?>
 
+            <!-- 資料ダウンロードCTA -->
+            <?php get_template_part( 'template-parts/blog-download-cta' ); ?>
+
             <!-- ブログ記事用CTAセクション -->
             <?php if ( get_theme_mod( 'show_blog_cta_section', true ) ) : ?>
                 <section class="cta-section cta-blog">
