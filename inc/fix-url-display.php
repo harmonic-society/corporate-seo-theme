@@ -62,24 +62,27 @@ function corporate_seo_pro_pre_save_post_content( $data, $postarr ) {
 add_filter( 'wp_insert_post_data', 'corporate_seo_pro_pre_save_post_content', 10, 2 );
 
 /**
- * フロントエンドでのURL表示を確実にする
+ * コードブロック内のHTMLエンティティを実際の文字に変換
+ *
+ * WordPressはセキュリティのためコードブロック内の特殊文字をHTMLエンティティに
+ * エンコードしますが、表示時には実際の文字として見せる必要があります。
  */
-function corporate_seo_pro_ensure_url_display( $content ) {
-    // 既にフィルタリングされたかチェック
-    if ( has_filter( 'the_content', 'convert_chars' ) ) {
-        // convert_charsフィルターがURLを変換してしまう可能性があるため一時的に削除
-        remove_filter( 'the_content', 'convert_chars' );
-        
-        // フィルター適用後に再度追加
-        add_action( 'the_content', function( $content ) {
-            add_filter( 'the_content', 'convert_chars' );
-            return $content;
-        }, 999 );
-    }
-    
+function corporate_seo_pro_decode_code_entities( $content ) {
+    // <pre> タグ内のエンティティをデコード
+    $content = preg_replace_callback(
+        '/<pre([^>]*)>(.*?)<\/pre>/is',
+        function( $matches ) {
+            $attributes = $matches[1];
+            $inner_content = $matches[2];
+            $decoded = html_entity_decode( $inner_content, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+            return '<pre' . $attributes . '>' . $decoded . '</pre>';
+        },
+        $content
+    );
+
     return $content;
 }
-add_filter( 'the_content', 'corporate_seo_pro_ensure_url_display', 1 );
+add_filter( 'the_content', 'corporate_seo_pro_decode_code_entities', 50 );
 
 /**
  * ビジュアルエディタでURLが削除されないように設定
