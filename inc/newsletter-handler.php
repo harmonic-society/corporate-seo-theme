@@ -116,6 +116,73 @@ function corporate_seo_pro_newsletter_admin_styles() {
 add_action( 'admin_head', 'corporate_seo_pro_newsletter_admin_styles' );
 
 /**
+ * メルマガ購読者の一括操作メニューを追加
+ */
+function corporate_seo_pro_nl_subscriber_bulk_actions( $bulk_actions ) {
+    $bulk_actions['set_inactive'] = __( '無効にする', 'corporate-seo-pro' );
+    $bulk_actions['set_active'] = __( '有効にする', 'corporate-seo-pro' );
+    return $bulk_actions;
+}
+add_filter( 'bulk_actions-edit-nl_subscriber', 'corporate_seo_pro_nl_subscriber_bulk_actions' );
+
+/**
+ * メルマガ購読者の一括操作を処理
+ */
+function corporate_seo_pro_handle_nl_subscriber_bulk_actions( $redirect_to, $doaction, $post_ids ) {
+    if ( $doaction !== 'set_inactive' && $doaction !== 'set_active' ) {
+        return $redirect_to;
+    }
+
+    $new_status = ( $doaction === 'set_inactive' ) ? 'inactive' : 'active';
+    $count = 0;
+
+    foreach ( $post_ids as $post_id ) {
+        update_post_meta( $post_id, 'subscriber_status', $new_status );
+        $count++;
+    }
+
+    $redirect_to = add_query_arg( array(
+        'bulk_status_updated' => $new_status,
+        'bulk_count' => $count,
+    ), $redirect_to );
+
+    return $redirect_to;
+}
+add_filter( 'handle_bulk_actions-edit-nl_subscriber', 'corporate_seo_pro_handle_nl_subscriber_bulk_actions', 10, 3 );
+
+/**
+ * 一括操作の結果通知を表示
+ */
+function corporate_seo_pro_nl_subscriber_bulk_admin_notices() {
+    if ( ! isset( $_GET['bulk_status_updated'] ) || ! isset( $_GET['bulk_count'] ) ) {
+        return;
+    }
+
+    $screen = get_current_screen();
+    if ( ! $screen || $screen->post_type !== 'nl_subscriber' ) {
+        return;
+    }
+
+    $status = sanitize_text_field( $_GET['bulk_status_updated'] );
+    $count = intval( $_GET['bulk_count'] );
+
+    if ( $status === 'inactive' ) {
+        $message = sprintf(
+            _n( '%d件の購読者を無効にしました。', '%d件の購読者を無効にしました。', $count, 'corporate-seo-pro' ),
+            $count
+        );
+    } else {
+        $message = sprintf(
+            _n( '%d件の購読者を有効にしました。', '%d件の購読者を有効にしました。', $count, 'corporate-seo-pro' ),
+            $count
+        );
+    }
+
+    printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', esc_html( $message ) );
+}
+add_action( 'admin_notices', 'corporate_seo_pro_nl_subscriber_bulk_admin_notices' );
+
+/**
  * AJAX: メルマガ登録
  */
 function corporate_seo_pro_newsletter_subscribe() {
