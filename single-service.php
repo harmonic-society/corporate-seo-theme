@@ -190,8 +190,8 @@ get_header(); ?>
             </div>
         </section>
 
-        <!-- Chiba Subscription Banner (ホームページ制作サービスのみ表示) -->
-        <?php
+        <!-- Chiba Subscription Banner (非表示) -->
+        <?php /*
         // ホームページ制作サービスかどうかを判定
         $post_slug = get_post_field( 'post_name', get_the_ID() );
         $post_title = get_the_title();
@@ -207,7 +207,8 @@ get_header(); ?>
             <div class="container">
                 <?php get_template_part( 'template-parts/chiba-subscription-banner' ); ?>
             </div>
-        <?php endif; ?>
+        <?php endif;
+        */ ?>
 
         <!-- サービスの特徴セクション -->
         <?php

@@ -38,10 +38,12 @@ get_header(); ?>
         </div>
     </header>
 
-    <!-- Chiba Subscription Banner -->
+    <!-- Chiba Subscription Banner (非表示) -->
+    <?php /*
     <div class="container">
         <?php get_template_part( 'template-parts/chiba-subscription-banner' ); ?>
     </div>
+    */ ?>
 
     <!-- Services Grid Section -->
     <section class="services-showcase">
