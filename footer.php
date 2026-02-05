@@ -52,6 +52,7 @@
                         <?php endif; ?>
                     </div>
 
+
                     <!-- フッターメニュー1 -->
                     <div class="footer-widget">
                         <h3 class="footer-title"><?php esc_html_e( 'サービス', 'corporate-seo-pro' ); ?></h3>
@@ -153,15 +154,14 @@
             <div class="container">
                 <div class="footer-bottom-content">
                     <p class="copyright">
-                        &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?> | 千葉県千葉市のWebシステム開発.
-                        <?php esc_html_e( 'All rights reserved.', 'corporate-seo-pro' ); ?>
+                        &copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>
                     </p>
 
                     <div class="footer-bottom-links">
                         <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>">
                             <?php esc_html_e( 'プライバシーポリシー', 'corporate-seo-pro' ); ?>
                         </a>
-                        <span class="separator">|</span>
+                        <span class="separator">&middot;</span>
                         <a href="<?php echo esc_url( home_url( '/terms' ) ); ?>">
                             <?php esc_html_e( '利用規約', 'corporate-seo-pro' ); ?>
                         </a>
@@ -205,10 +205,10 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(135deg, #00867b 0%, #10b981 100%);
-            box-shadow: 0 -4px 20px rgba(0, 134, 123, 0.4);
+            background: linear-gradient(135deg, #00867b 0%, #0d9488 100%);
+            box-shadow: 0 -2px 16px rgba(0, 134, 123, 0.35);
             z-index: 9998;
-            animation: slideUp 0.5s ease-out;
+            animation: slideUp 0.4s ease-out;
             transition: transform 0.3s ease;
         }
 

@@ -11,7 +11,7 @@
 @media (max-width: 768px) {
     .site-footer {
         position: relative;
-        background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+        background: linear-gradient(180deg, #1b2332 0%, #111827 50%, #0c1220 100%);
         color: rgba(255, 255, 255, 0.9);
     }
 
@@ -21,7 +21,7 @@
 
     /* 背景装飾を簡素化 */
     .footer-main::before {
-        opacity: 0.5;
+        opacity: 0.4;
     }
 
     .decoration-circle,
@@ -72,47 +72,58 @@
     }
 
     .footer-title {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
         position: relative;
     }
 
     .footer-title::after {
-        width: 40px;
+        width: 28px;
         height: 2px;
         animation: none;
     }
 
     /* フッター情報ウィジェット */
     .footer-info .footer-title {
-        font-size: 1.35rem;
-        margin-bottom: 16px;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        letter-spacing: -0.01em;
+        text-transform: none;
+        margin-bottom: 12px;
+        padding-bottom: 0;
+    }
+
+    .footer-info .footer-title::after {
+        display: none;
     }
 
     .footer-description {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         line-height: 1.75;
-        color: rgba(255, 255, 255, 0.7);
-        margin-bottom: 20px;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0;
     }
 }
 
 @media (max-width: 480px) {
     .footer-title {
-        font-size: 1.05rem;
-        margin-bottom: 14px;
-        padding-bottom: 10px;
+        font-size: 0.65rem;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
     }
 
     .footer-info .footer-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .footer-description {
-        font-size: 0.875rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -121,25 +132,30 @@
    ========================================================================== */
 @media (max-width: 768px) {
     .footer-location {
-        margin: 16px 0;
-        padding: 14px 0;
+        margin: 20px 0 0;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
     }
 
     .footer-address {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         gap: 8px;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
     }
 
     .footer-address i {
-        font-size: 14px;
-        min-width: 18px;
+        font-size: 13px;
+        min-width: 16px;
+        color: #10b981;
     }
 
     .footer-full-address {
-        padding-left: 26px;
-        font-size: 0.85rem;
+        padding-left: 24px;
+        font-size: 0.8rem;
         line-height: 1.6;
+        color: rgba(255, 255, 255, 0.45);
     }
 }
 
@@ -163,10 +179,10 @@
     .footer-menu a {
         display: flex;
         align-items: center;
-        gap: 8px;
-        color: rgba(255, 255, 255, 0.7);
+        gap: 0;
+        color: rgba(255, 255, 255, 0.6);
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 10px 0;
         min-height: 44px;
         transition: color 0.2s ease;
@@ -174,12 +190,7 @@
     }
 
     .footer-menu a::before {
-        content: '';
-        width: 5px;
-        height: 5px;
-        background: #00867b;
-        border-radius: 50%;
-        flex-shrink: 0;
+        display: none;
     }
 
     .footer-menu a:hover,
@@ -273,19 +284,16 @@
     .footer-cta-button {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
-        min-height: 52px;
-        padding: 14px 24px;
-        background: linear-gradient(135deg, #00867b, #10b981);
-        color: white;
+        min-height: 48px;
+        padding: 12px 16px;
         text-decoration: none;
         border-radius: 10px;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 0.85rem;
         gap: 10px;
-        margin-top: 8px;
-        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.4);
+        margin-top: 0;
         transition: all 0.2s ease;
         -webkit-tap-highlight-color: transparent;
     }
@@ -297,7 +305,6 @@
     .footer-cta-button:hover,
     .footer-cta-button:active {
         transform: none;
-        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.5);
     }
 
     .footer-cta-button:focus {
@@ -306,14 +313,14 @@
     }
 
     .footer-cta-button i {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 480px) {
     .footer-cta-button {
-        padding: 12px 20px;
-        font-size: 0.95rem;
+        padding: 11px 14px;
+        font-size: 0.825rem;
     }
 }
 
@@ -342,15 +349,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        min-height: 44px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 1rem;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.95rem;
         transition: all 0.2s ease;
         -webkit-tap-highlight-color: transparent;
     }
@@ -361,8 +368,8 @@
 
     .social-links a:hover,
     .social-links a:active {
-        background: #00867b;
-        border-color: #00867b;
+        background: rgba(0, 134, 123, 0.15);
+        border-color: rgba(0, 134, 123, 0.3);
         color: white;
         transform: none;
         box-shadow: none;
@@ -403,23 +410,23 @@
     }
 
     .copyright {
-        font-size: 0.8rem;
-        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.3);
         line-height: 1.6;
         margin: 0;
     }
 
     .footer-bottom-links {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
     }
 
     .footer-bottom-links a {
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255, 255, 255, 0.4);
         text-decoration: none;
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         padding: 6px 0;
         min-height: 36px;
         display: flex;
@@ -434,7 +441,7 @@
 
     .footer-bottom-links a:hover,
     .footer-bottom-links a:active {
-        color: white;
+        color: rgba(255, 255, 255, 0.7);
     }
 
     .footer-bottom-links a:focus {
@@ -470,25 +477,27 @@
         position: fixed;
         bottom: 20px;
         right: 20px;
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        min-height: 48px;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #00867b, #10b981);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 1.1rem;
+        background: rgba(27, 35, 50, 0.9);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        font-size: 1rem;
         cursor: pointer;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(20px);
+        transform: translateY(16px);
         transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
         z-index: 9999;
-        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.4);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         -webkit-tap-highlight-color: transparent;
     }
 
@@ -510,7 +519,9 @@
     .back-to-top:hover,
     .back-to-top:active {
         transform: translateY(0);
-        box-shadow: 0 4px 16px rgba(0, 134, 123, 0.5);
+        background: rgba(0, 134, 123, 0.9);
+        border-color: rgba(0, 134, 123, 0.5);
+        color: white;
     }
 
     .scroll-to-top:focus,
@@ -525,11 +536,11 @@
     .back-to-top {
         bottom: 16px;
         right: 16px;
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        min-height: 44px;
-        font-size: 1rem;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 0.9rem;
     }
 }
 
@@ -587,7 +598,7 @@
     .footer-menu a,
     .footer-phone,
     .footer-email {
-        color: rgba(255, 255, 255, 0.75);
+        color: rgba(255, 255, 255, 0.6);
     }
 
     /* フォーカスリング */
