@@ -10,7 +10,7 @@
 
 .services-modern {
     padding: 100px 0;
-    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+    background: #ffffff;
     position: relative;
 }
 
@@ -21,14 +21,14 @@
 
 .services-modern .section-label {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
-    background: linear-gradient(135deg, rgba(0, 134, 123, 0.1), rgba(16, 185, 129, 0.1));
-    color: #00867b;
-    font-size: 0.875rem;
-    font-weight: 700;
+    padding: 0;
+    background: none;
+    color: var(--primary-color, #00867b);
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 50px;
+    letter-spacing: 0.12em;
+    border-radius: 0;
     margin-bottom: 1rem;
 }
 
@@ -307,7 +307,7 @@
     background: #ffffff;
     border-radius: 20px;
     overflow: hidden;
-    border: 2px solid #f3f4f6;
+    border: 1px solid #e5e7eb;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -363,8 +363,8 @@
 }
 
 .service-card-alternating:hover {
-    border-color: #00867b;
-    box-shadow: 0 20px 60px rgba(0, 134, 123, 0.15);
+    border-color: rgba(0, 134, 123, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
     transform: translateY(-4px);
 }
 
@@ -388,7 +388,7 @@
 }
 
 .service-card-alternating:hover .service-card-image img {
-    transform: scale(1.08);
+    transform: scale(1.03);
 }
 
 .service-image-placeholder {
@@ -410,15 +410,15 @@
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 900;
     color: #00867b;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -428,7 +428,7 @@
 .service-card-alternating:hover .service-card-number-badge {
     background: #00867b;
     color: #ffffff;
-    transform: scale(1.1) rotate(10deg);
+    transform: scale(1.05);
 }
 
 /* Content Section (60%) */

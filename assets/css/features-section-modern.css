@@ -9,8 +9,8 @@
    ========================================================================== */
 .features-section-refined {
     position: relative;
-    padding: 120px 0 140px;
-    background: #ffffff;
+    padding: 100px 0;
+    background: #f9fafb;
     overflow: hidden;
 }
 
@@ -25,33 +25,17 @@
 }
 
 .refined-bg-gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
-    background: linear-gradient(180deg, #f8fafa 0%, #ffffff 100%);
+    display: none;
 }
 
 .refined-diagonal-lines {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 80px,
-        rgba(0, 134, 123, 0.02) 80px,
-        rgba(0, 134, 123, 0.02) 81px
-    );
+    display: none;
 }
 
 .refined-accent-circle {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(0, 134, 123, 0.08);
+    border: 1px solid rgba(0, 134, 123, 0.04);
 }
 
 .refined-accent-circle.circle-1 {
@@ -62,10 +46,7 @@
 }
 
 .refined-accent-circle.circle-2 {
-    width: 400px;
-    height: 400px;
-    bottom: -100px;
-    left: -100px;
+    display: none;
 }
 
 /* ==========================================================================
@@ -88,24 +69,18 @@
 
 .line-left,
 .line-right {
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 134, 123, 0.4));
-}
-
-.line-right {
-    background: linear-gradient(90deg, rgba(0, 134, 123, 0.4), transparent);
+    display: none;
 }
 
 .header-label-refined {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--primary-color);
-    padding: 8px 20px;
-    background: rgba(0, 134, 123, 0.06);
-    border-radius: 4px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
 }
 
 .features-title-refined {
@@ -165,7 +140,7 @@
 }
 
 .feature-card-refined:hover {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
 }
 
 /* Card Top Accent */
@@ -277,63 +252,21 @@
     margin: 0;
 }
 
-/* Bottom Indicator */
+/* Bottom Indicator - Hidden for cleaner look */
 .feature-indicator {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: none;
 }
 
-.indicator-dot {
-    width: 8px;
-    height: 8px;
-    background: rgba(0, 134, 123, 0.3);
-    border-radius: 50%;
-    transition: all 0.4s ease;
-}
-
-.feature-card-refined:hover .indicator-dot {
-    background: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(0, 134, 123, 0.15);
-}
-
-.indicator-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(0, 134, 123, 0.15), transparent);
-    transition: all 0.4s ease;
-}
-
-.feature-card-refined:hover .indicator-line {
-    background: linear-gradient(90deg, rgba(0, 134, 123, 0.4), transparent);
-}
-
-/* Hover Layer */
+/* Hover Layer - Hidden for cleaner look */
 .card-hover-layer {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(0, 134, 123, 0.03), transparent 70%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.feature-card-refined:hover .card-hover-layer {
-    opacity: 1;
+    display: none;
 }
 
 /* ==========================================================================
    Bottom Decorative Element
    ========================================================================== */
 .features-bottom-element {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 80px;
-    position: relative;
-    z-index: 1;
+    display: none;
 }
 
 .bottom-line {
