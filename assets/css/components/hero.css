@@ -1,12 +1,26 @@
 /**
  * Hero Component
- * 
- * Flexible hero section supporting multiple styles and animations
+ *
+ * Flexible hero section supporting multiple styles and animations.
+ *
+ * Structure:
+ *   1. Base Hero Structure (汎用: .hero-section)
+ *   2. Hero Backgrounds (汎用: .hero-bg-image, .hero-overlay)
+ *   3. Hero Style Variants (汎用: .hero-style-*)
+ *   4. ★ Hero Modern - Front Page (.hero-modern スコープ)
+ *   5. Generic Hero Content (汎用ページ用: .hero-title, .hero-subtitle)
+ *   6. Hero Features & Stats
+ *   7. Decorative Elements
+ *   8. Page-Specific Heroes
+ *   9. Animations
+ *  10. Responsive Design
+ *  11. Accessibility & Performance
  */
 
 /* ==========================================================================
-   Base Hero Structure
+   1. Base Hero Structure
    ========================================================================== */
+
 .hero-section {
     position: relative;
     min-height: 100vh;
@@ -18,7 +32,6 @@
     color: var(--color-text-inverse, white);
 }
 
-/* Content wrapper */
 .hero-content {
     position: relative;
     z-index: 10;
@@ -30,10 +43,9 @@
 }
 
 /* ==========================================================================
-   Hero Backgrounds
+   2. Hero Backgrounds
    ========================================================================== */
 
-/* Background Image */
 .hero-bg-image {
     position: absolute;
     top: 0;
@@ -48,14 +60,12 @@
     z-index: 0;
 }
 
-/* Desktop parallax effect */
 @media (min-width: 769px) {
     .hero-parallax .hero-bg-image {
         background-attachment: fixed;
     }
 }
 
-/* Background Overlay */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -66,7 +76,6 @@
     z-index: 1;
 }
 
-/* Gradient Background */
 .hero-gradient-bg {
     position: absolute;
     top: 0;
@@ -77,10 +86,9 @@
 }
 
 /* ==========================================================================
-   Hero Styles
+   3. Hero Style Variants
    ========================================================================== */
 
-/* Style: Image with Overlay */
 .hero-style-image {
     color: var(--color-text-inverse, white);
 }
@@ -89,7 +97,6 @@
     background-color: var(--color-overlay, rgba(0, 0, 0, 0.4));
 }
 
-/* Style: Gradient */
 .hero-style-gradient {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
 }
@@ -98,7 +105,6 @@
     opacity: 0.3;
 }
 
-/* Style: Modern/Minimal */
 .hero-style-modern {
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
 }
@@ -111,12 +117,37 @@
     width: 100%;
     height: 100%;
     opacity: 0.03;
-    background-image: 
+    background-image:
         repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.02) 35px, rgba(255,255,255,.02) 70px);
     pointer-events: none;
 }
 
-/* Hero Modern Section (used in template-parts/hero-modern.php) */
+.hero-style-video {
+    background: #000;
+}
+
+.hero-video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 0;
+}
+
+/* ==========================================================================
+   4. ★ Hero Modern - Front Page
+
+   フロントページ専用のモダンヒーロー。
+   すべてのスタイルを .hero-modern スコープ配下に配置し、
+   汎用ヒーロールールとの干渉を防ぐ。
+   ========================================================================== */
+
+/* --- Container --- */
+
 .hero-modern {
     position: relative;
     min-height: 100vh;
@@ -126,6 +157,7 @@
     overflow: hidden;
     margin-top: 0;
     padding-top: 0;
+    color: white;
 }
 
 .hero-modern::before {
@@ -136,13 +168,14 @@
     width: 100%;
     height: 100%;
     opacity: 0.015;
-    background-image: 
+    background-image:
         repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.02) 35px, rgba(255,255,255,.02) 70px);
     pointer-events: none;
     z-index: 1;
 }
 
-/* Hero Modern specific background elements */
+/* --- Modern: Background Elements --- */
+
 .hero-modern .hero-bg-image {
     position: absolute;
     top: 0;
@@ -183,7 +216,8 @@
     z-index: 0;
 }
 
-/* Hero Modern Content */
+/* --- Modern: Content Layout --- */
+
 .hero-content-modern {
     position: relative;
     z-index: 10;
@@ -208,27 +242,18 @@
     text-align: center;
 }
 
-.hero-text-only .hero-cta-group {
-    justify-content: center;
+/* --- Modern: Text Section --- */
+
+.hero-modern .hero-text-section {
+    animation: fadeInUp 0.8s ease-out;
+    will-change: opacity, transform;
 }
 
 .hero-text-only .hero-text-section {
     max-width: none;
 }
 
-.hero-text-only .hero-description {
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: var(--space-2xl);
-}
-
-.hero-text-section {
-    animation: fadeInUp 0.8s ease-out;
-    will-change: opacity, transform;
-}
-
-.hero-subtitle {
+.hero-modern .hero-subtitle {
     font-size: clamp(0.85rem, 1.1vw, 1rem);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.6);
@@ -253,7 +278,7 @@
     background-clip: text;
 }
 
-.hero-description {
+.hero-modern .hero-description {
     font-size: clamp(1.05rem, 1.3vw, 1.2rem);
     line-height: 1.75;
     color: rgba(255, 255, 255, 0.95);
@@ -261,11 +286,23 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Hero Modern Buttons */
-.hero-cta-group {
+.hero-text-only .hero-description {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--space-2xl);
+}
+
+/* --- Modern: CTA Buttons --- */
+
+.hero-modern .hero-cta-group {
     display: flex;
     gap: var(--space-md);
     flex-wrap: wrap;
+}
+
+.hero-text-only .hero-cta-group {
+    justify-content: center;
 }
 
 .hero-btn-primary,
@@ -302,7 +339,8 @@
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Hero Modern Visual Section */
+/* --- Modern: Visual Section --- */
+
 .hero-visual-section {
     position: relative;
 }
@@ -322,7 +360,8 @@
     backface-visibility: hidden;
 }
 
-/* Geometric Accent */
+/* --- Modern: Geometric Accent --- */
+
 .hero-geometric-accent {
     position: absolute;
     width: 100%;
@@ -364,7 +403,8 @@
     animation-delay: 10s;
 }
 
-/* Scroll Indicator */
+/* --- Modern: Scroll Indicator --- */
+
 .hero-scroll-indicator {
     position: absolute;
     bottom: 40px;
@@ -407,38 +447,18 @@
     }
 }
 
-/* Style: Video Background */
-.hero-style-video {
-    background: #000;
-}
-
-.hero-video-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: 0;
-}
-
 /* ==========================================================================
-   Hero Content
+   5. Generic Hero Content (汎用ページ用)
+
+   サービス一覧、制作実績、会社概要、ブログ等で使用。
+   .hero-section 配下の .hero-title, .hero-subtitle, .hero-description 等。
    ========================================================================== */
 
-/* Text Container */
 .hero-text-section {
     max-width: 800px;
     margin: 0 auto;
 }
 
-.hero-content-inner.hero-text-only .hero-text-section {
-    max-width: none;
-}
-
-/* Title */
 .hero-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
@@ -447,7 +467,6 @@
     color: inherit;
 }
 
-/* Subtitle */
 .hero-subtitle {
     font-size: clamp(1.125rem, 2vw, 1.5rem);
     font-weight: 400;
@@ -456,16 +475,6 @@
     color: inherit;
 }
 
-/* Modern Hero Subtitle - dark background needs light text */
-.hero-modern .hero-subtitle {
-    font-size: clamp(0.85rem, 1.1vw, 1rem);
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.08em;
-    opacity: 1;
-}
-
-/* Description */
 .hero-description {
     font-size: clamp(1rem, 1.5vw, 1.125rem);
     line-height: 1.8;
@@ -477,7 +486,6 @@
     color: inherit;
 }
 
-/* CTA Buttons */
 .hero-cta-group {
     display: flex;
     gap: var(--space-md);
@@ -521,10 +529,9 @@
 }
 
 /* ==========================================================================
-   Hero Features
+   6. Hero Features & Stats
    ========================================================================== */
 
-/* Feature List */
 .hero-features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -559,7 +566,6 @@
     opacity: 0.8;
 }
 
-/* Stats */
 .hero-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -587,10 +593,9 @@
 }
 
 /* ==========================================================================
-   Decorative Elements
+   7. Decorative Elements
    ========================================================================== */
 
-/* Animated Background Elements */
 .hero-bg-animation {
     position: absolute;
     top: 0;
@@ -601,7 +606,6 @@
     z-index: 2;
 }
 
-/* Floating shapes */
 .floating-shape {
     position: absolute;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -623,7 +627,6 @@
     }
 }
 
-/* Gradient animation */
 .animated-gradient {
     position: absolute;
     top: 0;
@@ -652,10 +655,9 @@
 }
 
 /* ==========================================================================
-   Page-Specific Heroes
+   8. Page-Specific Heroes
    ========================================================================== */
 
-/* Service Hero */
 .service-hero {
     min-height: 70vh;
 }
@@ -669,7 +671,6 @@
     text-align: left;
 }
 
-/* Work/Portfolio Hero */
 .work-hero {
     min-height: 60vh;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -681,22 +682,19 @@
     animation: none;
 }
 
-/* About Hero */
 .about-hero {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
 }
 
-/* Blog Hero */
 .blog-hero {
     min-height: 50vh;
     background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
 }
 
 /* ==========================================================================
-   Animations
+   9. Animations
    ========================================================================== */
 
-/* Fade in animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -728,11 +726,7 @@
     animation: fadeInUp 0.8s ease-out 0.8s both;
 }
 
-/* ==========================================================================
-   Utility Classes for Responsive Line Breaks
-   ========================================================================== */
-
-/* Hide on desktop, show on mobile */
+/* Utility: Hide on desktop, show on mobile */
 .sp-only {
     display: none;
 }
@@ -744,146 +738,149 @@
 }
 
 /* ==========================================================================
-   Responsive Design
+   10. Responsive Design
    ========================================================================== */
 
+/* --- Mobile (max-width: 768px) --- */
 @media (max-width: 768px) {
+
+    /* 汎用ヒーロー */
     .hero-section {
         min-height: 100vh;
         min-height: -webkit-fill-available;
     }
-    
+
     .hero-content {
         padding: var(--space-lg) var(--space-md);
     }
-    
+
     .hero-title {
         font-size: 2rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.125rem;
     }
-    
+
     .hero-description {
         font-size: 1rem;
     }
-    
+
     .hero-cta-group {
         flex-direction: column;
         align-items: center;
         width: 100%;
     }
-    
+
     .hero-cta-primary,
     .hero-cta-secondary {
         width: 100%;
         max-width: 300px;
         justify-content: center;
     }
-    
+
     .hero-features {
         grid-template-columns: 1fr;
         gap: var(--space-lg);
         margin-top: var(--space-2xl);
     }
-    
+
     .hero-stats {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-lg);
     }
-    
-    /* Disable complex animations on mobile */
+
     .animated-gradient,
     .floating-shape {
         animation: none;
     }
-    
-    /* Service hero mobile */
+
     .service-hero .hero-content {
         text-align: center;
     }
-    
+
     .service-hero .hero-features {
         text-align: center;
     }
-    
-    /* Hero Modern mobile */
+
+    /* モダンヒーロー */
     .hero-modern {
         min-height: calc(100vh - var(--header-height-mobile));
         min-height: calc(-webkit-fill-available - var(--header-height-mobile));
     }
-    
+
     .hero-content-modern {
         padding: 0 var(--space-md);
     }
-    
+
     .hero-content-inner {
         grid-template-columns: 1fr;
         gap: var(--space-2xl);
         text-align: center;
     }
-    
+
     .hero-title-modern {
         font-size: 2rem;
     }
-    
-    .hero-description {
+
+    .hero-modern .hero-description {
         font-size: 1rem;
     }
-    
-    .hero-cta-group {
+
+    .hero-modern .hero-cta-group {
         justify-content: center;
     }
-    
+
     .hero-btn-primary,
     .hero-btn-secondary {
         width: 100%;
         max-width: 300px;
         justify-content: center;
     }
-    
+
     .geometric-shape {
         display: none;
     }
-    
+
     .hero-visual-section {
         display: none;
     }
-    
+
     .hero-scroll-indicator {
         bottom: 20px;
     }
 }
 
+/* --- Tablet (769px - 1024px) --- */
 @media (min-width: 769px) and (max-width: 1024px) {
+
+    /* 汎用ヒーロー */
     .hero-content {
         padding: var(--space-xl) var(--space-lg);
     }
-    
+
     .hero-features {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    /* Hero Modern tablet */
+
+    /* モダンヒーロー */
     .hero-content-modern {
         padding: 0 var(--space-lg);
     }
-    
+
     .hero-content-inner {
         gap: var(--space-3xl);
     }
-    
+
     .hero-title-modern {
         font-size: 3rem;
     }
 }
 
 /* ==========================================================================
-   Accessibility & Performance
+   11. Accessibility & Performance
    ========================================================================== */
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .hero-animate .hero-title,
     .hero-animate .hero-subtitle,
@@ -898,26 +895,12 @@
     }
 }
 
-/* High contrast mode */
 @media (prefers-contrast: high) {
     .hero-overlay {
         background-color: rgba(0, 0, 0, 0.7);
     }
-    
+
     .hero-description {
         opacity: 1;
     }
-}
-
-/* ==========================================================================
-   Specific Hero Description Styling Override
-   ========================================================================== */
-
-/* Ensure hero description is visible on dark backgrounds */
-.hero-section .hero-description,
-.hero-content .hero-description,
-.hero-content-modern .hero-description,
-.hero-modern .hero-description {
-    color: rgba(255, 255, 255, 0.95) !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
