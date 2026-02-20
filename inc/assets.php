@@ -30,6 +30,56 @@ add_action( 'wp_enqueue_scripts', 'corporate_seo_pro_scripts' );
 
 /**
  * CSSファイルの読み込み
+ *
+ * CSS Load Order（依存関係による読み込み順序）:
+ *
+ * [Global - 全ページ共通]
+ *  1. style.css               — テーマメタデータ + 共通レイアウト + CTA + ブログ + 小規模ページ
+ *  2. base.css                — リセット + CSS変数ショートハンド定義（style.css依存）
+ *  3. typography.css           — タイポグラフィ（base.css依存）
+ *  4. responsive.css           — レスポンシブ基盤（base.css依存）
+ *  5. mobile-common.css        — モバイル共通最適化（responsive.css依存）
+ *  6. utilities.css            — ユーティリティクラス（base.css依存）
+ *  7. navigation.css           — ナビゲーション（base.css依存）
+ *  8. buttons.css              — ボタン（base.css依存）
+ *  9. forms.css                — フォーム + チェックボックス（base.css依存）
+ * 10. hero.css                 — ヒーローセクション（base.css依存）
+ * 11. footer.css → footer-modern.css → footer-mobile.css（チェーン依存）
+ * 12. mobile-menu.css          — モバイルメニュー（navigation.css依存）
+ * 13. header-mobile.css        — ヘッダーモバイル（navigation.css + mobile-menu.css依存）
+ * 14. chiba-subscription-banner.css — 千葉バナー（base.css依存）
+ * 15. download-modal.css       — DLモーダル（base.css依存）
+ * 16. color-scheme-teal.css    — ブランドカラー変数定義（正規ソース）（base.css依存）
+ * 17. features-section-enhanced.css — 選ばれる理由 強化版（style.css + color-scheme依存）
+ *
+ * [Conditional - 条件付き]
+ * Front page:
+ *   - service.css              — サービスコンポーネント（base.css依存）
+ *   - features-section-modern.css — 選ばれる理由 モダン版（enhanced依存）
+ *   - front-page-mobile.css    — TOPモバイル最適化（modern依存）
+ *
+ * Service pages (singular/archive/tax):
+ *   - service.css              — サービスコンポーネント（base.css依存）
+ *   - single-service.css → single-service-modern.css → single-service-mobile.css（チェーン依存）
+ *
+ * About page:
+ *   - about.css                — 会社概要（base.css + style.css + color-scheme依存）
+ *   - about-mobile.css         — 会社概要モバイル（about.css依存）
+ *
+ * Blog/Archive:
+ *   - news-release.css         — ニュースリリース（base.css依存）
+ *   - blog-filters.css         — ブログフィルタ（base.css依存）
+ *   - blog-mobile.css          — ブログモバイル（news-release.css依存）
+ *   - newsletter-cta.css       — ニュースレターCTA（single post のみ）
+ *
+ * Single post:
+ *   - toc.css                  — 目次 + 記事レイアウト調整（base.css依存）
+ *   - blog-download-cta.css    — DL CTA（base.css依存）
+ *   - blog-card.css            — ブログカード（base.css依存）
+ *
+ * Other pages:
+ *   - pages.css, contact.css, contact-mobile.css, work-mobile.css
+ *   - page-thanks.css, page-faq.css
  */
 function corporate_seo_pro_enqueue_styles( $version ) {
     // メインスタイルシート
@@ -156,13 +206,15 @@ function corporate_seo_pro_enqueue_styles( $version ) {
         $version
     );
 
-    // Service component (used on front page and service pages)
-    wp_enqueue_style(
-        'corporate-seo-pro-service',
-        get_template_directory_uri() . '/assets/css/components/service.css',
-        array( 'corporate-seo-pro-base' ),
-        $version
-    );
+    // Service component (front page + service pages only)
+    if ( is_front_page() || is_singular( 'service' ) || is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
+        wp_enqueue_style(
+            'corporate-seo-pro-service',
+            get_template_directory_uri() . '/assets/css/components/service.css',
+            array( 'corporate-seo-pro-base' ),
+            $version
+        );
+    }
 
     // Color scheme
     wp_enqueue_style(
@@ -206,7 +258,7 @@ function corporate_seo_pro_enqueue_styles( $version ) {
  * 条件付きスタイルの読み込み
  */
 function corporate_seo_pro_enqueue_conditional_styles( $version ) {
-    // Service pages (service.css is already loaded globally, just load single service styles)
+    // Single service page styles
     if ( is_singular( 'service' ) ) {
         wp_enqueue_style(
             'corporate-seo-pro-single-service',
@@ -439,19 +491,11 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             true 
         );
         
-        // TOCのスタイルを追加
-        wp_enqueue_style( 
-            'corporate-seo-pro-toc', 
-            get_template_directory_uri() . '/assets/css/components/toc.css', 
-            array( 'corporate-seo-pro-base' ), 
-            $version 
-        );
-        
-        // 記事詳細ページの目次レイアウト調整
+        // TOCのスタイル（記事レイアウト調整含む）
         wp_enqueue_style(
-            'corporate-seo-pro-single-post-toc',
-            get_template_directory_uri() . '/assets/css/pages/single-post-toc.css',
-            array( 'corporate-seo-pro-toc' ),
+            'corporate-seo-pro-toc',
+            get_template_directory_uri() . '/assets/css/components/toc.css',
+            array( 'corporate-seo-pro-base' ),
             $version
         );
 
@@ -549,13 +593,6 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     
     // Contact page
     if ( is_page_template( 'page-contact.php' ) ) {
-        // Forms override CSS (チェックボックス表示修正)
-        wp_enqueue_style( 
-            'corporate-seo-pro-forms-override', 
-            get_template_directory_uri() . '/assets/css/forms-override.css', 
-            array( 'corporate-seo-pro-forms' ), 
-            $version 
-        );
         // Contact form script
         wp_enqueue_script( 
             'corporate-seo-pro-contact', 
@@ -706,25 +743,16 @@ function corporate_seo_pro_enqueue_libraries() {
  * カスタムヘッダー用インラインスタイル
  */
 function corporate_seo_pro_custom_header_styles() {
-    $custom_css = "";
-    
-    // ヒーローセクションのグラデーション
-    $custom_css .= "
-        .hero-section.hero-gradient {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    if ( ! has_custom_header() ) {
+        return;
+    }
+
+    $custom_css = "
+        .hero-modern .hero-bg-image img {
+            content: url(" . esc_url( get_header_image() ) . ");
         }
     ";
-    
-    if ( has_custom_header() ) {
-        $custom_css .= "
-            .hero-section {
-                background-image: url(" . esc_url( get_header_image() ) . ");
-                background-size: cover;
-                background-position: center;
-            }
-        ";
-    }
-    
+
     wp_add_inline_style( 'corporate-seo-pro-style', $custom_css );
 }
 add_action( 'wp_enqueue_scripts', 'corporate_seo_pro_custom_header_styles' );
