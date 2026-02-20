@@ -456,6 +456,15 @@
     color: inherit;
 }
 
+/* Modern Hero Subtitle - dark background needs light text */
+.hero-modern .hero-subtitle {
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.08em;
+    opacity: 1;
+}
+
 /* Description */
 .hero-description {
     font-size: clamp(1rem, 1.5vw, 1.125rem);
