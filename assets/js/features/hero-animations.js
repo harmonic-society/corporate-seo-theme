@@ -148,7 +148,7 @@
         let svgContent = '';
         for (let i = 0; i < nodes.length; i++) {
             for (let j = i + 1; j < nodes.length; j++) {
-                svgContent += `<line class="connection-line" x1="0" y1="0" x2="0" y2="0" stroke="rgba(22, 160, 133, 0.1)" stroke-width="1"/>`;
+                svgContent += `<line class="connection-line" x1="0" y1="0" x2="0" y2="0" stroke="rgba(0, 134, 123, 0.06)" stroke-width="0.5"/>`;
             }
         }
         svg.innerHTML = svgContent;
@@ -185,7 +185,7 @@
                             Math.pow(nodes[i].x - nodes[j].x, 2) + 
                             Math.pow(nodes[i].y - nodes[j].y, 2)
                         );
-                        const opacity = Math.max(0, 1 - distance / 500) * 0.2;
+                        const opacity = Math.max(0, 1 - distance / 500) * 0.12;
                         line.style.opacity = opacity;
                     }
                     lineIndex++;

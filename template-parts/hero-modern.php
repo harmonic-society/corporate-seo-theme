@@ -27,8 +27,9 @@
     </div>
     
     <!-- メインコンテンツ -->
+    <?php $hero_image = get_theme_mod( 'hero_modern_image', '' ); ?>
     <div class="hero-content-modern">
-        <div class="hero-content-inner">
+        <div class="hero-content-inner<?php echo empty( $hero_image ) ? ' hero-text-only' : ''; ?>">
             <!-- テキストセクション -->
             <div class="hero-text-section">
                 <div class="hero-subtitle">顧客管理・タスク管理・案件管理など、御社の業務に必要な機能だけをシンプルに構築します。</div>
@@ -41,7 +42,7 @@
                 <p class="hero-description">
                     Excelや紙で散らかる情報を一つにまとめ、誰でも使える軽いWebシステムをオーダーメイドで作ります。
                 </p>
-                
+
                 <div class="hero-cta-group">
                     <a href="/contact" class="hero-btn-primary">
                         <span>無料相談してみる</span>
@@ -50,18 +51,15 @@
                             <path d="M10 10H3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </a>
-                    
+
                     <a href="/works" class="hero-btn-secondary">
                         <span>制作事例を見る</span>
                     </a>
                 </div>
             </div>
-            
+
             <!-- ビジュアルセクション -->
-            <?php 
-            $hero_image = get_theme_mod( 'hero_modern_image', '' );
-            if ( $hero_image ) : 
-            ?>
+            <?php if ( $hero_image ) : ?>
             <div class="hero-visual-section">
                 <div class="hero-visual-container">
                     <div class="hero-image-wrapper">
