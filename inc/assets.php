@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function corporate_seo_pro_scripts() {
     $theme_version = wp_get_theme()->get( 'Version' );
-    // Add timestamp to force cache refresh
-    $version_with_time = $theme_version . '.' . time();
-    
+    // 開発時のみタイムスタンプ付きバージョンでキャッシュ無効化
+    $version = defined( 'WP_DEBUG' ) && WP_DEBUG ? $theme_version . '.' . time() : $theme_version;
+
     // CSS files
-    corporate_seo_pro_enqueue_styles( $version_with_time );
-    
+    corporate_seo_pro_enqueue_styles( $version );
+
     // JavaScript files
-    corporate_seo_pro_enqueue_scripts( $version_with_time );
+    corporate_seo_pro_enqueue_scripts( $version );
     
     // External libraries
     corporate_seo_pro_enqueue_libraries();
@@ -404,14 +404,6 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
     // Front page
     if ( is_front_page() ) {
         wp_enqueue_script(
-            'corporate-seo-pro-hero-animations',
-            get_template_directory_uri() . '/assets/js/features/hero-animations.js',
-            array( 'corporate-seo-pro-animation-utils' ),
-            $version,
-            true
-        );
-
-        wp_enqueue_script(
             'corporate-seo-pro-hero-modern',
             get_template_directory_uri() . '/assets/js/features/hero-modern.js',
             array( 'corporate-seo-pro-animation-utils' ),
@@ -538,15 +530,6 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             true
         );
 
-        // About values visibility fix script
-        wp_enqueue_script(
-            'corporate-seo-pro-about-values-fix',
-            get_template_directory_uri() . '/assets/js/pages/about-values-fix.js',
-            array(),
-            $version,
-            true
-        );
-
         // About page styles - Dynamic & Trustworthy Design
         wp_enqueue_style(
             'corporate-seo-pro-about',
@@ -640,14 +623,6 @@ function corporate_seo_pro_enqueue_conditional_scripts( $version ) {
             );
         }
 
-        wp_enqueue_script(
-            'corporate-seo-pro-service', 
-            get_template_directory_uri() . '/assets/js/pages/single-service.js', 
-            array(), 
-            $version, 
-            true 
-        );
-        
         // Service features enhancement for archive pages
         if ( is_post_type_archive( 'service' ) || is_tax( 'service_category' ) ) {
             wp_enqueue_script( 

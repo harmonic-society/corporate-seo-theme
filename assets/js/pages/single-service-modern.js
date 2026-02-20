@@ -80,9 +80,9 @@
             });
         }, observerOptions);
 
-        // アニメーション対象の要素
+        // アニメーション対象の要素（モダン + フォールバックテンプレート両方対応）
         const animatedElements = document.querySelectorAll(
-            '.feature-card-modern, .pricing-card-modern, .process-step-modern, .faq-item-modern, .value-prop-item'
+            '.feature-card-modern, .feature-card, .pricing-card-modern, .pricing-card, .process-step-modern, .faq-item-modern, .value-prop-item'
         );
 
         animatedElements.forEach((el, index) => {
@@ -119,6 +119,28 @@
         });
     }
 
+    // 料金カードのインタラクション（フォールバックテンプレート対応）
+    function initPricingInteractions() {
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        pricingCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+            const cta = card.querySelector('.plan-cta');
+            if (cta) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function(e) {
+                    if (e.target !== cta && !cta.contains(e.target)) {
+                        cta.click();
+                    }
+                });
+            }
+        });
+    }
+
     // 初期化
     function init() {
         // DOM読み込み完了後に実行
@@ -128,12 +150,14 @@
                 initSmoothScroll();
                 initScrollAnimations();
                 initParallaxEffect();
+                initPricingInteractions();
             });
         } else {
             initFAQAccordion();
             initSmoothScroll();
             initScrollAnimations();
             initParallaxEffect();
+            initPricingInteractions();
         }
     }
 

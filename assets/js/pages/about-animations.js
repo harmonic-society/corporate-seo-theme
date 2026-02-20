@@ -157,6 +157,43 @@ document.addEventListener('DOMContentLoaded', function() {
         counterObserver.disconnect();
     });
 
+    // 「3つの調和」セクションの可視性を保証
+    function ensureValuesVisible() {
+        const valueItems = document.querySelectorAll('.value-item');
+        const valuesGrid = document.querySelector('.values-grid');
+        const heroValues = document.querySelector('.hero-values');
+
+        if (heroValues) {
+            heroValues.style.display = 'block';
+            heroValues.style.visibility = 'visible';
+            heroValues.style.opacity = '1';
+        }
+
+        if (valuesGrid) {
+            valuesGrid.style.display = 'grid';
+            valuesGrid.style.visibility = 'visible';
+            valuesGrid.style.opacity = '1';
+        }
+
+        valueItems.forEach(item => {
+            item.style.animation = 'none';
+            item.style.transform = 'none';
+            item.style.opacity = '1';
+            item.style.visibility = 'visible';
+        });
+
+        // アニメーションクラスの干渉を除去
+        document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-down, .animate').forEach(el => {
+            if (el.closest('.hero-values')) {
+                el.classList.remove('fade-in', 'fade-in-up', 'fade-in-down', 'animate');
+            }
+        });
+    }
+
+    ensureValuesVisible();
+    // 他のスクリプトの干渉に備えた遅延チェック
+    setTimeout(ensureValuesVisible, 1000);
+
     // アニメーションのCSS定義（JavaScriptから動的に追加）
     if (!document.getElementById('about-animations-styles')) {
         const style = document.createElement('style');
