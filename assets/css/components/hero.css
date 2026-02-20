@@ -212,6 +212,10 @@
     justify-content: center;
 }
 
+.hero-text-only .hero-text-section {
+    max-width: none;
+}
+
 .hero-text-only .hero-description {
     max-width: 640px;
     margin-left: auto;
