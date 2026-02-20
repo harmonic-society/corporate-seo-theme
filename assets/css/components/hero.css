@@ -203,7 +203,7 @@
 /* 画像なし時：テキスト中央配置 */
 .hero-content-inner.hero-text-only {
     grid-template-columns: 1fr;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
     text-align: center;
 }
