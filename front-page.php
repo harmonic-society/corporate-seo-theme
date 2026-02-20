@@ -174,33 +174,14 @@ get_header(); ?>
     <?php endif; ?>
 
     <?php if ( get_theme_mod( 'show_about_section', true ) ) : ?>
-        <section class="about-section-modern about-video-section">
+        <section class="about-section-modern">
             <div class="container">
-                <div class="about-modern-wrapper">
-                    <!-- Left: YouTube Video -->
-                    <div class="about-video-side">
-                        <div class="about-video-container">
-                            <iframe
-                                src="https://www.youtube.com/embed/qNAc5fUnuY0?si=XLwecJ3r8ScYTi0j&mute=1"
-                                title="Harmonic Society"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-
-                    <!-- Right: Content -->
+                <div class="about-modern-wrapper about-centered">
                     <div class="about-content-side">
                         <div class="about-header-modern">
-                            <div class="about-label-badge">
-                                <span class="label-icon"><i class="fas fa-building"></i></span>
-                                <span class="label-text"><?php esc_html_e( 'About Us', 'corporate-seo-pro' ); ?></span>
-                            </div>
+                            <span class="section-label"><?php esc_html_e( 'About Us', 'corporate-seo-pro' ); ?></span>
                             <h2 class="about-title-modern">
                                 <span class="title-line"><?php echo esc_html( get_theme_mod( 'about_title', __( '私たちについて', 'corporate-seo-pro' ) ) ); ?></span>
-                                <span class="title-underline"></span>
                             </h2>
                         </div>
 

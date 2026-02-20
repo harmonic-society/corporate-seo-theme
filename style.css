@@ -2657,6 +2657,13 @@ button.nav-cta-button {
     align-items: center;
 }
 
+.about-modern-wrapper.about-centered {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 /* Visual Side */
 .about-visual-side {
     position: relative;
@@ -2845,6 +2852,27 @@ button.nav-cta-button {
 
 .about-header-modern {
     margin-bottom: 2rem;
+}
+
+.about-centered .about-header-modern {
+    margin-bottom: 2.5rem;
+}
+
+.about-centered .about-title-modern {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.about-centered .title-underline {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-centered .about-text-modern {
+    text-align: left;
+}
+
+.about-centered .about-action-modern {
+    text-align: center;
 }
 
 .about-label-badge {
