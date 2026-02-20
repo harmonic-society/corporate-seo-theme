@@ -501,13 +501,7 @@ function corporate_seo_pro_advanced_resource_hints() {
     echo '<link rel="preload" as="font" type="font/woff2" href="' . $theme_uri . '/assets/fonts/noto-sans-jp-v42-latin_japanese-regular.woff2" crossorigin>' . "\n";
     echo '<link rel="preload" as="font" type="font/woff2" href="' . $theme_uri . '/assets/fonts/noto-sans-jp-v42-latin_japanese-700.woff2" crossorigin>' . "\n";
     
-    // Preload critical images
-    if ( is_front_page() ) {
-        $hero_image = get_theme_mod( 'hero_image' );
-        if ( $hero_image ) {
-            echo '<link rel="preload" as="image" href="' . esc_url( $hero_image ) . '">' . "\n";
-        }
-    }
+    // Preload critical images (LCP optimization is handled by corporate_seo_pro_lcp_optimization)
 }
 add_action( 'wp_head', 'corporate_seo_pro_advanced_resource_hints', 2 );
 
