@@ -434,6 +434,10 @@
     margin: 0 auto;
 }
 
+.hero-content-inner.hero-text-only .hero-text-section {
+    max-width: none;
+}
+
 /* Title */
 .hero-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
