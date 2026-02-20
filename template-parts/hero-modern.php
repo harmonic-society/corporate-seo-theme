@@ -13,7 +13,7 @@
     if ( $hero_bg_image ) : 
     ?>
     <div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_bg_image ); ?>');"></div>
-    <div class="hero-bg-overlay" style="opacity: <?php echo esc_attr( get_theme_mod( 'hero_bg_overlay_opacity', '0.8' ) ); ?>"></div>
+    <div class="hero-bg-overlay" style="opacity: <?php echo esc_attr( get_theme_mod( 'hero_bg_overlay_opacity', '0.6' ) ); ?>"></div>
     <?php else : ?>
     <!-- 動的背景グラデーション -->
     <div class="hero-gradient-bg"></div>
