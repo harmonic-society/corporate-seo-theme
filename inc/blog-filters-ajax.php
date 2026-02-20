@@ -247,21 +247,3 @@ function corporate_seo_pro_filter_blog_posts() {
 add_action( 'wp_ajax_filter_blog_posts', 'corporate_seo_pro_filter_blog_posts' );
 add_action( 'wp_ajax_nopriv_filter_blog_posts', 'corporate_seo_pro_filter_blog_posts' );
 
-/**
- * 読了時間を計算する関数（ヘルパー関数）
- */
-if ( ! function_exists( 'corporate_seo_get_reading_time' ) ) {
-    function corporate_seo_get_reading_time() {
-        $content = get_the_content();
-        $word_count = str_word_count( strip_tags( $content ) );
-        $reading_time = ceil( $word_count / 200 ); // 1分間に200単語読むと仮定
-        
-        // 日本語の場合は文字数ベースで計算
-        if ( function_exists( 'mb_strlen' ) ) {
-            $char_count = mb_strlen( strip_tags( $content ), 'UTF-8' );
-            $reading_time = ceil( $char_count / 400 ); // 1分間に400文字読むと仮定
-        }
-        
-        return $reading_time . '分';
-    }
-}

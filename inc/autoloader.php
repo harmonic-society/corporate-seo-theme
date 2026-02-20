@@ -25,7 +25,6 @@ function corporate_seo_pro_load_includes() {
         '/inc/template-functions.php', // Template functions
         '/inc/filters.php',            // WordPress filters
         '/inc/class-nav-walker.php',   // Custom navigation walker
-        '/inc/class-mobile-menu-walker.php', // Mobile menu walker
         '/inc/customizer.php',         // Theme customizer
         '/inc/seo-functions.php',      // SEO functionality
         '/inc/performance.php',        // Performance optimization

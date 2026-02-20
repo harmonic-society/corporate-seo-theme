@@ -42,20 +42,6 @@ function corporate_seo_get_reading_time() {
     }
 }
 
-/**
- * 読了時間の計算（旧関数・互換性のため残す）
- */
-function corporate_seo_pro_reading_time() {
-    $content = get_post_field( 'post_content', get_the_ID() );
-    $word_count = str_word_count( strip_tags( $content ) );
-    $reading_time = ceil( $word_count / 200 ); // 200文字/分で計算
-    
-    if ( $reading_time < 1 ) {
-        $reading_time = 1;
-    }
-    
-    return sprintf( _n( '%s分で読めます', '%s分で読めます', $reading_time, 'corporate-seo-pro' ), $reading_time );
-}
 
 /**
  * 関連記事の取得

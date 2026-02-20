@@ -11,86 +11,12 @@
     document.addEventListener('DOMContentLoaded', function() {
         
         // Initialize all theme components
-        initMobileMenu();
         initScrollEffects();
         initSmoothScroll();
         initLazyLoading();
         initAnimations();
         
     });
-
-    /**
-     * Mobile Menu Functionality
-     * DISABLED - Using mobile-menu-improved.js instead
-     */
-    function initMobileMenu() {
-        return; // Disabled to prevent conflicts
-        const toggleButton = document.querySelector('.mobile-menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const mobileOverlay = document.querySelector('.mobile-menu-overlay');
-        const menuLinks = document.querySelectorAll('.mobile-menu a');
-        
-        if (!toggleButton || !mobileMenu) {
-            return;
-        }
-        
-        // Toggle menu
-        toggleButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleMenu();
-        });
-        
-        // Close on overlay click
-        if (mobileOverlay) {
-            mobileOverlay.addEventListener('click', function() {
-                closeMenu();
-            });
-        }
-        
-        // Close on menu link click
-        menuLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                closeMenu();
-            });
-        });
-        
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-        
-        function toggleMenu() {
-            const isOpen = mobileMenu.classList.contains('active');
-            if (isOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        }
-        
-        function openMenu() {
-            mobileMenu.classList.add('active');
-            toggleButton.classList.add('active');
-            if (mobileOverlay) {
-                mobileOverlay.classList.add('active');
-            }
-            document.body.style.overflow = 'hidden';
-            toggleButton.setAttribute('aria-expanded', 'true');
-        }
-        
-        function closeMenu() {
-            mobileMenu.classList.remove('active');
-            toggleButton.classList.remove('active');
-            if (mobileOverlay) {
-                mobileOverlay.classList.remove('active');
-            }
-            document.body.style.overflow = '';
-            toggleButton.setAttribute('aria-expanded', 'false');
-        }
-    }
 
     /**
      * Scroll Effects
