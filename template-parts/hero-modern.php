@@ -35,7 +35,7 @@
                 <div class="hero-subtitle">顧客管理・タスク管理・案件管理など、御社の業務に必要な機能だけをシンプルに構築します。</div>
 
                 <h1 class="hero-title-modern">
-                    小さな会社に"ちょうどいい"<br class="sp-only">業務システムを、<br>
+                    小さな会社に<br class="sp-only">"ちょうどいい"業務システムを、<br>
                     <span class="hero-title-gradient">短期間・低コストで。</span>
                 </h1>
 
